@@ -1,0 +1,42 @@
+<head xmlns:th="http://www.thymeleaf.org" th:fragment="headerCode(title, pageMetaData)">
+    <title th:utext="${@webUtils.validateString(title)}">title</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--    <link rel='dns-prefetch' href='http://cdnjs.cloudflare.com/'/>-->
+<!--    <link rel='dns-prefetch' href='http://cdn.jsdelivr.net/'/>-->
+
+    <link rel='stylesheet' id='wp-block-library-css' href='css/style.mind1c0.css?ver=6.7.2'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='contact-form-7-css'
+          href='css/styles1eb7.css?ver=6.0.3' type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-css' href='css/bootstrap.mind1c0.css?ver=6.7.2'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-icons-css' href='css/bootstrap-icons.css'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='fontawsome-icons-css'
+          href='css/all.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='animateCss-css' href='css/animate.min.css'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='slick-css-css' href='css/slick.css'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='styles-css' href='css/stylesd1c0.css?ver=6.7.2'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='responsive-css' href='css/responsived1c0.css?ver=6.7.2'
+          type='text/css' media='all'/>
+
+<!--    <link rel="https://api.w.org/" href="wp-json/index.html"/>-->
+    <!--<link rel="alternate" title="JSON" type="application/json" href="wp-json/wp/v2/pages/10.json" />-->
+    <!--<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.html?rsd" />-->
+    <!--<meta name="generator" content="WordPress 6.7.2" />-->
+<!--    <link rel="canonical" href="index.html"/>-->
+<!--    <link rel='shortlink' href='index.html'/>-->
+    <!--<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"-->
+    <!--      href="wp-json/oembed/1.0/embedd958.json?url=https%3A%2F%2Fstg.linqresearchllc.com%2F" />-->
+    <!--<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"-->
+    <!--      href="wp-json/oembed/1.0/embedb930?url=https%3A%2F%2Fstg.linqresearchllc.com%2F&amp;format=xml" />-->
+
+<!--    SEO related Code-->
+    <th:block th:utext="${pageMetaData.seoCode}"></th:block>
+</head>

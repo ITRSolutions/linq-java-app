@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body th:fragment="navigationCode(pageMetaData, navigation)">
+<div class="container-fluid">
+    <div class="row flex-column flex-md-row text-white py-2 justify-content-between" style="background:#FDB139">
+        <div class="col-12 col-md-8 col-lg-4 d-flex flex-column flex-md-row align-items-center gap-md-4 gap-2 ps-5 mb-2 mb-md-0">
+            <div>
+                <a href="#" th:href="'tel:' + ${@webUtils.validateString(pageMetaData.phoneNumber)}" class="text-decoration-none text-white"
+                   target="_blank">
+                    <i class="bi bi-telephone-fill"></i>
+                    <span th:utext="${@webUtils.validateString(pageMetaData.phoneNumber)}">Telephone Number</span>
+                </a>
+            </div>
+            <div>
+                <a href="#" th:href="'mailto:' + ${@webUtils.validateString(pageMetaData.email)}" class="text-decoration-none text-white"
+                   target="_blank">
+                    <i class="bi bi-envelope-fill"></i>
+                    <span th:utext="${@webUtils.validateString(pageMetaData.email)}">email id</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4  d-flex align-items-center justify-content-end ps-5 ps-md-0 gap-4 pe-5">
+            <div class="d-flex align-items-center gap-4">
+                <div>
+                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.fbUrl)}" target="_blank" class="text-decoration-none text-white">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.xUrl)}" target="_blank" class="text-decoration-none text-white">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.instaUrl)}" target="_blank"
+                       class="text-decoration-none text-white">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <a href="#" th:href="${@webUtils.validateString(pageMetaData.loginUrl)}" class="text-white rounded-pill" target="_blank">Login</a>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg border-bottom" style="background:#eee">
+    <div class="container-fluid">
+        <a class="navbar-brand logo-wrapper" href="index.html" th:href="${@webUtils.validateString(pageMetaData.logoUrl)}" target="_blank">
+            <img src="logo_url" th:src="${@webUtils.validateString(pageMetaData.logoImgUrl)}" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-auto" th:each="navigationtBlock: ${navigation}">
+
+                <!--  Dynamic URLs links start-->
+                <li class="nav-item d-flex align-items-center px-0 px-lg-2">
+                    <div class="dropdown header-dropdown" th:each="slide, iterStat : ${navigationtBlock.slide}">
+                        <button class="dropdown-toggle header-dropdown-btn primary-text-color" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" th:utext="${@webUtils.validateString(slide.slideTitle)}">
+                            Additional Links
+                        </button>
+                        <ul class="dropdown-menu special-dropdown-menu border-0 shadow">
+
+                            <li th:each="slideContent : ${slide.slideContents}">
+                                <a class="dropdown-item" th:href="${@webUtils.createLink(slideContent.content)}"
+                                   th:utext="${@webUtils.validateString(slideContent.content)}">
+                                    Clinical Trials
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <!--            Dynamic URLs links end--->
+
+            </ul>
+            <button class="btn-with-arrow"
+                    th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(pageMetaData.buttonUrl)} + '&quot;, &quot;_blank&quot;);'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+                <span class="button-text" th:utext="${@webUtils.validateString(pageMetaData.buttonText)}">Participate Now
+          </span>
+            </button>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,41 @@
+@media(max-width:992px){
+  .header-dropdown,
+  .header-link{
+    padding: 10px 0px;
+  }
+
+  .navbar-collapse{
+    position:absolute;
+    top: 92px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 90%;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding-bottom: 21px;
+  }
+}
+
+@media(max-width:768px){
+  .carousel-caption{
+    top:30px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .carousel-control-prev,.carousel-control-next{
+    display: none;
+  }
+
+  .carousel-indicators{
+    bottom: 110px;
+  }
+  .circular-card-img{
+    height: 250px;
+    width: 250px;
+  }
+}

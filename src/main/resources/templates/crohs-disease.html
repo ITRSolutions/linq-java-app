@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData})}"></head>
+<body>
+<!-- Dynamic navigation -->
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}"></div>
+
+<div class="container-fluid container-xxl">
+  <div class="row mb-5">
+    <div class="contact-header">
+      <h2 class="text-white fw-bold" th:utext="${contentBlock1.slide[0].slideContents[0].content}">Crohn’s Disease</h2>
+    </div>
+  </div>
+
+  <div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
+    <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border" th:each="slide : ${contentBlock.slide}">
+      <h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+      <p class="text-white mt-4" th:utext="${slide.slideContents[1].content}"></p>
+      <a th:href="${slide.slideContents[2].content}" class="btn text-white mt-4">Join Now</a>
+    </div>
+    <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
+      <img th:src="${slide.slideContents[3].content}" height="420" alt="" class="object-fit-cover d-block rounded-start-5">
+    </div>
+  </div>
+
+  <div class="row text-center p-4 py-5 mt-4 mb-5 shadow-sm border" style="background:#F8F8F8" th:each="contentBlock : ${contentBlock3}">
+    <div class="col-md-8 m-auto" th:each="slide : ${contentBlock.slide}">
+      <h5 class="primary-text-color mt-2" th:utext="${slide.slideContents[0].content}"></h5>
+      <p class="mt-4" th:utext="${slide.slideContents[1].content}"></p>
+    </div>
+  </div>
+
+  <div class="row px-5" th:each="contentBlock : ${contentBlock4}">
+    <div class="col-lg-7 mt-4" th:each="slide : ${contentBlock.slide}">
+      <h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+      <p class="mt-4" th:utext="${slide.slideContents[1].content}"></p>
+      <ul>
+        <li th:each="criteria : ${slide.slideContents[2].content}" th:utext="${criteria}"></li>
+      </ul>
+      <h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[3].content}"></h2>
+      <p class="mt-4" th:utext="${slide.slideContents[4].content}"></p>
+    </div>
+    <div class="col-lg-5 mt-4 p-5">
+      <div class="row g-4">
+        <div class="col-lg-6" th:each="slide : ${contentBlock.slide}">
+          <div class="condition-card p-3 d-flex flex-column align-items-center justify-content-center gap-2">
+            <h5 class="dark-secondary-text-color text-center m-0" th:utext="{slide.slideContents[0].content}"></h5>
+            <p class="text-center text-white regular-font m-0" th:utext="{slide.slideContents[1].content}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5" th:each="contentBlock : ${contentBlock5}">
+    <div class="col-lg-12 appreciation" th:each="slide : ${contentBlock.slide}">
+      <div class="row h-100">
+        <div class="col-lg-8 d-flex align-items-center ps-5">
+          <h2 class="text-white fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+        </div>
+        <div class="col-lg-4 d-flex align-items-center">
+          <img th:src="${slide.slideContents[1].content}" style="height:210px" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+</body>
+</html>
