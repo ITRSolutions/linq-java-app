@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from 18.207.147.246/form.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 19:06:41 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Form</title>
+    <script src="../code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/form-css.css">
+    <script src="js/form-js.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <a class="logo-form" href=" ">
+            <img src="bitnami/wordpress/wp-content/themes/linqTheme/images/logo.png" alt="logo">
+          </a>
+        <form id="contact-form">
+            <div class="form-group">
+                <input type="text" id="first-name" placeholder=" " required>
+                <label for="first-name">First Name*</label>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="last-name" placeholder=" " required>
+                <label for="last-name">Last Name*</label>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <input type="date" id="dob" required>
+                <label for="dob">Date of Birth*</label>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" placeholder=" " required>
+                <label for="phone">Primary Phone Number*</label>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Email*</label>
+                <span class="error"></span>
+            </div>
+            <div class="checkbox-group">
+                <p>What is the best time to contact you?</label>
+                <p><input type="checkbox" name="contact-time" value="8am-12pm"> Between 8 am - 12 pm</label>
+                <p><input type="checkbox" name="contact-time" value="12pm-5pm"> Between 12 pm - 5 pm</label>
+                <p><input type="checkbox" name="contact-time" value="5pm-8pm"> Between 5 pm - 8 pm</label>
+                <p><input type="checkbox" name="contact-time" value="weekends"> Weekends</label>
+            </div>
+            <div class="form-group">
+                <input type="number" id="zip" placeholder=" " required>
+                <label for="zip">Zip Code*</label>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="state" placeholder=" " required>
+                <label for="state">State*</label>
+                <span class="error"></span>
+            </div>
+            <p class="footer-text">By Checking this box you agree to receive
+                notifications from LINQ Research LLC., you can
+                reply stop to opt-out at any time</p>
+            <div class="md-btn">
+                <button type="submit">Submit</button>
+            </div>
+
+        </form>
+    </div> 
+ 
+</body>
+
+<!-- Mirrored from 18.207.147.246/form.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 19:06:41 GMT -->
+</html>
