@@ -220,11 +220,12 @@ form.submitting .wpcf7-spinner {
     opacity: 0.6;
 }
 
-.banner-font-size{
-	font-size: calc(1.425rem + 2.1vw);
+.display-5 {
+    font-size: calc(1.5rem + 2vw) !important;
 }
+
 @media (min-width: 768px) {  
     .banner-Para-font-size {
-        font-size: 1.2rem; /* Set a fixed size for mobile */
+        font-size: calc(1.2rem + 0.1vw);
     }
 }
