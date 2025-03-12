@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <?php include 'header.html'; ?>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Start Navigation -->
+    <?php include 'navigation.html'; ?>
+    <!-- End Navigation -->
+
+    <div id="page-wrapper">
+      <div class="graphs">
+
+        <div class="xs">
+          <h3>Page Metadata</h3>
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div class="col-md-12 pd-0">
+          <div class="Compose-Message">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Update Page Metadata
+              </div>
+              <form>
+                <div class="panel-body">
+                <div class="col-md-12">
+                    <label>  Font Family Code : (Optional)</label> 
+                    <textarea rows="3" class="form-control1 control1" name="font_family"></textarea>
+                  </div>
+                  <div class="col-md-12">
+                    <label> * Bottom Header  : </label>
+                    <input type="text" class="form-control1 control3" name="bottom_header" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Facebook URL : </label>
+                    <input type="text" class="form-control1 control3" name="fb_URL" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Instagram URL : </label>
+                    <input type="text" class="form-control1 control3" name="insta_URL" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Twitter URL : </label>
+                    <input type="text" class="form-control1 control3" name="x_URL" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Login URL : </label>
+                    <input type="text" class="form-control1 control3" name="login_URL" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Upload Logo image : </label>
+                    <a href="https://google.in" target="_blank" class="float-right"><label> [LOGO IMAGE]</label></a>
+                    <input type="file" class="form-control1 control3 uploadImage" accept="image/*" required style="padding-top: 9px;">
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Logo Anchor URL : </label>
+                    <input type="text" class="form-control1 control3" name="logo_URL" required>
+                  </div>
+
+
+                  <div class="col-md-3">
+                    <label> * Button Text : </label>
+                    <input type="text" class="form-control1 control3" name="button_text" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Button URL : </label>
+                    <input type="text" class="form-control1 control3" name="button_URL" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Address : </label>
+                    <input type="text" class="form-control1 control3" name="address" required>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label> * Phone Number : </label>
+                    <input type="text" class="form-control1 control3" name="phone_number" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Official Email : </label>
+                    <input type="email" class="form-control1 control3" name="email" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label> * Website version : </label>
+                    <input type="text" class="form-control1 control3" name="version" required>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label> SEO/Google Analytics Code : (Optional)</label>
+                    <textarea rows="3" class="form-control1 control1" name="seo_code"></textarea>
+                  </div>
+
+
+                  <div class="form-group col-md-12">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"> </div>
+        <div class="padding-t-15">
+          <?php include 'footer.html'; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

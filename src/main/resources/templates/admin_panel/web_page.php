@@ -1,0 +1,683 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <?php include 'header.html'; ?>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Start Navigation -->
+    <?php include 'navigation.html'; ?>
+    <!-- End Navigation -->
+
+    <div id="page-wrapper">
+      <div class=" graphs">
+
+        <div class="xs">
+          <h3>Web Pages</h3>
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div class="grid_3 grid_5">
+          <div class="but_list mg-t-0">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+              <ul id="myTab" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#pages" id="pPages-tab" role="tab" data-toggle="tab"
+                    aria-controls="pages" aria-expanded="true">Pages</a></li>
+                <li role="presentation" class=""><a href="#content_blocks" id="content_blocks-tab" role="tab"
+                    data-toggle="tab" aria-controls="content_blocks" aria-expanded="true">Content Blocks</a></li>
+                <li role="presentation" class=""><a href="#slides" role="tab" id="slides-tab" data-toggle="tab"
+                    aria-controls="slides" aria-expanded="false">Slides</a></li>
+                <li role="presentation" class=""><a href="#slide_contents" role="tab" id="slide_contents-tab"
+                    data-toggle="tab" aria-controls="slide_contents" aria-expanded="false">Slide Contents</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+
+                <form action="#" method="GET">
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control1 input-search" placeholder="Search...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div><!-- Input Group -->
+                </form>
+
+                <!-- pages tab -->
+                <div role="tabpanel" class="tab-pane fade active in" id="pages" aria-labelledby="pages-tab">
+                  <div class=" pd-0">
+                    <div class="mailbox-content pd-0">
+                      <div class="mail-toolbar clearfix pd-t-0">
+                        <div class="float-left pd-t-20">
+                          <div class="btn btn_1 btn-default mrg5R" id="addPageFunction">
+                            <i class="fa fa-plus"> </i>
+                          </div>
+
+                          <div class="btn btn_1 btn-default mrg5R">
+                            <i class="fa fa-refresh"> </i>
+                          </div>
+
+                          <div class="clearfix"> </div>
+                        </div>
+                        <div class="float-right pd-t-20">
+
+                          <span class="text-muted m-r-sm">Showing 10 of 25 </span>
+                          <div class="btn-group">
+                            <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                            <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                          </div>
+                        </div>
+
+                      </div>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th>#</th> -->
+                            <th>Id</th>
+                            <th>Page name</th>
+                            <th>Page title</th>
+                            <th>Status</th>
+                            <th>Upated</th>
+                            <th>Created By</th>
+                            <th>Updated By</th>
+                            <th> </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td class="hidden-xs">
+                              <a href="#" onclick="return false;" class="openContentBlock">
+                                index
+                              </a>
+                            </td>
+                            <td>
+                              Home Page | LINQ Research LLC
+                            </td>
+                            <td>
+                              Published
+                            </td>
+                            <td>
+                              02 march 2025
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              <i class="fa fa-edit text-success text-active updatePage"></i> <br>
+                              <i class="fa fa-times text-danger text deletePage"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- content blocks tab -->
+                <div role="tabpanel" class="tab-pane fade in" id="content_blocks" aria-labelledby="content_blocks-tab">
+                  <div class=" pd-0">
+                    <div class="mailbox-content pd-0">
+                      <div class="float-left pd-b-20 pd-t-20">
+                        <div class="btn btn_1 btn-default mrg5R" id="addContentBlockFunction">
+                          <i class="fa fa-plus"> </i>
+                        </div>
+
+                        <div class="btn btn_1 btn-default mrg5R">
+                          <i class="fa fa-refresh"> </i>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                      </div>
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th>#</th> -->
+                            <th>Id</th>
+                            <th>Content Block Name</th>
+                            <th>Page File Name</th>
+                            <th>Upated</th>
+                            <th>Created By</th>
+                            <th>Updated By</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td class="hidden-xs">
+                              <a href="#" onclick="return false;" class="openSlide">
+                                Sample Content Block 1
+                              </a>
+                            </td>
+                            <td>
+                              index
+                            </td>
+                            <td>
+                              02 march 2025
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              <i class="fa fa-edit text-success text-active updateContentBlock"></i> <br>
+                              <i class="fa fa-times text-danger text deleteContentBlock"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Slide tab -->
+                <div role="tabpanel" class="tab-pane fade" id="slides" aria-labelledby="slides-tab">
+                  <div class=" pd-0">
+                    <div class="mailbox-content pd-0">
+                      <div class="float-left pd-b-20 pd-t-20">
+                        <div class="btn btn_1 btn-default mrg5R" id="addSlideFunction">
+                          <i class="fa fa-plus"> </i>
+                        </div>
+
+                        <div class="btn btn_1 btn-default mrg5R">
+                          <i class="fa fa-refresh"> </i>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                      </div>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th>#</th> -->
+                            <th>Id</th>
+                            <th>Slide Title</th>
+                            <th>Content Block Title</th>
+                            <th>Page Name</th>
+                            <th>Order Index</th>
+                            <th>Upated</th>
+                            <th>Updated By</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td class="hidden-xs">
+                              <a href="#" onclick="return false;" class="openSlideContent">
+                                Sample Slide title 1
+                              </a>
+                            </td>
+                            <td>
+                              Parent Banner Block
+                            </td>
+                            <td>
+                              index
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              02 march 2025
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              <i class="fa fa-edit text-success text-active updateSlide"></i> <br>
+                              <i class="fa fa-times text-danger text deleteSlide"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Slide contents tab -->
+                <div role="tabpanel" class="tab-pane fade" id="slide_contents" aria-labelledby="slide_contents-tab">
+                  <div class=" pd-0">
+                    <div class="mailbox-content pd-0">
+                      <div class="float-left pd-b-20 pd-t-20">
+                        <div class="btn btn_1 btn-default mrg5R" id="addSlideContentFunction">
+                          <i class="fa fa-plus"> </i>
+                        </div>
+
+                        <div class="btn btn_1 btn-default mrg5R">
+                          <i class="fa fa-refresh"> </i>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                      </div>
+
+                      <div class="float-right pd-b-20 pd-t-20">
+                        <span class="text-muted m-r-sm">Showing 10 of 25 </span>
+                        <div class="btn-group">
+                          <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                          <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                      </div>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th>#</th> -->
+                            <th>Id</th>
+                            <th>Slide Content Type</th>
+                            <th>Slide Title</th>
+                            <th>Content Block Title</th>
+                            <th>Page Name</th>
+                            <th>Order Index</th>
+                            <th>Upated</th>
+                            <th>Updated By</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td class="hidden-xs">
+                              <a href="#" target="_blank">
+                                Button
+                              </a>
+                            </td>
+                            <td>
+                              Banner Slide
+                            </td>
+                            <td>
+                              Main Content Block
+                            </td>
+                            <td>
+                              index
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              02 march 2025
+                            </td>
+                            <td>
+                              Admin
+                            </td>
+                            <td>
+                              <i class="fa fa-edit text-success text-active updateSlideContent"></i> <br>
+                              <i class="fa fa-times text-danger text deleteSlideContent"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"> </div>
+        <div class="padding-t-15">
+          <?php include 'footer.html'; ?>
+        </div>
+      </div>
+
+    </div> 
+
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+    <script src="js/page.js"></script>
+    <script src="js/content_block.js"></script>
+    <script src="js/slide.js"></script>
+    <script src="js/slide_content.js"></script>
+
+    <!-------------------- Page Code Block Start -------------------->
+    <!-- addPage PopUp Start -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="addPageLabel" aria-hidden="true"
+      style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Add Page</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Page Name : </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>File1</option>
+                  <option>File2</option>
+                </select>
+
+                <label>Select Status : </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>PUBLISHED</option>
+                  <option>DRAFT</option>
+                </select>
+                <label>Enter Title : </label>
+                <input type="text" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div>
+    <!-- addPage PopUp End -->
+
+    <!-- updatePage PopUp Start -->
+    <div class="modal fade" id="updatePage" tabindex="-1" role="dialog" aria-labelledby="updatePageLabel"
+      aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Update Page</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Page Name : </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>File1</option>
+                  <option>File2</option>
+                </select>
+
+                <label>Select Status : </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>PUBLISHED</option>
+                  <option>DRAFT</option>
+                </select>
+                <label>Enter Title : </label>
+                <input type="text" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div>
+    <!-- updatePage PopUp End -->
+
+    <!-------------------- Page Code Block End -------------------->
+
+    <!-------------------- Content Code Block End -------------------->
+    <!-- Add Content Block PopUp Start -->
+    <div class="modal fade" id="addContentBlock" tabindex="-1" role="dialog" aria-labelledby="addContentBlockLabel"
+      aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Add Content Block</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Page Name: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>index</option>
+                  <option>about_us</option>
+                </select>
+                <label>Enter Title Header: </label>
+                <input type="text" class="form-control1 control3" required>
+
+                <label>Enter order Index: </label>
+                <input type="number" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Content Block PopUp End -->
+
+    <!-- Update Content Block  PopUp Start -->
+    <div class="modal fade" id="updateContentBlock" tabindex="-1" role="dialog"
+      aria-labelledby="updateContentBlockLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Update Content Block</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Page Name: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>index</option>
+                  <option>about_us</option>
+                </select>
+                <label>Enter Title Header: </label>
+                <input type="text" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Update Content Block PopUp End -->
+    <!-------------------- Content Code Block End -------------------->
+
+    <!-------------------- Slide Code Block Start -------------------->
+    <!-- Add Slide PopUp Start -->
+    <div class="modal fade" id="addSlide" tabindex="-1" role="dialog" aria-labelledby="addSlideLabel" aria-hidden="true"
+      style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Add Slide</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Content BLock: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>Content Block 1</option>
+                  <option>Content Block 2</option>
+                </select>
+                <label>Enter Slide Title: </label>
+                <input type="text" class="form-control1 control3" required>
+
+                <label>Enter order Index: </label>
+                <input type="number" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Slide PopUp End -->
+
+    <!-- Update Slide PopUp Start -->
+    <div class="modal fade" id="updateSlide" tabindex="-1" role="dialog" aria-labelledby="updateSlideLabel"
+      aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Update Slide</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Content BLock: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option>Content Block 1</option>
+                  <option>Content Block 2</option>
+                </select>
+                <label>Enter Slide Title: </label>
+                <input type="text" class="form-control1 control3" required>
+
+                <label>Enter order Index: </label>
+                <input type="number" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Slide PopUp End -->
+    <!-------------------- Slide Code Block End -------------------->
+
+    <!-------------------- Slide-Content Code Block Start -------------------->
+    <!-- Add Slide Content PopUp Start -->
+    <div class="modal fade" id="addSlideContent" tabindex="-1" role="dialog" aria-labelledby="addSlideContentLabel"
+      aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Add Slide Content</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Slide: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option value="">Select Slide</option>
+                  <option>SLide Block 1</option>
+                  <option>SLide Block 2</option>
+                </select>
+                <label>Select Content Type: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option value="">Select Content Type</option>
+                  <option>Button</option>
+                  <option>Text</option>
+                </select>
+
+                <label>Enter Slide Content: </label>
+                <input type="file" class="form-control1 control3 uploadImage" accept="image/*"
+                  style="padding-top: 9px;">
+
+                <label>Enter Image Alt Text: </label>
+                <input type="text" class="form-control1 control3" required>
+
+                <label>Enter Slide Content: </label>
+                <!-- Quill editor container -->
+                <!-- <div id="toolbar"></div> -->
+
+                <button type="button" id="custom-color-button" class="custom-color-picker">A</button>  
+                 <input type="color" id="color-picker" style="display:none;">  
+                <div id="editor" class="editorText"> </div>
+                <input type="hidden" class="form-control1 control3" name="slide_content">
+
+                <label>Custom CSS Code: </label>
+                <!-- <div class="line-numbers" id="lineNumbers"></div> -->
+                <textarea class="form-control1 lineNumberTrack textarea"></textarea>
+
+                <label>Enter order Index: </label>
+                <input type="number" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="reset" class="btn btn-primary">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Slide Content PopUp End -->
+
+    <!-- Update Slide Content PopUp Start -->
+    <div class="modal fade" id="updateSlideContent" tabindex="-1" role="dialog"
+      aria-labelledby="updateSlideContentLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Update Slide Content</h2>
+            </div>
+            <div class="modal-body">
+              <div class="panel-body">
+                <label>Select Slide: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option value="">Select Slide</option>
+                  <option>SLide Block 1</option>
+                  <option>SLide Block 2</option>
+                </select>
+                <label>Select Content Type: </label>
+                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                  <option value="">Select Content Type</option>
+                  <option>Button</option>
+                  <option>Text</option>
+                </select>
+
+                <label>Enter Slide Content: </label>
+                <input type="file" class="form-control1 control3 uploadImage" accept="image/*"
+                  style="padding-top: 9px;">
+
+                <label>Enter Image Alt Text: </label>
+                <input type="text" class="form-control1 control3" required>
+
+                <label>Enter Slide Content: </label>
+                <textarea class="form-control1 " required></textarea>
+
+                <label>Custom CSS Code: </label>
+                <div class="line-numbers" id="lineNumbers"></div>
+                <textarea class="form-control1 lineNumberTrack textarea"></textarea>
+
+                <label>Enter order Index: </label>
+                <input type="number" class="form-control1 control3" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Slide PopUp End -->
+    <!-------------------- Slide Code Block End -------------------->
+
+  </div>
+ 
+</body>
+
+</html>

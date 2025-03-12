@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    <title>Contact Us Submission</title>
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 0;
+          color: #555;
+        }
+
+        .container {
+          width: 100%;
+          max-width: 700px;
+          margin: 40px auto;
+          background-color: #ffffff;
+          padding: 30px;
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          box-sizing: border-box;
+          padding-left: 5%;
+          padding-right: 5%;
+        }
+
+        .header {
+          text-align: center;
+          font-size: 17px;
+          font-weight: bold;
+          color: #2C3E50;
+          margin-bottom: 20px;
+        }
+
+        .content {
+          margin-top: 20px;
+          font-size: 14px;
+        }
+
+        .content p {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #444;
+        }
+
+        .content .label {
+          font-weight: 600;
+          color: #34495E;
+        }
+
+        .button {
+          display: inline-block;
+          padding: 12px 25px;
+          background-color: #1abc9c;
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+          border-radius: 8px;
+          margin-top: 20px;
+          text-align: center;
+        }
+
+        .button:hover {
+          background-color: #16a085;
+        }
+
+        .footer {
+          text-align: left;
+          margin-top: 30px;
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        .footer a {
+          color: #1abc9c;
+          text-decoration: none;
+        }
+
+        .divider {
+          margin: 20px 0;
+          border-top: 1px solid #eee;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .header {
+                font-size: 16px;
+            }
+
+            .container p {
+                font-size: 13px;
+            }
+
+            .button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .footer p {
+                font-size: 13px;
+                line-height: 18px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .header {
+                font-size: 15px;
+            }
+
+            .container p {
+                font-size: 12px;
+            }
+
+            .button {
+                font-size: 12px;
+                padding: 8px 18px;
+            }
+
+            .footer p {
+                font-size: 12px;
+            }
+
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="header" th:text="#{contact.title}">New Contact Us Submission</h2>
+
+    <p class="content" th:text="#{email.activation.greeting(${user.firstName})}">Dear</p>
+    <p class="content">You have received a new customer enquiry.</p>
+    <div class="content">
+        <p><span class="label">First Name:</span> <span th:text="${contact.firstName}"></span></p>
+        <p><span class="label">Last Name:</span> <span th:text="${contact.lastName}"></span></p>
+        <p><span class="label">Email:</span> <span th:text="${contact.email}"></span></p>
+        <p><span class="label">Phone:</span> <span th:text="${contact.phone}"></span></p>
+        <p><span class="label">Message:</span></p>
+        <p th:text="${contact.message}"></p>
+    </div>
+
+    <div class="footer">
+        <p th:text="#{email.activation.text2}">Best Regards,</p>
+        <p><em th:text="#{email.signature}"> </em></p>
+        <p style="text-align: center;">Copyright © <span th:text="${year}"></span> LINQ. All Rights Reserved | Design by <a href="https://itrtechsystems.com/" target="_blank">ITR Consulting</a></p>
+    </div>
+</div>
+
+</body>
+</html>

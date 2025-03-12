@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CKEditor Example</title>
+  <!-- Use the CKEditor 5 CDN for inline editor with font plugins -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+</head>
+<body>
+
+  <h2>CKEditor Example</h2>
+  <textarea name="editor" id="editor"></textarea>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#editor'), {
+        toolbar: [
+          'bold', 'italic', 'underline', 'fontColor', 'fontSize', 'fontFamily'
+        ],
+        fontColor: {
+          colors: [
+            { label: 'Red', color: 'red' },
+            { label: 'Blue', color: 'blue' },
+            { label: 'Green', color: 'green' },
+            { label: 'Yellow', color: 'yellow' },
+            // Add more colors as needed
+          ]
+        },
+        fontSize: {
+          options: [
+            9, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 36, 48, 72
+          ]
+        },
+        fontFamily: {
+          options: [
+            'Arial', 'Courier', 'Georgia', 'Times New Roman', 'Verdana', 'serif', 'sans-serif'
+          ]
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+
+</body>
+</html>

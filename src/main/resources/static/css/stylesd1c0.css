@@ -42,11 +42,11 @@ body {
 
 /* logo styles */
 .logo-wrapper {
-  background: white;
+  /* background: white; */
   position: absolute;
   top: 0px;
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   z-index: 4;
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
   padding-bottom: 31px;
@@ -125,7 +125,7 @@ body {
   margin: auto;
   border-radius: 50%;
   outline: 5px solid var(--secondary-color);
-  outline-offset: 5px;
+  outline-offset: 0px;
   box-shadow: 0 0 0 5px #fff;
 }
 
@@ -309,6 +309,8 @@ button {
 button.btn-with-arrow {
   width: 14rem;
   height: auto;
+  border: 2px solid var(--primary-color);
+  border-radius: 30px;
 }
 
 button.btn-with-arrow .circle {
@@ -941,7 +943,7 @@ button:hover .button-text {
 /* Enrolling styles */
 .enroll-card {
   border-radius: 11px;
-  background: var(--primary-color);
+  /* background: var(--primary-color); */
   position: relative;
   transition: 0.3s;
   overflow: hidden;
@@ -1302,8 +1304,8 @@ button:hover .button-text {
   }
 
   .logo-wrapper {
-    height: 89px;
-    width: 89px;
+    height: 95px;
+    width: 95px;
     right: 0;
   }
 

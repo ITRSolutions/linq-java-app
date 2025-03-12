@@ -3,12 +3,14 @@ package com.linq.website.controller;
 import com.linq.website.entity.*;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
+import com.linq.website.service.MailService;
 import com.linq.website.service.PageMetadataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +25,10 @@ public class WebController {
     private PageMetadataService pageMetadataService;
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
-    @GetMapping("/")
-    public String getPage(Model model) {
-        String slug= "index";
+    @GetMapping("/{slug}")
+    public String getPage(@PathVariable String slug, Model model) {
+//        String slug= "index";
+        System.out.println("slug: "+slug);
         try {
             // Fetch dynamic page by slug
             DynamicPage page = dynamicPageService.getPageBySlug(slug);
@@ -106,44 +109,9 @@ public class WebController {
         return navigationBlocks;
     }
 
-    // Fetch content blocks for a page using Thymeleaf
-    @GetMapping("/{slug}/content-blocks")
-    public String getContentBlocks(@PathVariable String slug, Model model) {
-        try {
-            DynamicPage page = dynamicPageService.getPageBySlug(slug);
-            List<ContentBlock> contentBlocks = dynamicPageService.getContentBlocks(page.getId());
-
-            model.addAttribute("contentBlocks", contentBlocks);
-            return "content-blocks"; // Thymeleaf page name to render content blocks
-        } catch (PageNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "error/404";
-        }
+    @GetMapping("/employee_registration")
+    public String employeeRegistration(Model model) {
+        return "employee_registration";
     }
 
-    // Fetch slides for a content block
-    @GetMapping("/content-block/{contentBlockId}/slides")
-    public String getSlides(@PathVariable Long contentBlockId, Model model) {
-        try {
-            List<Slide> slides = dynamicPageService.getSlides(contentBlockId);
-            model.addAttribute("slides", slides);
-            return "slides"; // Thymeleaf page name to render slides
-        } catch (PageNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "error/404";
-        }
-    }
-
-    // Fetch content (text or image) for a slide
-    @GetMapping("/slide/{slideId}/contents")
-    public String getSlideContents(@PathVariable Long slideId, Model model) {
-        try {
-            List<SlideContent> slideContents = dynamicPageService.getSlideContents(slideId);
-            model.addAttribute("slideContents", slideContents);
-            return "slide-contents"; // Thymeleaf page name to render slide contents
-        } catch (PageNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "error/404";
-        }
-    }
 }

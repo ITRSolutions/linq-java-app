@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <?php include 'header.html'; ?>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Start Navigation -->
+    <?php include 'navigation.html'; ?>
+    <!-- End Navigation -->
+
+    <div id="page-wrapper">
+      <div class=" graphs">
+
+        <div class="xs">
+          <h3>Appointment Lead</h3>
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div class="grid_3 grid_5">
+          <div class="but_list mg-t-0">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+              <div id="myTabContent" class="tab-content mg-t-0">
+
+                <form action="#" method="GET" class="row">
+              <div class="col-md-6">
+              <div class="input-group">
+                    <input type="text" name="search" class="form-control1 input-search" placeholder="Search...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+              <select name="selector1" id="selector1" class="form-control1">
+              <option>----------- Select the disease -----------</option>
+										<option>Lorem ipsum dolor sit amet.</option>
+										<option>Dolore, ab unde modi est!</option>
+										<option>Illum, fuga minus sit eaque.</option>
+										<option>Consequatur ducimus maiores voluptatum minima.</option>
+									</select>
+              </div>
+                </form>
+
+                <div role="tabpanel" class="tab-pane fade active in" id="pages" aria-labelledby="pages-tab">
+                  <div class=" pd-0">
+                    <div class="mailbox-content pd-0">
+                      <div class="mail-toolbar clearfix pd-t-0">
+                        <div class="float-left pd-t-20"> 
+
+                          <div class="btn btn_1 btn-default mrg5R">
+                            <i class="fa fa-refresh"> </i>
+                          </div>
+
+                          <div class="clearfix"> </div>
+                        </div>
+                        <div class="float-right pd-t-20">
+
+                          <span class="text-muted m-r-sm">Showing 10 of 25 </span>
+                          <div class="btn-group">
+                            <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                            <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                          </div>
+                        </div>
+
+                      </div>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th>#</th> -->
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Contact Time</th>
+                            <th>Submited At</th>
+                            <th> </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td class="hidden-xs">
+                              <a href="#" onclick="return false;" class="openContentBlock">
+                                Abdulrazzak
+                              </a>
+                            </td>
+                            <td>
+                              Jakati
+                            </td>
+                            <td>
+                              8446418192
+                            </td>
+                            <td>
+                              Abdulrazzak.Jakati@gmail.com
+                            </td>
+                            <td>
+                              Weekends
+                            </td>
+                            <td>
+                              02 March 2025 05:09 pm
+                            </td>
+                            <td>
+                              <i class="fa fa-edit text-success text-active viewPatientData"></i> <br>
+                              <i class="fa fa-times text-danger text deletePatientData"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"> </div>
+        <div class="padding-t-15">
+          <?php include 'footer.html'; ?>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="js/appointment_lead.js"></script>
+
+    <!-------------------- View lead data end-------------------->
+    <div class="modal fade" id="viewPatientData" tabindex="-1" role="dialog" aria-labelledby="viewPatientDataLabel" aria-hidden="true"
+      style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h2 class="modal-title text-center">Display Appointment Data</h2>
+            </div>
+            <div class="modal-body ">
+              <div class="row stats-info stats-info1">
+                <div class="panel-body panel-body2 col-md-6 pd-t-0 pad-rf-0">
+                  <ul class="list-unstyled">
+                    <li>First Name:<div class="text-success pull-right">Abdulrazzak</div>
+                    </li>
+                    <li>Last Name:<div class="text-success pull-right">Jakati</div>
+                    </li>
+                    <li>Phone Number:<div class="text-success pull-right">+91-8446418192</div>
+                    </li>
+                    <li>Email:<div class="text-success pull-right">Abdulrazzak.jakati@gmail.com</div>
+                    </li>
+                    <li>Date Of Birth:<div class="text-success pull-right">05-September 1996</i></div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel-body panel-body2 col-md-6 pd-t-0">
+                  <ul class="list-unstyled">
+                    <li>Zip Code:<div class="text-success pull-right">416410</div>
+                    </li>
+                    <li>Best Contact Time:<div class="text-success pull-right">Weekends</div>
+                    </li>
+                    <li>State:<div class="text-success pull-right">Maharashtra</div>
+                    </li>
+                    <li>Submitted At:<div class="text-success pull-right">02-March-2025 02:33pm</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <label>Enter Comment</label>
+              <input type="text" class="form-control1 control3" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-------------------- View lead data end-------------------->
+
+  </div>
+
+</body>
+
+</html>
