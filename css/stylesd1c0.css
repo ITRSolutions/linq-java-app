@@ -3,7 +3,7 @@
   --light-primary-color: #20385DB2;
   --secondary-color: orange;
   --dark-secondary-color: #DD9B02;
-  --regular-font: Arial, Helvetica, sans-serif;
+  --regular-font:  "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
 body {
@@ -13,6 +13,7 @@ body {
 
 .primary-text-color {
   color: var(--primary-color);
+
 }
 
 .secondary-text-color {
@@ -44,6 +45,7 @@ body {
 .logo-wrapper {
   /* background: white; */
   position: absolute;
+   margin: 6px 0 0 27px;
   top: 0px;
   height: 100px;
   width: 100px;
@@ -60,7 +62,7 @@ body {
 /* /logo Styles */
 /* navbar styles */
 .navbar {
-  height: 68px;
+  height: 90px;
 }
 
 /* /navbar styles */
@@ -309,8 +311,9 @@ button {
 button.btn-with-arrow {
   width: 14rem;
   height: auto;
-  border: 2px solid var(--primary-color);
-  
+  border: 0px solid var(--primary-color);
+  margin: 0 30px 0 0;
+
   border-radius: 30px;
 }
 
@@ -835,20 +838,20 @@ button:hover .button-text {
 .phase-card {
   border-radius: 10px;
   background: var(--primary-color);
-  height: 600px
+  height: 510px
 }
 
 .phase-card-header {
-  height: 300px;
+  height: 295px;
 }
 
 .phase-card-footer {
-  height: 300px;
+  height: 226px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 0px;
 }
 
 .step-card {

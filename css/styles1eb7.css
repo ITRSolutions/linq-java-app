@@ -174,17 +174,19 @@ form.submitting .wpcf7-spinner {
 .sidebar {
 	width: 100%;
 	height: 100%;
-	background-color: #3a3a3a;
+	background-color: #eee;
 	padding: 20px;
 	border-top-right-radius: 35px;
 	border-bottom-left-radius: 0px;
-	color: white;
+	color: #282a2d;
 }
+
+
 .sidebar .highlight {
 	background-color: #d99b0b;
 	padding: 10px;
 	border-radius: 10px;
-	color: white;
+	color: #20385d;
 	font-weight: bold;
 	display: block;
 	text-decoration: none;
@@ -202,8 +204,27 @@ form.submitting .wpcf7-spinner {
 	color: white;
 	text-decoration: none;
 	font-size: 16px;
+	color: #000;
 }
 .sidebar ul li a:hover {
 	text-decoration: none;
 }
    
+.image-opacity{
+	height: 100vh;
+    width: 100%;
+    background: #ededed;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    opacity: 0.7;
+}
+
+.banner-font-size{
+	font-size: 4rem !important;
+}
+
+
+.banner-Para-font-size{
+	font-size: 1.5rem !important;
+}
