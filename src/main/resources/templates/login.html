@@ -39,7 +39,10 @@
                         <a href="/forgot_password" class="text-decoration-none ms-auto d-block text-end mt-3">Forgot Password?</a>
 
                         <div th:if="${param.error}" style="color: red; font-size: 0.9rem;" >
-                            <p class="pt-3">Invalid username or password. Please try again.</p>
+                            <p style="color: red;" th:text="${param.error}"></p>
+                        </div>
+                        <div th:if="${param.accountActive}" style="color: green; font-size: 0.9rem;" >
+                            <p class="pt-3">Your account has been activated. Please log in.</p>
                         </div>
                         <button type="submit" class="login-btn d-block w-100 mt-4 fw-medium mb-2">Login</button>
                         <p class="ms-auto d-block text-end text-muted">

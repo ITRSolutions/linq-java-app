@@ -132,7 +132,11 @@ public class UserService {
         if (user.isPresent()) {
             user.get().setIsEmailVerified(true);
             userRepository.save(user.get());
+        } else {
+            // Log the error
+            LoggerFactory.getLogger(getClass()).error("Failed to activate user email, because admin not found: " + key);
         }
+
         return user;
     }
 
@@ -150,7 +154,7 @@ public class UserService {
                 mailService.sendContactUsEnquiryMail(contactDTO, user);
                 successfulSends++;
             } catch (Exception e) {
-                // Log the error, you could use a logger here
+                // Log the error
                 LoggerFactory.getLogger(getClass()).error("Failed to send email to admin: " + user.getEmail(), e);
             }
         }

@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-  <?php include 'header.html'; ?>
+  <th th:replace="admin_panel/header.html"></th>
 </head>
 
 <body>
   <div id="wrapper">
     <!-- Start Navigation -->
-    <?php include 'navigation.html'; ?>
+    <th th:replace="~{admin_panel/navigation :: navigateCode(firstName=${firstName})}"></th>
     <!-- End Navigation -->
 
     <div id="page-wrapper">
@@ -333,7 +333,9 @@
 
         <div class="clearfix"> </div>
         <div class="padding-t-15">
-          <?php include 'footer.html'; ?>
+<!----Footer-->
+          <th th:replace="admin_panel/footer.html"></th>
+<!----Footer-->
         </div>
       </div>
 

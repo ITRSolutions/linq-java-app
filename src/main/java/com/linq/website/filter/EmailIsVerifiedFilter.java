@@ -28,7 +28,7 @@ public class EmailIsVerifiedFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         // Skip email verification for public pages
-        if (path.startsWith("/css/") || path.startsWith("/js/")
+        if (path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/registration_form/")
                 || path.startsWith("/font/") || path.startsWith("/image/") || path.startsWith("/mail/")) {
             filterChain.doFilter(request, response);
             return;

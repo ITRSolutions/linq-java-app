@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,13 @@ public class WebController {
     private PageMetadataService pageMetadataService;
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
-    @GetMapping("/{slug}")
-    public String getPage(@PathVariable String slug, Model model) {
-//        String slug= "index";
+    @GetMapping({"/", "/{slug}"})
+    public String getPage(@PathVariable(required = false) String slug, Model model) {
+
+        if (slug == null || slug.isEmpty()) {
+            slug = "index";
+        }
+
         System.out.println("slug: "+slug);
         try {
             // Fetch dynamic page by slug
@@ -111,7 +116,12 @@ public class WebController {
 
     @GetMapping("/employee_registration")
     public String employeeRegistration(Model model) {
-        return "employee_registration";
+        return "registration_form/employee_registration";
     }
 
+    @GetMapping("/activationError")
+    public String activationError(@RequestParam("message") String message, Model model) {
+        model.addAttribute("errorMessage", message);
+        return "mail/activationError";
+    }
 }

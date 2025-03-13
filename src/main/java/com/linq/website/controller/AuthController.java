@@ -78,10 +78,10 @@ public class AuthController {
     public RedirectView activateAccount(@RequestParam(value = "key") String key) {
         Optional<User> user = userService.activateRegistration(key);
         if (user.isEmpty()) {
-            return new RedirectView("/login", true); // true makes it a redirect to the login page
+            return new RedirectView("/activationError?message=Oops%20something%20went%20wrong.%20Contact%20Admin.", true);
         }
 
-        return new RedirectView("/activationError?message=Oops%20something%20went%20wrong.%20Contact%20Admin.", true);
+        return new RedirectView("/login?accountActive", true); // true makes it a redirect to the login page
     }
 
     // Forgot password request

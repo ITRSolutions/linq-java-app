@@ -36,6 +36,8 @@ public class MailService {
 
     private final SpringTemplateEngine templateEngine;
 
+    private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+
 //    @Value("${spring.base.url}")
     @Value("${website.main.url}")
     private String baseUrl;
@@ -85,6 +87,7 @@ public class MailService {
         Context context = new Context(Locale.ENGLISH);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl + "/api/v1/auth");
+        context.setVariable(YEAR, currentYear);;
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
         this.sendEmailSync(user.getEmail(), subject, content, false, true);
@@ -107,7 +110,7 @@ public class MailService {
 
     @Async
     public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        this.sendEmailFromTemplateContact(dto, user, "/mail/contactUsSubmission", "contact.title");
+        this.sendEmailFromTemplateContact(dto, user, "/mail/contactUsEmail", "contact.title");
     }
 
     private void sendEmailFromTemplateContact(ContactUsDTO dto, User user, String templateName, String titleKey) {
@@ -116,7 +119,7 @@ public class MailService {
         }
         Context context = new Context(Locale.ENGLISH);
         context.setVariable(USER, user);
-        context.setVariable(YEAR, Calendar.getInstance().get(Calendar.YEAR));;
+        context.setVariable(YEAR, currentYear);;
         context.setVariable(CONTACT, dto);
         context.setVariable(BASE_URL, baseUrl + "/api/v1/forms");
         String content = templateEngine.process(templateName, context);

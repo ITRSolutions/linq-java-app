@@ -31,7 +31,7 @@
 			            $("#submitButton").prop("disabled", true);
 			            // Send AJAX request
 			            $.ajax({
-			                url: '/api/v1/auth/verify-otp-code', // The server-side URL to which you want to send the request
+			                url: '/api/v1/auth/register', // The server-side URL to which you want to send the request
 			                type: 'POST',
 			                data: JSON.stringify(getFormData()), // Convert the form data to JSON
 			                contentType: 'application/json', // Set content type to JSON

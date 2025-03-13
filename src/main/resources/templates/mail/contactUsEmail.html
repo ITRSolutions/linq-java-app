@@ -68,7 +68,7 @@
         }
 
         .footer {
-          text-align: left;
+          text-align: center;
           margin-top: 30px;
           font-size: 14px;
           line-height: 20px;
@@ -103,6 +103,13 @@
                 font-size: 14px;
                 padding: 10px 20px;
             }
+
+                .footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 30px;
+        color: #888;
+    }
 
             .footer p {
                 font-size: 13px;
@@ -151,10 +158,10 @@
         <p th:text="${contact.message}"></p>
     </div>
 
+    <p class="content" th:text="#{email.activation.text2}">Best Regards,
+    <p class="content"> <em th:text="#{email.signature}"> </em> </p>
     <div class="footer">
-        <p th:text="#{email.activation.text2}">Best Regards,</p>
-        <p><em th:text="#{email.signature}"> </em></p>
-        <p style="text-align: center;">Copyright © <span th:text="${year}"></span> LINQ. All Rights Reserved | Design by <a href="https://itrtechsystems.com/" target="_blank">ITR Consulting</a></p>
+        <p style="text-align: center;" th:utext="#{email.footer(${year})}"> footer </p>
     </div>
 </div>
 

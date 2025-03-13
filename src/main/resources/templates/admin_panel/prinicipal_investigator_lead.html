@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-  <?php include 'header.html'; ?>
+  <th th:replace="admin_panel/header.html"></th>
 </head>
 
 <body>
   <div id="wrapper">
     <!-- Start Navigation -->
-    <?php include 'navigation.html'; ?>
+    <th th:replace="~{admin_panel/navigation :: navigateCode(firstName=${firstName})}"></th>
     <!-- End Navigation -->
 
     <div id="page-wrapper">
       <div class=" graphs">
 
         <div class="xs">
-          <h3>Appointment Lead</h3>
+          <h3>Principal Investigator </h3>
         </div>
 
         <div class="clearfix"> </div>
@@ -67,8 +67,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>LINQ Employee</th>
+                            <th>Email</th> 
                             <th>Submited At</th>
                             <th> </th>
                           </tr>
@@ -91,10 +90,7 @@
                             </td>
                             <td>
                               Abdulrazzak.Jakati@gmail.com
-                            </td>
-                            <td>
-                              Yes
-                            </td>
+                            </td> 
                             <td>
                               02 March 2025 05:09 pm
                             </td>
@@ -117,7 +113,9 @@
 
         <div class="clearfix"> </div>
         <div class="padding-t-15">
-          <?php include 'footer.html'; ?>
+          <!----Footer-->
+          <th th:replace="admin_panel/footer.html"></th>
+          <!----Footer-->
         </div>
       </div>
 
@@ -133,7 +131,7 @@
           <form>
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h2 class="modal-title text-center">Display Appointment Data</h2>
+              <h2 class="modal-title text-center">Display Data</h2>
             </div>
             <div class="modal-body ">
               <div class="row stats-info stats-info1">
@@ -147,19 +145,16 @@
                     </li>
                     <li>Email:<div class="text-success pull-right">Abdulrazzak.jakati@gmail.com</div>
                     </li>
-                    <li>Date Of Birth:<div class="text-success pull-right">05-September 1996</i></div>
-                    </li>
+
                   </ul>
                 </div>
                 <div class="panel-body panel-body2 col-md-6 pd-t-0">
                   <ul class="list-unstyled">
-                    <li>Zip Code:<div class="text-success pull-right">416410</div>
+                  <li>Date Of Birth:<div class="text-success pull-right">05-September 1996</i></div>
+                  </li>
+                    <li>Speciality: <div class="text-success pull-right">Coder</div>
                     </li>
-                    <li>LinQ Research Employee:<div class="text-success pull-right">Yes</div>
-                    </li>
-                    <li>Participant in LinQ studies:<div class="text-success pull-right">Yes</div>
-                    </li>
-                    <li>Submitted At:<div class="text-success pull-right">02-March-2025 02:33pm</div>
+                    <li>State:<div class="text-success pull-right">Maharashtra</div>
                     </li> 
                   </ul>
                 </div>

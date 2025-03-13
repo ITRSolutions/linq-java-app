@@ -2,10 +2,13 @@ package com.linq.website.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +31,6 @@ public class GlobalExceptionHandlerRestAPI {
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-
-            // Add the error message as an array in the errors map
             errors.computeIfAbsent(fieldName, key -> new java.util.ArrayList<>()).add(errorMessage);
         });
 
@@ -37,51 +38,32 @@ public class GlobalExceptionHandlerRestAPI {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    // Handle Exception
+    // Handle general exceptions for API
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleException(Exception ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", false);
         response.put("message", "An unexpected error occurred.");
 
-        // Create a map to store generic errors
         Map<String, List<String>> errors = new HashMap<>();
         errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something went wrong!");
 
         response.put("errors", errors);
-        System.out.println("errors: " + ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    // Handle PageNotFoundException
-    @ExceptionHandler(PageNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handlePageNotFoundException(PageNotFoundException ex) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", false);
-        response.put("message", "An unexpected error occurred.");
-
-        // Create a map to store generic errors
-        Map<String, List<String>> errors = new HashMap<>();
-        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something went wrong!");
-
-        response.put("errors", errors);
-        System.out.println("errors: " + ex.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    // Handle ResourceNotFoundException
+    // Handle ResourceNotFoundException for REST API
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleResourceNotFound(ResourceNotFoundException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", false);
-        response.put("message", "An unexpected error occurred.");
+        response.put("message", "Resource not found.");
 
-        // Create a map to store generic errors
         Map<String, List<String>> errors = new HashMap<>();
-        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something went wrong!");
+        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add(ex.getMessage());
 
         response.put("errors", errors);
-        System.out.println("errors: " + ex.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }
+
