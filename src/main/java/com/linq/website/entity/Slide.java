@@ -33,8 +33,6 @@ public class Slide {
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
-    private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @Transient

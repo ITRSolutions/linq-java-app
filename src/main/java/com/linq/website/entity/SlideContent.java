@@ -1,8 +1,12 @@
 package com.linq.website.entity;
 
+
+import com.linq.website.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -40,17 +44,12 @@ public class SlideContent {
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
-
-
 }
 
-enum ContentType {
-    TEXT,
-    IMAGE,
-    BUTTON,
-    URL,
-    DISEASE_NAME
-}

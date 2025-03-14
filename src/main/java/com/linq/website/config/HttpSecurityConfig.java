@@ -55,11 +55,13 @@ public class HttpSecurityConfig {
                 }))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF only for APIs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/register", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
-                        .requestMatchers("/registration_form/**").permitAll()
+                        .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
+                        .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**").permitAll()
                         .requestMatchers("/api/v1/user/**", "/admin_panel/**").hasRole("USER")
                         .requestMatchers("/api/v1/admin/**", "/admin_panel/**").hasRole("ADMIN") // Fixed admin access
+//                        .requestMatchers("/api/v1/web_page/**", "/admin_panel/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -86,7 +88,8 @@ public class HttpSecurityConfig {
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {
-        return new SimpleUrlAuthenticationFailureHandler("/login?error=true");
+//        return new SimpleUrlAuthenticationFailureHandler("/login?error=true");
+        return new CustomAuthenticationFailureHandler();
     }
 
 

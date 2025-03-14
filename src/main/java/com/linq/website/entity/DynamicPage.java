@@ -1,8 +1,11 @@
 package com.linq.website.entity;
 
+import com.linq.website.enums.PageStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -24,21 +27,12 @@ public class DynamicPage {
     private PageStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User createdBy;
-
-    @ManyToOne
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
-    private LocalDateTime createdAt;
-
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
-}
-
-enum PageStatus {
-    PUBLISHED,
-    DRAFT
 }
 

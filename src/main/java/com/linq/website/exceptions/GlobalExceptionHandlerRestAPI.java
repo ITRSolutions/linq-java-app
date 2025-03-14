@@ -14,7 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = {
+        com.linq.website.controller.AuthController.class,
+        com.linq.website.controller.FormSubmissionController.class,
+        com.linq.website.controller.admin.ContentBlockController.class,
+        com.linq.website.controller.admin.DynamicPageController.class,
+        com.linq.website.controller.admin.SlideController.class
+})
 public class GlobalExceptionHandlerRestAPI {
 
     // Handle validation errors

@@ -28,18 +28,18 @@ public class UserDTO {
         private LocalDateTime updatedAt;
     }
 
-    @Getter
-    @Setter
-    public static class LoginUserRequest {
-        @NotNull(message = "Email address is required.")
-        @NotBlank(message = "Email address is required.")
-        @Email(message = "Email address should be valid.")
-        private String email;
-
-        @NotNull(message = "Password is required.")
-        @Size(min = 8, message = "Password must be at least 8 characters long.")
-        private String password;
-    }
+//    @Getter
+//    @Setter
+//    public static class LoginUserRequest {
+//        @NotNull(message = "Email address is required.")
+//        @NotBlank(message = "Email address is required.")
+//        @Email(message = "Email address should be valid.")
+//        private String email;
+//
+//        @NotNull(message = "Password is required.")
+//        @Size(min = 8, message = "Password must be at least 8 characters long.")
+//        private String password;
+//    }
 
     @Getter
     @Setter

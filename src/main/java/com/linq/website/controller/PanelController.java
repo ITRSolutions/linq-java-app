@@ -1,4 +1,4 @@
-package com.linq.website.controller.admin;
+package com.linq.website.controller;
 
 import com.linq.website.utility.CustomUserDetails;
 import org.springframework.security.core.Authentication;
@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
-
 @Controller
 @RequestMapping("/admin_panel/")
-public class AdminController {
+public class PanelController {
 
     @GetMapping("/{slug}")
     public String getPage(@PathVariable String slug, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {

@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-@ControllerAdvice
+@ControllerAdvice(assignableTypes = {
+        com.linq.website.controller.WebController.class,
+        com.linq.website.controller.PanelController.class
+})
 public class GlobalExceptionHandler {
 
     // Handle 404 error for Thymeleaf
