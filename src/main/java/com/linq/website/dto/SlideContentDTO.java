@@ -4,14 +4,12 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class SlideDTO {
+public class SlideContentDTO {
 
     // Base SlideDTO fields that are common to both Create and Update
     @Getter

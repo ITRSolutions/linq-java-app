@@ -4,6 +4,7 @@ import com.linq.website.dto.DynamicPageDTO;
 import com.linq.website.dto.ErrorResponse;
 import com.linq.website.dto.SuccessResponse;
 import com.linq.website.entity.DynamicPage;
+import com.linq.website.entity.User;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.utility.Helpers;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -35,6 +37,7 @@ public class DynamicPageController {
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         } catch (PageNotFoundException e) {
             dynamicPageService.saveDynamicPage(dto);
+
         }
 
         return ResponseEntity.ok(new SuccessResponse<>(true, "Web-page created successfully.", null));
@@ -63,4 +66,11 @@ public class DynamicPageController {
 
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of Web-pages.", response));
     }
+
+    @PostMapping("/search")
+    public ResponseEntity<?> searchDynamicPages(@Valid @RequestBody DynamicPageDTO.SearchDynamicPage searchDTO) {
+        List<DynamicPage> dynamicPages = dynamicPageService.searchDynamicPages(searchDTO);
+        return ResponseEntity.ok(new SuccessResponse<>(true, "Search result for web page.", dynamicPages));
+    }
+
 }

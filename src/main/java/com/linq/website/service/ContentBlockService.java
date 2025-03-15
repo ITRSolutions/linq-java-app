@@ -47,48 +47,43 @@ public class ContentBlockService {
     public void createContentBlock(ContentBlockDTO.CreateContentBlock dto) {
         // Validate and fetch page and user details
         Optional<DynamicPage> pageOpt = dynamicPageRepository.findById(dto.getPageId());
-        if (!pageOpt.isPresent()) {
+        if (pageOpt.isEmpty()) {
             throw new RuntimeException("Page not found");
         }
         DynamicPage page = pageOpt.get();
-
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-
-        // Get the User object using the username
-        User updatedBy = userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
 
         // Create new ContentBlock and set values
         ContentBlock contentBlock = new ContentBlock();
         contentBlock.setPage(page);
         contentBlock.setContent(dto.getContent());
         contentBlock.setOrderIndex(dto.getOrderIndex());
-        contentBlock.setUpdatedBy(updatedBy);
+        contentBlock.setUpdatedBy(getUpdatedByUserObj());
 
         // Save ContentBlock entity
         contentBlockRepository.save(contentBlock);
     }
 
+    public User getUpdatedByUserObj() {
+        // Fetch the authenticated user
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        // Get the User object using the username
+        return userRepository.findByEmailIgnoreCase(username)
+                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
+    }
+
     public ContentBlock updateContentBlock(ContentBlockDTO.UpdateContentBlock dto) {
         // Validate and fetch content block by ID
         Optional<ContentBlock> existingContentBlockOpt = contentBlockRepository.findById(dto.getId());
-        if (!existingContentBlockOpt.isPresent()) {
+        if (existingContentBlockOpt.isEmpty()) {
             throw new RuntimeException("Content Block not found");
         }
         ContentBlock existingContentBlock = existingContentBlockOpt.get();
 
-        Optional<User> updatedByOpt = userRepository.findById(dto.getUpdatedById());
-        if (!updatedByOpt.isPresent()) {
-            throw new RuntimeException("User not found for updatedBy");
-        }
-        User updatedBy = updatedByOpt.get();
-
         // Update fields
         existingContentBlock.setContent(dto.getContent());
         existingContentBlock.setOrderIndex(dto.getOrderIndex());
-        existingContentBlock.setUpdatedBy(updatedBy);
+        existingContentBlock.setUpdatedBy(getUpdatedByUserObj());
 
         // Save the updated ContentBlock
         return contentBlockRepository.save(existingContentBlock);

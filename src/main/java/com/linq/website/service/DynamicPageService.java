@@ -30,6 +30,7 @@ public class DynamicPageService {
     @Autowired
     private SlideContentRepository slideContentRepository;
 
+    @Autowired
     private UserRepository userRepository;
 
     // Fetch dynamic page by slug
@@ -59,41 +60,34 @@ public class DynamicPageService {
         return slideContentRepository.findBySlide(slide);
     }
 
-    public void saveDynamicPage(DynamicPageDTO.CreateDynamicPage dto) {
-
+    public User getUpdatedByUserObj() {
         // Fetch the authenticated user
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = userDetails.getUsername();
-
         // Get the User object using the username
-        User createdBy = userRepository.findByEmailIgnoreCase(username)
+        return userRepository.findByEmailIgnoreCase(username)
                 .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
+    }
+
+    public void saveDynamicPage(DynamicPageDTO.CreateDynamicPage dto) {
 
         DynamicPage dynamicPage = new DynamicPage();
         dynamicPage.setTitle(dto.getTitle());
         dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
-        dynamicPage.setUpdatedBy(createdBy);
+        dynamicPage.setUpdatedBy(getUpdatedByUserObj());
 
         dynamicPageRepository.save(dynamicPage);
     }
 
     public void updateDynamicPage(DynamicPageDTO.UpdateDynamicPage dto, Long id) {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-
-        // Get the User object using the username
-        User updatedBy = userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("UpdatedBy user not found"));
-
         // Fetch the DynamicPage by ID
         DynamicPage dynamicPage = dynamicPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
         dynamicPage.setTitle(dto.getTitle());
         dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
-        dynamicPage.setUpdatedBy(updatedBy);  // Set the logged-in user (admin)
+        dynamicPage.setUpdatedBy(getUpdatedByUserObj());  // Set the logged-in user (admin)
 
         // Save the updated DynamicPage object
         dynamicPageRepository.save(dynamicPage);
@@ -105,5 +99,9 @@ public class DynamicPageService {
 
         // Fetch paginated results from the repository
         return dynamicPageRepository.findAll(pageable);
+    }
+
+    public List<DynamicPage> searchDynamicPages(DynamicPageDTO.SearchDynamicPage searchDTO) {
+        return dynamicPageRepository.search(searchDTO.getSlug());
     }
 }

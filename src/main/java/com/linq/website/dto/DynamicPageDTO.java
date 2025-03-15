@@ -25,9 +25,6 @@ public class DynamicPageDTO {
 
         @NotNull(message = "Status cannot be null")
         private PageStatus status;
-
-        @NotNull(message = "updatedById cannot be null")
-        private Long updatedById;
     }
 
     @Getter
@@ -43,8 +40,13 @@ public class DynamicPageDTO {
 
         @NotNull(message = "Status cannot be null")
         private PageStatus status;
+    }
 
-        @NotNull(message = "updatedById cannot be empty")
-        private Long updatedById;
+    @Getter
+    @Setter
+    public static class SearchDynamicPage {
+        @NotEmpty(message = "Slug cannot be empty")
+        @Size(max = 50, message = "Slug cannot be longer than 50 characters")
+        private String slug;
     }
 }
