@@ -3,6 +3,7 @@ package com.linq.website.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,13 +27,11 @@ public class Slide {
     private Integer orderIndex;
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User createdBy;
-
-    @ManyToOne
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
     @Transient

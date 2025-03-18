@@ -30,7 +30,7 @@ $(document).on('click', '.updateContentBlock', function () {
     $("input[name='updatePageName']").val(pageName);
     $("input[name='updateTitleHeader']").val(selectedCB.content);
     $("input[name='updateOrderIndex']").val(selectedCB.orderIndex);
-    $("input[name='CBrowId']").val(selectedCB.id);
+    $("#CBrowId").val(selectedCB.id);
 
     // Show the modal
     $('#updateContentBlock').modal('show');
@@ -151,29 +151,30 @@ $('.deleteContentBlock').click(function () {
         $("#updateContentBlock form").submit(function (event) {
           event.preventDefault(); // Prevent default form submission
 
-          let pageId = $("input[name='updatePageName']").data("page-id"); // Get page ID from hidden attribute
+          let CBId = $("#CBrowId").val();
           let content = $("input[name='updateTitleHeader']").val().trim();
           let orderIndex = $("input[name='updateOrderIndex']").val().trim();
 
           // Basic Validation
-          if (!pageId || !content || !orderIndex) {
+          if (!CBId || !content || !orderIndex) {
             alert("All fields are required!");
             return;
           }
 
           let requestData = {
             orderIndex: parseInt(orderIndex),
-            pageId: parseInt(pageId),
+            pageId: parseInt(CBId),
             content: content
           };
 
           $.ajax({
-            url: "http://localhost:8090/api/v1/content_block/", // Update Content Block API
-            type: "POST", // Send POST request
+            url: "http://localhost:8090/api/v1/content_block/"+CBId, // Update Content Block API
+            type: "PUT", // Send POST request
             contentType: "application/json",
             data: JSON.stringify(requestData),
             success: function (response) {
               if (response.status) {
+                fetchContentBlocks(PageIdCB);
                 alert("Content Block updated successfully!");
                 $("#updateContentBlock").modal("hide"); // Close modal on success
                 $("#updateContentBlock form")[0].reset(); // Reset form fields
