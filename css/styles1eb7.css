@@ -229,3 +229,10 @@ form.submitting .wpcf7-spinner {
         font-size: calc(1.2rem + 0.1vw);
     }
 }
+
+
+@media (min-width: 768px) {  
+    .padding_area {
+        padding: 10px;
+    }
+}
