@@ -24,7 +24,7 @@
           <div class="but_list mg-t-0">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
               <ul id="myTab" class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#pages" id="pPages-tab" role="tab" data-toggle="tab"
+                <li role="presentation" class="active"><a href="#pages" id="Pages-tab" role="tab" data-toggle="tab"
                     aria-controls="pages" aria-expanded="true">Pages</a></li>
                 <li role="presentation" class=""><a href="#content_blocks" id="content_blocks-tab" role="tab"
                     data-toggle="tab" aria-controls="content_blocks" aria-expanded="true">Content Blocks</a></li>
@@ -35,17 +35,16 @@
               </ul>
               <div id="myTabContent" class="tab-content">
 
-                <form action="#" method="GET">
-                  <div class="input-group">
-                    <input type="text" name="search" class="form-control1 input-search" placeholder="Search...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
-                    </span>
-                  </div><!-- Input Group -->
-                </form>
-
                 <!-- pages tab -->
                 <div role="tabpanel" class="tab-pane fade active in" id="pages" aria-labelledby="pages-tab">
+                  <form action="#" method="GET">
+                    <div class="input-group">
+                      <input type="text" id="pageSearchInput" class="form-control1 input-search" placeholder="Search...">
+                      <span class="input-group-btn" id="pageSearchBtn">
+                      <button class="btn btn-success" type="button"><i class="fa fa-search" ></i></button>
+                    </span>
+                    </div><!-- Input Group -->
+                  </form>
                   <div class=" pd-0">
                     <div class="mailbox-content pd-0">
                       <div class="mail-toolbar clearfix pd-t-0">
@@ -55,14 +54,13 @@
                           </div>
 
                           <div class="btn btn_1 btn-default mrg5R">
-                            <i class="fa fa-refresh"> </i>
+                            <i class="fa fa-refresh" id="page_reload"> </i>
                           </div>
 
                           <div class="clearfix"> </div>
                         </div>
                         <div class="float-right pd-t-20">
-
-                          <span class="text-muted m-r-sm">Showing 10 of 25 </span>
+                          <span class="text-muted m-r-sm">Showing 0 of 0</span>
                           <div class="btn-group">
                             <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
                             <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
@@ -70,52 +68,21 @@
                         </div>
 
                       </div>
-                      <table class="table">
+                      <table id="webPageTable" class="table">
                         <thead>
-                          <tr>
-                            <!-- <th>#</th> -->
-                            <th>Id</th>
-                            <th>Page name</th>
-                            <th>Page title</th>
-                            <th>Status</th>
-                            <th>Upated</th>
-                            <th>Created By</th>
-                            <th>Updated By</th>
-                            <th> </th>
-                          </tr>
+                        <tr>
+                          <th>Id</th>
+                          <th>Page name</th>
+                          <th>Page title</th>
+                          <th>Status</th>
+                          <th>Updated</th>
+                          <th>Updated By</th>
+                          <th> </th>
+                        </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              1
-                            </td>
-                            <td class="hidden-xs">
-                              <a href="#" onclick="return false;" class="openContentBlock">
-                                index
-                              </a>
-                            </td>
-                            <td>
-                              Home Page | LINQ Research LLC
-                            </td>
-                            <td>
-                              Published
-                            </td>
-                            <td>
-                              02 march 2025
-                            </td>
-                            <td>
-                              Admin
-                            </td>
-                            <td>
-                              Admin
-                            </td>
-                            <td>
-                              <i class="fa fa-edit text-success text-active updatePage"></i> <br>
-                              <i class="fa fa-times text-danger text deletePage"></i>
-                            </td>
-                          </tr>
-                        </tbody>
+                        <tbody></tbody>
                       </table>
+
                     </div>
                   </div>
                 </div>
@@ -129,54 +96,21 @@
                           <i class="fa fa-plus"> </i>
                         </div>
 
-                        <div class="btn btn_1 btn-default mrg5R">
-                          <i class="fa fa-refresh"> </i>
-                        </div>
-
                         <div class="clearfix"> </div>
                       </div>
 
-                      <table class="table">
+                      <table id="contentBlockTable" class="table">
                         <thead>
-                          <tr>
-                            <!-- <th>#</th> -->
-                            <th>Id</th>
-                            <th>Content Block Name</th>
-                            <th>Page File Name</th>
-                            <th>Upated</th>
-                            <th>Created By</th>
-                            <th>Updated By</th>
-                            <th></th>
-                          </tr>
+                        <tr>
+                          <th>Id</th>
+                          <th>Content Block Name</th>
+                          <th>Page File Name</th>
+                          <th>Updated</th>
+                          <th>Updated By</th>
+                          <th></th>
+                        </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              1
-                            </td>
-                            <td class="hidden-xs">
-                              <a href="#" onclick="return false;" class="openSlide">
-                                Sample Content Block 1
-                              </a>
-                            </td>
-                            <td>
-                              index
-                            </td>
-                            <td>
-                              02 march 2025
-                            </td>
-                            <td>
-                              Admin
-                            </td>
-                            <td>
-                              Admin
-                            </td>
-                            <td>
-                              <i class="fa fa-edit text-success text-active updateContentBlock"></i> <br>
-                              <i class="fa fa-times text-danger text deleteContentBlock"></i>
-                            </td>
-                          </tr>
-                        </tbody>
+                        <tbody></tbody>
                       </table>
                     </div>
                   </div>
@@ -201,13 +135,12 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <!-- <th>#</th> -->
                             <th>Id</th>
                             <th>Slide Title</th>
                             <th>Content Block Title</th>
                             <th>Page Name</th>
                             <th>Order Index</th>
-                            <th>Upated</th>
+                            <th>Updated</th>
                             <th>Updated By</th>
                             <th></th>
                           </tr>
@@ -274,14 +207,13 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <!-- <th>#</th> -->
                             <th>Id</th>
                             <th>Slide Content Type</th>
                             <th>Slide Title</th>
                             <th>Content Block Title</th>
                             <th>Page Name</th>
                             <th>Order Index</th>
-                            <th>Upated</th>
+                            <th>Updated</th>
                             <th>Updated By</th>
                             <th></th>
                           </tr>
@@ -333,9 +265,9 @@
 
         <div class="clearfix"> </div>
         <div class="padding-t-15">
-<!----Footer-->
+<!----Start Footer-->
           <th th:replace="admin_panel/footer.html"></th>
-<!----Footer-->
+<!----End Footer-->
         </div>
       </div>
 
@@ -355,7 +287,7 @@
       style="display: none;">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form>
+          <form method="post" onsubmit="return false;">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h2 class="modal-title text-center">Add Page</h2>
@@ -363,23 +295,22 @@
             <div class="modal-body">
               <div class="panel-body">
                 <label>Select Page Name : </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
-                  <option>File1</option>
-                  <option>File2</option>
+                <select name="slug" class="form-control1 control3 webPageSelect" required>
+                  <option value="">Select a page</option>
                 </select>
 
                 <label>Select Status : </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                <select name="status" class="form-control1 control3" required>
                   <option>PUBLISHED</option>
                   <option>DRAFT</option>
                 </select>
                 <label>Enter Title : </label>
-                <input type="text" class="form-control1 control3" required>
+                <input type="text" name="title" class="form-control1 control3" required>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary" id="addWebPage">Save</button>
             </div>
           </form>
         </div>
@@ -392,7 +323,7 @@
       aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form>
+          <form method="post" onsubmit="return false;">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h2 class="modal-title text-center">Update Page</h2>
@@ -400,18 +331,18 @@
             <div class="modal-body">
               <div class="panel-body">
                 <label>Select Page Name : </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
-                  <option>File1</option>
-                  <option>File2</option>
+                <select name="updateSlug" class="form-control1 control3 webPageSelect" required disabled>
+                  <option value="">Select a page</option>
                 </select>
 
                 <label>Select Status : </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
+                <select name="updateStatus" class="form-control1 control3" required>
                   <option>PUBLISHED</option>
                   <option>DRAFT</option>
                 </select>
                 <label>Enter Title : </label>
-                <input type="text" class="form-control1 control3" required>
+                <input type="text" name="updateTitle" class="form-control1 control3" required>
+                <input type="hidden" name="rowId" value="">
               </div>
             </div>
             <div class="modal-footer">
@@ -430,6 +361,7 @@
     <!-- Add Content Block PopUp Start -->
     <div class="modal fade" id="addContentBlock" tabindex="-1" role="dialog" aria-labelledby="addContentBlockLabel"
       aria-hidden="true" style="display: none;">
+      <input type="hidden" id="pageIdCB">
       <div class="modal-dialog">
         <div class="modal-content">
           <form>
@@ -439,16 +371,14 @@
             </div>
             <div class="modal-body">
               <div class="panel-body">
-                <label>Select Page Name: </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
-                  <option>index</option>
-                  <option>about_us</option>
-                </select>
+                <label>Page Name: </label>
+                <input type="text" name="pageName" class="form-control1 control3" required readonly>
+
                 <label>Enter Title Header: </label>
-                <input type="text" class="form-control1 control3" required>
+                <input type="text" name="titleHeader" class="form-control1 control3" required>
 
                 <label>Enter order Index: </label>
-                <input type="number" class="form-control1 control3" required>
+                <input type="number" name="orderIndex" class="form-control1 control3" maxlength="1" required>
               </div>
             </div>
             <div class="modal-footer">
@@ -473,13 +403,15 @@
             </div>
             <div class="modal-body">
               <div class="panel-body">
-                <label>Select Page Name: </label>
-                <select name="selector1" id="selector1" class="form-control1 control3" required>
-                  <option>index</option>
-                  <option>about_us</option>
-                </select>
+                <label>Page Name: </label>
+                <input type="text" name="updatePageName" class="form-control1 control3" required readonly>
+
                 <label>Enter Title Header: </label>
-                <input type="text" class="form-control1 control3" required>
+                <input type="text" name="updateTitleHeader" class="form-control1 control3" required>
+
+                <label>Enter order Index: </label>
+                <input type="number" name="updateOrderIndex" class="form-control1 control3" maxlength="1" readonly required>
+                <input type="hidden" name="CBrowId" value="">
               </div>
             </div>
             <div class="modal-footer">

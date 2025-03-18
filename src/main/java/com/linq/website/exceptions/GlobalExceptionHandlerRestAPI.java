@@ -2,13 +2,10 @@ package com.linq.website.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +16,8 @@ import java.util.Map;
         com.linq.website.controller.FormSubmissionController.class,
         com.linq.website.controller.admin.ContentBlockController.class,
         com.linq.website.controller.admin.DynamicPageController.class,
-        com.linq.website.controller.admin.SlideController.class
+        com.linq.website.controller.admin.SlideController.class,
+        com.linq.website.controller.admin.SlideContentController.class
 })
 public class GlobalExceptionHandlerRestAPI {
 
@@ -52,7 +50,8 @@ public class GlobalExceptionHandlerRestAPI {
         response.put("message", "An unexpected error occurred.");
 
         Map<String, List<String>> errors = new HashMap<>();
-        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something went wrong!");
+//        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something went wrong!");
+        errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add(ex.getMessage());
 
         response.put("errors", errors);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);

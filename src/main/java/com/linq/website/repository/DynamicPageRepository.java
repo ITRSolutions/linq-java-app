@@ -1,6 +1,7 @@
 package com.linq.website.repository;
 
 import com.linq.website.entity.DynamicPage;
+import com.linq.website.enums.PageStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,8 @@ import java.util.Optional;
 
 @Repository
 public interface DynamicPageRepository extends JpaRepository<DynamicPage, Long> {
+    Optional<DynamicPage> findBySlugAndStatus(String slug, PageStatus status);
+
     Optional<DynamicPage> findBySlug(String slug);
 
     Page<DynamicPage> findAll(Pageable pageable);

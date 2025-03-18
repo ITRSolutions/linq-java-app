@@ -15,9 +15,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1/web_page")
@@ -26,14 +33,16 @@ public class DynamicPageController {
     @Autowired
     DynamicPageService dynamicPageService;
 
+    // The folder where the .html files are located
+    private static final String HTML_FOLDER_PATH = "src/main/resources/templates/public";
+    private static final String HTML_FOLDER_PATH1 = "src/main/resources/templates/fragments";
+
     @PostMapping("")
     public ResponseEntity<?> createDynamicPage(@Valid @RequestBody DynamicPageDTO.CreateDynamicPage dto) {
         try {
-            DynamicPage pageBySlug = dynamicPageService.getPageBySlug(dto.getSlug());
+            DynamicPage pageBySlug = dynamicPageService.getPageByName(dto.getSlug());
 
-            Map<String, String[]> errors = new HashMap<>();
-            errors.put("Web page exist", new String[]{"The web page name is already exist."});
-            ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("Found existing data.", errors);
+            ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("The web page name is already exist.", null);
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         } catch (PageNotFoundException e) {
             dynamicPageService.saveDynamicPage(dto);
@@ -46,7 +55,7 @@ public class DynamicPageController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateDynamicPage(@Valid @RequestBody DynamicPageDTO.UpdateDynamicPage dto, @PathVariable Long id) {
         try {
-            dynamicPageService.getPageBySlug(dto.getSlug());
+            dynamicPageService.getPageByName(dto.getSlug());
             dynamicPageService.updateDynamicPage(dto, id);
             System.out.println("updateDynamicPage");
         } catch (PageNotFoundException e) {
@@ -73,4 +82,27 @@ public class DynamicPageController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "Search result for web page.", dynamicPages));
     }
 
+    @GetMapping("/getallnames")
+    public ResponseEntity<?> listHtmlFiles() throws IOException {
+        // Get all .html files in the folder
+        List<String> htmlFiles = listHtmlFilesInFolder(HTML_FOLDER_PATH);
+        List<String> htmlFiles1 = listHtmlFilesInFolder(HTML_FOLDER_PATH1);
+
+        List<String> allHtmlFile = Stream.concat(htmlFiles.stream(), htmlFiles1.stream()).toList();
+
+        return ResponseEntity.ok(new SuccessResponse<>(true, "Web-pages list.", allHtmlFile));
+    }
+
+    private List<String> listHtmlFilesInFolder(String folderPath) throws IOException {
+        // Create a Path object for the folder
+        Path path = Paths.get(folderPath);
+
+        // List all files and filter for .html files
+        return Files.walk(path)
+                .filter(Files::isRegularFile)  // Only regular files (not directories)
+                .map(Path::toString)
+                .filter(f -> f.endsWith(".html"))  // Filter for .html files
+                .map(f -> new File(f).getName().replace(".html",""))  // Get just the file name, not the full path
+                .collect(Collectors.toList());
+    }
 }

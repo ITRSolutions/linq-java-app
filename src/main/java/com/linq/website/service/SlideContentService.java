@@ -1,15 +1,12 @@
 package com.linq.website.service;
 
-import com.linq.website.dto.SlideDTO;
-import com.linq.website.entity.ContentBlock;
+import com.linq.website.dto.SlideContentDTO;
 import com.linq.website.entity.Slide;
-import com.linq.website.entity.User;
-import com.linq.website.repository.ContentBlockRepository;
+import com.linq.website.entity.SlideContent;
+import com.linq.website.repository.SlideContentRepository;
 import com.linq.website.repository.SlideRepository;
-import com.linq.website.repository.UserRepository;
+import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,58 +15,54 @@ import java.util.Optional;
 public class SlideContentService {
 
     @Autowired
-    private SlideRepository slideRepository;
+    private SlideContentRepository slideContentRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    SlideRepository slideRepository;
 
     @Autowired
-    ContentBlockRepository contentBlockRepository;
+    LoggedUser loggedUser;
 
-    public void createSlide(SlideDTO.CreateSlideDTO dto) {
-        // Validate and fetch page and user details
-        Optional<ContentBlock> contentBlockOpt = contentBlockRepository.findById(dto.getContentBlockId());
-        if (contentBlockOpt.isEmpty()) {
-            throw new RuntimeException("ContentBlock not found");
+    public void createSlideContent(SlideContentDTO.Create dto) {
+        Optional<Slide> slideOpt = slideRepository.findById(dto.getSlideId());
+        if (slideOpt.isEmpty()) {
+            throw new RuntimeException("Slide not found");
         }
-        ContentBlock contentBlock = contentBlockOpt.get();
+        Slide slide = slideOpt.get();
 
-        Slide slide = new Slide();
-        slide.setSlideTitle(dto.getSlideTitle());
-        slide.setContentBlock(contentBlock);
-        slide.setOrderIndex(dto.getOrderIndex());
-        slide.setUpdatedBy(getUpdatedByUserObj());
+        SlideContent slideContent = new SlideContent();
+        slideContent.setSlide(slide);
+        slideContent.setContentType(dto.getContentType());
+        slideContent.setContent(dto.getContent());
+        slideContent.setCustomCss(dto.getCustomCss());
+        slideContent.setImageAltText(dto.getImageAltText());
+        slideContent.setOrderIndex(dto.getOrderIndex());
+//        slideContent.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
-        slideRepository.save(slide);
+        slideContentRepository.save(slideContent);
     }
 
-    public User getUpdatedByUserObj() {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        // Get the User object using the username
-        return userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
+    public void deleteSlideContent(Long id) {
+        slideContentRepository.deleteById(id);
     }
 
-    public void deleteSlide(Long id) {
-        slideRepository.deleteById(id);
-    }
-
-    public void updateSlide(SlideDTO.UpdateSlideDTO dto) {
+    public void updateSlide(SlideContentDTO.Update dto, Long id) {
         // Validate and fetch slide block by ID
-        Optional<Slide> existingSlideOpt = slideRepository.findById(dto.getId());
-        if (existingSlideOpt.isEmpty()) {
+        Optional<SlideContent> existingSlideContentOpt = slideContentRepository.findById(id);
+        if (existingSlideContentOpt.isEmpty()) {
             throw new RuntimeException("ContentBlock not found");
         }
-        Slide slideBlock = existingSlideOpt.get();
+        SlideContent slideContentBlock = existingSlideContentOpt.get();
 
         // Update fields
-        slideBlock.setSlideTitle(dto.getSlideTitle());
-        slideBlock.setOrderIndex(dto.getOrderIndex());
-        slideBlock.setUpdatedBy(getUpdatedByUserObj());
+        slideContentBlock.setContentType(dto.getContentType());
+        slideContentBlock.setContent(dto.getContent());
+        slideContentBlock.setImageAltText(dto.getImageAltText());
+        slideContentBlock.setOrderIndex(dto.getOrderIndex());
+        slideContentBlock.setCustomCss(dto.getCustomCss());
+//        slideContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
-        // Save the updated Slide
-        slideRepository.save(slideBlock);
+        // Save the updated SlideContent
+        slideContentRepository.save(slideContentBlock);
     }
 }

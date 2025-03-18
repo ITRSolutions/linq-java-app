@@ -4,9 +4,11 @@ import com.linq.website.dto.ContentBlockDTO;
 import com.linq.website.entity.ContentBlock;
 import com.linq.website.entity.DynamicPage;
 import com.linq.website.entity.User;
+import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.ContentBlockRepository;
 import com.linq.website.repository.DynamicPageRepository;
 import com.linq.website.repository.UserRepository;
+import com.linq.website.utility.LoggedUser;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +25,7 @@ public class ContentBlockService {
     private ContentBlockRepository contentBlockRepository;
 
     @Autowired
-    UserRepository userRepository;
+    LoggedUser loggedUser;
 
     @Autowired
     private DynamicPageRepository dynamicPageRepository;
@@ -57,19 +59,10 @@ public class ContentBlockService {
         contentBlock.setPage(page);
         contentBlock.setContent(dto.getContent());
         contentBlock.setOrderIndex(dto.getOrderIndex());
-        contentBlock.setUpdatedBy(getUpdatedByUserObj());
+//        contentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save ContentBlock entity
         contentBlockRepository.save(contentBlock);
-    }
-
-    public User getUpdatedByUserObj() {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        // Get the User object using the username
-        return userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
     }
 
     public ContentBlock updateContentBlock(ContentBlockDTO.UpdateContentBlock dto) {
@@ -82,8 +75,8 @@ public class ContentBlockService {
 
         // Update fields
         existingContentBlock.setContent(dto.getContent());
-        existingContentBlock.setOrderIndex(dto.getOrderIndex());
-        existingContentBlock.setUpdatedBy(getUpdatedByUserObj());
+//        existingContentBlock.setOrderIndex(dto.getOrderIndex());
+//        existingContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save the updated ContentBlock
         return contentBlockRepository.save(existingContentBlock);

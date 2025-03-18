@@ -42,10 +42,10 @@ public class ContentBlockController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContentBlock> updateContentBlock(@Valid @RequestBody ContentBlockDTO.UpdateContentBlock dto, @PathVariable Long id) {
+    public ResponseEntity<SuccessResponse> updateContentBlock(@Valid @RequestBody ContentBlockDTO.UpdateContentBlock dto, @PathVariable Long id) {
         dto.setId(id); // Set the ID in case it's not in the path variable
         ContentBlock contentBlock = contentBlockService.updateContentBlock(dto);
-        return ResponseEntity.ok(contentBlock);
+        return ResponseEntity.ok(new SuccessResponse<>(true, "ContentBlock updated successfully.", null));
     }
 
     @GetMapping("/{id}")

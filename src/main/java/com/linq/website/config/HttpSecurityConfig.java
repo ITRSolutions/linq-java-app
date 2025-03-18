@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
@@ -55,11 +54,12 @@ public class HttpSecurityConfig {
                 }))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF only for APIs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
+                            .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
+                        .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**").permitAll()
-                        .requestMatchers("/api/v1/user/**", "/admin_panel/**").hasRole("USER")
+                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**", "/api/v1/slide/**", "/api/v1/slideContent/**").permitAll()
+                        .requestMatchers("/admin_panel/**").hasRole("USER")
                         .requestMatchers("/api/v1/admin/**", "/admin_panel/**").hasRole("ADMIN") // Fixed admin access
 //                        .requestMatchers("/api/v1/web_page/**", "/admin_panel/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

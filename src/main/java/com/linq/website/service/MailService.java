@@ -87,7 +87,7 @@ public class MailService {
         Context context = new Context(Locale.ENGLISH);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl + "/api/v1/auth");
-        context.setVariable(YEAR, currentYear);;
+        context.setVariable(YEAR, currentYear);
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
         this.sendEmailSync(user.getEmail(), subject, content, false, true);

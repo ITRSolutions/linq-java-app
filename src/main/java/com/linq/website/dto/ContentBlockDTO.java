@@ -9,37 +9,26 @@ public class ContentBlockDTO {
 
     @Getter
     @Setter
-    public static class CreateContentBlock {
-
-        @NotNull(message = "Page ID cannot be null")
-        private Long pageId;
+    public static class BaseContentBlock {
 
         @NotEmpty(message = "Content cannot be empty")
         @Size(max = 50, message = "Content cannot be longer than 50 characters")
         private String content;
-
-        @NotNull(message = "Order Index cannot be null")
-        private Integer orderIndex;
-
-        @NotNull(message = "Updated By cannot be null")
-        private Long updatedById;
     }
 
     @Getter
     @Setter
-    public static class UpdateContentBlock {
-
-        @NotNull(message = "Content Block ID cannot be null")
-        private Long id;
-
-        @NotEmpty(message = "Content cannot be empty")
-        @Size(max = 50, message = "Content cannot be longer than 50 characters")
-        private String content;
+    public static class CreateContentBlock extends BaseContentBlock {
+        @NotNull(message = "Page ID cannot be null")
+        private Long pageId;
 
         @NotNull(message = "Order Index cannot be null")
         private Integer orderIndex;
+    }
 
-        @NotNull(message = "Updated By cannot be null")
-        private Long updatedById;
+    @Getter
+    @Setter
+    public static class UpdateContentBlock extends BaseContentBlock {
+        private Long id;
     }
 }

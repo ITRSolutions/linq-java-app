@@ -3,17 +3,15 @@ package com.linq.website.controller;
 import com.linq.website.entity.*;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
-import com.linq.website.service.MailService;
 import com.linq.website.service.PageMetadataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -24,6 +22,9 @@ public class WebController {
 
     @Autowired
     private PageMetadataService pageMetadataService;
+
+    private static final String YEAR = "year";
+    private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
@@ -77,17 +78,16 @@ public class WebController {
             model.addAttribute("navigation", navigationBlocks);
 
             //Bottom links
-            List<ContentBlock> footerBlocks = getNavigationSlides("footer_link");
+            List<ContentBlock> footerBlocks = getNavigationSlides("footer");
             model.addAttribute("footerBlocks", footerBlocks);
 
-            return slug; // Thymeleaf page name
+            return "public/" +slug; // Thymeleaf page name
         } catch (PageNotFoundException ex) {
             // Handle exception and redirect to error page
-            model.addAttribute("error", ex.getMessage());
-            return "error/404"; // This will redirect to the 404 page
+//            model.addAttribute("error", ex.getMessage());
+            return "redirect:/error_404"; // This will redirect to the 404 page
         } catch (RuntimeException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "error/404"; // This will redirect to the 404 page
+            return "redirect:/error_404"; // This will redirect to the 404 page
         }
     }
 
@@ -123,5 +123,12 @@ public class WebController {
     public String activationError(@RequestParam("message") String message, Model model) {
         model.addAttribute("errorMessage", message);
         return "mail/activationError";
+    }
+
+    @GetMapping("/error_404")
+    public String handleError(Model model) {
+        System.out.println("Error page access: "+currentYear);
+        model.addAttribute(YEAR, currentYear);
+        return "error/error_404"; // This will redirect to the 404 page
     }
 }

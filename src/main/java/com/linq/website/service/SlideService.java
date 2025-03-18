@@ -7,11 +7,13 @@ import com.linq.website.entity.User;
 import com.linq.website.repository.ContentBlockRepository;
 import com.linq.website.repository.SlideRepository;
 import com.linq.website.repository.UserRepository;
+import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,9 +28,13 @@ public class SlideService {
     @Autowired
     ContentBlockRepository contentBlockRepository;
 
+    @Autowired
+    LoggedUser loggedUser;
+
     public void createSlide(SlideDTO.CreateSlideDTO dto) {
         // Validate and fetch page and user details
         Optional<ContentBlock> contentBlockOpt = contentBlockRepository.findById(dto.getContentBlockId());
+
         if (contentBlockOpt.isEmpty()) {
             throw new RuntimeException("ContentBlock not found");
         }
@@ -38,27 +44,18 @@ public class SlideService {
         slide.setSlideTitle(dto.getSlideTitle());
         slide.setContentBlock(contentBlock);
         slide.setOrderIndex(dto.getOrderIndex());
-        slide.setUpdatedBy(getUpdatedByUserObj());
+//        slide.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         slideRepository.save(slide);
-    }
-
-    public User getUpdatedByUserObj() {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        // Get the User object using the username
-        return userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
     }
 
     public void deleteSlide(Long id) {
         slideRepository.deleteById(id);
     }
 
-    public void updateSlide(SlideDTO.UpdateSlideDTO dto) {
+    public void updateSlide(SlideDTO.UpdateSlideDTO dto, Long id) {
         // Validate and fetch slide block by ID
-        Optional<Slide> existingSlideOpt = slideRepository.findById(dto.getId());
+        Optional<Slide> existingSlideOpt = slideRepository.findById(id);
         if (existingSlideOpt.isEmpty()) {
             throw new RuntimeException("ContentBlock not found");
         }
@@ -67,9 +64,11 @@ public class SlideService {
         // Update fields
         slideBlock.setSlideTitle(dto.getSlideTitle());
         slideBlock.setOrderIndex(dto.getOrderIndex());
-        slideBlock.setUpdatedBy(getUpdatedByUserObj());
+//        slideBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save the updated Slide
         slideRepository.save(slideBlock);
     }
+
+
 }

@@ -33,12 +33,16 @@
     <p>Looks like the page you are trying to visit does not exist
       <br> Please check the URL and Try again.
     </p>
-    <p th:text="${error}">Page not found</p>
     <div class="home">
       <a href="/">home</a>
     </div>
   </div>
   <!---728x90--->
+  <div class="w3_agile-footer">
+    <p th:utext="#{email.footer(${year})}"> &copy; 2017 Sleet. All Rights Reserved | Design by
+      <a href="#" target="=_blank">ARJ</a>
+    </p>
+  </div>
 
 </body>
 

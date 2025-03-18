@@ -29,7 +29,8 @@ public class EmailIsVerifiedFilter extends OncePerRequestFilter {
 
         // Skip email verification for public pages
         if (path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/registration_form/")
-                || path.startsWith("/font/") || path.startsWith("/image/") || path.startsWith("/mail/")) {
+                || path.startsWith("/font/") || path.startsWith("/image/") || path.startsWith("/mail/")
+                || path.startsWith("/error/")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -51,7 +52,7 @@ public class EmailIsVerifiedFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getServletPath().startsWith("/public");
+        return request.getServletPath().startsWith("/templates/public");
     }
 }
 

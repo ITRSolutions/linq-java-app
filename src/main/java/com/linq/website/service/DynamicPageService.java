@@ -2,15 +2,15 @@ package com.linq.website.service;
 
 import com.linq.website.dto.DynamicPageDTO;
 import com.linq.website.entity.*;
+import com.linq.website.enums.PageStatus;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.*;
+import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,8 +33,16 @@ public class DynamicPageService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    LoggedUser loggedUser;
+
     // Fetch dynamic page by slug
     public DynamicPage getPageBySlug(String slug) {
+        return dynamicPageRepository.findBySlugAndStatus(slug, PageStatus.PUBLISHED)
+                .orElseThrow(() -> new PageNotFoundException("Page not found with name: " + slug));
+    }
+
+    public DynamicPage getPageByName(String slug) {
         return dynamicPageRepository.findBySlug(slug)
                 .orElseThrow(() -> new PageNotFoundException("Page not found with name: " + slug));
     }
@@ -60,22 +68,13 @@ public class DynamicPageService {
         return slideContentRepository.findBySlide(slide);
     }
 
-    public User getUpdatedByUserObj() {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        // Get the User object using the username
-        return userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
-    }
-
     public void saveDynamicPage(DynamicPageDTO.CreateDynamicPage dto) {
 
         DynamicPage dynamicPage = new DynamicPage();
         dynamicPage.setTitle(dto.getTitle());
         dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
-        dynamicPage.setUpdatedBy(getUpdatedByUserObj());
+        dynamicPage.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         dynamicPageRepository.save(dynamicPage);
     }
@@ -85,9 +84,9 @@ public class DynamicPageService {
         DynamicPage dynamicPage = dynamicPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
         dynamicPage.setTitle(dto.getTitle());
-        dynamicPage.setSlug(dto.getSlug());
+//        dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
-        dynamicPage.setUpdatedBy(getUpdatedByUserObj());  // Set the logged-in user (admin)
+        dynamicPage.setUpdatedBy(loggedUser.getUpdatedByUserObj());  // Set the logged-in user (admin)
 
         // Save the updated DynamicPage object
         dynamicPageRepository.save(dynamicPage);
