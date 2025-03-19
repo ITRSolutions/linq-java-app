@@ -84,6 +84,7 @@ $(document).ready(function () {
              data: JSON.stringify(data), // Convert data object to JSON string
              success: function(response) {
                  if (response.status) {
+                    fetchSlideContents();
                      alert('Slide content created successfully!');
                      $('#addSlideContent').modal('hide'); // Close the modal after successful submission
                      // Optionally reset the form here
@@ -92,7 +93,7 @@ $(document).ready(function () {
                      alert('Failed to create slide content. Please try again.');
                  }
              },
-             error: function() {
+             error: function(xhr, status, error) {
                  alert('Error occurred while creating slide content.');
              }
          });
