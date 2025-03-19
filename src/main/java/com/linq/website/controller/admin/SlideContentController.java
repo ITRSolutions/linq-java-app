@@ -2,11 +2,14 @@ package com.linq.website.controller.admin;
 
 import com.linq.website.dto.SlideContentDTO;
 import com.linq.website.dto.SuccessResponse;
+import com.linq.website.entity.DynamicPage;
 import com.linq.website.entity.SlideContent;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.SlideContentService;
+import com.linq.website.utility.Helpers;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +44,7 @@ public class SlideContentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SuccessResponse> getContentBlockByPageId(@PathVariable Long id) {
+    public ResponseEntity<?> getAllSlideContentById(@RequestParam(defaultValue = "0") int page, @PathVariable Long id) {
         List<SlideContent> slideContents = dynamicPageService.getSlideContents(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of SlideContent.", slideContents));
     }

@@ -6,17 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 public class SlideDTO {
 
     // Base SlideDTO fields that are common to both Create and Update
     @Getter
     @Setter
     public static class BaseSlideDTO {
-
-        @NotNull(message = "Content Block is required")
-        private Long contentBlockId;
 
         @NotNull(message = "Slide Title is required")
         @Size(min = 1, max = 50, message = "Slide Title must be between 1 and 50 characters")
@@ -30,7 +25,8 @@ public class SlideDTO {
     @Getter
     @Setter
     public static class CreateSlideDTO extends BaseSlideDTO {
-
+        @NotNull(message = "Content Block is required")
+        private Long contentBlockId;
     }
 
     @Getter

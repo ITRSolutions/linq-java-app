@@ -43,7 +43,7 @@ public class SlideController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SuccessResponse> getContentBlockByPageId(@PathVariable Long id) {
+    public ResponseEntity<SuccessResponse> getSlideByContentBlockId(@PathVariable Long id) {
         List<Slide> slides = dynamicPageService.getSlides(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of slide.", slides));
     }

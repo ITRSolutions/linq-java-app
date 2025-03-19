@@ -1,25 +1,28 @@
 var PageIdCB = 0;
 var contentBlockTable = null;
+var pageNameCB = null;
 
 $(document).on('click', '.openContentBlock', function () {
     $("#content_blocks-tab").click();
         $("#pageIdCB").val(0);
-        var rowIndex = $(this).closest('tr').index();
-        var selectedPage = pageTableData[rowIndex];
+        let rowIndex = $(this).closest('tr').index();
+        let selectedPage = pageTableData[rowIndex];
+        pageNameCB = $(this).closest('td');
+        pageNameCB = pageNameCB[0].children[0].textContent
         fetchContentBlocks(selectedPage.id);
         $("#pageIdCB").val(selectedPage.id);
         PageIdCB = selectedPage.id;
 });
 
 $(document).on('click', '#addContentBlockFunction', function () {
-    try {
-        let pageName = $("#contentBlockTable").find("td")[2].textContent;
-        $('#addContentBlock').find('[name="pageName"]').val(pageName);
-        pageName ? $('#addContentBlock').modal('show') : 0;
-    }  catch (e) {
-        alert("No data found");
+    if(!pageNameCB) {
+        alert("No page is linked.");
         $("#Pages-tab").click();
+        return 0;
     }
+
+    pageNameCB ? $('#addContentBlock').modal('show') : 0;
+    $('#addContentBlock').find('[name="pageName"]').val(pageNameCB);
 });
 
 $(document).on('click', '.updateContentBlock', function () {
@@ -50,7 +53,7 @@ $('.deleteContentBlock').click(function () {
         type: "GET",
         success: function (response) {
           if (response.status && response.data.length > 0) {
-            renderTable(response.data);
+            renderTableCB(response.data);
             contentBlockTable = response.data;
           } else {
             $("#contentBlockTable tbody").html("<tr><td colspan='6' class='text-center'>No content blocks found</td></tr>");
@@ -62,11 +65,11 @@ $('.deleteContentBlock').click(function () {
       });
     }
 
-    function renderTable(data) {
+    function renderTableCB(data) {
       let rows = "";
       data.forEach((item) => {
         let updatedBy = item.page.updatedBy ? `${item.page.updatedBy.firstName} ${item.page.updatedBy.lastName}` : "N/A";
-        let updatedAt = item.page.updatedAt ? new Date(item.page.updatedAt).toLocaleString() : "N/A";
+        let updatedAt = item.page.updatedAt ? new Date(item.updatedAt).toLocaleString() : "N/A";
 
         rows += `
           <tr>

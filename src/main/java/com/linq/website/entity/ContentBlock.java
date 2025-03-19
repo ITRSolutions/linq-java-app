@@ -38,4 +38,10 @@ public class ContentBlock {
     @Transient
     private List<Slide> slide;
 
+    // @PreUpdate method to update the timestamp before update
+    @PreUpdate
+    public void preUpdate() {
+        // Manually set updated_at to the current timestamp
+        this.updatedAt = LocalDateTime.now();
+    }
 }

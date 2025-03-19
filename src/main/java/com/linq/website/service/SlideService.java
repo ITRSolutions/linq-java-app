@@ -44,7 +44,7 @@ public class SlideService {
         slide.setSlideTitle(dto.getSlideTitle());
         slide.setContentBlock(contentBlock);
         slide.setOrderIndex(dto.getOrderIndex());
-//        slide.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        slide.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         slideRepository.save(slide);
     }
@@ -64,7 +64,7 @@ public class SlideService {
         // Update fields
         slideBlock.setSlideTitle(dto.getSlideTitle());
         slideBlock.setOrderIndex(dto.getOrderIndex());
-//        slideBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        slideBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save the updated Slide
         slideRepository.save(slideBlock);

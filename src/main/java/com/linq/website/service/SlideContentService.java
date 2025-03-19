@@ -1,14 +1,21 @@
 package com.linq.website.service;
 
 import com.linq.website.dto.SlideContentDTO;
+import com.linq.website.entity.DynamicPage;
 import com.linq.website.entity.Slide;
 import com.linq.website.entity.SlideContent;
+import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.SlideContentRepository;
 import com.linq.website.repository.SlideRepository;
 import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service

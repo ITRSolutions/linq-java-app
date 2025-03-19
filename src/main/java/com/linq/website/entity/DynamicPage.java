@@ -34,5 +34,11 @@ public class DynamicPage {
     @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
+    // @PreUpdate method to update the timestamp before update
+    @PreUpdate
+    public void preUpdate() {
+        // Manually set updated_at to the current timestamp
+        this.updatedAt = LocalDateTime.now();
+    }
 }
 
