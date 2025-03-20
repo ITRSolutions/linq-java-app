@@ -58,7 +58,7 @@ public class HttpSecurityConfig {
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**", "/api/v1/slide/**", "/api/v1/slideContent/**").permitAll()
+                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**", "/api/v1/slide/**", "/api/v1/slideContent/**","/api/v1/s3/**").permitAll()
                         .requestMatchers("/admin_panel/**").hasRole("USER")
                         .requestMatchers("/api/v1/admin/**", "/admin_panel/**").hasRole("ADMIN") // Fixed admin access
 //                        .requestMatchers("/api/v1/web_page/**", "/admin_panel/**").hasRole("ADMIN")
@@ -74,6 +74,7 @@ public class HttpSecurityConfig {
                         .logoutUrl("/admin_panel/logout")
                         .logoutSuccessUrl("/login?logout")
                         .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )

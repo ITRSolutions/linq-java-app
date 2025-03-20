@@ -44,7 +44,7 @@ public class SlideContentService {
         slideContent.setCustomCss(dto.getCustomCss());
         slideContent.setImageAltText(dto.getImageAltText());
         slideContent.setOrderIndex(dto.getOrderIndex());
-//        slideContent.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        slideContent.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         slideContentRepository.save(slideContent);
     }
@@ -67,7 +67,7 @@ public class SlideContentService {
         slideContentBlock.setImageAltText(dto.getImageAltText());
         slideContentBlock.setOrderIndex(dto.getOrderIndex());
         slideContentBlock.setCustomCss(dto.getCustomCss());
-//        slideContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        slideContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save the updated SlideContent
         slideContentRepository.save(slideContentBlock);

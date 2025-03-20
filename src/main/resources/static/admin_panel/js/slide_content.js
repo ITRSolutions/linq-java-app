@@ -9,7 +9,6 @@
         let rowIndex = $(this).closest('tr').index();
         let selected = SlideTable[rowIndex];
 
-        fetchSlides(selected.id);
         $("#SlideIdSC").val(selected.id);
         SlideIdSC = selected.id;
         fetchSlideContents();
@@ -22,9 +21,38 @@ $(document).on('click', '#addSlideContentFunction', function () {
     $('#addSlideContent').modal('show');
 });
 
-$(document).on('click', '.updateSlideContent', function () {
-    $('#updateSlideContent').modal('show');
-});
+        $(document).on('click', '.updateSlideContent', function() {
+            let rowIndex = $(this).closest('tr').index();
+            let selected = SlideContentTable[rowIndex];
+
+            $('#updateSlideContent [name="updateContentTypeSG"]').val(selected.contentType);
+            !checkImageField() ? $('#updateSlideContent [name="updateContentSG"]').val(selected.content) : 0;
+            $('#updateSlideContent [name="updateOrderIndexSC"]').val(selected.orderIndex);
+            $("#SCrowId").val(selected.id);
+
+            $('#updateSlideContent').modal('show');
+        });
+
+function checkImageField() {
+    if($('select[name="updateContentTypeSG"]').val() == "IMAGE") {
+        $(".contentSG").hide();
+        $("#contentSCLb").hide();
+
+        $(".imageUpload").html(`	<label>Upload Image: </label>
+        <a href="#" target="_blank" class="float-right" id="displayImg" style="display: none"><label> [Uploaded Image]</label></a>
+         	<input type="file" name="file" class="form-control1 control3 uploadImage" accept="image/*"
+                 style="padding-top: 9px;" required>
+
+                     <p id="error-message" style="color: red; display: none;"></p>
+                     <p id="success-message" style="color: green; display: none;"></p>`);
+
+         	return true;
+    } else {
+       $(".contentSG").show();
+       $(".imageUpload").html("");
+       $("#contentSCLb").show();
+    }
+}
 
 $('.deleteSlideContent').click(function () {
     if (confirm("Are you sure to delete this slide content row!")) {
@@ -34,7 +62,8 @@ $('.deleteSlideContent').click(function () {
 });
 
 $(document).ready(function () {
-    $(".uploadImage").change(function () {
+    $(document).on('change', '.uploadImage', function () {
+     alert("hi how");
         // Get the selected file
         var file = this.files[0];
 
@@ -45,15 +74,42 @@ $(document).ready(function () {
 
             // Check if the file is an image and if it's in the valid list
             if ($.inArray(fileType, validImageTypes) === -1) {
-                // If not a valid image, show error and alert
-                $("#errorMessage").show();
                 $(".uploadImage").val(""); // Reset the file input
                 alert("Please upload a valid image file (JPG, PNG, GIF, etc.).");
-            } else {
-                // If it's a valid image, hide the error message
-                $("#errorMessage").hide();
             }
+        } else if (file.size > 3 * 1024 * 1024) {
+            $("#error-message").text("File size exceeds the 3MB limit.").show();
+            return;
         }
+
+                var formData = new FormData();
+                formData.append("file", file);
+
+                // Make POST request to upload the image
+                $.ajax({
+                    url: '/api/v1/s3/upload',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status) {
+                            $("#error-message").hide();
+                            $("#success-message").text(response.message).show();
+                            $("#displayImg").show();
+                            $("#displayImg")[0].href = response.data;
+                            $('textarea[name="updateContentSG"]').val(response.data);
+                        } else {
+                            $("#success-message").hide();
+                            $("#error-message").text(response.errors.Image[0]).show();
+                        }
+                    },
+                    error: function() {
+                        $("#success-message").hide();
+                        $("#error-message").text("An error occurred while uploading the image.").show();
+                    }
+                });
+
     }); 
 
   //<------------Add Slide Content Start------------->
@@ -64,7 +120,6 @@ $(document).ready(function () {
          var slideId = $('#SlideIdSC').val(); // Get the Slide ID (hidden input)
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)
          var slideContent = $('textarea[name="contentSG"]').val(); // Get the slide content text
-         var imageAlt = $('input[name="imageAlt"]').val(); // Get the image alt text
          var orderIndex = $('input[name="orderIndexSC"]').val(); // Get the order index (position)
 
          // Prepare the data to be sent in the request
@@ -72,7 +127,6 @@ $(document).ready(function () {
              slideId: slideId,
              contentType: contentType,
              content: slideContent,
-             imageAlt: imageAlt,
              orderIndex: orderIndex
          };
 
@@ -99,13 +153,52 @@ $(document).ready(function () {
          });
      });
   //<------------Add Slide Content END------------->
- 
- 
+
+   //<------------Update Slide Content Start------------->
+     // When the form is submitted
+     $('form').on('submit', function(event) {
+         event.preventDefault(); // Prevent default form submission
+
+         // Collect form data
+         var formData = {
+             orderIndex: $('input[name="updateOrderIndexSC"]').val(),
+             contentType: $('select[name="updateContentTypeSG"]').val(),
+             content: $('textarea[name="updateContentSG"]').val() || '' // If textarea is not visible, fallback to empty
+         };
+
+         // Check if the required fields are valid
+         if (formData.contentType && formData.content) {
+             // Make the PUT request
+             $.ajax({
+                 url: '/api/v1/slideContent/' + $('#SCrowId').val(),
+                 type: 'PUT',
+                 contentType: 'application/json',
+                 data: JSON.stringify(formData),
+                 success: function(response) {
+                     // Handle successful response
+                     if (response.status) {
+                         fetchSlideContents();
+                         alert(response.message);
+                         $('#updateSlideContent').modal('hide');
+                     } else {
+                         alert('Failed to update slide content. Please try again.');
+                     }
+                 },
+                 error: function(xhr, status, error) {
+                     // Handle error response
+                     alert('Error: ' + error);
+                 }
+             });
+         } else {
+             alert("Please fill in all required fields.");
+         }
+     });
+  //<------------Update Slide Content End------------->
 });
 
   function fetchSlideContents() {
     $.ajax({
-      url: 'http://localhost:8090/api/v1/slideContent/'+SlideIdSC, // URL to fetch all slide content
+      url: '/api/v1/slideContent/'+SlideIdSC, // URL to fetch all slide content
       type: 'GET',
       success: function(response) {
         if (response.status) {
@@ -113,6 +206,7 @@ $(document).ready(function () {
           var tableBody = $('#slideContentTableBody');
           tableBody.empty(); // Clear any existing data
 
+          SlideContentTable = data;
           // Iterate through the data and create table rows
           data.forEach(function(item) {
             var row = `

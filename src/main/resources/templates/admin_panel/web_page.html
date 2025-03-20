@@ -445,22 +445,17 @@
                             <label>Select Content Type: </label>
                             <select name="contentTypeSG" class="form-control1 control3" required>
                                 <option value="">Select Content Type</option>
-                                <option>Button</option>
                                 <option>TEXT</option>
+                                <option>BUTTON</option>
                                 <option>IMAGE</option>
                                 <option>URL</option>
                                 <option>DISEASE_NAME</option>
                             </select>
 
+<!--                            <div class="imageUpload"> </div>-->
+
                             <label>Enter Slide Content: </label>
-                            <textarea name="contentSG" rows="4" class="form-control1" placeholder="Enter your text here..."></textarea>
-
-<!--                            <label>Upload Image: </label>-->
-<!--                            <input type="file" class="form-control1 control3 uploadImage" accept="image/*"-->
-<!--                                   style="padding-top: 9px;">-->
-
-                            <label>Enter Image Alt Text: </label>
-                            <input type="text" name="imageAlt" class="form-control1 control3" required>
+                            <textarea name="contentSG" rows="4" class="form-control1 contentSG" placeholder="Enter your content here..." required></textarea>
 
                             <!-- Quill editor container -->
                             <!-- <div id="toolbar"></div> -->
@@ -497,45 +492,47 @@
                 <form>
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h2 class="modal-title text-center">Update Slide Content</h2>
+                        <h2 class="modal-title text-center">Add Slide Content</h2>
                     </div>
                     <div class="modal-body">
                         <div class="panel-body">
                             <label>Select Slide: </label>
-                            <select name="selector1" id="selector1" class="form-control1 control3" required>
-                                <option value="">Select Slide</option>
-                                <option>SLide Block 1</option>
-                                <option>SLide Block 2</option>
-                            </select>
+                            <input type="hidden" id="SCrowId" value="0">
                             <label>Select Content Type: </label>
-                            <select name="selector1" id="selector1" class="form-control1 control3" required>
+                            <select name="updateContentTypeSG" class="form-control1 control3 contentTypeSG" required disabled>
                                 <option value="">Select Content Type</option>
-                                <option>Button</option>
-                                <option>Text</option>
+                                <option>TEXT</option>
+                                <option>BUTTON</option>
+                                <option>IMAGE</option>
+                                <option>URL</option>
+                                <option>DISEASE_NAME</option>
                             </select>
 
-                            <label>Enter Slide Content: </label>
-                            <input type="file" class="form-control1 control3 uploadImage" accept="image/*"
-                                   style="padding-top: 9px;">
+                            <div class="imageUpload"> </div>
 
-                            <label>Enter Image Alt Text: </label>
-                            <input type="text" class="form-control1 control3" required>
+                            <label id="contentSCLb" style="display: none">Enter Slide Content: </label>
+                            <textarea name="updateContentSG" rows="4" class="form-control1 contentSG" placeholder="Enter your content here..." style="display: none" required></textarea>
 
-                            <label>Enter Slide Content: </label>
-                            <textarea class="form-control1 " required></textarea>
+                            <!-- Quill editor container -->
+                            <!-- <div id="toolbar"></div> -->
 
-<!--                            <label>Custom CSS Code: </label>-->
-<!--                            <div class="line-numbers" id="lineNumbers"></div>-->
+                            <!--                            <button type="button" id="custom-color-button" class="custom-color-picker">A</button>-->
+                            <!--                            <input type="color" id="color-picker" style="display:none;">-->
+                            <!--                            <div id="editor" class="editorText"></div>-->
+                            <!--                            <input type="hidden" class="form-control1 control3" name="slide_content">-->
 
-                            <textarea class="form-control1 lineNumberTrack textarea"></textarea>
+                            <!--                            <label>Custom CSS Code: </label>-->
+                            <!--                            <input type="text" name="customCss" class="form-control1 control3" required>-->
+                            <!-- <div class="line-numbers" id="lineNumbers"></div> -->
 
                             <label>Enter order Index: </label>
-                            <input type="number" class="form-control1 control3" required>
+                            <input type="number" name="updateOrderIndexSC" class="form-control1 control3" required readonly>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-primary">Reset</button>
                     </div>
                 </form>
             </div>

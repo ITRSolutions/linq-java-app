@@ -38,8 +38,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception ex, Model model) {
-        System.out.println("Exception.class");
+        System.out.println("Exception.class "+ex);
         model.addAttribute("error", "An unexpected error occurred.");
-        return "redirect:/error_404"; // View for general error page
+        return "redirect:/login"; // View for general error page
     }
 }

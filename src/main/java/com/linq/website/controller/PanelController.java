@@ -16,6 +16,7 @@ public class PanelController {
 
     @GetMapping("/{slug}")
     public String getPage(@PathVariable String slug, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+
         // Access the username of the logged-in user
         String firstName = userDetails.getFirstName();
 
@@ -27,8 +28,9 @@ public class PanelController {
         model.addAttribute("firstName", firstName);
         model.addAttribute("role", role);
 
-        System.out.println("firstName: "+firstName);
-        System.out.println("role: "+role);
-        return "admin_panel/"+slug;
+        System.out.println("firstName: " + firstName);
+        System.out.println("role: " + role);
+        return "admin_panel/" + slug;
+
     }
 }
