@@ -20,9 +20,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handle404Error(NoHandlerFoundException ex, Model model) {
-        System.out.println("NoHandlerFoundException.class");
+        System.out.println("ss");
         model.addAttribute("error", "The page you are looking for does not exist.");
-        return "redirect:/error_404"; // View for 404 error
+        return "/error/404"; // View for 404 error
     }
 
     // Handle Page Not Found error for Thymeleaf
@@ -31,7 +31,13 @@ public class GlobalExceptionHandler {
     public String handlePageNotFound(PageNotFoundException ex, Model model) {
         System.out.println("PageNotFoundException.class "+ex.getMessage());
         model.addAttribute("error", ex.getMessage());
-        return "redirect:/error_404"; // View for PageNotFound error
+        return "/error/404"; // View for PageNotFound error
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public String handleResourceNotFound(ResourceNotFoundException ex, Model model) {
+        model.addAttribute("message", ex.getMessage());
+        return "error/error_404"; // Custom error page for 404 errors
     }
 
     // Handle other exceptions for Thymeleaf
@@ -39,7 +45,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception ex, Model model) {
         System.out.println("Exception.class "+ex);
-        model.addAttribute("error", "An unexpected error occurred.");
-        return "redirect:/login"; // View for general error page
+        model.addAttribute("error", "Error: An unexpected error occurred.");
+        return "/error/error";
     }
 }

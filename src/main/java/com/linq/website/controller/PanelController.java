@@ -14,23 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin_panel/")
 public class PanelController {
 
-    @GetMapping("/{slug}")
-    public String getPage(@PathVariable String slug, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    @GetMapping({"/", "/{slug}"})
+    public String getPage(@PathVariable(required = false) String slug, Model model,
+                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+        if (slug == null || slug.isEmpty()) {
+            slug = "dashboard";
+        }
 
-        // Access the username of the logged-in user
-        String firstName = userDetails.getFirstName();
+        try {
+            // Check if userDetails is null (in case of session timeout)
+            if (userDetails == null) {
+                // Redirect or handle the session timeout scenario
+                return "redirect:/login?sessionExpired";
+            }
 
-        // Or, access more details via the Authentication object
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String role = authentication.getAuthorities().toString(); // Access roles
+            // Access the username of the logged-in user
+            String firstName = userDetails.getFirstName();
 
-        // Add user details to the model to pass to Thymeleaf view
-        model.addAttribute("firstName", firstName);
-        model.addAttribute("role", role);
+            // Or, access more details via the Authentication object
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String role = authentication.getAuthorities().toString(); // Access roles
 
-        System.out.println("firstName: " + firstName);
-        System.out.println("role: " + role);
-        return "admin_panel/" + slug;
+            // Add user details to the model to pass to Thymeleaf view
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("role", role);
+
+            System.out.println("firstName: " + firstName);
+            System.out.println("role: " + role);
+            return "admin_panel/" + slug;
+        }  catch (Exception ex) {
+            return "redirect:/error_404";
+        }
 
     }
 }

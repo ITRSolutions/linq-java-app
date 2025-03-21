@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Calendar;
@@ -32,6 +33,8 @@ public class WebController {
 
         if (slug == null || slug.isEmpty()) {
             slug = "index";
+        } else if(slug.equals("admin_panel")) {
+            return "redirect:/admin_panel/";
         }
 
         System.out.println("slug: "+slug);
@@ -126,7 +129,7 @@ public class WebController {
     }
 
     @GetMapping("/error_404")
-    public String handleError(Model model) {
+    public String handleError404(Model model) {
         System.out.println("Error page access: "+currentYear);
         model.addAttribute(YEAR, currentYear);
         return "error/error_404"; // This will redirect to the 404 page

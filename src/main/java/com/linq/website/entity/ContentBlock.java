@@ -23,6 +23,7 @@ public class ContentBlock {
     @JoinColumn(name = "page_id")
     private DynamicPage page;
 
+    @Column(length = 2000)
     private String content;
 
     private Integer orderIndex;

@@ -69,6 +69,8 @@ public class User {
     @JsonIgnore
     private String passwordResetRef;
 
+    private String updatedBy;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;

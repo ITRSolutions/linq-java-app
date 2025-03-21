@@ -75,7 +75,7 @@ $('.deleteContentBlock').click(function () {
           <tr>
             <td>${item.orderIndex}</td>
             <td class="hidden-xs">
-              <a href="#" onclick="return false;" class="openSlide">${truncateText(item.content, 45)}</a>
+              <a href="#" onclick="return false;" class="openSlide">${truncateCBText(item.content, 50)}</a>
             </td>
             <td>${item.page.slug}</td>
             <td>${updatedAt}</td>
@@ -90,7 +90,7 @@ $('.deleteContentBlock').click(function () {
       $("#contentBlockTable tbody").html(rows);
     }
 
-    function truncateText(text, length) {
+    function truncateCBText(text, length) {
         return text.length > length ? text.substring(0, length) + '...' : text;
     }
 //<------------fetchContentBlocks End------------->
