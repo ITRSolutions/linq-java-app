@@ -1,6 +1,11 @@
 package com.linq.website.controller;
 
+import com.linq.website.enums.PageStatus;
+import com.linq.website.repository.UserRepository;
+import com.linq.website.service.DynamicPageService;
+import com.linq.website.service.UserService;
 import com.linq.website.utility.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin_panel/")
 public class PanelController {
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    DynamicPageService dynamicPageService;
 
     @GetMapping({"/", "/{slug}"})
     public String getPage(@PathVariable(required = false) String slug, Model model,
@@ -38,6 +49,16 @@ public class PanelController {
             // Add user details to the model to pass to Thymeleaf view
             model.addAttribute("firstName", firstName);
             model.addAttribute("role", role);
+
+            long totalUserRegistered = userService.getTotalUserRegistered();
+            long unverifiedUsers = userService.getTotalUnverifiedUser();
+            Long countPublishedStatus = dynamicPageService.getCountPageStatus(PageStatus.PUBLISHED);
+            Long countDraftStatus = dynamicPageService.getCountPageStatus(PageStatus.DRAFT);
+
+            model.addAttribute("totalUsers",  totalUserRegistered);
+            model.addAttribute("unverifiedUsers", unverifiedUsers);
+            model.addAttribute("countPublishedStatus",  countPublishedStatus);
+            model.addAttribute("countDraftStatus", countDraftStatus);
 
             System.out.println("firstName: " + firstName);
             System.out.println("role: " + role);

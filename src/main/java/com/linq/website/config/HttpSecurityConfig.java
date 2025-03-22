@@ -59,7 +59,8 @@ public class HttpSecurityConfig {
                         .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**", "/api/v1/slide/**",
-                                        "/api/v1/slideContent/**","/api/v1/s3/**","/api/v1/users/**").permitAll()
+                                        "/api/v1/slideContent/**","/api/v1/s3/**","/api/v1/users/**"
+                                        ,"/admin/actuator/**").permitAll()
                         .requestMatchers("/admin_panel/**").hasRole("USER")
                         .requestMatchers("/api/v1/admin/**", "/admin_panel/**").hasRole("ADMIN") // Fixed admin access
 //                        .requestMatchers("/api/v1/web_page/**", "/admin_panel/**").hasRole("ADMIN")

@@ -21,6 +21,12 @@ public class BucketController {
     @Autowired
     private S3Service s3Service;
 
+    @GetMapping
+    public ResponseEntity<String> getFileInfo() {
+        // For example, you could return some info about the S3 storage
+        return ResponseEntity.ok("S3 API endpoint is working.");
+    }
+
     /**
      * Endpoint to upload a file to S3
      */
@@ -28,7 +34,11 @@ public class BucketController {
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         Map<String, String[]> errors = new HashMap<>();
         // Check if the file size is greater than 5MB (5 * 1024 * 1024 bytes)
-        if (file.getSize() > 3 * 1024 * 1024) {
+        if (file.isEmpty()) {
+            errors.put("Image", new String[]{"No file uploaded."});
+            ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("No file uploaded.", errors);
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        } else if (file.getSize() > 3 * 1024 * 1024) {
             errors.put("Image", new String[]{"File size exceeds the 3MB limit."});
             ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("Image size exceeds.", errors);
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);

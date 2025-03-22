@@ -98,9 +98,11 @@ public class UserService {
         userData.setState(data.getState());
         userData.setCountry(data.getCountry());
         userData.setZipCode(data.getZipCode());
-        System.out.println("Data process................");
-//        User updatedByUserObj = loggedUser.getUpdatedByUserObj();
-//        userData.setUpdatedBy(updatedByUserObj.getFirstName()+" "+updatedByUserObj.getLastName());
+        userData.setGender(data.getGender());
+        userData.setDob(data.getDob());
+
+        User updatedByUserObj = loggedUser.getUpdatedByUserObj();
+        userData.setUpdatedBy(updatedByUserObj.getFirstName()+" "+updatedByUserObj.getLastName());
 
         userRepository.save(userData);
         return true;
@@ -177,4 +179,11 @@ public class UserService {
         return userRepository.searchUsers(searchTerm);
     }
 
+    public long getTotalUserRegistered() {
+        return userRepository.count();
+    }
+
+    public long getTotalUnverifiedUser() {
+        return userRepository.countUnverifiedUsers();
+    }
 }

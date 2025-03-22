@@ -26,4 +26,7 @@ public interface DynamicPageRepository extends JpaRepository<DynamicPage, Long> 
     @Query("SELECT dp FROM DynamicPage dp WHERE " +
             "(:slug IS NULL OR dp.slug LIKE %:slug%)")
     List<DynamicPage> search(@Param("slug") String slug);
+
+    // Method to get the count of PUBLISHED pages
+    long countByStatus(PageStatus status);
 }

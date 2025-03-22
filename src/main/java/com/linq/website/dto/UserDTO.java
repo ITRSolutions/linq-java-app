@@ -156,10 +156,6 @@ public class UserDTO {
     @Getter
     @Setter
     public static class SetPassword {
-        @NotNull(message = "Reference is required.")
-        @NotBlank(message = "Reference is required.")
-        private String ref;
-
         @NotBlank(message = "New password is required.")
         @Size(min = 8, message = "New password must be at least 8 characters long.")
         private String password;
