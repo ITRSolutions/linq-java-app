@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -54,16 +55,30 @@ public class HttpSecurityConfig {
                 }))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF only for APIs
                 .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
+                        // Permit all requests for static resources and error pages
+                        .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/web_page/**", "/api/v1/content_block/**", "/api/v1/slide/**",
-                                        "/api/v1/slideContent/**","/api/v1/s3/**","/api/v1/users/**"
-                                        ,"/admin/actuator/**").permitAll()
-                        .requestMatchers("/admin_panel/**").hasRole("USER")
-                        .requestMatchers("/api/v1/admin/**", "/admin_panel/**").hasRole("ADMIN") // Fixed admin access
-//                        .requestMatchers("/api/v1/web_page/**", "/admin_panel/**").hasRole("ADMIN")
+
+                        // Allow POST requests for form submissions to be publicly accessible
+                        .requestMatchers(HttpMethod.POST, "/api/v1/forms/**").permitAll()
+
+                        // Restrict access to /admin_panel/** for users with USER or ADMIN roles
+                        .requestMatchers("/admin_panel/**").hasAnyRole("USER", "ADMIN")
+
+                        // Restrict access to /api/v1/forms/** for users with USER or ADMIN roles
+                        .requestMatchers(HttpMethod.GET, "/api/v1/forms/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/forms/**").hasAnyRole("USER", "ADMIN")
+
+                        // Restrict access to API routes (like web_page, content_block, etc.) to ADMIN role
+                        .requestMatchers("/api/v1/web_page/**",
+                                "/api/v1/content_block/**", "/api/v1/slide/**",
+                                "/api/v1/slideContent/**", "/api/v1/s3/**", "/api/v1/users/**",
+                                "/admin/actuator/**", "/api/v1/pageMetadata/**",
+                                "/api/v1/forms/search").hasRole("ADMIN")
+
+                        // Default to authenticated access for any other request
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

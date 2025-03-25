@@ -48,4 +48,15 @@ public class SlideContentController {
         List<SlideContent> slideContents = dynamicPageService.getSlideContents(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of SlideContent.", slideContents));
     }
+
+    @GetMapping("/diseases")
+    public ResponseEntity<?> getDiseases() {
+        List<String> diseasesList = slideContentService.getDiseasesList();
+        return ResponseEntity.ok(new SuccessResponse<>(true, "List of Diseases.", diseasesList));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
+    }
 }

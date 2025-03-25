@@ -9,29 +9,48 @@ import lombok.Setter;
 @Setter
 public class FormSubmissionDTO {
 
-    @NotBlank(message = "First name is required")
-    private String firstName;
+    @Getter
+    @Setter
+    public static class Create {
+        @NotBlank(message = "First name is required")
+        private String firstName;
 
-    @NotBlank(message = "Last name is required")
-    private String lastName;
+        @NotBlank(message = "Last name is required")
+        private String lastName;
 
-    @NotBlank(message = "Date of birth is required")
-    private String dateOfBirth;
+        private String dateOfBirth;
 
-    @NotBlank(message = "Phone number is required")
-    private String phoneNumber;
+        @NotBlank(message = "Phone number is required")
+        private String phoneNumber;
 
-    @Email(message = "Invalid email format")
-    @NotBlank(message = "Email is required")
-    private String email;
+        @Email(message = "Invalid email format")
+        @NotBlank(message = "Email is required")
+        private String email;
 
-    private String bestContactTime;
-    private String zipCode;
-    private String state;
-    private String speciality;
+        private String bestContactTime;
+        private String zipCode;
+        private String state;
+        private String speciality;
 
-    private Boolean isEmployee;
-    private Boolean isStudyParticipant;
+        private Boolean isEmployee;
+        private Boolean isStudyParticipant;
+        private String pageName;
+        private Long pageId;
+        private Boolean agreedToTerms;
+        private String refName;
+        private String refContactNumber;
 
-    private Boolean agreedToTerms;
+    }
+
+    @Getter
+    @Setter
+    public static class Update {
+
+        @NotBlank(message = "Comment is required")
+        private String comment;
+        @NotBlank(message = "followBack is required")
+        private String followBack;
+
+    }
+
 }

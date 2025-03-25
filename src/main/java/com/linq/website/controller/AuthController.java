@@ -7,22 +7,16 @@ import com.linq.website.entity.User;
 import com.linq.website.enums.RoleType;
 import com.linq.website.service.MailService;
 import com.linq.website.service.UserService;
-import com.linq.website.utility.CustomUserDetails;
 import com.linq.website.utility.Helpers;
 import com.linq.website.utility.LoggedUser;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.*;
 
 @RestController

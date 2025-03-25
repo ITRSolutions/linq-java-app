@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <th th:replace="admin_panel/header.html"></th>
@@ -13,7 +13,7 @@
 
     <div id="page-wrapper">
         <div class="graphs">
-            <div class="col_3">
+            <div class="col_3" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="col-md-3 widget widget1">
                     <div class="r3_counter_box">
                         <i class="pull-left fa fa-users user1 icon-rounded"></i>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-8 stats-info">
+                <div class="col-md-8 stats-info" sec:authorize="hasRole('ROLE_ADMIN')">
                     <div class="panel-heading">
                         <h4 class="panel-title">Server Stats</h4>
                     </div>

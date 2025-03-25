@@ -47,4 +47,9 @@ public class SlideController {
         List<Slide> slides = dynamicPageService.getSlides(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of slide.", slides));
     }
+
+    @GetMapping
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
+    }
 }

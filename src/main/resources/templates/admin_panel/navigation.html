@@ -1,5 +1,5 @@
 <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"
-     xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="navigateCode(firstName)">
+     xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="navigateCode(firstName)">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -22,7 +22,6 @@
                 </li>
                 <!-- <li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li> -->
                 <li class="m_2"><a href="#"><i class="fa fa-key"></i> Change Password </a></li>
-                <li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
 
                 <!-- <li class="divider"></li>  -->
                 <li class="m_2"><a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-lock"></i> Logout</a></li>
@@ -43,7 +42,7 @@
                 <li>
                     <a href="dashboard.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
                 </li>
-                <li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a href="#"><i class="fa fa-files-o nav_icon"></i>Dynamic Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -61,7 +60,7 @@
                         <li>
                             <a href="appointment_lead.html">Appointment</a>
                         </li>
-                        <li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')">
                             <a href="prinicipal_investigator_lead.html">Principal Investigator </a>
                         </li>
                         <li>
@@ -69,7 +68,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a href="users.html"><i class="fa fa-users fa-fw nav_icon"></i>Users</a>
                 </li>
                 <li>

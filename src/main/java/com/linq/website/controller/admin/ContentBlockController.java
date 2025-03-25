@@ -53,4 +53,9 @@ public class ContentBlockController {
         List<ContentBlock> pageIdCBList = contentBlockService.getContentBlocksByPageId(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of Content blocks.", pageIdCBList));
     }
+
+    @GetMapping
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
+    }
 }

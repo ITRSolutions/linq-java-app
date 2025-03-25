@@ -1,4 +1,4 @@
-package com.linq.website.controller;
+package com.linq.website.controller.admin;
 
 import com.linq.website.dto.ErrorResponse;
 import com.linq.website.dto.SuccessResponse;

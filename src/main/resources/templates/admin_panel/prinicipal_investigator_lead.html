@@ -6,172 +6,158 @@
 </head>
 
 <body>
-  <div id="wrapper">
-    <!-- Start Navigation -->
-    <th th:replace="~{admin_panel/navigation :: navigateCode(firstName=${firstName})}"></th>
-    <!-- End Navigation -->
+<div id="wrapper">
+  <!-- Start Navigation -->
+  <th th:replace="~{admin_panel/navigation :: navigateCode(firstName=${firstName})}"></th>
+  <!-- End Navigation -->
 
-    <div id="page-wrapper">
-      <div class=" graphs">
+  <div id="page-wrapper">
+    <div class=" graphs">
 
-        <div class="xs">
-          <h3>Principal Investigator </h3>
-        </div>
+      <div class="xs">
+        <h3>Prinicipal Investigator Lead</h3>
+      </div>
 
-        <div class="clearfix"> </div>
+      <div class="clearfix"> </div>
 
-        <div class="grid_3 grid_5">
-          <div class="but_list mg-t-0">
-            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+      <div class="grid_3 grid_5">
+        <div class="but_list mg-t-0">
+          <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
-              <div id="myTabContent" class="tab-content mg-t-0">
+            <div id="myTabContent" class="tab-content mg-t-0">
 
-                <form action="#" method="GET" class="row">
-              <div class="col-md-12">
-              <div class="input-group">
+              <form action="#" method="GET" class="row">
+                <div class="col-md-12">
+                  <div class="input-group">
                     <input type="text" name="search" class="form-control1 input-search" placeholder="Search...">
                     <span class="input-group-btn">
-                      <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
-                    </span>
-                  </div>
-              </div> 
-                </form>
-
-                <div role="tabpanel" class="tab-pane fade active in" id="pages" aria-labelledby="pages-tab">
-                  <div class=" pd-0">
-                    <div class="mailbox-content pd-0">
-                      <div class="mail-toolbar clearfix pd-t-0">
-                        <div class="float-left pd-t-20"> 
-
-                          <div class="btn btn_1 btn-default mrg5R">
-                            <i class="fa fa-refresh"> </i>
-                          </div>
-
-                          <div class="clearfix"> </div>
-                        </div>
-                        <div class="float-right pd-t-20">
-
-                          <span class="text-muted m-r-sm">Showing 10 of 25 </span>
-                          <div class="btn-group">
-                            <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
-                            <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
-                          </div>
-                        </div>
-
-                      </div>
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <!-- <th>#</th> -->
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone Number</th>
-                            <th>Email</th> 
-                            <th>Submited At</th>
-                            <th> </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              1
-                            </td>
-                            <td class="hidden-xs">
-                              <a href="#" onclick="return false;" class="openContentBlock">
-                                Abdulrazzak
-                              </a>
-                            </td>
-                            <td>
-                              Jakati
-                            </td>
-                            <td>
-                              8446418192
-                            </td>
-                            <td>
-                              Abdulrazzak.Jakati@gmail.com
-                            </td> 
-                            <td>
-                              02 March 2025 05:09 pm
-                            </td>
-                            <td>
-                              <i class="fa fa-edit text-success text-active viewPatientData"></i> <br>
-                              <i class="fa fa-times text-danger text deletePatientData"></i>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+            </span>
                   </div>
                 </div>
+              </form>
 
-                <div class="clearfix"> </div>
+
+              <div role="tabpanel" class="tab-pane fade active in" id="pages" aria-labelledby="pages-tab">
+                <div class=" pd-0">
+                  <div class="mailbox-content pd-0">
+                    <div class="mail-toolbar clearfix pd-t-0">
+                      <!--                      <div class="float-left pd-t-20"> -->
+                      <!--                        <div class="btn btn_1 btn-default mrg5R">-->
+                      <!--                          <i class="fa fa-refresh"> </i>-->
+                      <!--                        </div> -->
+                      <!--                        <div class="clearfix"> </div>-->
+                      <!--                      </div>-->
+                      <div class="float-right pd-t-20" id="pagination">
+                        <span id="paginationText" class="text-muted m-r-sm">Showing 0 of 0</span>
+                        <div class="btn-group">
+                          <a id="prevPage" class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                          <a id="nextPage" class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Follow Back Status</th>
+                        <th> </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <!-- Rows will be dynamically inserted here -->
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
               </div>
+
+              <div class="clearfix"> </div>
             </div>
           </div>
         </div>
-
-        <div class="clearfix"> </div>
-        <div class="padding-t-15">
-          <!----Footer-->
-          <th th:replace="admin_panel/footer.html"></th>
-          <!----Footer-->
-        </div>
       </div>
 
-    </div>
-
-    <script src="js/appointment_lead.js"></script>
-
-    <!-------------------- View lead data end-------------------->
-    <div class="modal fade" id="viewPatientData" tabindex="-1" role="dialog" aria-labelledby="viewPatientDataLabel" aria-hidden="true"
-      style="display: none;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form>
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h2 class="modal-title text-center">Display Data</h2>
-            </div>
-            <div class="modal-body ">
-              <div class="row stats-info stats-info1">
-                <div class="panel-body panel-body2 col-md-6 pd-t-0 pad-rf-0">
-                  <ul class="list-unstyled">
-                    <li>First Name:<div class="text-success pull-right">Abdulrazzak</div>
-                    </li>
-                    <li>Last Name:<div class="text-success pull-right">Jakati</div>
-                    </li>
-                    <li>Phone Number:<div class="text-success pull-right">+91-8446418192</div>
-                    </li>
-                    <li>Email:<div class="text-success pull-right">Abdulrazzak.jakati@gmail.com</div>
-                    </li>
-
-                  </ul>
-                </div>
-                <div class="panel-body panel-body2 col-md-6 pd-t-0">
-                  <ul class="list-unstyled">
-                  <li>Date Of Birth:<div class="text-success pull-right">05-September 1996</i></div>
-                  </li>
-                    <li>Speciality: <div class="text-success pull-right">Coder</div>
-                    </li>
-                    <li>State:<div class="text-success pull-right">Maharashtra</div>
-                    </li> 
-                  </ul>
-                </div>
-              </div>
-              <label>Enter Comment</label>
-              <input type="text" class="form-control1 control3" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </form>
-        </div>
+      <div class="clearfix"> </div>
+      <div class="padding-t-15">
+        <!----Footer-->
+        <th th:replace="admin_panel/footer.html"></th>
+        <!----Footer-->
       </div>
     </div>
-    <!-------------------- View lead data end-------------------->
 
   </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/prinicipal_investigator.js"></script>
+
+  <!-- Modal to display lead data -->
+  <div class="modal fade" id="viewPatientData" tabindex="-1" role="dialog" aria-labelledby="viewPatientDataLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h2 class="modal-title text-center">Display Appointment Data</h2>
+          </div>
+          <div class="modal-body">
+            <div class="row stats-info stats-info1">
+              <div class="panel-body panel-body2 col-md-6 pd-t-0 pad-rf-0">
+                <ul class="list-unstyled">
+                  <li>First Name:<div class="text-success pull-right first-name"></div></li>
+                  <li>Last Name:<div class="text-success pull-right last-name"></div></li>
+                  <li>Phone Number:<div class="text-success pull-right phone-number"></div></li>
+                  <li>Email:<div class="text-success pull-right email"></div></li>
+                </ul>
+              </div>
+              <div class="panel-body panel-body2 col-md-6 pd-t-0">
+                <ul class="list-unstyled">
+                  <li>Speciality<div class="text-success pull-right speciality"></div></li>
+                  <li>Submitted At:<div class="text-success pull-right created-at"></div></li>
+                  <li>Updated At:<div class="text-success pull-right updated-at"></div></li>
+                  <li>Updated By:<div class="text-success pull-right updated-by"> </div></li>
+                </ul>
+              </div>
+            </div>
+
+            <label >Follow Back Status:</label>
+            <select id="followBack" name="followBack" class="form-control1 control3" required>
+              <option value="">Select Follow Back Status</option>
+              <option>Pending contact</option>
+              <option>Contact Attempt - 1</option>
+              <option>Contact Attempt - 2</option>
+              <option>Contact Attempt - 3</option>
+              <option>PI wants a call back</option>
+              <option>PI is Interested</option>
+              <option>Appointment Scheduled</option>
+              <option>PI is in Network</option>
+              <option>PI is not Interested</option>
+            </select>
+            <input type="hidden" id="rowId" value="0">
+            <label>Enter Comment</label>
+            <input type="text" id="comment" class="form-control1 control3" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+
+
+</div>
 
 </body>
 

@@ -165,7 +165,7 @@ $(document).ready(function () {
 
    //<------------Update Slide Content Start------------->
      // When the form is submitted
-     $('form').on('submit', function(event) {
+     $('#updateSlideContent form').on('submit', function(event) {
          event.preventDefault(); // Prevent default form submission
 
          // Collect form data

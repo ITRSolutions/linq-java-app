@@ -1,4 +1,8 @@
 var pageTableData = null;
+    let currentPage = 0; // Start from page 0 (as per API)
+    let totalRecords = 0;
+    let pageSize = 10; // Backend handles the page size
+    let totalPages = 0;
 
 $('#addPageFunction').click(function () {
     $('#addPage').modal('show');
@@ -63,10 +67,6 @@ $(document).on('click', '.deletePage', function () {
 //<------------Display Webpages name in Select box End------------->
 
 //<------------Display data in Table Start------------->
-    let currentPage = 0; // Start from page 0 (as per API)
-    let totalRecords = 0;
-    let pageSize = 10; // Backend handles the page size
-    let totalPages = 0;
 
     function fetchWebPages(page) {
       $.ajax({
@@ -210,9 +210,10 @@ $(document).on('click', '.deletePage', function () {
         data: JSON.stringify(requestData),
         success: function (response) {
           if (response.status) {
+            fetchWebPages(currentPage);
             alert("Web-page created successfully!");
             $("#addPage").modal("hide"); // Close modal on success
-            $("#addPage form")[0].reset(); // Reset form fields
+            $("#addPage form")[0].reset();
           } else {
             alert("Error: " + response.message);
           }
@@ -264,8 +265,10 @@ $("#updatePage form").submit(function (event) {
         data: JSON.stringify(requestData),
         success: function (response) {
           if (response.status) {
+            fetchWebPages(currentPage);
             alert("Web-page updated successfully!");
-            $("#page_reload").click();
+            $("#updatePage").modal("hide");
+            $("#updatePage form")[0].reset();
           } else {
             alert("Error: " + response.message);
           }

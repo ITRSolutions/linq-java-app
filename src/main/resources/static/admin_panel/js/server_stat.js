@@ -18,7 +18,7 @@ $(document).ready(function () {
                 var activeExecutor = response.activeExecutor || 0;
                 var completedExecutor = response.completedExecutor || 0;
 
-                let healthAnchor = '<a href="/actuator/health" target="_blank" style="color: unset;">'+healthStatus+'</a>';
+                let healthAnchor = '<a href="/actuator/health" target="_blank" style="color: unset;">'+healthStatus+'</a >';
                 // Health Status
                 statsHtml += '<li>Health Status: <span id="healthStatus" class="pull-right ' + (healthStatus === 'UP' ? 'text-success' : 'text-danger') + '">' + healthAnchor + '</span></li>';
 
@@ -54,5 +54,5 @@ $(document).ready(function () {
     fetchServerStats();
 
     // Optionally, refresh stats every 30 seconds
-    setInterval(fetchServerStats, 30000); // Refresh every 30 seconds
+    setInterval(fetchServerStats, 30000);
 });
