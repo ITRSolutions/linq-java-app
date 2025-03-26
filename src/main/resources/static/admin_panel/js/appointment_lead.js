@@ -21,7 +21,7 @@ function viewClientData(selected,updatedBy) {
 $(document).ready(function() {
 
     // URL to fetch disease list
-    const apiUrl = "/api/v1/slideContent/diseases";
+    const apiUrl = "/api/v1/forms/diseases";
     // Fetch the disease data from the API
     $.get(apiUrl, function(response) {
         // Check if the response is valid and contains data

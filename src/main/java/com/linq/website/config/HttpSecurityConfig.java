@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,13 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity(prePostEnabled = true) // 🔥 Enables @PreAuthorize annotations
 public class HttpSecurityConfig {
 
     @Autowired
@@ -36,9 +35,7 @@ public class HttpSecurityConfig {
     private CustomAuthenticationFailureHandler failureHandler;
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
-        //From Spring6 no need to set user details ,
-        // it will automatically set user details, service and password encoded objects to auntication.
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -53,67 +50,54 @@ public class HttpSecurityConfig {
                     configuration.setAllowCredentials(true);
                     return configuration;
                 }))
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF only for APIs
+//                .csrf(csrf -> csrf.disable()) // 🔥 CSRF disabled (but session authentication enforced)
+                .anonymous(anonymous -> anonymous.disable()) // 🔥 Completely disable anonymous access
                 .authorizeHttpRequests(auth -> auth
-                        // Permit all requests for static resources and error pages
+                        // Permit all static resources
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
 
-                        // Allow POST requests for form submissions to be publicly accessible
-                        .requestMatchers(HttpMethod.POST, "/api/v1/forms/**").permitAll()
+                        // ✅ Require authentication for ALL APIs
+                        .requestMatchers("/api/v1/**").authenticated()
 
-                        // Restrict access to /admin_panel/** for users with USER or ADMIN roles
-                        .requestMatchers("/admin_panel/**").hasAnyRole("USER", "ADMIN")
+                        // ✅ Restrict ADMIN-ONLY APIs
+                        .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**").hasRole("ADMIN")
 
-                        // Restrict access to /api/v1/forms/** for users with USER or ADMIN roles
-                        .requestMatchers(HttpMethod.GET, "/api/v1/forms/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/forms/**").hasAnyRole("USER", "ADMIN")
-
-                        // Restrict access to API routes (like web_page, content_block, etc.) to ADMIN role
-                        .requestMatchers("/api/v1/web_page/**",
-                                "/api/v1/content_block/**", "/api/v1/slide/**",
-                                "/api/v1/slideContent/**", "/api/v1/s3/**", "/api/v1/users/**",
-                                "/admin/actuator/**", "/api/v1/pageMetadata/**",
-                                "/api/v1/forms/search").hasRole("ADMIN")
-
-                        // Default to authenticated access for any other request
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated() // ✅ Require authentication for any other request
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/admin_panel/", true)
-                        .failureHandler(failureHandler()) // Register failure handler
+                        .failureHandler(failureHandler())
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/admin_panel/logout")
                         .logoutSuccessUrl("/login?logout")
-                        .invalidateHttpSession(true)
+                        .invalidateHttpSession(true) // 🔥 Ensures session is fully destroyed
                         .clearAuthentication(true)
-                        .deleteCookies("JSESSIONID")
+                        .deleteCookies("JSESSIONID") // 🔥 Deletes session cookies
                         .permitAll()
                 )
                 .sessionManagement(session -> session
-                        .invalidSessionUrl("/login?sessionExpired") // Handle session expiration
+                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS) // 🔥 Forces session authentication for all requests
+                        .invalidSessionUrl("/login?sessionExpired") // Redirect if session expires
                         .sessionFixation().newSession()
-                )
-                .addFilterAfter(emailIsVerifiedFilter, UsernamePasswordAuthenticationFilter.class);
+                );
 
         return http.build();
     }
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {
-//        return new SimpleUrlAuthenticationFailureHandler("/login?error=true");
         return new CustomAuthenticationFailureHandler();
     }
-
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());      //Just passwordEncoder bean and UserDetailsService bean must be there then no need of this configuration setting as sping6 will automatically set user details, service and password encoded objects to auntication.
+                .passwordEncoder(passwordEncoder()); // Spring Security automatically configures this in Spring Boot 6+
     }
 }

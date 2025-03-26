@@ -34,6 +34,8 @@ public class FormSubmissionDTO {
 
         private Boolean isEmployee;
         private Boolean isStudyParticipant;
+
+        @NotBlank(message = "pageName is required")
         private String pageName;
         private Long pageId;
         private Boolean agreedToTerms;

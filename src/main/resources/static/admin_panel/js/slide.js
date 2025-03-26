@@ -144,6 +144,9 @@ $(document).ready(function() {
             type: 'POST',               // HTTP method
             contentType: 'application/json', // Content type header
             data: JSON.stringify(requestData), // Send data as JSON
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             success: function(response) {
                 // Check if the response status is true
                 if (response.status) {
@@ -183,6 +186,9 @@ $(document).ready(function() {
             type: 'PUT',
             contentType: 'application/json', // Content type header for JSON
             data: JSON.stringify(updateData), // Convert the data to JSON
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             success: function(response) {
                 if (response.status) {
                     alert(response.message); // Show success message

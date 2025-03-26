@@ -3,20 +3,19 @@ package com.linq.website.controller.admin;
 import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthComponent;
 import org.springframework.boot.actuate.health.HealthEndpoint;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/admin/actuator")
+@RequestMapping("/api/v1/actuator")
+@PreAuthorize("hasRole('ADMIN')") //  Ensures only ADMIN can access
 public class AdminActuatorController {
 
     @Autowired

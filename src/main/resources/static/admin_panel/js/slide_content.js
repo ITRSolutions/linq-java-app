@@ -99,6 +99,9 @@ $(document).ready(function () {
                     data: formData,
                     contentType: false,
                     processData: false,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
                     success: function(response) {
                         if (response.status) {
                             $('#updateSlideContent [type="submit"]').prop('disabled', false);
@@ -145,6 +148,9 @@ $(document).ready(function () {
              type: 'POST',
              contentType: 'application/json', // Set content type to JSON
              data: JSON.stringify(data), // Convert data object to JSON string
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
              success: function(response) {
                  if (response.status) {
                     fetchSlideContents();
@@ -183,6 +189,9 @@ $(document).ready(function () {
                  type: 'PUT',
                  contentType: 'application/json',
                  data: JSON.stringify(formData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
                  success: function(response) {
                      // Handle successful response
                      if (response.status) {

@@ -18,6 +18,7 @@ let totalUsers = 0;
         $('#state').val(selected.state);
         $('#zipCode').val(selected.zipCode);
         $('#country').val(selected.country);
+        $('#activateUser').val(selected.activateUser);
 
         const userId = $(this).data('id');
         $('#updateUserRow').val(userId);
@@ -117,6 +118,7 @@ let totalUsers = 0;
             state: $('#state').val(),
             zipCode: $('#zipCode').val(),
             country: $('#country').val()
+            activateUser: $('#activateUser').val()
         };
 
         const userId = $('#updateUserRow').val();
@@ -127,6 +129,9 @@ let totalUsers = 0;
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(updatedData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             success: function(response) {
                 alert('User updated successfully!');
                 loadUsers(currentPage);  // Reload users after updating
@@ -197,6 +202,9 @@ let totalUsers = 0;
                         $.ajax({
                             url: `http://localhost:8090/api/v1/users/${userId}`, // Endpoint with the user ID
                             type: 'DELETE',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
                             success: function(response) {
                                 if (response.status) {
                                     // If successful, remove the row from the table

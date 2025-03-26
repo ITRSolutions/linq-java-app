@@ -20,6 +20,9 @@ $(document).ready(function () {
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             data: JSON.stringify({
                 "password": password,
                 "confirmPassword": confirmPassword

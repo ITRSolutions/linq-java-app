@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      sec:authorize="hasRole('ROLE_ADMIN')">
 
 <head>
     <th th:replace="admin_panel/header.html"></th>
@@ -153,6 +154,13 @@
                             <div class="col-md-6">
                                 <label>Update Country:</label>
                                 <input type="text" class="form-control1 control3" id="country" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Activate User:</label>
+                                <select id="activateUser" class="form-control1 control3">
+                                    <option value="true">Male</option>
+                                    <option value="false">Female</option>
+                                </select>
                             </div>
                         </div>
                         <input type="hidden" id="updateUserRow" required>

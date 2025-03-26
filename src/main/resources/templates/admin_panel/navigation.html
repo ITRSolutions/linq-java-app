@@ -1,5 +1,6 @@
 <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"
-     xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="navigateCode(firstName)">
+     xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="navigateCode(firstName)"
+     sec:authorize="hasAnyRole('ADMIN', 'USER')" >
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -31,9 +32,8 @@
     <!-- Hidden form -->
     <form id="logout-form" action="/admin_panel/logout" method="post" style="display: none;">
         <!-- CSRF token, if CSRF protection is enabled -->
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+        <input type="hidden" id="_csrf" name="_csrf" th:value="${_csrf.token}" />
     </form>
-
     <!-- /.navbar-dynamic-side -->
 
     <div class="navbar-default sidebar" role="navigation">

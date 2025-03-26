@@ -2,7 +2,7 @@ $(document).ready(function () {
     // Function to fetch and display both server stats and user stats from actuator endpoint
     function fetchServerStats() {
         $.ajax({
-            url: '/admin/actuator', // Endpoint for actuator metrics
+            url: '/api/v1/actuator', // Endpoint for actuator metrics
             type: 'GET',
             success: function (response) {
                 var statsHtml = '';

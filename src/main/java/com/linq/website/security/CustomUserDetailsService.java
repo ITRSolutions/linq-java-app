@@ -25,21 +25,22 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new DisabledException("The entered email does not exist. Please Sign up."));
 
-        if(!user.getIsEmailVerified()) {
+        if (!user.getIsEmailVerified()) {
             throw new DisabledException("Your email is not verified. A verification email has been sent to you.");
         }
 
         // Map the single RoleType to a SimpleGrantedAuthority
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().name());
 
-        // Create and return a CustomUserDetails object
-        return new CustomUserDetails(
-                user.getEmail(),          // username (email)
-                user.getPassword(),       // password
-                user.getFirstName(),      // firstName
-                user.getLastName(),       // lastName
-                Collections.singletonList(authority) // role (authorities)
+        //   Create and return a CustomUserDetails object with the token
+        CustomUserDetails userDetails = new CustomUserDetails(
+                user.getEmail(),         // username (email)
+                user.getPassword(),      // password
+                user.getFirstName(),     // firstName
+                user.getLastName(),      // lastName
+                Collections.singletonList(authority)
         );
-    }
 
+        return userDetails;
+    }
 }

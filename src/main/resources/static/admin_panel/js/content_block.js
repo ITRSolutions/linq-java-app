@@ -121,6 +121,9 @@ $('.deleteContentBlock').click(function () {
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(requestData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
         success: function (response) {
           if (response.status) {
             fetchContentBlocks(PageIdCB);
@@ -171,9 +174,12 @@ $('.deleteContentBlock').click(function () {
           };
 
           $.ajax({
-            url: "http://localhost:8090/api/v1/content_block/"+CBId, // Update Content Block API
+            url: "/api/v1/content_block/"+CBId, // Update Content Block API
             type: "PUT", // Send POST request
             contentType: "application/json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             data: JSON.stringify(requestData),
             success: function (response) {
               if (response.status) {

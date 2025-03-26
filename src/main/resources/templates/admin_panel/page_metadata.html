@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      sec:authorize="hasRole('ROLE_ADMIN')">
 
 <head>
   <th th:replace="admin_panel/header.html"></th>

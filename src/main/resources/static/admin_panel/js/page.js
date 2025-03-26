@@ -167,6 +167,9 @@ $(document).on('click', '.deletePage', function () {
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(requestData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
         success: function (response) {
           if (response.status && response.data.length > 0) {
             pageTableData = response.data;
@@ -208,6 +211,9 @@ $(document).on('click', '.deletePage', function () {
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(requestData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
         success: function (response) {
           if (response.status) {
             fetchWebPages(currentPage);
@@ -263,6 +269,9 @@ $("#updatePage form").submit(function (event) {
         type: "PUT", // Use PUT for updates
         contentType: "application/json",
         data: JSON.stringify(requestData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
         success: function (response) {
           if (response.status) {
             fetchWebPages(currentPage);

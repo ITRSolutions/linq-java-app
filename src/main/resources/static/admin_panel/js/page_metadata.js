@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Pre-fill the form with existing data (optional, based on your API response)
-    $.get("http://localhost:8090/api/v1/pageMetadata", function(response) {
+    $.get("/api/v1/pageMetadata", function(response) {
         if(response.status) {
             const data = response.data;
             // Pre-fill the form fields with existing data
@@ -62,6 +62,9 @@ $(document).ready(function() {
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(formData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             success: function(response) {
                 if (response.status) {
                     // Show success message

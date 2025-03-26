@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" sec:authorize="hasAnyRole('ADMIN', 'USER')" >
 
 <head>
     <th th:replace="admin_panel/header.html"></th>
@@ -224,7 +224,7 @@
                     <script src="/admin_panel/js/site.js" type="text/javascript"></script>
                     <!----End Calender -------->
 
-                    <script src="/admin_panel/js/server_stat.js"></script>
+                    <script src="/admin_panel/js/server_stat.js" sec:authorize="hasRole('ROLE_ADMIN')"></script>
 
                     <div class="clearfix"></div>
                 </div>

@@ -4,7 +4,9 @@ import com.linq.website.entity.*;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.PageMetadataService;
+import com.linq.website.utility.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +31,12 @@ public class WebController {
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
-    public String getPage(@PathVariable(required = false) String slug, Model model) {
+    public String getPage(@PathVariable(required = false) String slug, Model model,
+                          @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         if (slug == null || slug.isEmpty()) {
             slug = "index";
-        } else if(slug.equals("admin_panel")) {
+        } else if(slug.equals("admin_panel") || (userDetails != null && slug.equals("login"))) {
             return "redirect:/admin_panel/";
         }
 
@@ -85,12 +88,9 @@ public class WebController {
             model.addAttribute("footerBlocks", footerBlocks);
 
             return "public/" +slug; // Thymeleaf page name
-        } catch (PageNotFoundException ex) {
-            // Handle exception and redirect to error page
-//            model.addAttribute("error", ex.getMessage());
-            return "redirect:/error_404"; // This will redirect to the 404 page
         } catch (RuntimeException ex) {
-            return "redirect:/error_404"; // This will redirect to the 404 page
+            System.out.println(ex);
+            return "/error/404";
         }
     }
 

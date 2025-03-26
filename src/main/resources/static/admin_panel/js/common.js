@@ -7,7 +7,7 @@ var tableData = null;
     function updatePagination(page) {
         // Fetch data for the current page
         $.ajax({
-            url: `http://localhost:8090/api/v1/forms?pageName=${pageName}&page=${page - 1}`,
+            url: `/api/v1/forms?pageName=${pageName}&page=${page - 1}`,
             method: 'GET',
             success: function(response) {
                 if (response.status) {
@@ -110,8 +110,11 @@ $('input[name="search"]').on('keyup', function() {
     if (searchString) {
         // If the search string is not empty, make the API call
         $.ajax({
-            url: 'http://localhost:8090/api/v1/forms/search', // API URL
+            url: '/api/v1/forms/search', // API URL
             type: 'GET',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             data: {
                 searchString: searchString, // Search query parameter
                 pageName: pageName   // Page name parameter (fixed for your case)
@@ -153,9 +156,12 @@ $(document).ready(function() {
 
         // Send the PUT request with the updated data
         $.ajax({
-            url: `http://localhost:8090/api/v1/forms/${rowId}`, // API URL with dynamic rowId
+            url: `/api/v1/forms/${rowId}`, // API URL with dynamic rowId
             type: 'PUT',
             contentType: "application/json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
             data: JSON.stringify({
                 followBack: followBack,
                 comment: comment

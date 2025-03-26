@@ -18,7 +18,8 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
+                                        org.springframework.security.core.AuthenticationException exception)
+            throws IOException, ServletException {
         String errorMessage = "Invalid password"; // Default error message
 
         if (exception.getCause() instanceof DisabledException) {
@@ -28,6 +29,9 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         } else if (exception instanceof UsernameNotFoundException) {
             errorMessage = "User not found";
         }
+
+        // Log the error message (for debugging)
+        System.out.println("Login failed: " + errorMessage);
 
         System.out.println("error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8));
         response.sendRedirect("/login?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8));
