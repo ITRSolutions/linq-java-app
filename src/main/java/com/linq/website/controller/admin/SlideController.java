@@ -2,20 +2,20 @@ package com.linq.website.controller.admin;
 
 import com.linq.website.dto.SlideDTO;
 import com.linq.website.dto.SuccessResponse;
-import com.linq.website.entity.ContentBlock;
 import com.linq.website.entity.Slide;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.SlideService;
-import com.linq.website.utility.LoggedUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/slide")
+@PreAuthorize("hasRole('ADMIN')") //  Ensures only ADMIN can access
 public class SlideController {
 
     @Autowired
@@ -46,5 +46,10 @@ public class SlideController {
     public ResponseEntity<SuccessResponse> getSlideByContentBlockId(@PathVariable Long id) {
         List<Slide> slides = dynamicPageService.getSlides(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of slide.", slides));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
     }
 }

@@ -3,6 +3,7 @@
  var SlideNameSC = null;
 
     $(document).on('click', '.openSlideContent', function () {
+
         $("#slide_contents-tab").click();
 
         $("#SlideIdSC").val(0);
@@ -63,7 +64,6 @@ $('.deleteSlideContent').click(function () {
 
 $(document).ready(function () {
     $(document).on('change', '.uploadImage', function () {
-     alert("hi how");
         // Get the selected file
         var file = this.files[0];
 
@@ -76,14 +76,21 @@ $(document).ready(function () {
             if ($.inArray(fileType, validImageTypes) === -1) {
                 $(".uploadImage").val(""); // Reset the file input
                 alert("Please upload a valid image file (JPG, PNG, GIF, etc.).");
+                return;
+            } else if (file.size > 3 * 1024 * 1024) {
+                $("#error-message").text("File size exceeds the 3MB limit.").show();
+                return;
             }
-        } else if (file.size > 3 * 1024 * 1024) {
-            $("#error-message").text("File size exceeds the 3MB limit.").show();
+        } else {
             return;
         }
 
                 var formData = new FormData();
                 formData.append("file", file);
+
+                $('#updateSlideContent [type="submit"]').prop('disabled', true);
+                $("#success-message").text("Uploading Image please wait....").show();
+                $("#error-message").hide();
 
                 // Make POST request to upload the image
                 $.ajax({
@@ -92,8 +99,13 @@ $(document).ready(function () {
                     data: formData,
                     contentType: false,
                     processData: false,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
                     success: function(response) {
                         if (response.status) {
+                            $('#updateSlideContent [type="submit"]').prop('disabled', false);
+                            $("#success-message").hide();
                             $("#error-message").hide();
                             $("#success-message").text(response.message).show();
                             $("#displayImg").show();
@@ -136,6 +148,9 @@ $(document).ready(function () {
              type: 'POST',
              contentType: 'application/json', // Set content type to JSON
              data: JSON.stringify(data), // Convert data object to JSON string
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
              success: function(response) {
                  if (response.status) {
                     fetchSlideContents();
@@ -156,7 +171,7 @@ $(document).ready(function () {
 
    //<------------Update Slide Content Start------------->
      // When the form is submitted
-     $('form').on('submit', function(event) {
+     $('#updateSlideContent form').on('submit', function(event) {
          event.preventDefault(); // Prevent default form submission
 
          // Collect form data
@@ -174,6 +189,9 @@ $(document).ready(function () {
                  type: 'PUT',
                  contentType: 'application/json',
                  data: JSON.stringify(formData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                },
                  success: function(response) {
                      // Handle successful response
                      if (response.status) {
@@ -213,7 +231,7 @@ $(document).ready(function () {
               <tr>
                 <td>${item.orderIndex}</td>
                 <td>${item.contentType}</td>
-                <td>${truncateText(item.content, 40)}</td>
+                <td>${truncateText(item.content, item.contentType, 40)}</td>
                 <td>${item.slide.slideTitle}</td>
                 <td>${item.slide.contentBlock.content}</td>
                 <td>${item.slide.contentBlock.page.slug}</td>
@@ -243,6 +261,21 @@ $(document).ready(function () {
     return date.toLocaleString();
   }
 
-    function truncateText(text, length) {
-        return text.length > length ? text.substring(0, length) + '...' : text;
-    }
+    function truncateText(text, type, length) {
+        let textC = text.length > length ? text.substring(0, length) + '...' : text;
+
+if (type == "IMAGE" || type == "URL") {
+    let hrefs = (text.startsWith("http") || text.startsWith("/")) ? text : "/" + text;
+
+    let anchorTag = $('<a>', {
+        text: textC,
+        href: hrefs,
+        target: '_blank',
+        rel: 'noopener noreferrer'
+    })[0].outerHTML;
+
+    return anchorTag;
+}
+
+        return textC;
+}

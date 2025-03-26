@@ -1,8 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      sec:authorize="hasRole('ROLE_ADMIN')">
 
 <head>
   <th th:replace="admin_panel/header.html"></th>
+
+<style>
+  .fnt-bold {
+  font-weight: bold;
+}
+</style>
 </head>
 
 <body>
@@ -28,6 +35,15 @@
               </div>
               <form>
                 <div class="panel-body">
+                  <div class="col-md-6">
+
+                  </div>
+                  <div class="col-md-3">
+                    <label class="fnt-bold">  Updated By : <span id="updatedBy"></span></label>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="fnt-bold"> Last  Updated At : <span id="updatedAt"></span></label>
+                  </div>
                 <div class="col-md-12">
                     <label>  Font Family Code : (Optional)</label> 
                     <textarea rows="3" class="form-control1 control1" name="font_family"></textarea>
@@ -54,8 +70,9 @@
                   </div>
                   <div class="col-md-3">
                     <label> * Upload Logo image : </label>
-                    <a href="https://google.in" target="_blank" class="float-right"><label> [LOGO IMAGE]</label></a>
-                    <input type="file" class="form-control1 control3 uploadImage" accept="image/*" required style="padding-top: 9px;">
+                    <a href="#" target="_blank" class="float-right" id="loadLogoURL"><label> [LOGO]</label></a>
+                    <input type="file" class="form-control1 control3" id="uploadImage" accept="image/*" style="padding-top: 9px;">
+                    <input type="hidden" id="logo_img_url" name="logo_img_url">
                   </div>
                   <div class="col-md-3">
                     <label> * Logo Anchor URL : </label>
@@ -96,6 +113,8 @@
 
 
                   <div class="form-group col-md-12">
+                    <p id="error-message" style="color: red; display: none;"></p>
+                    <p id="success-message" style="color: green; display: none;"></p>
                     <br>
                     <button type="submit" class="btn btn-primary">Update</button>
                     <button type="reset" class="btn btn-default">Reset</button>
@@ -115,6 +134,7 @@
       </div>
     </div>
   </div>
+  <script src="js/page_metadata.js"></script>
 </body>
 
 </html>

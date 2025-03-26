@@ -1,7 +1,9 @@
 package com.linq.website.repository;
 
 
+import com.linq.website.entity.DynamicPage;
 import com.linq.website.entity.User;
+import com.linq.website.enums.PageStatus;
 import com.linq.website.enums.RoleType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Long countByRole(@Param("role") RoleType role);
 
     // Retrieve list of resources by role as paginated
-    Page<User> findAllByRole(RoleType role, Pageable pageable);
+    Page<User> findAll(Pageable pageable);
 
     // Custom query method to find a user by email
     Optional<User> findByEmailIgnoreCase(String email);
@@ -35,4 +37,18 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByPasswordResetRef(String passwordResetRef);
 
     List<User> findByRole(RoleType role);
+
+    // Search users by first name, last name, or email
+    @Query("SELECT u FROM User u WHERE " +
+            "LOWER(u.firstName) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR " +
+            "LOWER(u.lastName) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR " +
+            "LOWER(u.email) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
+    List<User> searchUsers(String searchTerm);
+
+    long count();
+
+    // Method to count the total number of users where email is not verified (isEmailVerified = false)
+    @Query("SELECT COUNT(u) FROM User u WHERE u.isEmailVerified = false")
+    long countUnverifiedUsers();
+
 }

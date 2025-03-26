@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title> Error Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <script>
+    addEventListener("load", function () {
+      setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
+  </script>
+  <!-- font files -->
+  <link href="http://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+  <!-- /font files -->
+  <!-- css files -->
+  <link href="/error/css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/error/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+
+  <!-- /css files -->
+</head> 
+<body style="height: 100vh;">
+
+  <div class="container-w3layouts  text-center">
+    <br>
+    <!---728x90--->
+    <h2 class="txt-wthree">system error</h2>
+    <p>It appears that there was an issue with the page you were attempting to visit.
+      Please Try again.
+    </p>
+    <p th:text="${error}">Page not found</p>
+    <div class="home">
+      <a href="/login">login</a>
+    </div>
+  </div>
+  <!---728x90--->
+
+</body>
+
+</html>

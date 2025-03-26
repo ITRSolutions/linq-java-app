@@ -103,4 +103,8 @@ public class DynamicPageService {
     public List<DynamicPage> searchDynamicPages(DynamicPageDTO.SearchDynamicPage searchDTO) {
         return dynamicPageRepository.search(searchDTO.getSlug());
     }
+
+    public Long getCountPageStatus(PageStatus status) {
+        return dynamicPageRepository.countByStatus(status);
+    }
 }

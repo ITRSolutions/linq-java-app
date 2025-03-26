@@ -1,4 +1,4 @@
-package com.linq.website.controller;
+package com.linq.website.controller.admin;
 
 import com.linq.website.dto.ErrorResponse;
 import com.linq.website.dto.SuccessResponse;
@@ -6,6 +6,7 @@ import com.linq.website.service.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,10 +17,17 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/s3")
+@PreAuthorize("hasRole('ADMIN')") //  Ensures only ADMIN can access
 public class BucketController {
 
     @Autowired
     private S3Service s3Service;
+
+    @GetMapping
+    public ResponseEntity<String> getFileInfo() {
+        // For example, you could return some info about the S3 storage
+        return ResponseEntity.ok("S3 API endpoint is working.");
+    }
 
     /**
      * Endpoint to upload a file to S3
@@ -28,7 +36,11 @@ public class BucketController {
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         Map<String, String[]> errors = new HashMap<>();
         // Check if the file size is greater than 5MB (5 * 1024 * 1024 bytes)
-        if (file.getSize() > 3 * 1024 * 1024) {
+        if (file.isEmpty()) {
+            errors.put("Image", new String[]{"No file uploaded."});
+            ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("No file uploaded.", errors);
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        } else if (file.getSize() > 3 * 1024 * 1024) {
             errors.put("Image", new String[]{"File size exceeds the 3MB limit."});
             ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("Image size exceeds.", errors);
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);

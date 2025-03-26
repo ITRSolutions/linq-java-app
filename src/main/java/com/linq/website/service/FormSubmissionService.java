@@ -4,8 +4,13 @@ import com.linq.website.dto.FormSubmissionDTO;
 import com.linq.website.entity.FormSubmission;
 import com.linq.website.exceptions.ResourceNotFoundException;
 import com.linq.website.repository.FormSubmissionRepository;
+import com.linq.website.utility.LoggedUser;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,10 +26,13 @@ public class FormSubmissionService {
     @Autowired
     private FormSubmissionRepository repository;
 
+    @Autowired
+    LoggedUser loggedUser;
+
     // Create a logger instance for your class
     private static final Logger logger = Logger.getLogger(FormSubmissionService.class.getName());
 
-    public FormSubmission saveSubmission(FormSubmissionDTO dto) {
+    public void saveSubmission(FormSubmissionDTO.Create dto) {
         FormSubmission formSubmission = new FormSubmission();
         formSubmission.setFirstName(dto.getFirstName());
         formSubmission.setLastName(dto.getLastName());
@@ -38,8 +46,23 @@ public class FormSubmissionService {
         formSubmission.setIsEmployee(dto.getIsEmployee());
         formSubmission.setIsStudyParticipant(dto.getIsStudyParticipant());
         formSubmission.setAgreedToTerms(dto.getAgreedToTerms());
+        formSubmission.setPageId(dto.getPageId());
+        formSubmission.setPageName(dto.getPageName());
+        formSubmission.setRefName(dto.getRefName());
+        formSubmission.setRefContactNumber(dto.getRefContactNumber());
 
-        return repository.save(formSubmission);
+        repository.save(formSubmission);
+    }
+
+    public void updateSubmission(FormSubmissionDTO.Update dto, Long id) {
+        FormSubmission formSubmission = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
+
+        formSubmission.setFollowBack(dto.getFollowBack());
+        formSubmission.setComment(dto.getComment());
+        formSubmission.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+
+        repository.save(formSubmission);
     }
 
     public List<FormSubmission> getAllFormSubmissions() {
@@ -55,12 +78,9 @@ public class FormSubmissionService {
         return repository.findAll();
     }
 
-    public List<FormSubmission> getFormDataByPageName(String pageName) {
-        Optional<List<FormSubmission>> byPageName = Optional.ofNullable(repository.getByPageName(pageName));
-        return byPageName.orElseThrow(() -> {
-            logger.log(Level.parse("FormSubmission not found with page name: {}"), pageName);
-            return new ResourceNotFoundException("FormSubmission not found with page name: " + pageName);
-        });
+    public Page<FormSubmission> getFormDataByPageNamePagination(String pageName, int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
+        return repository.findByPageName(pageName, pageable);
     }
 
     public List<FormSubmission> getFormDataByPageId(Long pageId) {
@@ -70,5 +90,9 @@ public class FormSubmissionService {
              logger.log(Level.parse("FormSubmission not found with page id: {}"), String.valueOf(pageId));
              return new ResourceNotFoundException("FormSubmission not found with page id: " + pageId);
          });
+    }
+
+    public List<FormSubmission> searchSubmissionsByStringAndPageName(String searchString, String pageName) {
+        return repository.searchByStringAndPageName(searchString, pageName);
     }
 }

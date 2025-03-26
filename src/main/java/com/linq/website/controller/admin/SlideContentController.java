@@ -11,12 +11,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/slideContent")
+@PreAuthorize("hasRole('ADMIN')") //  Ensures only ADMIN can access
 public class SlideContentController {
 
     @Autowired
@@ -47,5 +49,10 @@ public class SlideContentController {
     public ResponseEntity<?> getAllSlideContentById(@RequestParam(defaultValue = "0") int page, @PathVariable Long id) {
         List<SlideContent> slideContents = dynamicPageService.getSlideContents(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of SlideContent.", slideContents));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
     }
 }

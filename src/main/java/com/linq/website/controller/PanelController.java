@@ -1,6 +1,11 @@
 package com.linq.website.controller;
 
+import com.linq.website.enums.PageStatus;
+import com.linq.website.service.DynamicPageService;
+import com.linq.website.service.UserService;
 import com.linq.website.utility.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,25 +17,60 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin_panel/")
+@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 public class PanelController {
 
-    @GetMapping("/{slug}")
-    public String getPage(@PathVariable String slug, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    @Autowired
+    UserService userService;
 
-        // Access the username of the logged-in user
-        String firstName = userDetails.getFirstName();
+    @Autowired
+    DynamicPageService dynamicPageService;
 
-        // Or, access more details via the Authentication object
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String role = authentication.getAuthorities().toString(); // Access roles
+    @GetMapping({"/", "/{slug}"})
+    public String getPage(@PathVariable(required = false) String slug, Model model,
+                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+        if (slug == null || slug.isEmpty()) {
+            slug = "dashboard";
+        }
 
-        // Add user details to the model to pass to Thymeleaf view
-        model.addAttribute("firstName", firstName);
-        model.addAttribute("role", role);
+        try {
+            // Check if userDetails is null (in case of session timeout)
+            if (userDetails == null) {
+                // Redirect or handle the session timeout scenario
+                return "redirect:/login?sessionExpired";
+            }
 
-        System.out.println("firstName: " + firstName);
-        System.out.println("role: " + role);
-        return "admin_panel/" + slug;
+            // Access the username of the logged-in user
+            String firstName = userDetails.getFirstName();
 
+            // Or, access more details via the Authentication object
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String role = authentication.getAuthorities().toString(); // Access roles
+
+            // Add user details to the model to pass to Thymeleaf view
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("role", role);
+            long totalUserRegistered = userService.getTotalUserRegistered();
+            long unverifiedUsers = userService.getTotalUnverifiedUser();
+            long countPublishedStatus = dynamicPageService.getCountPageStatus(PageStatus.PUBLISHED);
+            long countDraftStatus = dynamicPageService.getCountPageStatus(PageStatus.DRAFT);
+
+            model.addAttribute("totalUsers",  totalUserRegistered);
+            model.addAttribute("unverifiedUsers", unverifiedUsers);
+            model.addAttribute("countPublishedStatus",  countPublishedStatus);
+            model.addAttribute("countDraftStatus", countDraftStatus);
+
+            System.out.println("firstName: " + firstName);
+            System.out.println("role: " + role);
+            return "admin_panel/" + slug;
+        }  catch (Exception ex) {
+            return "redirect:/error_404";
+        }
+
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        return "admin_panel/test.html";
     }
 }

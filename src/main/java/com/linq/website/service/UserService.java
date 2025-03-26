@@ -5,6 +5,7 @@ import com.linq.website.dto.UserDTO;
 import com.linq.website.entity.User;
 import com.linq.website.enums.RoleType;
 import com.linq.website.repository.UserRepository;
+import com.linq.website.utility.LoggedUser;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,17 +25,20 @@ public class UserService {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    LoggedUser loggedUser;
+
     // Count total users by role
     public Long countUsers(RoleType role) {
         return userRepository.countByRole(role);
     }
 
     // Find all resources by role with paginated
-    public Page<User> getUsersByRoleWithPagination(RoleType role, int page) {
+    public Page<User> getUsersListPagination(int page) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
 
         // Fetch paginated results from the repository
-        return userRepository.findAllByRole(role, pageable);
+        return userRepository.findAll(pageable);
     }
 
     // Find user by id
@@ -94,6 +98,12 @@ public class UserService {
         userData.setState(data.getState());
         userData.setCountry(data.getCountry());
         userData.setZipCode(data.getZipCode());
+        userData.setGender(data.getGender());
+        userData.setDob(data.getDob());
+
+        User updatedByUserObj = loggedUser.getUpdatedByUserObj();
+        userData.setUpdatedBy(updatedByUserObj.getFirstName()+" "+updatedByUserObj.getLastName());
+
         userRepository.save(userData);
         return true;
     }
@@ -106,6 +116,10 @@ public class UserService {
             userData.setPassword(hashPassword);
             userRepository.save(userData);
         }
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 
     public void updatePasswordResetOtp(Long id, String token) {
@@ -160,4 +174,16 @@ public class UserService {
         }
     }
 
+    // Search for users by a search term (could be firstName, lastName, or email)
+    public List<User> searchUsers(String searchTerm) {
+        return userRepository.searchUsers(searchTerm);
+    }
+
+    public long getTotalUserRegistered() {
+        return userRepository.count();
+    }
+
+    public long getTotalUnverifiedUser() {
+        return userRepository.countUnverifiedUsers();
+    }
 }

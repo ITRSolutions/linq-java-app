@@ -8,18 +8,16 @@ import com.linq.website.enums.RoleType;
 import com.linq.website.service.MailService;
 import com.linq.website.service.UserService;
 import com.linq.website.utility.Helpers;
-import jakarta.servlet.http.HttpServletResponse;
+import com.linq.website.utility.LoggedUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.*;
 
 @RestController
@@ -34,6 +32,8 @@ public class AuthController {
     @Value("${website.main.url}")
     private String websiteDomainName;
 
+    @Autowired
+    LoggedUser loggedUser;
 
     // Register an account
     @PostMapping("register")
@@ -137,7 +137,8 @@ public class AuthController {
     }
 
     // Set new password
-    @PostMapping("set-password")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PutMapping("set-password")
     public ResponseEntity<?> setPassword(@Valid @RequestBody UserDTO.SetPassword request) {
 
         // Match new password & confirm password
@@ -148,23 +149,13 @@ public class AuthController {
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
 
-        // Find account using ref
-        Optional<User> availableAccount = userService.findByPasswordResetRef(request.getRef());
-        if (availableAccount.isEmpty()) {
-            Map<String, String[]> errors = new HashMap<>();
-            errors.put("credentials", new String[]{"Invalid reference code."});
-            ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("invalid data.", errors);
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
-
         // Generate hash password
         String hashPassword = Helpers.generateEncryptedPassword(request.getPassword());
 
         // Update new password & make password reset ref null
-        userService.updatePassword(availableAccount.get().getId(), hashPassword);
-        userService.updatePasswordResetRef(availableAccount.get().getId(), "");
+        userService.updatePassword(loggedUser.getUpdatedByUserObj().getId(), hashPassword);
 
-        return ResponseEntity.ok(new SuccessResponse<>(true, "Password changes successfully.", null));
+        return ResponseEntity.ok(new SuccessResponse<>(true, "Password updated successfully.", null));
     }
 
 }
