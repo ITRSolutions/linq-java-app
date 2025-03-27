@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+</head>
+
+<body>
+    <!-- Navigation -->
+	<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}"></div>
+
+	<div class="row">
+	            <div class="investigator-header">
+	                <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock1.content)}"></h2>
+	            </div>
+	 </div>
+			
+    <div class="container-fluid">
+        
+
+      <div class="row my-5 p-2 p-md-5"  th:each="contentBlock : ${contentBlock2}">
+            <div class="col-md-4 d-flex align-items-center justify-content-md-end justify-content-center" th:each="slide : ${contentBlock.slide}">
+                <img th:src="${slide.slideContents[0].content}" alt="" class="rounded investigator-img">
+            </div>
+            <div class="col-md-8 mt-4 mt-md-0" th:each="slide : ${contentBlock.slide}">
+                <h1 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
+                    th:text="${slide.slideContents[1].content}">
+                </h1>
+                <h5 class="primary-text-color fw-bold" th:text="${slide.slideContents[2].content}"></h5>
+                <p class="text-muted mt-4" style="font-size:17px" th:utext="${slide.slideContents[3].content}"></p>
+            </div>
+        </div>
+
+        
+    </div>
+	
+	
+	<!-- Company Footer Section -->
+
+	 <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+
+    <!-- Footer -->
+    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+</body>
+</html>

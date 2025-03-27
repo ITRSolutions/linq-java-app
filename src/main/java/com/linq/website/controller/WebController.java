@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.linq.website.service.CompanyPageMetaDataService;
 
 import java.util.Calendar;
 import java.util.List;
@@ -25,6 +26,9 @@ public class WebController {
 
     @Autowired
     private PageMetadataService pageMetadataService;
+
+    @Autowired
+    private CompanyPageMetaDataService companyPageMetaDataService;
 
     private static final String YEAR = "year";
     private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
@@ -86,6 +90,17 @@ public class WebController {
             //Bottom links
             List<ContentBlock> footerBlocks = getNavigationSlides("footer");
             model.addAttribute("footerBlocks", footerBlocks);
+
+            CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
+            model.addAttribute("cPageMetaData", cPageMetaData);
+
+            //Bottom links
+            List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
+            model.addAttribute("faqAllQuestions", faqAllQuestions);
+
+
+
+
 
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {

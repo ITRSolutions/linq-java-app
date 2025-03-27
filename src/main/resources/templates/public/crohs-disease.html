@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+
+<body>
+	<!-- Dynamic navigation -->
+	<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}">
+	</div>
+
+
+	<div class="row mb-5">
+		<div class="contact-header">
+			<h2 class="text-white fw-bold" th:utext="${contentBlock1.content}">Crohn’s Disease</h2>
+		</div>
+	</div>
+
+	<div class="container-fluid container-xxl">
+
+
+		<div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
+			<div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"
+				th:each="slide : ${contentBlock.slide}">
+				<h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+				<p class="text-white mt-4" th:utext="${slide.slideContents[1].content}"></p>
+				<a th:href="${slide.slideContents[2].content}"  class="btn text-white wow animate__ animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-3 animated">Join Now</a>
+			</div>
+			<div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border"
+				th:each="slide : ${contentBlock.slide}">
+				<img th:src="${slide.slideContents[3].content}" height="420" alt=""
+					class="object-fit-cover d-block rounded-start-5">
+			</div>
+		</div>
+
+		<div class="row text-center p-4 py-5 mt-4 mb-5 shadow-sm border" style="background:#F8F8F8"
+			th:each="contentBlock : ${contentBlock3}">
+			<div class="col-md-8 m-auto" th:each="slide : ${contentBlock.slide}">
+				<h5 class="primary-text-color mt-2" th:utext="${slide.slideContents[0].content}"></h5>
+				<p class="mt-4" th:utext="${slide.slideContents[1].content}"></p>
+			</div>
+		</div>
+
+		<div class="row px-5" th:each="contentBlock : ${contentBlock4}">
+			<div class="col-lg-7 mt-4" th:each="slide : ${contentBlock.slide}">
+				<h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+				<p class="regular-font text-dark mt-4  lh-lg" th:utext="${slide.slideContents[1].content}"></p>
+				<ul class="regular-font   lh-lg">
+					<li th:each="criteria : ${slide.slideContents[2].content}" th:utext="${criteria}"></li>
+					<li th:each="criteria : ${slide.slideContents[3].content}" th:utext="${criteria}"></li>
+					<li th:each="criteria : ${slide.slideContents[4].content}" th:utext="${criteria}"></li>
+				</ul>
+				<p class="regular-font text-dark mt-4  lh-lg" th:utext="${slide.slideContents[5].content}"> </p>
+				<h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[6].content}"></h2>
+				<p class="regular-font text-dark mt-4  lh-lg" th:utext="${slide.slideContents[7].content}"></p>
+			</div>
+			<div class="col-lg-5 mt-4 p-5">
+				<div class="row g-4" th:each="contentBlock1 : ${contentBlock5}">
+					<div class="col-lg-6" th:each="slide1 : ${contentBlock1.slide}">
+						<div
+							class="condition-card p-3 d-flex flex-column align-items-center justify-content-center gap-2">
+							<h5 class="dark-secondary-text-color text-center m-0"
+								th:utext="${slide1.slideContents[0].content}"></h5>
+							<p class="text-center text-white regular-font m-0"
+								th:utext="${slide1.slideContents[1].content}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-5" th:each="contentBlock : ${contentBlock6}">
+			<div class="col-lg-12 appreciation" th:each="slide : ${contentBlock.slide}">
+				<div class="row h-100">
+					<div class="col-lg-8 d-flex align-items-center ps-5">
+						<h2 class="text-white fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
+					</div>
+					<div class="col-lg-4 d-flex align-items-center">
+						<img th:src="${slide.slideContents[1].content}" style="height:210px" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h2 class="dark-secondary-text-color   fw-bold text-center mt-5" th:utext="${contentBlock7.content}">
+
+		</h2>
+
+		<p class="w-75 m-auto text-center mt-4 regular-font lh-lg" th:utext="${contentBlock8.content}">
+		</p>
+
+
+		<a type="button" data-bs-toggle="modal" data-bs-target="#joinNowModal"
+			class="d-block mx-auto my-3 mb-5 text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn"
+			th:utext="${contentBlock9.content}"></a>
+	</div>
+
+	<div class="row align-items-stretch refer-friend">
+	  <div class="col-md-8 p-5 rounded-start-4 no-border">
+	    <!-- <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ms-5">
+	      JOIN A CLINICAL RESEARCH STUDY
+	    </h2> -->
+	    <h2 class="dark-secondary-text-color wow animate__ animate__fadeInUp  fw-bold ms-3  animated" style="visibility: visible; animation-name: fadeInUp;">
+	      Refer a Friend
+	    </h2>
+	    <p class="text-white mt-1 w-md-80 ms-3 refer-friend-txt">YOU MAY BEELIGIBLE FOR BONUS</p>
+	    <p class="text-white mt-4 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated" style="visibility: visible; animation-name: fadeInUp;">Make a lasting impact—
+	      Know someone who might be interested in participating
+	      in a study? Spread the word and sign up with your
+	      referral link and earn rewards for each Qualified enrollee. 
+	    </p>
+	    
+	    <p class="text-white mt-4 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated" style="visibility: visible; animation-name: fadeInUp;">Have questions? Call our LINQ patient enrollment
+	      specialists today!
+	    </p>
+	    <a href="#" data-bs-toggle="modal" data-bs-target="#joinNowModal" class="btn text-white wow animate__ animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-3  animated" style="visibility: visible; animation-name: fadeInUp;">Participate Now
+	    </a>
+	  </div>
+	  <div class="col-md-4 overflow-hidden rounded-end-4 no-border align-items-center mobile-hide" style="position: relative;">
+	    <img style="visibility: visible; animation-name: fadeInRight; position: absolute; top: -30px;" src="image/12/refer-friend.png" height="400" alt="" class="wow animate__ animate__fadeInRight object-fit-cover  d-block rounded-start-5  animated">
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="joinNowModal" tabindex="-1" aria-labelledby="joinNowModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <button type="button" class="btn-close custom-btn-close z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+	      <div class="modal-body">
+
+			  <iframe src="/form.html" width="480" height="700" frameborder="0" style="overflow:auto;"></iframe>
+
+
+
+
+		  </div>
+	      <!-- <div class="modal-footer border-0 justify-content-start">
+	        
+	      </div> -->
+	    </div>
+	  </div>
+	</div>
+
+
+
+	<!-- Footer -->
+	<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+</body>
+
+</html>
