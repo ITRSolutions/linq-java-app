@@ -90,6 +90,11 @@ public class HttpSecurityConfig {
                         .sessionFixation().newSession()
                 );
 
+        http
+                .headers(headers -> headers
+                        .frameOptions().sameOrigin() // Allows framing from the same origin
+                );
+
         return http.build();
     }
 
