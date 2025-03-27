@@ -80,7 +80,11 @@ public class UserService {
         userData.setGender(data.getGender());
         userData.setRole(role);
         userRepository.save(userData);
+
         mailService.sendActivationEmail(userData);
+
+        //Sending email to admins -> New person register
+        sendEmailsAdmin(2, userData);
     }
 
     // Update a specific user
@@ -99,6 +103,7 @@ public class UserService {
         userData.setCountry(data.getCountry());
         userData.setZipCode(data.getZipCode());
         userData.setGender(data.getGender());
+        userData.setActivateUser(data.getActivateUser());
         userData.setDob(data.getDob());
 
         User updatedByUserObj = loggedUser.getUpdatedByUserObj();
@@ -155,24 +160,33 @@ public class UserService {
     }
 
     public void sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
+        sendEmailsAdmin(1, contactDTO);
+    }
+
+    public void sendEmailsAdmin(int stat, Object obj) {
         List<User> admins = userRepository.findByRole(RoleType.ADMIN);
 
-        // Handle case when no admin is found
         if (admins.isEmpty()) {
-            return ;  // No admins found
+            return; // No admins found
         }
 
-        int successfulSends = 0;
         for (User user : admins) {
             try {
-                mailService.sendContactUsEnquiryMail(contactDTO, user);
-                successfulSends++;
+                switch (stat) {
+                    case 1:
+                        mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, user);
+                        break;
+
+                    case 2:
+                        mailService.sendNewUserRegisterEmail((User) obj);
+                        break;
+                }
             } catch (Exception e) {
-                // Log the error
                 LoggerFactory.getLogger(getClass()).error("Failed to send email to admin: " + user.getEmail(), e);
             }
         }
     }
+
 
     // Search for users by a search term (could be firstName, lastName, or email)
     public List<User> searchUsers(String searchTerm) {

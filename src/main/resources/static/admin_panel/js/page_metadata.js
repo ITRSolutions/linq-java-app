@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
 //--------------Update form Start----------------------
-    $('form').on('submit', function(event) {
+    $('#pageMetaDataForm form').on('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
         // Collect form data

@@ -17,8 +17,6 @@ $(document).on('click', '.updatePage', function () {
     // Retrieve the data of the selected row from the pageTableData array
     var selectedPage = pageTableData[rowIndex];
 
-
-
     // Populate the modal fields with the data from selectedPage
     $('#updatePage').find('[name="updateSlug"]').val(selectedPage.slug);
     $('#updatePage').find('[name="updateStatus"]').val(selectedPage.status);

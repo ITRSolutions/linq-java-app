@@ -50,22 +50,25 @@ public class HttpSecurityConfig {
                     configuration.setAllowCredentials(true);
                     return configuration;
                 }))
-//                .csrf(csrf -> csrf.disable()) // 🔥 CSRF disabled (but session authentication enforced)
-                .anonymous(anonymous -> anonymous.disable()) // 🔥 Completely disable anonymous access
+
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF for API endpoints
+
+//                .csrf(csrf -> csrf.disable()) //  CSRF disabled (but session authentication enforced)
+                .anonymous(anonymous -> anonymous.disable()) //  Completely disable anonymous access
                 .authorizeHttpRequests(auth -> auth
                         // Permit all static resources
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
-                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
+//                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
 
-                        // ✅ Require authentication for ALL APIs
-                        .requestMatchers("/api/v1/**").authenticated()
+                        //  Restrict ADMIN-ONLY APIs
+                        .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
+                                "/api/v1/actuator/**","/api/v1/content_block/**","/api/v1/web_page/**",
+                                "/api/v1/pageMetadata","/api/v1/slideContent/**","/api/v1/slide/**",
+                                "/api/v1/users/**","/actuator").hasRole("ADMIN")
 
-                        // ✅ Restrict ADMIN-ONLY APIs
-                        .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**").hasRole("ADMIN")
-
-                        .anyRequest().authenticated() // ✅ Require authentication for any other request
+                        .anyRequest().authenticated() // Require authentication for any other request
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -76,13 +79,13 @@ public class HttpSecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/admin_panel/logout")
                         .logoutSuccessUrl("/login?logout")
-                        .invalidateHttpSession(true) // 🔥 Ensures session is fully destroyed
+                        .invalidateHttpSession(true) // Ensures session is fully destroyed
                         .clearAuthentication(true)
-                        .deleteCookies("JSESSIONID") // 🔥 Deletes session cookies
+                        .deleteCookies("JSESSIONID") // Deletes session cookies
                         .permitAll()
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS) // 🔥 Forces session authentication for all requests
+                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS) // Forces session authentication for all requests
                         .invalidSessionUrl("/login?sessionExpired") // Redirect if session expires
                         .sessionFixation().newSession()
                 );

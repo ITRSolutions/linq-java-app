@@ -117,6 +117,8 @@ public class UserDTO {
 
         @NotBlank(message = "ZIP code is required.")
         private String zipCode;
+
+        private Boolean activateUser = false;
     }
 
     @Getter

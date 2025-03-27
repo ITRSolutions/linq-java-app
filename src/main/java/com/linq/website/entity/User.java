@@ -69,7 +69,7 @@ public class User {
     @JsonIgnore
     private String passwordResetRef;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    @Column(name = "activateUser", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean activateUser = false;
 
     private String updatedBy;

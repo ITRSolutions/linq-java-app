@@ -4,6 +4,16 @@
 
 <head>
     <th th:replace="admin_panel/header.html"></th>
+
+    <style>
+        .success {
+            color: green;
+        }
+
+        .fail {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,8 +78,8 @@
                                                 <th>Last Name</th>
                                                 <th>Email</th>
                                                 <th>Created</th>
-                                                <th>Updated</th>
-                                                <th>Verified</th>
+                                                <th>Email Ver.</th>
+                                                <th>Acc. status</th>
                                                 <th>Updated By</th>
                                                 <th></th>
                                             </tr>
@@ -158,8 +168,8 @@
                             <div class="col-md-6">
                                 <label>Activate User:</label>
                                 <select id="activateUser" class="form-control1 control3">
-                                    <option value="true">Male</option>
-                                    <option value="false">Female</option>
+                                    <option value="true">Activated</option>
+                                    <option value="false">Deactivate</option>
                                 </select>
                             </div>
                         </div>

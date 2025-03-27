@@ -68,7 +68,7 @@ public class MailService {
             message.setFrom(fromMail);
             message.setSubject(subject);
             message.setText(content, isHtml);
-            System.out.println("Sending email to: " + to);
+            System.out.println("Sending email to: " + to+" From: "+fromMail);
             javaMailSender.send(mimeMessage);
         } catch (MailException | MessagingException e) {
             throw new RuntimeException(e);
@@ -96,6 +96,11 @@ public class MailService {
     @Async
     public void sendActivationEmail(User user) {
         this.sendEmailFromTemplateSync(user, "/mail/activationEmail", "email.activation.title");
+    }
+
+    @Async
+    public void sendNewUserRegisterEmail(User user) {
+        this.sendEmailFromTemplateSync(user, "/mail/NewUserRegisterEmail", "email.registerUser.title");
     }
 
     @Async

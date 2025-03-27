@@ -7,6 +7,7 @@ import com.linq.website.entity.FormSubmission;
 import com.linq.website.service.FormSubmissionService;
 import com.linq.website.service.SlideContentService;
 import com.linq.website.service.UserService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,7 @@ public class FormSubmissionController {
     @Autowired
     private SlideContentService slideContentService;
 
+    @PermitAll
     @PostMapping()
     public ResponseEntity<SuccessResponse> submitForm( @RequestBody FormSubmissionDTO.Create dto) {
         service.saveSubmission(dto);

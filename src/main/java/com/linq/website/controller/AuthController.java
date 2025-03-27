@@ -9,6 +9,7 @@ import com.linq.website.service.MailService;
 import com.linq.website.service.UserService;
 import com.linq.website.utility.Helpers;
 import com.linq.website.utility.LoggedUser;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,7 @@ public class AuthController {
     @Autowired
     LoggedUser loggedUser;
 
+    @PermitAll
     // Register an account
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody UserDTO.CreateUser request) {
@@ -73,6 +75,7 @@ public class AuthController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "Account created successfully.", null));
     }
 
+    @PermitAll
     // Active email address
     @GetMapping("activate")
     public RedirectView activateAccount(@RequestParam(value = "key") String key) {
@@ -84,6 +87,7 @@ public class AuthController {
         return new RedirectView("/login?accountActive", true); // true makes it a redirect to the login page
     }
 
+    @PermitAll
     // Forgot password request
     @PostMapping("forgot-password")
     public ResponseEntity<?> forgotPassword(@Valid @RequestBody UserDTO.ForgetPassword request) {
@@ -111,6 +115,7 @@ public class AuthController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "The OTP code has been sent to your email.", null));
     }
 
+    @PermitAll
     // Verify OTP code
     @PostMapping("verify-otp-code")
     public ResponseEntity<?> verifyOTPCode(@Valid @RequestBody UserDTO.VerifyOTPCode request) {
@@ -156,6 +161,12 @@ public class AuthController {
         userService.updatePassword(loggedUser.getUpdatedByUserObj().getId(), hashPassword);
 
         return ResponseEntity.ok(new SuccessResponse<>(true, "Password updated successfully.", null));
+    }
+
+    @PermitAll
+    @GetMapping("register")
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Access forbidden");
     }
 
 }

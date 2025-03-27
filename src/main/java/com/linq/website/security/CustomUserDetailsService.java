@@ -27,6 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if (!user.getIsEmailVerified()) {
             throw new DisabledException("Your email is not verified. A verification email has been sent to you.");
+        } else if (!user.getActivateUser()) {
+            throw new DisabledException("Your account is not verified by the admin. Please wait for verification.");
         }
 
         // Map the single RoleType to a SimpleGrantedAuthority
