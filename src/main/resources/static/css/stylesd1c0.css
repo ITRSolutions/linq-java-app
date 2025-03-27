@@ -3,7 +3,7 @@
   --light-primary-color: #20385DB2;
   --secondary-color: orange;
   --dark-secondary-color: #DD9B02;
-  --regular-font: Arial, Helvetica, sans-serif;
+  --regular-font:  "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
 body {
@@ -13,6 +13,7 @@ body {
 
 .primary-text-color {
   color: var(--primary-color);
+
 }
 
 .secondary-text-color {
@@ -44,6 +45,7 @@ body {
 .logo-wrapper {
   /* background: white; */
   position: absolute;
+  margin: 6px 0 0 27px;
   top: 0px;
   height: 100px;
   width: 100px;
@@ -60,18 +62,25 @@ body {
 /* /logo Styles */
 /* navbar styles */
 .navbar {
-  height: 68px;
+  height: 90px;
 }
 
 /* /navbar styles */
 .carousel-control-prev,
 .carousel-control-next {
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   top: 50%;
   transform: translateY(-50%);
   border: 2px solid black;
   border-radius: 50%;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-size: 16px;
+}
+.carousel-indicators [data-bs-target]{
+  background-color: #20385D !important;
 }
 
 .carousel-control-prev {
@@ -142,7 +151,7 @@ body {
 }
 
 .health-card {
-  background-image: url('/image/health-card-bg.png');
+  background-image: url('../image/health-card-bg.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -210,7 +219,7 @@ body {
 .header-dropdown-btn::after {
   position: relative !important;
   top: 3px !important;
-  right: 0px !important;
+  right: 5px !important;
 }
 
 .header-link.active,
@@ -309,7 +318,9 @@ button {
 button.btn-with-arrow {
   width: 14rem;
   height: auto;
-  border: 2px solid var(--primary-color);
+  border: 0px solid var(--primary-color);
+  margin: 0 30px 0 0;
+
   border-radius: 30px;
 }
 
@@ -401,7 +412,7 @@ button:hover .button-text {
 }
 
 .oval-shape {
-  background-image: url('/image/oval-shape.png');
+  background-image: url('../image/oval-shape.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -592,11 +603,11 @@ button:hover .button-text {
 
 .company-footer,
 .team-header {
-  background-image: url('/image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 310px;
+  height: 235px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -605,7 +616,7 @@ button:hover .button-text {
 }
 
 .refer-friend {
-  background-image: url('/image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -629,7 +640,7 @@ button:hover .button-text {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: var(--dark-secondary-color);
+  /*  background-color: var(--dark-secondary-color);*/
   border-radius: 50%;
   left: -157px;
   top: -219px;
@@ -678,7 +689,7 @@ button:hover .button-text {
 
 /* investigators page style */
 .investigator-header {
-  background-image: url('/image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -700,7 +711,7 @@ button:hover .button-text {
 .testimonail-section {
   background-color: var(--primary-color);
   color: white;
-  padding: 100px 0px;
+  padding: 50px 0px;
 }
 
 .witness-pic {
@@ -742,7 +753,7 @@ button:hover .button-text {
 
 /* contact us page styles */
 .contact-header {
-  background-image: url('/image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -778,7 +789,7 @@ button:hover .button-text {
 
 /* login page styles */
 .login-credentials {
-  background: url('/image/01/WhatsApp-Image-2025-01-07-at-00.24.43_f57a1188.jpg');
+  background: url('../image/01/WhatsApp-Image-2025-01-07-at-00.24.43_f57a1188.jpg');
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
@@ -834,20 +845,20 @@ button:hover .button-text {
 .phase-card {
   border-radius: 10px;
   background: var(--primary-color);
-  height: 600px
+  height: 510px
 }
 
 .phase-card-header {
-  height: 300px;
+  height: 295px;
 }
 
 .phase-card-footer {
-  height: 300px;
+  height: 226px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 0px;
 }
 
 .step-card {
@@ -949,10 +960,12 @@ button:hover .button-text {
   overflow: hidden;
   z-index: 2;
   height: 130px;
+  border: 2px solid var(--primary-color);
+  padding-top: 36px !important;
 }
 
 .enroll-card::before {
-  background-image: url('/image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -994,6 +1007,7 @@ button:hover .button-text {
 
 .enroll-card:hover .title {
   font-style: italic;
+  color: #fff;
 }
 
 .enroll-card:hover .title::after {
@@ -1083,11 +1097,11 @@ button:hover .button-text {
 }
 
 .enroll-card .title {
-  color: #fff;
+  color: var(--primary-color);
   text-transform: uppercase;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 34px;
+  font-size: 20px;
+  line-height: 31px;
   /* margin-bottom: 10px; */
 }
 
@@ -1109,7 +1123,7 @@ button:hover .button-text {
   right: 0;
   bottom: 0;
   height: 1px;
-  background: #fff;
+  background: var(--primary-color);
   width: 0%;
   transition: 0.5s;
 }
@@ -1157,7 +1171,7 @@ button:hover .button-text {
 }
 
 .appreciation {
-  background-image: url('/image/01/Rectangle-611.png'); 
+  background-image: url('../image/01/Rectangle-611.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1230,9 +1244,9 @@ button:hover .button-text {
   width: 100px;
   height: 100%;
   background-image: linear-gradient(120deg,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0) 70%);
+  rgba(255, 255, 255, 0) 30%,
+  rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0) 70%);
   top: 0;
   left: -100px;
   opacity: 0.6;
@@ -1266,7 +1280,7 @@ button:hover .button-text {
 }
 
 .refer-friend-page {
-  background-image: url('/image/12/linq-research.png'); 
+  background-image: url('../image/12/linq-research.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1280,13 +1294,13 @@ button:hover .button-text {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(8, 40, 80, 0.5); 
-  z-index: 1;  
+  background-color: rgba(8, 40, 80, 0.5);
+  z-index: 1;
 }
 
 .content {
   position: relative;
-  z-index: 2;  
+  z-index: 2;
 } */
 
 @media only screen and (max-width: 600px) {
@@ -1297,6 +1311,14 @@ button:hover .button-text {
 
   .p-5 {
     padding: 2rem !important;
+  }
+
+  .pt-0 {
+    padding-top: 0 !important;
+  }
+
+  .pb-0 {
+    padding-bottom: 0 !important;
   }
 
   .txt-right {
@@ -1329,7 +1351,7 @@ button:hover .button-text {
   }
 
   .overlay {
-    left: 51% !important; 
+    left: 51% !important;
     width: 100% !important;
   }
 
@@ -1347,8 +1369,8 @@ button:hover .button-text {
     text-align: center;
   }
 
-  .imageBox { 
-    width: 360px !important; 
+  .imageBox {
+    width: 360px !important;
   }
 
   .containerBox {
@@ -1356,20 +1378,20 @@ button:hover .button-text {
   }
 
   .investigator-img {
-    height: 260px !important; 
-}
+    height: 260px !important;
+  }
 
-.rm-pb-mb {
-  padding-bottom: 0px !important;
-}
+  .rm-pb-mb {
+    padding-bottom: 0px !important;
+  }
 
-.rm-mb-mb {
-  margin-bottom: 0px !important;
-}
+  .rm-mb-mb {
+    margin-bottom: 0px !important;
+  }
 
-.rm-mt-mb {
-  margin-top: 0px !important;
-}
+  .rm-mt-mb {
+    margin-top: 0px !important;
+  }
 }
 
 .psuedoText {
@@ -1410,7 +1432,7 @@ button:hover .button-text {
 .meet-founder {
   position: relative;
   display: inline-block;
-} 
+}
 
 .image {
   display: block;
@@ -1504,4 +1526,8 @@ button:hover .button-text {
 
 .buttonBox:hover {
   background-color: #1a2c49;
+}
+
+.facility-fnt {
+  font-size: 0.9rem;
 }
