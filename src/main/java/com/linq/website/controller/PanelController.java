@@ -5,6 +5,8 @@ import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.UserService;
 import com.linq.website.utility.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,11 +28,14 @@ public class PanelController {
     @Autowired
     DynamicPageService dynamicPageService;
 
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     @GetMapping({"/", "/{slug}"})
     public String getPage(@PathVariable(required = false) String slug, Model model,
                           @AuthenticationPrincipal CustomUserDetails userDetails) {
         if (slug == null || slug.isEmpty()) {
-            slug = "dashboard";
+            slug = "dashboard.html";
         }
 
         try {
@@ -38,6 +43,11 @@ public class PanelController {
             if (userDetails == null) {
                 // Redirect or handle the session timeout scenario
                 return "redirect:/login?sessionExpired";
+            }
+            boolean pageFound = templateExists("admin_panel/" + slug);
+            System.out.println("templateExists: "+slug+" - "+pageFound);
+            if (!pageFound) {
+                return "redirect:/admin_panel/";
             }
 
             // Access the username of the logged-in user
@@ -67,6 +77,12 @@ public class PanelController {
             return "redirect:/error_404";
         }
 
+    }
+
+    private boolean templateExists(String templateName) {
+        String templatePath = "classpath:/templates/" + templateName;
+        Resource resource = resourceLoader.getResource(templatePath);
+        return resource.exists();
     }
 
     @GetMapping("/test")

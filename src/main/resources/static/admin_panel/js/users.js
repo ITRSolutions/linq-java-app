@@ -18,7 +18,7 @@ let totalUsers = 0;
         $('#state').val(selected.state);
         $('#zipCode').val(selected.zipCode);
         $('#country').val(selected.country);
-        $('#activateUser').val(selected.activateUser);
+        $('#activateUser').val(selected.activateUser+"");
 
         const userId = $(this).data('id');
         $('#updateUserRow').val(userId);
@@ -38,7 +38,7 @@ let totalUsers = 0;
         // Function to fetch and display users with pagination
         function loadUsers(page) {
           $.ajax({
-            url: `http://localhost:8090/api/v1/users?page=${page}`,
+            url: `/api/v1/users?page=${page}`,
             type: 'GET',
             success: function(response) {
               const users = response.data.data;
@@ -69,8 +69,8 @@ let totalUsers = 0;
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>${formatDate(user.createdAt)}</td>
-                    <td>${formatDate(user.updatedAt)}</td>
-                    <td>${user.isEmailVerified ? 'Yes' : 'No'}</td>
+                    <td>${user.isEmailVerified ? '<span class="success">Verified</span>' : '<span class="fail">Unverified</span>'}</td>
+                    <td>${user.activateUser ? '<span class="success">Activated</span>' : '<span  class="fail">Deactivated</span>'}</td>
                     <td>${user.updatedBy ? user.updatedBy  : 'NA'}</td>
                     <td>
                       <i class="fa fa-edit text-success text-active updateUserBtn" data-id="${user.id}"></i><br>
@@ -117,7 +117,7 @@ let totalUsers = 0;
             city: $('#city').val(),
             state: $('#state').val(),
             zipCode: $('#zipCode').val(),
-            country: $('#country').val()
+            country: $('#country').val(),
             activateUser: $('#activateUser').val()
         };
 
@@ -125,7 +125,7 @@ let totalUsers = 0;
 
         // Send the PUT request to update the user
         $.ajax({
-            url: `http://localhost:8090/api/v1/users/${userId}`,
+            url: `/api/v1/users/${userId}`,
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(updatedData),
@@ -133,8 +133,13 @@ let totalUsers = 0;
                     xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
                 },
             success: function(response) {
+                var searchInput = $("#searchInput").val();
+                if(searchInput) {
+                    searchUsers(searchInput);
+                } else {
+                    loadUsers(currentPage);
+                }
                 alert('User updated successfully!');
-                loadUsers(currentPage);  // Reload users after updating
                 $('#updateUser').modal('hide');  // Close the modal
             },
             error: function() {
@@ -159,13 +164,14 @@ let totalUsers = 0;
                 }
 
                 $.ajax({
-                    url: `http://localhost:8090/api/v1/users/search?searchTerm=${searchTerm}`,
+                    url: `/api/v1/users/search?searchTerm=${searchTerm}`,
                     type: 'GET',
                     success: function(response) {
                         if (response.status) {
                             const users = response.data;
                             let rows = '';
                             let rowCount = users.length;
+                            userTable = users;
 
                             // Build the table rows
                             if (rowCount > 0) {
@@ -200,7 +206,7 @@ let totalUsers = 0;
                     if (confirmDelete) {
                         // Send DELETE request to the API
                         $.ajax({
-                            url: `http://localhost:8090/api/v1/users/${userId}`, // Endpoint with the user ID
+                            url: `/api/v1/users/${userId}`, // Endpoint with the user ID
                             type: 'DELETE',
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());

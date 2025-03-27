@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New User Registered</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .content p {
+            margin: 12px 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        /* Mobile View Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .content {
+                font-size: 13px;
+            }
+
+            .footer {
+                font-size: 11px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>New User Registered</h1>
+    </div>
+
+    <div class="content">
+        <p>Dear Admin,</p>
+        <p>A new user has registered on your platform. Below are the details:</p>
+
+        <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+        <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+        <p><strong>Contact Number:</strong> <span th:text="${user.contactNumber}"></span></p>
+
+        <p>Please review the registration and take necessary actions.</p>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center;" th:utext="#{email.footer(${year})}"> footer </p>
+    </div>
+</div>
+</body>
+</html>
