@@ -67,235 +67,235 @@
         </div>
 
         <div class="container-xxl">
-        <!--2nd Content Block Dynamic circular cards -->
-        <div class="row circular-card-wrapper gap-5 gap-lg-0" th:each="contentBlock : ${contentBlock2}">
+            <!--2nd Content Block Dynamic circular cards -->
+            <div class="row circular-card-wrapper gap-5 gap-lg-0" th:each="contentBlock : ${contentBlock2}">
 
-            <div class="col-md-6 col-lg-4" th:each="slide : ${contentBlock.slide}">
-                <div class="card border-0 text-center circular-card">
-                    <img src="image/12/AdobeStock_502590469-scaled.jpg"
-                         class="circular-card-img object-fit-cover" alt="..."
-                         th:src="${@webUtils.validateString(slide.slideContents[0].content)}"/>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold mt-2" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Headline </h5>
-                        <p class="card-text fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
-                        <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank"
-                           class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Btn
-                            text</a>
+                <div class="col-md-6 col-lg-4" th:each="slide : ${contentBlock.slide}">
+                    <div class="card border-0 text-center circular-card">
+                        <img src="image/12/AdobeStock_502590469-scaled.jpg"
+                             class="circular-card-img object-fit-cover" alt="..."
+                             th:src="${@webUtils.validateString(slide.slideContents[0].content)}"/>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mt-2" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Headline </h5>
+                            <p class="card-text fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
+                            <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank"
+                               class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Btn
+                                text</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--2nd Content Block Dynamic circular cards End-->
+            <!--2nd Content Block Dynamic circular cards End-->
 
-        <!-- About Linq Research -->
-        <div class="row my-5">
-            <div class="col-md-6 d-flex align-items-center justify-content-center">
-                <div id="carouselExample" class="carousel slide owners-carousel">
+            <!-- About Linq Research -->
+            <div class="row my-5">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <div id="carouselExample" class="carousel slide owners-carousel">
 
-                    <!-- 3rd Dynamic owner image-->
-                    <div class="carousel-inner" th:each="contentBlock : ${contentBlock3}">
-                        <div th:each="slide, iterStat : ${contentBlock.slide}">
-                            <div class="carousel-item" th:classappend="${iterStat.index == 0 ? ' active' : ''}">
-                                <div class="position-relative m-5">
-                                    <div class="position-absolute oval-shape d-flex flex-column align-items-center justify-content-center pt-3">
-                                        <h4 class="text-center fw-bold mb-2"
-                                            th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Owner name </h4>
-                                        <p th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">Position</p>
+                        <!-- 3rd Dynamic owner image-->
+                        <div class="carousel-inner" th:each="contentBlock : ${contentBlock3}">
+                            <div th:each="slide, iterStat : ${contentBlock.slide}">
+                                <div class="carousel-item" th:classappend="${iterStat.index == 0 ? ' active' : ''}">
+                                    <div class="position-relative m-5">
+                                        <div class="position-absolute oval-shape d-flex flex-column align-items-center justify-content-center pt-3">
+                                            <h4 class="text-center fw-bold mb-2"
+                                                th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Owner name </h4>
+                                            <p th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">Position</p>
+                                        </div>
+                                        <img src="image/owner.svg" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
+                                             style="height: 412px;"/>
                                     </div>
-                                    <img src="image/owner.svg" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
-                                         style="height: 412px;"/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Dynamic owner image end-->
+                        <!--Dynamic owner image end-->
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <!--            4th About LINQ RESEARCH! start -->
-            <div class="col-md-6" th:each="contentBlock : ${contentBlock4}">
-                <div class="col-md-12 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5"
-                     th:each="slide: ${contentBlock.slide}">
-                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
-                        th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
-                        Headline
-                    </h5>
-                    <p class="card-text fw-medium wow animate__animated animate__fadeInUp"
-                       th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
-                        Description
-                    </p>
-                    <div class="row g-5">
-                        <div class="col-4">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <h3 class="text-warning fw-bold fs-1 count"
-                                    th:attr="data-count=${slide.slideContents[2].content != null ? slide.slideContents[2].content : 10}"
-                                    th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">0+</h3>
-                                <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[5].content)}">
-                                    Years of <br/>
-                                    Experience
-                                </h5>
+                <!--            4th About LINQ RESEARCH! start -->
+                <div class="col-md-6" th:each="contentBlock : ${contentBlock4}">
+                    <div class="col-md-12 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5"
+                         th:each="slide: ${contentBlock.slide}">
+                        <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
+                            th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
+                            Headline
+                        </h5>
+                        <p class="card-text fw-medium wow animate__animated animate__fadeInUp"
+                           th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
+                            Description
+                        </p>
+                        <div class="row g-5">
+                            <div class="col-4">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <h3 class="text-warning fw-bold fs-1 count"
+                                        th:attr="data-count=${slide.slideContents[2].content != null ? slide.slideContents[2].content : 10}"
+                                        th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">0+</h3>
+                                    <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[5].content)}">
+                                        Years of <br/>
+                                        Experience
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <h3 class="text-warning fw-bold fs-1 count"
+                                        th:attr="data-count=${@webUtils.validateString(slide.slideContents[3].content)}"
+                                        th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">0+</h3>
+                                    <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[6].content)}">
+                                        Successful <br/>
+                                        Trials
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <h3 class="text-warning fw-bold fs-1 count exception"
+                                        th:attr="data-count=${@webUtils.validateString(slide.slideContents[4].content)}"
+                                        th:utext="${@webUtils.validateString(slide.slideContents[4].content)}">0k+</h3>
+                                    <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[7].content)}">
+                                        Enrolled <br/>
+                                        Subjects
+                                    </h5>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <h3 class="text-warning fw-bold fs-1 count"
-                                    th:attr="data-count=${@webUtils.validateString(slide.slideContents[3].content)}"
-                                    th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">0+</h3>
-                                <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[6].content)}">
-                                    Successful <br/>
-                                    Trials
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <h3 class="text-warning fw-bold fs-1 count exception"
-                                    th:attr="data-count=${@webUtils.validateString(slide.slideContents[4].content)}"
-                                    th:utext="${@webUtils.validateString(slide.slideContents[4].content)}">0k+</h3>
-                                <h5 class="fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[7].content)}">
-                                    Enrolled <br/>
-                                    Subjects
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-with-arrow m-auto"
-                            th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(slide.slideContents[9].content)} + '&quot;, &quot;_blank&quot;);'">
+                        <button class="btn-with-arrow m-auto"
+                                th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(slide.slideContents[9].content)} + '&quot;, &quot;_blank&quot;);'">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
-                        <span class="button-text" th:utext="${@webUtils.validateString(slide.slideContents[8].content)}">Learn More</span>
-                    </button>
+                            <span class="button-text" th:utext="${@webUtils.validateString(slide.slideContents[8].content)}">Learn More</span>
+                        </button>
+                    </div>
                 </div>
+                <!--  4th About LINQ RESEARCH! end -->
             </div>
-            <!--  4th About LINQ RESEARCH! end -->
-        </div>
 
-        <!-- 5th Enrollment Options Section -->
-        <div class="row my-5" th:each="contentBlock : ${contentBlock5}">
-            <div th:each="slide: ${contentBlock.slide}" class="row">
-                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5">
-                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
-                        th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
-                        Header
-                    </h5>
-                    <p class="card-text fw-medium wow animate__animated animate__fadeInUp"
-                       th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
-                        Paragrah
-                    </p>
-                    <a th:href="${@webUtils.validateString(slide.slideContents[2].content)}" target="_blank"
-                       class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Participate
-                        Now</a>
-                </div>
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="image/nurse.svg" th:src="${@webUtils.validateString(slide.slideContents[4].content)}" alt=""/>
-                </div>
-            </div>
-        </div>
-        <!-- 5th Enrollment Options Section End -->
-
-        <!-- 6th health cards -->
-        <div class="row health-card-wrapper mt-5 gap-3 gap-md-0" th:each="contentBlock : ${contentBlock6}">
-            <div class="col-md-3" th:each="slide: ${contentBlock.slide}">
-                <div class="card border-0 text-center health-card">
-                    <div class="health-card-img-wrapper d-flex align-items-center justify-content-center">
-                        <img src="image/01/screen_2x.webp" th:src="${@webUtils.validateString(slide.slideContents[0].content)}"
-                             class="health-card-img" alt="..."/>
-                        <h5 class="card-title fw-bold mt-2 text-white z-2 position-absolute top-50 start-50 translate-middle"
-                            th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
+            <!-- 5th Enrollment Options Section -->
+            <div class="row my-5" th:each="contentBlock : ${contentBlock5}">
+                <div th:each="slide: ${contentBlock.slide}" class="row">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5">
+                        <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
+                            th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
                             Header
                         </h5>
+                        <p class="card-text fw-medium wow animate__animated animate__fadeInUp"
+                           th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
+                            Paragrah
+                        </p>
+                        <a th:href="${@webUtils.validateString(slide.slideContents[2].content)}" target="_blank"
+                           class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Participate
+                            Now</a>
                     </div>
-                    <div class="card-body z-3 text-white p-0">
-                        <div class="health-card-content">
-                            <p class="card-text fw-medium mb-5 w-100 w-md-75 mx-auto text-center px-2 px-md-0"
-                               th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">
-                                Paragraph
-                            </p>
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                        <img src="image/nurse.svg" th:src="${@webUtils.validateString(slide.slideContents[4].content)}" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <!-- 5th Enrollment Options Section End -->
+
+            <!-- 6th health cards -->
+            <div class="row health-card-wrapper mt-5 gap-3 gap-md-0" th:each="contentBlock : ${contentBlock6}">
+                <div class="col-md-3" th:each="slide: ${contentBlock.slide}">
+                    <div class="card border-0 text-center health-card">
+                        <div class="health-card-img-wrapper d-flex align-items-center justify-content-center">
+                            <img src="image/01/screen_2x.webp" th:src="${@webUtils.validateString(slide.slideContents[0].content)}"
+                                 class="health-card-img" alt="..."/>
+                            <h5 class="card-title fw-bold mt-2 text-white z-2 position-absolute top-50 start-50 translate-middle"
+                                th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
+                                Header
+                            </h5>
+                        </div>
+                        <div class="card-body z-3 text-white p-0">
+                            <div class="health-card-content">
+                                <p class="card-text fw-medium mb-5 w-100 w-md-75 mx-auto text-center px-2 px-md-0"
+                                   th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">
+                                    Paragraph
+                                </p>
+                            </div>
+                        </div>
+                        <div class="health-card-footer">
+                            <!-- button -->
+                            <button class="button" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"
+                                    th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(slide.slideContents[4].content)} + '&quot;, &quot;_blank&quot;);'">
+                                Learn More
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div class="health-card-footer">
-                        <!-- button -->
-                        <button class="button" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"
-                                th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(slide.slideContents[4].content)} + '&quot;, &quot;_blank&quot;);'">
-                            Learn More
-                            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
+                </div>
+
+            </div>
+
+            <!-- Testimonial Section -->
+            <div class="row testimonail-section mt-5">
+                <div class="col-md-10 m-auto testimonail-wrapper">
+                    <h4 class="text-center text-dark regular-font fw-bold testimonial">Testimonials</h4>
+                    <p class="text-center text-dark regular-font fw-medium fs-5">See what people are saying</p>
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active"
+                                    aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                        </div>
+
+                        <!-- 7th dynamic Testimonial Section -->
+                        <div class="carousel-inner" th:each="contentBlock : ${contentBlock7}">
+                            <div th:each="slide, stat: ${contentBlock.slide}">
+                                <div class="carousel-item" th:classappend="${stat.index == 0 ? ' active' : ''}">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img src="image/12/AdobeStock_529105476-scaled.jpg"
+                                                 th:src="${@webUtils.validateString(slide.slideContents[0].content)}" class="witness-pic"
+                                                 style="object-position:left"/>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="text-dark">
+                                                <q th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Review Txt
+                                                </q>
+                                            </p>
+                                            <h6 class="text-dark" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">
+                                                Dr. Emily Carter, Medical Researcher
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 7th dynamic Testimonial Section End -->
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <!-- Testimonial Section -->
-        <div class="row testimonail-section mt-5">
-            <div class="col-md-10 m-auto testimonail-wrapper">
-                <h4 class="text-center text-dark regular-font fw-bold testimonial">Testimonials</h4>
-                <p class="text-center text-dark regular-font fw-medium fs-5">See what people are saying</p>
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                    </div>
-
-                    <!-- 7th dynamic Testimonial Section -->
-                    <div class="carousel-inner" th:each="contentBlock : ${contentBlock7}">
-                        <div th:each="slide, stat: ${contentBlock.slide}">
-                            <div class="carousel-item" th:classappend="${stat.index == 0 ? ' active' : ''}">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="image/12/AdobeStock_529105476-scaled.jpg"
-                                             th:src="${@webUtils.validateString(slide.slideContents[0].content)}" class="witness-pic"
-                                             style="object-position:left"/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="text-dark">
-                                            <q th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Review Txt
-                                            </q>
-                                        </p>
-                                        <h6 class="text-dark" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">
-                                            Dr. Emily Carter, Medical Researcher
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 7th dynamic Testimonial Section End -->
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 
