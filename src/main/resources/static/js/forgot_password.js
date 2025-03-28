@@ -126,7 +126,7 @@ $(document).on('click', '#submitButton', function () {
         // Step 4: Send new password to the server to update
         $.ajax({
             url: '/api/v1/auth/set-password', // Replace with your server endpoint
-            type: 'POST',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
                 ref: otpRef,

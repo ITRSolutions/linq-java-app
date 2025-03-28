@@ -12,7 +12,16 @@ let totalUsers = 0;
         $('#firstName').val(selected.firstName);
         $('#lastName').val(selected.lastName);
         $('#contactNumber').val(selected.contactNumber);
-        $('#dob').val(selected.dob);
+
+        let dob = selected.dob;
+        if(dob.includes("/")) {
+            let parts = dob.split('/');
+            let formattedDob = parts[2] + '-' + parts[0] + '-' + parts[1];
+            $("#dob").val(formattedDob);
+        } else {
+            $('#dob').val(dob);
+        }
+
         $('#gender').val(selected.gender);
         $('#city').val(selected.city);
         $('#state').val(selected.state);

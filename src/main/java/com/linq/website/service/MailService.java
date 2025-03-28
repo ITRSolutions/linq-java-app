@@ -19,6 +19,7 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 @Service
 public class MailService {
@@ -99,8 +100,8 @@ public class MailService {
     }
 
     @Async
-    public void sendNewUserRegisterEmail(User user) {
-        this.sendEmailFromTemplateSync(user, "/mail/NewUserRegisterEmail", "email.registerUser.title");
+    public void sendNewUserRegisterEmail(User user, User admin) {
+        this.sendEmailToAdmin(user, admin, "/mail/NewUserRegisterEmail", "email.registerUser.title", 2);
     }
 
     @Async
@@ -115,21 +116,25 @@ public class MailService {
 
     @Async
     public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        this.sendEmailFromTemplateContact(dto, user, "/mail/contactUsEmail", "contact.title");
+        this.sendEmailToAdmin(dto, user, "/mail/contactUsEmail", "contact.title", 1);
     }
 
-    private void sendEmailFromTemplateContact(ContactUsDTO dto, User user, String templateName, String titleKey) {
-        if (user.getEmail() == null) {
+    private void sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
+        if (admin.getEmail() == null) {
             return;
         }
         Context context = new Context(Locale.ENGLISH);
-        context.setVariable(USER, user);
-        context.setVariable(YEAR, currentYear);;
-        context.setVariable(CONTACT, dto);
+        context.setVariable(YEAR, currentYear);
+        if(type == 1) {
+            context.setVariable(USER, admin);
+            context.setVariable(CONTACT, (ContactUsDTO)dto);
+        } else if (type == 2) {
+            context.setVariable(USER, (User)dto);
+        }
         context.setVariable(BASE_URL, baseUrl + "/api/v1/forms");
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
-        this.sendEmailSync(user.getEmail(), subject, content, false, true);
+        this.sendEmailSync(admin.getEmail(), subject, content, false, true);
     }
 }
 

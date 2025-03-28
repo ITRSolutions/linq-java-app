@@ -36,6 +36,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Custom query method to find a user by password reset ref
     Optional<User> findByPasswordResetRef(String passwordResetRef);
 
+    Optional<User> findByPasswordResetOtp(String OtpCode);
+
     List<User> findByRole(RoleType role);
 
     // Search users by first name, last name, or email

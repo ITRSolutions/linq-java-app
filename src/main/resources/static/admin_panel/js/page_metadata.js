@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
 //--------------Update form Start----------------------
-    $('#pageMetaDataForm form').on('submit', function(event) {
+    $('#pageMetaDataForm').on('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
         // Collect form data
@@ -155,4 +155,58 @@ $(document).ready(function() {
         return date.toLocaleString();
     }
 
+//--------------Display Company metaData start----------------------
+        $.ajax({
+            url: '/api/v1/pageMetadata/company', // API endpoint to fetch company metadata
+            type: 'GET', // HTTP method
+            success: function(response) {
+                if (response.status) {
+                    // Populate the form with the fetched data
+                    var data = response.data;
+
+                    // Set the form fields with the fetched data
+                    $('input[name="companyName"]').val(data.companyName);
+                    $('input[name="joinCompanyDesc"]').val(data.joinCompanyDesc);
+                    $('input[name="participateNow"]').val(data.participateNowText);
+                } else {
+                    // Handle if the response is not successful
+                    $('#error-message1').text('Failed to load company data.').show();
+                }
+            },
+            error: function(xhr, status, error) {
+                // If there is an error in the request, display an error message
+                $('#error-message1').text('Error fetching company data: ' + error).show();
+            }
+        });
+
+//--------------Update Company metaData start----------------------
+    // Attach a submit event to the form
+    $('#companyMetadataForm').submit(function(event) {
+        event.preventDefault();  // Prevent the form from submitting normally
+
+        // Get the form data
+        var formData = {
+            companyName: $('input[name="companyName"]').val(),
+            joinCompanyDesc: $('input[name="joinCompanyDesc"]').val(),
+            participateNowText: $('input[name="participateNow"]').val()
+        };
+
+        // Make an AJAX PUT request
+        $.ajax({
+            url: '/api/v1/pageMetadata/company', // Your API endpoint
+            type: 'PUT', // HTTP method
+            contentType: 'application/json', // Sending JSON data
+            data: JSON.stringify(formData), // Convert the data to JSON string
+            success: function(response) {
+                // If the request is successful, show success message
+                $('#success-message1').text(response.message).show();
+                $('#error-message1').hide();
+            },
+            error: function(xhr, status, error) {
+                // If the request fails, show error message
+                $('#error-message1').text('Error updating company data: ' + error).show();
+                $('#success-message1').hide();
+            }
+        });
+    });
 });

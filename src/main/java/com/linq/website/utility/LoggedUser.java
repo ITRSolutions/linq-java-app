@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLOutput;
+
 @Component
 public class LoggedUser {
 
@@ -15,11 +17,16 @@ public class LoggedUser {
     private UserRepository userRepository;
 
     public User getUpdatedByUserObj() {
-        // Fetch the authenticated user
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        // Get the User object using the username
-        return userRepository.findByEmailIgnoreCase(username)
-                .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
+        try{
+            // Fetch the authenticated user
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username = userDetails.getUsername();
+            // Get the User object using the username
+            return userRepository.findByEmailIgnoreCase(username)
+                    .orElseThrow(() -> new RuntimeException("User not found. Please re-login"));
+        } catch (RuntimeException ex) {
+            System.out.println("User login Exception: "+ex);
+            return null;
+        }
     }
 }

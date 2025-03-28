@@ -170,23 +170,22 @@ public class UserService {
             return; // No admins found
         }
 
-        for (User user : admins) {
+        for (User admin : admins) {
             try {
                 switch (stat) {
                     case 1:
-                        mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, user);
+                        mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
                         break;
 
                     case 2:
-                        mailService.sendNewUserRegisterEmail((User) obj);
+                        mailService.sendNewUserRegisterEmail((User) obj, admin);
                         break;
                 }
             } catch (Exception e) {
-                LoggerFactory.getLogger(getClass()).error("Failed to send email to admin: " + user.getEmail(), e);
+                LoggerFactory.getLogger(getClass()).error("Failed to send email to admin: " + admin.getEmail(), e);
             }
         }
     }
-
 
     // Search for users by a search term (could be firstName, lastName, or email)
     public List<User> searchUsers(String searchTerm) {
@@ -200,4 +199,5 @@ public class UserService {
     public long getTotalUnverifiedUser() {
         return userRepository.countUnverifiedUsers();
     }
+
 }

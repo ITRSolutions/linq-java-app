@@ -3,8 +3,11 @@ package com.linq.website.config;
 import com.linq.website.filter.EmailIsVerifiedFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -60,13 +63,13 @@ public class HttpSecurityConfig {
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
-//                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
+                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
 
                         //  Restrict ADMIN-ONLY APIs
                         .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
                                 "/api/v1/actuator/**","/api/v1/content_block/**","/api/v1/web_page/**",
                                 "/api/v1/pageMetadata","/api/v1/slideContent/**","/api/v1/slide/**",
-                                "/api/v1/users/**","/actuator").hasRole("ADMIN")
+                                "/api/v1/users/**","/actuator/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated() // Require authentication for any other request
                 )
@@ -94,6 +97,22 @@ public class HttpSecurityConfig {
 //                .headers(headers -> headers
 //                        .frameOptions().sameOrigin() // Allows framing from the same origin
 //                );
+
+        return http.build();
+    }
+
+    @Bean
+    @Order(1)
+    public SecurityFilterChain actuatorSecurity(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher(EndpointRequest.toAnyEndpoint()) // Applies only to actuator endpoints
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(EndpointRequest.to("health", "info")).permitAll() // Public access
+                        .requestMatchers(EndpointRequest.to("metrics", "env")).hasRole("ADMIN") // Protected
+                        .anyRequest().denyAll() // Deny any other actuator endpoints if accessed
+                )
+                .httpBasic(Customizer.withDefaults()) // Basic auth for protected endpoints
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // No session
 
         return http.build();
     }

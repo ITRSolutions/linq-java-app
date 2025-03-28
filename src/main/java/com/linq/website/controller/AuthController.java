@@ -21,6 +21,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
+@PermitAll
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -36,7 +37,7 @@ public class AuthController {
     @Autowired
     LoggedUser loggedUser;
 
-    @PermitAll
+
     // Register an account
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody UserDTO.CreateUser request) {
@@ -75,7 +76,6 @@ public class AuthController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "Account created successfully.", null));
     }
 
-    @PermitAll
     // Active email address
     @GetMapping("activate")
     public RedirectView activateAccount(@RequestParam(value = "key") String key) {
@@ -87,7 +87,6 @@ public class AuthController {
         return new RedirectView("/login?accountActive", true); // true makes it a redirect to the login page
     }
 
-    @PermitAll
     // Forgot password request
     @PostMapping("forgot-password")
     public ResponseEntity<?> forgotPassword(@Valid @RequestBody UserDTO.ForgetPassword request) {
@@ -115,7 +114,6 @@ public class AuthController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "The OTP code has been sent to your email.", null));
     }
 
-    @PermitAll
     // Verify OTP code
     @PostMapping("verify-otp-code")
     public ResponseEntity<?> verifyOTPCode(@Valid @RequestBody UserDTO.VerifyOTPCode request) {
@@ -142,7 +140,6 @@ public class AuthController {
     }
 
     // Set new password
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("set-password")
     public ResponseEntity<?> setPassword(@Valid @RequestBody UserDTO.SetPassword request) {
 
@@ -154,16 +151,34 @@ public class AuthController {
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
 
+        Optional<User> loggedUserObj = Optional.ofNullable(loggedUser.getUpdatedByUserObj());
+        long loggedUserId = 0;
+        Optional<User> availableAccount = Optional.empty();
+        if(loggedUserObj.isPresent()) {
+            loggedUserId = loggedUserObj.get().getId();
+        } else {
+            // Find account using ref
+            String ref = request.getRef().isEmpty() ? "!1`|" : request.getRef();
+            availableAccount = userService.findByPasswordResetRef(ref);
+            if (availableAccount.isEmpty()) {
+                Map<String, String[]> errors = new HashMap<>();
+                errors.put("credentials", new String[]{"Invalid reference code."});
+                ErrorResponse<Map<String, String[]>> errorResponse = new ErrorResponse<>("invalid data.", errors);
+                return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        long userId = availableAccount.isPresent() ? availableAccount.get().getId() : (loggedUserId > 0 ? loggedUserId : 0);
         // Generate hash password
         String hashPassword = Helpers.generateEncryptedPassword(request.getPassword());
 
         // Update new password & make password reset ref null
-        userService.updatePassword(loggedUser.getUpdatedByUserObj().getId(), hashPassword);
+        userService.updatePassword(userId, hashPassword);
+        userService.updatePasswordResetRef(userId, "");
 
         return ResponseEntity.ok(new SuccessResponse<>(true, "Password updated successfully.", null));
     }
 
-    @PermitAll
     @GetMapping("register")
     public ResponseEntity<String> index() {
         return ResponseEntity.ok("Access forbidden");
