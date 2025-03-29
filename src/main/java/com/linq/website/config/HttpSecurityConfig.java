@@ -63,7 +63,7 @@ public class HttpSecurityConfig {
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
-                        .requestMatchers("/api/v1/auth/**").permitAll() // Allow authentication APIs
+                        .requestMatchers("/api/v1/auth/**","/api/v1/logs").permitAll() // Allow authentication APIs
 
                         //  Restrict ADMIN-ONLY APIs
                         .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
@@ -101,21 +101,21 @@ public class HttpSecurityConfig {
         return http.build();
     }
 
-    @Bean
-    @Order(1)
-    public SecurityFilterChain actuatorSecurity(HttpSecurity http) throws Exception {
-        http
-                .securityMatcher(EndpointRequest.toAnyEndpoint()) // Applies only to actuator endpoints
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(EndpointRequest.to("health", "info")).permitAll() // Public access
-                        .requestMatchers(EndpointRequest.to("metrics", "env")).hasRole("ADMIN") // Protected
-                        .anyRequest().denyAll() // Deny any other actuator endpoints if accessed
-                )
-                .httpBasic(Customizer.withDefaults()) // Basic auth for protected endpoints
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // No session
-
-        return http.build();
-    }
+//    @Bean
+//    @Order(1)
+//    public SecurityFilterChain actuatorSecurity(HttpSecurity http) throws Exception {
+//        http
+//                .securityMatcher(EndpointRequest.toAnyEndpoint()) // Applies only to actuator endpoints
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers(EndpointRequest.to("health", "info")).permitAll() // Public access
+//                        .requestMatchers(EndpointRequest.to("metrics", "env")).hasRole("ADMIN") // Protected
+//                        .anyRequest().denyAll() // Deny any other actuator endpoints if accessed
+//                )
+//                .httpBasic(Customizer.withDefaults()) // Basic auth for protected endpoints
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // No session
+//
+//        return http.build();
+//    }
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {

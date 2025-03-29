@@ -1,0 +1,431 @@
+2025-03-29T01:22:08.235+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:22:08.235+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:22:09.727+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:22:09.728+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:22:09.809+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:22:10.154+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:22:10.161+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:22:10.183+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-03-29T01:22:10.190+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6078d3f7
+2025-03-29T01:22:10.190+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-03-29T01:22:10.192+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:22:10.192+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:22:10.192+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:22:10.850+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:22:13.347+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 5.202 seconds (process running for 575.832)
+2025-03-29T01:22:28.310+05:30  INFO 23884 --- [LINQ] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-03-29T01:22:28.314+05:30  INFO 23884 --- [LINQ] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-03-29T01:22:28.488+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:22:28.488+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:22:29.377+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:22:29.377+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:22:29.412+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:22:29.576+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:22:29.580+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:22:29.595+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-03-29T01:22:29.600+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a737792
+2025-03-29T01:22:29.600+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-03-29T01:22:29.603+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:22:29.603+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:22:29.604+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:22:29.995+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:22:31.562+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 3.122 seconds (process running for 594.046)
+2025-03-29T01:22:44.405+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:22:44.638+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-5] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:22:46.787+05:30  INFO 23884 --- [LINQ] [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-03-29T01:22:46.794+05:30  INFO 23884 --- [LINQ] [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2025-03-29T01:22:47.031+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:22:47.031+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:22:48.153+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:22:48.154+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:22:48.199+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:22:48.400+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:22:48.407+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:22:48.427+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2025-03-29T01:22:48.436+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4add1ce3
+2025-03-29T01:22:48.436+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2025-03-29T01:22:48.439+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:22:48.439+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:22:48.441+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:22:48.844+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:22:51.054+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 4.078 seconds (process running for 613.538)
+2025-03-29T01:23:01.357+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:47:00.553+05:30  INFO 23884 --- [LINQ] [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2025-03-29T01:47:00.563+05:30  INFO 23884 --- [LINQ] [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2025-03-29T01:47:00.799+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:47:00.800+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:47:01.804+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:47:01.805+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:47:01.836+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:47:01.970+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:47:01.972+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:47:01.986+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2025-03-29T01:47:01.992+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67cec073
+2025-03-29T01:47:01.992+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2025-03-29T01:47:01.994+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:47:01.995+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:47:01.996+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:47:02.443+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:47:04.631+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 3.884 seconds (process running for 2067.115)
+2025-03-29T01:47:04.637+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:47:06.246+05:30  INFO 23884 --- [LINQ] [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2025-03-29T01:47:06.255+05:30  INFO 23884 --- [LINQ] [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2025-03-29T01:47:06.504+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:47:06.505+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:47:07.587+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:47:07.588+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:47:07.626+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:47:07.854+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:47:07.861+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:47:07.883+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2025-03-29T01:47:07.891+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a2bbfb
+2025-03-29T01:47:07.892+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2025-03-29T01:47:07.894+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:47:07.896+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:47:07.896+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-7)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:47:08.334+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:47:10.805+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 4.35 seconds (process running for 2073.29)
+2025-03-29T01:47:12.419+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:47:12.478+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-2] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:47:25.344+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-4] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:48:03.561+05:30  INFO 23884 --- [LINQ] [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2025-03-29T01:48:03.564+05:30  INFO 23884 --- [LINQ] [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2025-03-29T01:48:03.758+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:03.759+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:04.399+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:04.400+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:04.439+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:04.625+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:04.631+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:04.648+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2025-03-29T01:48:04.655+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection com.mysql.cj.jdbc.ConnectionImpl@29c04383
+2025-03-29T01:48:04.657+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2025-03-29T01:48:04.658+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:04.659+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:04.660+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-8)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:04.924+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:06.355+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.626 seconds (process running for 2128.839)
+2025-03-29T01:48:07.953+05:30  INFO 23884 --- [LINQ] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2025-03-29T01:48:07.955+05:30  INFO 23884 --- [LINQ] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2025-03-29T01:48:08.097+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:08.097+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:08.668+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:08.668+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:08.710+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:08.921+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:08.927+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:08.950+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2025-03-29T01:48:08.958+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fea00ac
+2025-03-29T01:48:08.959+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2025-03-29T01:48:08.960+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:08.961+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:08.961+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-9)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:09.201+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:10.725+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.65 seconds (process running for 2133.209)
+2025-03-29T01:48:17.838+05:30  INFO 23884 --- [LINQ] [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2025-03-29T01:48:17.841+05:30  INFO 23884 --- [LINQ] [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2025-03-29T01:48:18.016+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:18.016+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:18.598+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:18.598+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:18.635+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:18.789+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:18.793+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:18.806+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2025-03-29T01:48:18.812+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51cad846
+2025-03-29T01:48:18.812+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2025-03-29T01:48:18.814+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:18.814+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:18.814+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-10)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:19.061+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:20.470+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.487 seconds (process running for 2142.954)
+2025-03-29T01:48:22.042+05:30  INFO 23884 --- [LINQ] [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2025-03-29T01:48:22.045+05:30  INFO 23884 --- [LINQ] [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2025-03-29T01:48:22.201+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:22.201+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:22.680+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:22.680+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:22.703+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:22.805+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:22.807+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:22.815+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2025-03-29T01:48:22.820+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-11 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1dbf4751
+2025-03-29T01:48:22.820+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2025-03-29T01:48:22.821+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:22.822+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:22.822+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-11)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:22.988+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:24.132+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.954 seconds (process running for 2146.618)
+2025-03-29T01:48:38.404+05:30  INFO 23884 --- [LINQ] [Thread-43] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2025-03-29T01:48:38.407+05:30  INFO 23884 --- [LINQ] [Thread-43] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+2025-03-29T01:48:38.584+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:38.584+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:39.073+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:39.073+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:39.099+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:39.212+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:39.216+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:39.224+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2025-03-29T01:48:39.229+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-12 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66e24e28
+2025-03-29T01:48:39.229+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2025-03-29T01:48:39.230+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:39.231+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:39.231+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-12)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:39.422+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:40.486+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.935 seconds (process running for 2162.97)
+2025-03-29T01:48:51.281+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:48:51.452+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-5] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:48:54.378+05:30  INFO 23884 --- [LINQ] [Thread-47] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2025-03-29T01:48:54.382+05:30  INFO 23884 --- [LINQ] [Thread-47] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+2025-03-29T01:48:54.568+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:48:54.569+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:48:55.185+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:48:55.186+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:48:55.229+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:48:55.441+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:48:55.446+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:48:55.459+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2025-03-29T01:48:55.464+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-13 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54bd9026
+2025-03-29T01:48:55.464+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2025-03-29T01:48:55.465+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:48:55.465+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:48:55.466+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-13)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:48:55.769+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:48:57.946+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 3.41 seconds (process running for 2180.431)
+2025-03-29T01:49:02.507+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:49:13.788+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:49:13.808+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select u1_0.id,u1_0.activate_user,u1_0.city,u1_0.contact_number,u1_0.country,u1_0.created_at,u1_0.dob,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.is_email_verified,u1_0.last_name,u1_0.password,u1_0.password_reset_otp,u1_0.password_reset_ref,u1_0.role,u1_0.state,u1_0.updated_at,u1_0.updated_by,u1_0.zip_code from users u1_0 where u1_0.id=?
+2025-03-29T01:49:13.918+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select cb1_0.id,cb1_0.content,cb1_0.order_index,cb1_0.page_id,cb1_0.updated_at,cb1_0.updated_by from content_blocks cb1_0 where cb1_0.page_id=?
+2025-03-29T01:49:13.923+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select pm1_0.id,pm1_0.address,pm1_0.bottom_header,pm1_0.button_text,pm1_0.button_url,pm1_0.email,pm1_0.fb_url,pm1_0.font_family,pm1_0.insta_url,pm1_0.login_url,pm1_0.logo_img_url,pm1_0.logo_url,pm1_0.phone_number,pm1_0.seo_code,pm1_0.updated_at,ub1_0.id,ub1_0.activate_user,ub1_0.city,ub1_0.contact_number,ub1_0.country,ub1_0.created_at,ub1_0.dob,ub1_0.email,ub1_0.first_name,ub1_0.gender,ub1_0.is_email_verified,ub1_0.last_name,ub1_0.password,ub1_0.password_reset_otp,ub1_0.password_reset_ref,ub1_0.role,ub1_0.state,ub1_0.updated_at,ub1_0.updated_by,ub1_0.zip_code,pm1_0.version,pm1_0.x_url from page_metadata pm1_0 left join users ub1_0 on ub1_0.id=pm1_0.updated_by where pm1_0.id=?
+2025-03-29T01:49:13.931+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:49:13.947+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select cb1_0.id,cb1_0.content,cb1_0.order_index,cb1_0.page_id,cb1_0.updated_at,cb1_0.updated_by from content_blocks cb1_0 where cb1_0.page_id=?
+2025-03-29T01:49:13.961+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select s1_0.id,s1_0.content_block_id,s1_0.order_index,s1_0.slide_title,s1_0.updated_at,s1_0.updated_by from slides s1_0 where s1_0.content_block_id=?
+2025-03-29T01:49:13.971+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:13.990+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:49:13.996+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select cb1_0.id,cb1_0.content,cb1_0.order_index,cb1_0.page_id,cb1_0.updated_at,cb1_0.updated_by from content_blocks cb1_0 where cb1_0.page_id=?
+2025-03-29T01:49:14.003+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select s1_0.id,s1_0.content_block_id,s1_0.order_index,s1_0.slide_title,s1_0.updated_at,s1_0.updated_by from slides s1_0 where s1_0.content_block_id=?
+2025-03-29T01:49:14.010+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.018+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.029+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select cpmd1_0.id,cpmd1_0.company_name,cpmd1_0.join_company_desc,cpmd1_0.participate_now_text from company_page_metadata cpmd1_0 order by cpmd1_0.id limit ?
+2025-03-29T01:49:14.034+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:49:14.041+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select cb1_0.id,cb1_0.content,cb1_0.order_index,cb1_0.page_id,cb1_0.updated_at,cb1_0.updated_by from content_blocks cb1_0 where cb1_0.page_id=?
+2025-03-29T01:49:14.051+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select s1_0.id,s1_0.content_block_id,s1_0.order_index,s1_0.slide_title,s1_0.updated_at,s1_0.updated_by from slides s1_0 where s1_0.content_block_id=?
+2025-03-29T01:49:14.065+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.075+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.083+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.092+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.101+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.109+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.116+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.124+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.132+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.140+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.148+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.155+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.163+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.171+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.180+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.186+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:14.195+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select sc1_0.id,sc1_0.content,sc1_0.content_type,sc1_0.custom_css,sc1_0.image_alt_text,sc1_0.order_index,sc1_0.slide_id,sc1_0.updated_at,sc1_0.updated_by from slide_contents sc1_0 where sc1_0.slide_id=?
+2025-03-29T01:49:18.578+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.activate_user,u1_0.city,u1_0.contact_number,u1_0.country,u1_0.created_at,u1_0.dob,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.is_email_verified,u1_0.last_name,u1_0.password,u1_0.password_reset_otp,u1_0.password_reset_ref,u1_0.role,u1_0.state,u1_0.updated_at,u1_0.updated_by,u1_0.zip_code from users u1_0 where upper(u1_0.email)=upper(?)
+2025-03-29T01:49:18.827+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-7] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-03-29T01:49:18.840+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-7] org.hibernate.SQL                        : select count(u1_0.id) from users u1_0 where u1_0.is_email_verified=0
+2025-03-29T01:49:18.845+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-7] org.hibernate.SQL                        : select count(dp1_0.id) from dynamic_pages dp1_0 where dp1_0.status=?
+2025-03-29T01:49:18.849+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-7] org.hibernate.SQL                        : select count(dp1_0.id) from dynamic_pages dp1_0 where dp1_0.status=?
+2025-03-29T01:49:18.887+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-7][admin_panel/dashboard.html] Deprecated unwrapped fragment expression "admin_panel/header.html" found in template admin_panel/dashboard.html, line 5, col 9. Please use the complete syntax of fragment expressions instead ("~{admin_panel/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:49:18.931+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-7][admin_panel/dashboard.html] Deprecated unwrapped fragment expression "admin_panel/footer.html" found in template admin_panel/dashboard.html, line 232, col 21. Please use the complete syntax of fragment expressions instead ("~{admin_panel/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:49:19.530+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:50:47.180+05:30  INFO 23884 --- [LINQ] [Thread-51] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2025-03-29T01:50:47.184+05:30  INFO 23884 --- [LINQ] [Thread-51] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.
+2025-03-29T01:50:47.458+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:50:47.459+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:50:48.171+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:50:48.171+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:50:48.211+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:50:48.393+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:50:48.396+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:50:48.413+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Starting...
+2025-03-29T01:50:48.421+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-14 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e666582
+2025-03-29T01:50:48.421+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Start completed.
+2025-03-29T01:50:48.422+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:50:48.424+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:50:48.424+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-14)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:50:48.722+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:50:49.969+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.543 seconds (process running for 2292.453)
+2025-03-29T01:50:50.005+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:50:51.556+05:30  INFO 23884 --- [LINQ] [Thread-55] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown initiated...
+2025-03-29T01:50:51.559+05:30  INFO 23884 --- [LINQ] [Thread-55] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown completed.
+2025-03-29T01:50:51.813+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:50:51.813+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:50:52.446+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:50:52.447+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:50:52.486+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:50:52.642+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:50:52.645+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:50:52.658+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
+2025-03-29T01:50:52.663+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-15 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56762d6b
+2025-03-29T01:50:52.663+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
+2025-03-29T01:50:52.665+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:50:52.665+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:50:52.666+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-15)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:50:52.866+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:50:54.139+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.355 seconds (process running for 2296.623)
+2025-03-29T01:51:02.519+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:51:12.357+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-03-29T01:51:12.361+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select count(u1_0.id) from users u1_0 where u1_0.is_email_verified=0
+2025-03-29T01:51:12.363+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select count(dp1_0.id) from dynamic_pages dp1_0 where dp1_0.status=?
+2025-03-29T01:51:12.365+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-3] org.hibernate.SQL                        : select count(dp1_0.id) from dynamic_pages dp1_0 where dp1_0.status=?
+2025-03-29T01:51:12.380+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-3][admin_panel/dashboard.html] Deprecated unwrapped fragment expression "admin_panel/header.html" found in template admin_panel/dashboard.html, line 5, col 9. Please use the complete syntax of fragment expressions instead ("~{admin_panel/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:51:12.393+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-3][admin_panel/dashboard.html] Deprecated unwrapped fragment expression "admin_panel/footer.html" found in template admin_panel/dashboard.html, line 232, col 21. Please use the complete syntax of fragment expressions instead ("~{admin_panel/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:51:12.546+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-7] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:51:23.192+05:30 DEBUG 23884 --- [LINQ] [http-nio-8095-exec-10] org.hibernate.SQL                        : select dp1_0.id,dp1_0.slug,dp1_0.status,dp1_0.title,dp1_0.updated_at,dp1_0.updated_by from dynamic_pages dp1_0 where dp1_0.slug=? and dp1_0.status=?
+2025-03-29T01:53:48.513+05:30  INFO 23884 --- [LINQ] [Thread-59] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2025-03-29T01:53:48.515+05:30  INFO 23884 --- [LINQ] [Thread-59] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
+2025-03-29T01:53:48.704+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:53:48.705+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:53:49.271+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:53:49.271+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:53:49.295+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:53:49.406+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:53:49.409+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:53:49.420+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Starting...
+2025-03-29T01:53:49.425+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-16 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e535b72
+2025-03-29T01:53:49.426+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Start completed.
+2025-03-29T01:53:49.427+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:53:49.427+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:53:49.427+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-16)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:53:49.605+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:53:50.226+05:30  WARN 23884 --- [LINQ] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-29T01:53:50.245+05:30  WARN 23884 --- [LINQ] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-29T01:53:50.595+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.913 seconds (process running for 2473.079)
+2025-03-29T01:54:02.197+05:30  INFO 23884 --- [LINQ] [Thread-63] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown initiated...
+2025-03-29T01:54:02.200+05:30  INFO 23884 --- [LINQ] [Thread-63] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown completed.
+2025-03-29T01:54:02.497+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Starting LinqApplication using Java 23.0.2 with PID 23884 (C:\Workspace\linq\linq-java-app\target\classes started by Abcom in C:\Workspace\linq\linq-java-app)
+2025-03-29T01:54:02.497+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T01:54:03.096+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T01:54:03.096+05:30  INFO 23884 --- [LINQ] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-03-29T01:54:03.127+05:30  INFO 23884 --- [LINQ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T01:54:03.289+05:30  INFO 23884 --- [LINQ] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T01:54:03.295+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T01:54:03.314+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Starting...
+2025-03-29T01:54:03.322+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-17 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4462c296
+2025-03-29T01:54:03.323+05:30  INFO 23884 --- [LINQ] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Start completed.
+2025-03-29T01:54:03.325+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-03-29T01:54:03.326+05:30  WARN 23884 --- [LINQ] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T01:54:03.326+05:30  INFO 23884 --- [LINQ] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-17)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-29T01:54:03.597+05:30  INFO 23884 --- [LINQ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T01:54:04.338+05:30  WARN 23884 --- [LINQ] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-29T01:54:04.371+05:30  WARN 23884 --- [LINQ] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-29T01:54:04.799+05:30  INFO 23884 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T01:54:04.801+05:30  INFO 23884 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.35 seconds (process running for 2487.285)
+2025-03-29T01:54:15.527+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-5][admin_panel/users.html] Deprecated unwrapped fragment expression "admin_panel/header.html" found in template admin_panel/users.html, line 6, col 9. Please use the complete syntax of fragment expressions instead ("~{admin_panel/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:54:15.534+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-5][admin_panel/users.html] Deprecated unwrapped fragment expression "admin_panel/footer.html" found in template admin_panel/users.html, line 104, col 21. Please use the complete syntax of fragment expressions instead ("~{admin_panel/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:54:16.357+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-4][admin_panel/change_password.html] Deprecated unwrapped fragment expression "admin_panel/header.html" found in template admin_panel/change_password.html, line 5, col 7. Please use the complete syntax of fragment expressions instead ("~{admin_panel/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:54:16.365+05:30  WARN 23884 --- [LINQ] [http-nio-8095-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8095-exec-4][admin_panel/change_password.html] Deprecated unwrapped fragment expression "admin_panel/footer.html" found in template admin_panel/change_password.html, line 55, col 15. Please use the complete syntax of fragment expressions instead ("~{admin_panel/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-03-29T01:55:10.888+05:30  INFO 23884 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown initiated...
+2025-03-29T01:55:10.892+05:30  INFO 23884 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown completed.
