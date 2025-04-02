@@ -10,9 +10,9 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_PROD_IP }}
-          username: ${{ secrets.EC2_PROD_USERNAME }}
-          password: ${{ secrets.EC2_PROD_SECRET }}
+          host: ${{ secrets.EC2_SRVR_IP }}
+          username: ${{ secrets.EC2_SRVR_USERNAME }}
+          password: ${{ secrets.EC2_SRVR_SECRET }}
           port: 22
           script: |
             /bin/bash -e /var/www/java-app.sh
