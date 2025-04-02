@@ -15,4 +15,4 @@ jobs:
           password: ${{ secrets.EC2_SRVR_SECRET }}
           port: 22
           script: |
-            /bin/bash -e /root/Script.ssh
+            /bin/bash -e /var/www/static-app.sh
