@@ -98,6 +98,12 @@ public class WebController {
             List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
             model.addAttribute("faqAllQuestions", faqAllQuestions);
 
+
+            List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");
+            model.addAttribute("referFrdCommonArea", referFrdCommon);
+
+
+
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {
             System.out.println(ex);

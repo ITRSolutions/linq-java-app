@@ -45,7 +45,7 @@
 </div>
 <nav class="navbar navbar-expand-lg border-bottom" style="background:#eee">
     <div class="container-fluid">
-        <a class="navbar-brand logo-wrapper" href="index.html" th:href="${@webUtils.validateString(pageMetaData.logoUrl)}" target="_blank">
+        <a class="navbar-brand logo-wrapper" href="index.html" th:href="${@webUtils.validateString(pageMetaData.logoUrl)}">
             <img src="logo_url" th:src="${@webUtils.validateString(pageMetaData.logoImgUrl)}" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -56,8 +56,16 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-auto" th:each="navigationtBlock: ${navigation}">
 
                 <!--  Dynamic URLs links start-->
-                <li class="nav-item d-flex align-items-center px-0 px-lg-2">
-                    <div class="dropdown header-dropdown" th:each="slide, iterStat : ${navigationtBlock.slide}">
+
+
+
+                <li class="nav-item" th:each="slide, iterStat : ${navigationtBlock.slide}"  th:if="${#strings.trim(slide.slideTitle) == 'Contact' or #strings.trim(slide.slideTitle) == 'Investigators'}">
+                    <a class="nav-link header-link primary-text-color"  th:href="${@webUtils.createLink(slide.slideTitle)}" th:utext="${@webUtils.validateString(slide.slideTitle)}">Investigators</a>
+                </li>
+
+
+                <li class="nav-item d-flex align-items-center px-0 px-lg-2" th:each="slide, iterStat : ${navigationtBlock.slide}" th:unless="${#strings.trim(slide.slideTitle) == 'Contact' or #strings.trim(slide.slideTitle) == 'Investigators'}">
+                    <div class="dropdown header-dropdown" >
                         <button class="dropdown-toggle header-dropdown-btn primary-text-color" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false" th:utext="${@webUtils.validateString(slide.slideTitle)}">
                             Additional Links
@@ -67,7 +75,7 @@
                             <li th:each="slideContent : ${slide.slideContents}">
                                 <a class="dropdown-item" th:href="${@webUtils.createLink(slideContent.content)}"
                                    th:utext="${@webUtils.validateString(slideContent.content)}">
-                                    Clinical Trials
+
                                 </a>
                             </li>
 

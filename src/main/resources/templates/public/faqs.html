@@ -22,7 +22,7 @@
 				<div class="col-md-9 m-auto">
 					<div class="accordion" id="faqParent">
 						<div class="accordion-item mb-3" th:each="slide, iterStat : ${contentBlock.slide}">
-							<h2 class="accordion-header">
+							<h2  class="accordion-header">
 								<button th:utext="${slide.slideContents[0].content}"
 									class="accordion-button regular-font collapsed" type="button" data-bs-toggle="collapse"
 									th:data-bs-target="'#faq' + ${iterStat.index +1}" aria-expanded="false"

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class ThymeleafUtils {
 
     public String createLink(String value) {
+        value = value.trim();
         String link = value.replace(" ", "-").toLowerCase();
         if (link.isEmpty()) {
             return "#";
