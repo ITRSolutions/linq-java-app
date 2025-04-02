@@ -83,25 +83,19 @@
        th:utext="${contentBlock9.content}"></a>
 </div>
 
-<div class="row align-items-stretch refer-friend" th:each="contentBlock : ${referFrdCommonArea}">
-    <div class="col-md-8 p-5 rounded-start-4 no-border" th:each="slide, iterStat : ${contentBlock.slide}">
-        <h2 th:utext="${slide.slideContents[0].content}"  class="dark-secondary-text-color wow animate__ animate__fadeInUp  fw-bold ms-3  animated"
-            style="visibility: visible; animation-name: fadeInUp;">
 
-        </h2>
-        <p th:utext="${slide.slideContents[1].content}"  class="text-white mt-1 w-md-80 ms-3 refer-friend-txt"></p>
-        <p th:utext="${slide.slideContents[2].content}"  class="text-white mt-4 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated"
-           style="visibility: visible; animation-name: fadeInUp;"></p>
 
-        <p th:utext="${slide.slideContents[3].content}"  class="text-white mt-4 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated"
-           style="visibility: visible; animation-name: fadeInUp;"></p>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#joinNowModal"
-           class="btn text-white wow animate__ animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-3  animated"
-           style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[4].content}"> </a>
-    </div>
-
-    <div class="col-md-4 overflow-hidden rounded-end-4 no-border align-items-center mobile-hide" style="position: relative;" th:each="slide, iterStat : ${contentBlock.slide}">
-        <img style="visibility: visible; animation-name: fadeInRight; position: absolute; top: -30px;" th:src="${slide.slideContents[5].content}"  height="400" alt="" class="wow animate__ animate__fadeInRight object-fit-cover  d-block rounded-start-5  animated">
+<div class="row justify-content-center align-items-center refer-friend text-center" th:each="contentBlock : ${referFrdCommonArea}">
+    <div class="col-md-8  rounded-4 no-border" th:each="slide, iterStat : ${contentBlock.slide}">
+        <h4 th:utext="${slide.slideContents[0].content}"  class="text-white mt-2 animate__animated animate__fadeInUp w-100 w-md-80 mx-auto wow txt-right" style="visibility: visible; animation-name: fadeInUp;">YOU MAY BE ELIGIBLE FOR BONUS</h4>
+        <h1 th:utext="${slide.slideContents[1].content}"  class="dark-secondary-text-color wow animate__animated animate__fadeInUp fw-bold" style="visibility: visible; animation-name: fadeInUp;">
+            Refer a Friend
+        </h1>
+        <p th:utext="${slide.slideContents[2].content}"  class="text-white mt-2 animate__animated animate__fadeInUp w-100 w-md-80 mx-auto wow txt-right" style="visibility: visible; animation-name: fadeInUp;">
+        </p>
+        <a th:href="${@webUtils.validateString(slide.slideContents[3].content)}"  th:utext="${slide.slideContents[4].content}" data-bs-toggle="modal" data-bs-target="#joinNowModal" class="btn text-white wow animate__animated animate__fadeInUp mt-2 health-card-btn px-4 fw-medium" style="visibility: visible; animation-name: fadeInUp;">
+            Learn More
+        </a>
     </div>
 </div>
 
