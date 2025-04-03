@@ -2,88 +2,91 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="footerCode(pageMetaData)">
 <!--Including Footer Page-->
-<div class="container-fluid p-0 overflow-hidden">
+<div class="container-fluid p-0 overflow-hidden" style="background-color: #eee">
     <!-- footer -->
-    <footer class="p-4" style="background-color: #eee">
-        <div class="row">
-            <div class="col-md-4">
-                <div>
-                    <img src="image/logo.png" alt="" width="220"/>
-                    <h5 class="fs-4 mt-3 ps-3">Connect with us</h5>
-                    <div class="d-flex align-items-center gap-5 mt-4 ps-3">
-                        <div>
-                            <a href="#" th:href="${pageMetaData.fbUrl ?: '#'}" target="_blank"
-                               class="text-decoration-none text-white">
-                                <i class="bi bi-facebook fs-1 text-muted"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#" th:href="${pageMetaData.xUrl ?: '#'}" target="_blank"
-                               class="text-decoration-none text-white">
-                                <i class="bi bi-twitter-x fs-1 text-muted"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#" th:href="${pageMetaData.instaUrl ?: '#'}" target="_blank"
-                               class="text-decoration-none text-white">
-                                <i class="bi bi-instagram fs-1 text-muted"></i>
-                            </a>
+    <div class="container">
+        <footer class="p-4" style="background-color: #eee">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <img src="image/logo.png" alt="" width="150"/>
+                        <h5 class="fs-5 mt-3" style="margin: 0px;">Connect with us</h5>
+                        <div class="d-flex align-items-center gap-2 mt-0">
+                            <div>
+                                <a href="#" th:href="${pageMetaData.fbUrl ?: '#'}" target="_blank"
+                                   class="text-decoration-none text-white">
+                                    <i class="bi bi-facebook fs-4 text-muted" style="cursor: pointer;"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#" th:href="${pageMetaData.xUrl ?: '#'}" target="_blank"
+                                   class="text-decoration-none text-white">
+                                    <i class="bi bi-twitter-x fs-4 text-muted" style="cursor: pointer;"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#" th:href="${pageMetaData.instaUrl ?: '#'}" target="_blank"
+                                   class="text-decoration-none text-white">
+                                    <i class="bi bi-instagram fs-4 text-muted" style="cursor: pointer;"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8 py-3">
-                <h3 class="fw-bold" th:utext="${@webUtils.validateString(pageMetaData.bottomHeader)}">bottomHeader TXT</h3>
-                <div class="row" th:each="footerBlock: ${footerBlocks}">
+                <div class="col-md-8 py-3">
+                    <h3 class="fw-bold" th:utext="${@webUtils.validateString(pageMetaData.bottomHeader)}">bottomHeader TXT</h3>
+                    <div class="row" th:each="footerBlock: ${footerBlocks}">
 
 
-                    <div class="col-md-4" th:each="slide : ${footerBlock.slide}">
-                        <ul class="list-unstyled mt-5">
-                            <h5 class="fs-4 text-muted mb-4" th:utext="${@webUtils.validateString(slide.slideTitle)}"> Header </h5>
-                            <li class="fs-5" th:each="slideContent : ${slide.slideContents}">
-                                <a href="#" th:href="${@webUtils.createLink(slideContent.content)}"
-                                   class="fs-6 fw-medium text-decoration-none text-muted"
-                                   th:utext="${@webUtils.validateString(slideContent.content)}">
-                                    Links
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="col-md-4" th:each="slide : ${footerBlock.slide}">
+                            <ul class="list-unstyled mt-5">
+                                <h5 class="fs-4 text-muted mb-4" th:utext="${@webUtils.validateString(slide.slideTitle)}"> Header </h5>
+                                <li class="fs-5" th:each="slideContent : ${slide.slideContents}">
+                                    <a href="#" th:href="${@webUtils.createLink(slideContent.content)}"
+                                       class="fs-6 fw-medium text-decoration-none text-muted"
+                                       th:utext="${@webUtils.validateString(slideContent.content)}">
+                                        Links
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
 
-                    <div class="col-md-4">
-                        <ul class="list-unstyled mt-5">
-                            <h5 class="fs-4 text-muted mb-4">Contact Us</h5>
-                            <li class="fs-6 fw-medium text-muted d-flex gap-2 mb-2">
-                                <i class="bi bi-geo-alt-fill text-muted"></i>
-                                <span th:utext="${@webUtils.validateString(pageMetaData.address)}" class="text-muted">address </span>
-                            </li>
-                            <li class="fs-6 fw-medium  text-muted d-flex gap-2 mb-2">
-                                <a href="#" th:href="'tel:' + (${pageMetaData.phoneNumber ?: ''})"
-                                   class="text-decoration-none d-flex gap-2"
-                                   target="_blank">
-                                    <i class="bi bi-telephone-fill text-muted"></i>
-                                    <span th:utext="${@webUtils.validateString(pageMetaData.phoneNumber)}" class="text-muted">Telephone Number</span>
-                                </a>
-                            </li>
-                            <li class="fs-6 fw-medium  text-muted d-flex gap-2">
-                                <a href="#" th:href="'mailto:' + (${pageMetaData.email ?: ''})"
-                                   class="text-decoration-none d-flex gap-2"
-                                   target="_blank">
-                                    <i class="bi bi-envelope-fill text-muted"></i>
-                                    <span th:utext="${@webUtils.validateString(pageMetaData.email)}" class="text-muted">email id</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <small
-                                class="d-inline-flex m-3 px-2 py-1 fw-semibold text-success-emphasis
+                        <div class="col-md-4">
+                            <ul class="list-unstyled mt-5">
+                                <h5 class="fs-4 text-muted mb-4">Contact Us</h5>
+                                <li class="fs-6 fw-medium text-muted d-flex gap-2 mb-2">
+                                    <i class="bi bi-geo-alt-fill text-muted"></i>
+                                    <span th:utext="${@webUtils.validateString(pageMetaData.address)}" class="text-muted">address </span>
+                                </li>
+                                <li class="fs-6 fw-medium  text-muted d-flex gap-2 mb-2">
+                                    <a href="#" th:href="'tel:' + (${pageMetaData.phoneNumber ?: ''})"
+                                       class="text-decoration-none d-flex gap-2"
+                                       target="_blank">
+                                        <i class="bi bi-telephone-fill text-muted"></i>
+                                        <span th:utext="${@webUtils.validateString(pageMetaData.phoneNumber)}" class="text-muted">Telephone Number</span>
+                                    </a>
+                                </li>
+                                <li class="fs-6 fw-medium  text-muted d-flex gap-2">
+                                    <a href="#" th:href="'mailto:' + (${pageMetaData.email ?: ''})"
+                                       class="text-decoration-none d-flex gap-2"
+                                       target="_blank">
+                                        <i class="bi bi-envelope-fill text-muted"></i>
+                                        <span th:utext="${@webUtils.validateString(pageMetaData.email)}" class="text-muted">email id</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <small
+                                    class="d-inline-flex m-3 px-2 py-1 fw-semibold text-success-emphasis
                                 bg-success-subtle border border-success-subtle
                                 rounded-2" th:utext="${@webUtils.validateString(pageMetaData.version)}">version</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
 </div>
 <script type="text/javascript" src="js/jquery/jquery.minf43b.js?ver=3.7.1" id="jquery-core-js"></script>
 <script type="text/javascript" src="js/jquery/jquery-migrate.min5589.js?ver=3.4.1"

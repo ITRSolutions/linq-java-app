@@ -31,6 +31,7 @@
                         <img src="image/12/AdobeStock_214310161-scaled.jpg" th:src="${@webUtils.validateString(slide.slideContents[0].content)}"
                              class="d-block w-100 object-fit-cover"
                              alt="..." height="100%" style="object-position:right"/>
+                        <div class="image-opacity"></div>
                         <div class="carousel-caption">
                             <h2 class="display-5 fw-bold mb-5 primary-text-color animate__animated animate__fadeInUp"
                                 th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
@@ -75,9 +76,9 @@
                         <img src="image/12/AdobeStock_502590469-scaled.jpg"
                              class="circular-card-img object-fit-cover" alt="..."
                              th:src="${@webUtils.validateString(slide.slideContents[0].content)}"/>
-                        <div class="card-body">
+                        <div class="card-body" style="display: flex; flex-direction: column; align-items: center;">
                             <h5 class="card-title fw-bold mt-2" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Headline </h5>
-                            <p class="card-text fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
+                            <p class="card-text fw-medium" style="width:250px" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
                             <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank"
                                class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Btn
                                 text</a>
@@ -97,12 +98,8 @@
                             <div th:each="slide, iterStat : ${contentBlock.slide}">
                                 <div class="carousel-item" th:classappend="${iterStat.index == 0 ? ' active' : ''}">
                                     <div class="position-relative m-5">
-                                        <div class="position-absolute oval-shape d-flex flex-column align-items-center justify-content-center pt-3">
-                                            <h4 class="text-center fw-bold mb-2"
-                                                th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"> Owner name </h4>
-                                            <p th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">Position</p>
-                                        </div>
-                                        <img src="image/owner.svg" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
+
+                                        <img src="image/owner_2.png" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
                                              style="height: 412px;"/>
                                     </div>
                                 </div>
@@ -110,16 +107,7 @@
                         </div>
                         <!--Dynamic owner image end-->
 
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+
                     </div>
                 </div>
 
@@ -185,7 +173,7 @@
             <!-- 5th Enrollment Options Section -->
             <div class="row my-5" th:each="contentBlock : ${contentBlock5}">
                 <div th:each="slide: ${contentBlock.slide}" class="row">
-                    <div class="col-md-6 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5">
+                    <div class="col-md-12 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5">
                         <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
                             th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
                             Header
@@ -198,9 +186,7 @@
                            class="btn primary-bg-color text-white" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Participate
                             Now</a>
                     </div>
-                    <div class="col-md-6 d-flex align-items-center justify-content-center">
-                        <img src="image/nurse.svg" th:src="${@webUtils.validateString(slide.slideContents[4].content)}" alt=""/>
-                    </div>
+
                 </div>
             </div>
             <!-- 5th Enrollment Options Section End -->
