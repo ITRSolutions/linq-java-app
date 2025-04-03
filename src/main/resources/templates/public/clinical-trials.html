@@ -95,7 +95,7 @@
 
 		<div class="row p-2 p-md-5 gy-5" th:each="contentBlock : ${contentBlock9}">
 			<div class="col-md-3" th:each="slide : ${contentBlock.slide}">
-				<div class="step-card p-4 pt-5   position-relative" data-wow-delay="0.1s">
+				<div class="step-card p-4 pt-5   position-relative" style="height:470px" data-wow-delay="0.1s">
 					<div class="rounded-icon">
 						<img th:src="${slide.slideContents[0].content}" alt="">
 					</div>
