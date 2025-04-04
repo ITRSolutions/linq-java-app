@@ -1,18 +1,197 @@
-.form-container { 
-    margin-top: 10% !important;
-    /* margin-bottom: 10%; */
+/* Default styles (for large screens) */
+.form-container {
+   
     margin-bottom: 30px;
-    width: 650px;
+    width: 800px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin-top:50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+body{
+    background: #fff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 button {
-    display: block; margin-left: auto;
-    margin-right: 40px;
+    display: block;
+    margin-left: 40px;
+    margin-right: auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
- /* Mobile (Landscape) and small tablets */
-@media screen and (max-width: 1024px) {
-    .form-container {  
-        width: 90% !important;
+button:hover {
+    background-color: #0056b3;
+}
+
+#form-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Space between the select fields */
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+}
+
+.form-button-select {
+    flex: 1; /* Makes both divs take equal space */
+    min-width: 250px; /* Ensures they don’t shrink too much */
+}
+
+.form-button-select p {
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.form-button-select select {
+    width: 100%; /* Makes select dropdown full width inside div */
+    padding: 12px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Responsive: Stack the selects on smaller screens */
+@media (max-width: 600px) {
+    .form-container {
+        flex-direction: column;
     }
+}
+
+/* Tablets and smaller screens */
+@media screen and (max-width: 1200px) {
+    .form-container {
+        width: 80% !important;
+        margin: auto;
+        margin-top:30px
+    }
+
+}
+
+/* Mobile Devices (Portrait) */
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 95%;
+        padding: 15px;
+        margin-top: 5%;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+       
+    }
+    
+    .form-group input,
+    .form-group select {
+        width: 100% !important;
+        padding: 10px;
+        margin-right:3px; 
+        margin-left: 8px;
+    }
+
+    .form-group label {
+        text-align: left;
+        width: 100%;
+        padding-left: 5px;
+    }
+
+    .mb-0 {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .md-btn {
+        display: flex;
+        justify-content: flex-end;
+        width: 30%;
+        margin-left: 70%;
+    }
+    
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Small Mobile Devices (Extra Small) */
+@media screen and (max-width: 480px) {
+    .form-container {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .form-group input, 
+    .form-group select {
+        width: 100%;
+    }
+    
+    .md-btn {
+        display: flex;
+        justify-content: center;
+        font-weight: 150;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
+.form-containers {
+    display: flex;
+    gap: 15px; /* Space between input fields */
+    width: 100%;
+    flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Makes both fields take equal space */
+    min-width: 250px; /* Prevents shrinking too much */
+}
+
+.form-group input {
+    width: 100%; /* Full width inside its container */
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group label {
+    font-size: 14px;
+}
+
+/* Responsive: Stack fields on smaller screens */
+@media (max-width: 600px) {
+    .form-container {
+        flex-direction: column;
+    }
+}
+.input-error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+.input-error {
+    border: 1px solid red;
 }
