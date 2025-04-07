@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <title>Refer Friend Form | LINQ</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/form-css.css">
+    <link rel="stylesheet" href="css/refer-friend-form.css">
+    <script src="js/forms.js"></script>
+</head>
+<body><br><br>
+<div class="form-container">
+    <a class="logo-form" href="index.html">
+        <img src="image/logo.png" alt="logo">
+    </a>
+
+    <!-- Paragraph at the top -->
+    <p>Please fill out the form below to refer a friend to LINQ Research.</p>
+
+    <form id="contact-form">
+        <div class="form-group">
+            <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
+            <label for="first-name">First Name*</label>
+        </div>
+        <div class="form-group">
+            <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
+            <label for="last-name">Last Name*</label>
+        </div>
+        <div class="form-group">
+            <input type="date" id="dob" required>
+            <label for="dob">Date of Birth*</label>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
+            <label for="phone">Primary Phone Number*</label>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
+            <label for="email">Email*</label>
+        </div>
+        <div class="form-group">
+            <p>Are you a current LinQ Research Employee?</p>
+            <select id="isEmployee" required>
+                <option value="">Select</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <p>Are you an active participant in any LinQ studies?</p>
+            <select id="isStudyParticipant" required>
+                <option value="">Select</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+
+        <!-- New section for referred person's details -->
+        <div class="form-group">
+            <p style="text-align: center;">Please provide the referred person's details:</p>
+        </div>
+        <div class="form-group">
+            <input type="text" id="refName" placeholder=" " minlength="2" maxlength="70" required>
+            <label for="refName">Referred Person's Name*</label>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="refContactNumber" class="phone" placeholder=" " pattern="[\+]?[0-9-]*" minlength="10" maxlength="15" required>
+            <label for="refContactNumber">Referred Person's Contact Number*</label>
+        </div>
+        <input type="hidden" id="pageName" value="refer-friend">
+
+        <p class="footer-text">By submitting this form, you agree to receive notifications
+            from LINQ Research LLC.</p>
+
+        <div class="md-btn">
+            <button type="submit">Submit</button>
+        </div>
+        <p class="error"></p>
+    </form>
+</div>
+</body>
+</html>

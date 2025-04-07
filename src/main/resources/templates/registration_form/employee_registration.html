@@ -34,129 +34,129 @@
 </head>
 
 <body>
-	<h1>LINQ Employee Registration Form </h1>
-	<!---728x90--->
-	<div class="register-form-w3layouts">
-		<!-- Form starts here -->
-		<form id="personalDetailsForm" action="#" method="post" onsubmit="return validateForm()">
-			<h3 class="sub-heading-agileits">Personal Details</h3>
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="text" name="firstName" id="first_name" placeholder="First Name" required=""
-						minlength="2" maxlength="30" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
-					<span id="firstName_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text2">
-					<input type="text" name="lastName" id="last_name" placeholder="Last Name" required="" minlength="2"
-						maxlength="30" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
-					<span id="lastName_error" class="error-message"></span>
-				</div>
+<h1>LINQ Employee Registration Form </h1>
+<!---728x90--->
+<div class="register-form-w3layouts">
+	<!-- Form starts here -->
+	<form id="personalDetailsForm" action="#" method="post" onsubmit="return validateForm()">
+		<h3 class="sub-heading-agileits">Personal Details</h3>
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="text" name="firstName" id="first_name" placeholder="First Name" required=""
+					   minlength="2" maxlength="30" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
+				<span id="firstName_error" class="error-message"></span>
 			</div>
-
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="email" name="email" id="email" placeholder="Email" required="" minlength="5"
-						maxlength="30" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-						title="Please enter a valid email address">
-					<span id="email_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text2">
-					<input type="text" name="contactNumber" id="contact_number" placeholder="Phone Number" required=""
-						minlength="10" maxlength="20" pattern="^\+?\d{10,15}$"
-						title="Phone number should be between 10-15 digits and can optionally start with a '+'">
-					<span id="contactNumber_error" class="error-message"></span>
-				</div>
+			<div class="field-agileinfo-spc form-w3-agile-text2">
+				<input type="text" name="lastName" id="last_name" placeholder="Last Name" required="" minlength="2"
+					   maxlength="30" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
+				<span id="lastName_error" class="error-message"></span>
 			</div>
+		</div>
 
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input id="datepicker" name="dob" type="text" placeholder="DOB" value="" onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="" minlength="10"
-						maxlength="10" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$"
-						title="Enter DOB in MM/DD/YYYY format">
-					<span id="dob_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text2">
-					<select name="gender" id="gender" class="form-control" required="">
-						<option value="">Gender</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-					<span id="gender_error" class="error-message"></span>
-				</div>
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="email" name="email" id="email" placeholder="Email" required="" minlength="5"
+					   maxlength="30" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+					   title="Please enter a valid email address">
+				<span id="email_error" class="error-message"></span>
 			</div>
-
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="text" name="city" id="city" placeholder="City" required="" minlength="2" maxlength="50"
-						pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
-					<span id="city_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="text" name="state" id="state" placeholder="State" required="" minlength="2"
-						maxlength="50" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
-					<span id="state_error" class="error-message"></span>
-				</div>
+			<div class="field-agileinfo-spc form-w3-agile-text2">
+				<input type="text" name="contactNumber" id="contact_number" placeholder="Phone Number" required=""
+					   minlength="10" maxlength="20" pattern="^\+?\d{10,15}$"
+					   title="Phone number should be between 10-15 digits and can optionally start with a '+'">
+				<span id="contactNumber_error" class="error-message"></span>
 			</div>
+		</div>
 
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="text" name="country" id="country" placeholder="Country" required="" minlength="2"
-						maxlength="50" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
-					<span id="country_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="text" name="zipCode" id="zip_code" placeholder="Zip Code" required="" minlength="5"
-						maxlength="10" pattern="^\d{5,10}$" title="Zip Code should be between 5 and 10 digits">
-					<span id="zipCode_error" class="error-message"></span>
-				</div>
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input id="datepicker" name="dob" type="text" placeholder="DOB" value="" onfocus="this.value = '';"
+					   onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="" minlength="10"
+					   maxlength="10" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$"
+					   title="Enter DOB in MM/DD/YYYY format">
+				<span id="dob_error" class="error-message"></span>
 			</div>
-
-			<div class="main-flex-w3ls-sectns">
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="password" name="password" id="password" placeholder="Password" required=""
-						minlength="6" maxlength="20" title="Password should be at least 6 characters long">
-					<span id="password_error" class="error-message"></span>
-				</div>
-				<div class="field-agileinfo-spc form-w3-agile-text1">
-					<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
-						required="" minlength="6" maxlength="20" title="Please confirm your password">
-					<span id="confirmPassword_error" class="error-message"></span>
-				</div>
+			<div class="field-agileinfo-spc form-w3-agile-text2">
+				<select name="gender" id="gender" class="form-control" required="">
+					<option value="">Gender</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+				<span id="gender_error" class="error-message"></span>
 			</div>
+		</div>
 
-			<input type="submit" value="Submit" id="submitButton">
-			<input type="reset" value="Clear Form" id="clearForm">
-			<input type="button" value="Login Now" onclick="window.location.href = '/login'">
-			<div class="clear"></div>
-		</form>
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="text" name="city" id="city" placeholder="City" required="" minlength="2" maxlength="50"
+					   pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
+				<span id="city_error" class="error-message"></span>
+			</div>
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="text" name="state" id="state" placeholder="State" required="" minlength="2"
+					   maxlength="50" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
+				<span id="state_error" class="error-message"></span>
+			</div>
+		</div>
 
-		<!--// Form starts here -->
-	</div>
-	<!---728x90--->
-	<!--copyright-->
-	<div class="copyright">
-		<p> Copyright © <span id="current_year"> </span> LINQ. All Rights Reserved | Design by ITR Consulting
-			<a href="https://itrtechsystems.com/" target="_blank">ITR Consulting</a>
-		</p>
-	</div>
-	<!--//copyright-->
-	<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
-	<!-- Calendar Js -->
-	<script src="/registration_form/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="/registration_form/js/validation.js"></script>
-	<script>
-		$(function () {
-			$("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
-		});
-	</script>
-	<!-- //Calendar Js -->
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="text" name="country" id="country" placeholder="Country" required="" minlength="2"
+					   maxlength="50" pattern="[A-Za-z ]+" title="Only letters and spaces allowed">
+				<span id="country_error" class="error-message"></span>
+			</div>
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="text" name="zipCode" id="zip_code" placeholder="Zip Code" required="" minlength="5"
+					   maxlength="10" pattern="^\d{5,10}$" title="Zip Code should be between 5 and 10 digits">
+				<span id="zipCode_error" class="error-message"></span>
+			</div>
+		</div>
 
-	<script>
-		var currentDate = new Date();
-		var currentYear = currentDate.getFullYear();
-		$("#current_year").html(currentYear);
-	</script>
+		<div class="main-flex-w3ls-sectns">
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="password" name="password" id="password" placeholder="Password" required=""
+					   minlength="6" maxlength="20" title="Password should be at least 6 characters long">
+				<span id="password_error" class="error-message"></span>
+			</div>
+			<div class="field-agileinfo-spc form-w3-agile-text1">
+				<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+					   required="" minlength="6" maxlength="20" title="Please confirm your password">
+				<span id="confirmPassword_error" class="error-message"></span>
+			</div>
+		</div>
+
+		<input type="submit" value="Submit" id="submitButton">
+		<input type="reset" value="Clear Form" id="clearForm">
+		<input type="button" value="Login Now" onclick="window.location.href = '/login'">
+		<div class="clear"></div>
+	</form>
+
+	<!--// Form starts here -->
+</div>
+<!---728x90--->
+<!--copyright-->
+<div class="copyright">
+	<p> Copyright © <span id="current_year"> </span> LINQ. All Rights Reserved | Design by ITR Consulting
+		<a href="https://itrtechsystems.com/" target="_blank">ITR Consulting</a>
+	</p>
+</div>
+<!--//copyright-->
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+<!-- Calendar Js -->
+<script src="/registration_form/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/registration_form/js/validation.js"></script>
+<script>
+	$(function () {
+        $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+    });
+</script>
+<!-- //Calendar Js -->
+
+<script>
+	var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    $("#current_year").html(currentYear);
+</script>
 </body>
 
 </html>

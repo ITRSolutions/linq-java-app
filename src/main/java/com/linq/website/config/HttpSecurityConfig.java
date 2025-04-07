@@ -17,12 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true) // 🔥 Enables @PreAuthorize annotations
+@EnableMethodSecurity(prePostEnabled = true) //  Enables @PreAuthorize annotations
 public class HttpSecurityConfig {
 
     @Autowired
@@ -37,6 +38,9 @@ public class HttpSecurityConfig {
     @Autowired
     private CustomAuthenticationFailureHandler failureHandler;
 
+    @Autowired
+    private SessionTimeoutFilter sessionTimeoutFilter;
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,6 +48,7 @@ public class HttpSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.addFilterBefore(sessionTimeoutFilter, UsernamePasswordAuthenticationFilter.class);
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
@@ -57,7 +62,8 @@ public class HttpSecurityConfig {
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**")) // Disable CSRF for API endpoints
 
 //                .csrf(csrf -> csrf.disable()) //  CSRF disabled (but session authentication enforced)
-                .anonymous(anonymous -> anonymous.disable()) //  Completely disable anonymous access
+//                .anonymous(anonymous -> anonymous.disable()) //  Completely disable anonymous access
+                .anonymous(Customizer.withDefaults()) // Allow anonymous access to public pages
                 .authorizeHttpRequests(auth -> auth
                         // Permit all static resources
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
@@ -86,18 +92,20 @@ public class HttpSecurityConfig {
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID") // Deletes session cookies
                         .permitAll()
-                )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS) // Forces session authentication for all requests
-                        .invalidSessionUrl("/login?sessionExpired") // Redirect if session expires
-                        .sessionFixation().newSession()
                 );
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Forces session authentication for requests
+//                        .invalidSessionUrl("/login?sessionExpired") // Redirect if session expires
+//                        .sessionFixation().newSession()
+//                );
 
 //        http
 //                .headers(headers -> headers
 //                        .frameOptions().sameOrigin() // Allows framing from the same origin
 //                );
 
+
+        http.addFilterAfter(emailIsVerifiedFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

@@ -1,12 +1,9 @@
-.form-container { 
-    margin-top: 10% !important;
-    /* margin-bottom: 10%; */
-    margin-bottom: 30px;
-    width: 650px;
+.form-container {
+    margin-top: 15%;
 }
-
 button {
-    display: block; margin-left: auto;
+    display: block;
+       /* margin-left: auto;
     margin-right: 40px;
 }
 

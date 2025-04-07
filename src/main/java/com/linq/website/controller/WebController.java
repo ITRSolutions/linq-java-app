@@ -41,6 +41,7 @@ public class WebController {
         if (slug == null || slug.isEmpty()) {
             slug = "index";
         } else if(slug.equals("admin_panel") || (userDetails != null && slug.equals("login"))) {
+            System.out.println("Redirecting to login...");
             return "redirect:/admin_panel/";
         }
 
@@ -137,6 +138,26 @@ public class WebController {
     @GetMapping("/employee_registration")
     public String employeeRegistration(Model model) {
         return "registration_form/employee_registration";
+    }
+
+    @GetMapping("/appointment_form")
+    public String appointmentForm(@RequestParam(value = "disease") String disease, Model model) {
+        if(!disease.isEmpty()) {
+            disease = disease.replace(" ","-").replaceAll("[^a-zA-Z0-9-]", "").toLowerCase();
+            model.addAttribute("pageName", disease);
+            return "public/appointment_form";
+        }
+        return "redirect:/public/current-enrollment";
+    }
+
+    @GetMapping("/refer_friend_form")
+    public String referFriendForm(Model model) {
+        return "public/refer_friend_form";
+    }
+
+    @GetMapping("/prinicipal_investigator_form")
+    public String prinicipalInvestigatorForm(Model model) {
+        return "public/prinicipal_investigator_form";
     }
 
     @GetMapping("/activationError")

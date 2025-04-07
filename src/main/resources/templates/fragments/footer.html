@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body th:fragment="footerCode(pageMetaData)">
+<th:block xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="footerCode(pageMetaData)">
 <!--Including Footer Page-->
 <div class="container-fluid p-0 overflow-hidden" style="background-color: #eee">
     <!-- footer -->
@@ -101,10 +100,7 @@
     wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
     /* ]]> */
 </script>
-<!--<script type="text/javascript" src="js/swv/js/index1eb7.js?ver=6.0."-->
-<!--        id="swv-js"></script>-->
-<!--<script type="text/javascript" src="js/index1eb7.js?ver=6.0.3"-->
-<!--        id="contact-form-7-js"></script>-->
+
 <script type="text/javascript" src="js/bootstrap.bundle.mind1c0.js?ver=6.7.2"
         id="bootstrap-js"></script>
 <script type="text/javascript" src="js/wow.mind1c0.js?ver=6.7.2"
@@ -133,8 +129,6 @@
 
     /* ]]> */
 </script>
-<script type="text/javascript" src="js/indexd1c0.js?ver=6.7.2"
-        id="customJs-js"></script>
 
-</body>
-</html>
+</div>
+</th:block>

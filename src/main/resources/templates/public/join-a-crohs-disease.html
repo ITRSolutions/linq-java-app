@@ -13,7 +13,7 @@
 
 <div class="row mb-5">
 	<div class="contact-header">
-		<h2 class="text-white fw-bold" th:utext="${contentBlock1.content}"></h2>
+		<h2 class="text-white fw-bold" id="diseaseName" th:utext="${contentBlock1.content}"></h2>
 	</div>
 </div>
 
@@ -80,12 +80,10 @@
 	</p>
 
 
-	<a type="button" data-bs-toggle="modal" data-bs-target="#joinNowModal"
+	<a type="button" onclick="openAppointmentForm()"
 	   class="d-block mx-auto my-3 mb-5 text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn"
 	   th:utext="${contentBlock9.content}"></a>
 </div>
-
-
 
 <div class="row justify-content-center align-items-center refer-friend text-center" th:each="contentBlock : ${referFrdCommonArea}">
 	<div class="col-md-8  rounded-4 no-border" th:each="slide, iterStat : ${contentBlock.slide}">
@@ -95,7 +93,7 @@
 		</h1>
 		<p th:utext="${slide.slideContents[2].content}"  class="text-white mt-2 animate__animated animate__fadeInUp w-100 w-md-80 mx-auto wow txt-right" style="visibility: visible; animation-name: fadeInUp;">
 		</p>
-		<a th:href="${@webUtils.validateString(slide.slideContents[3].content)}"  th:utext="${slide.slideContents[4].content}" data-bs-toggle="modal" data-bs-target="#joinNowModal" class="btn text-white wow animate__animated animate__fadeInUp mt-2 health-card-btn px-4 fw-medium" style="visibility: visible; animation-name: fadeInUp;">
+		<a th:href="${@webUtils.validateString(slide.slideContents[3].content)}"  th:utext="${slide.slideContents[4].content}" onclick="window.open('refer_friend_form', '_blank')" class="btn text-white wow animate__animated animate__fadeInUp mt-2 health-card-btn px-4 fw-medium" style="visibility: visible; animation-name: fadeInUp;">
 			Learn More
 		</a>
 	</div>
@@ -105,15 +103,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<button type="button" class="btn-close custom-btn-close z-3" data-bs-dismiss="modal" aria-label="Close"></button>
-			<div class="modal-body">
 
-				<iframe src="form.html" width="480" height="700" frameborder="0" style="overflow:auto;"></iframe>
-
-
-			</div>
-			<!-- <div class="modal-footer border-0 justify-content-start">
-
-            </div> -->
 		</div>
 	</div>
 </div>
@@ -122,9 +112,15 @@
 
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script>
 	new WOW().init();
+
+	function openAppointmentForm() {
+        var diseaseContent = $("#diseaseName").html().trim(); // You can replace this with a dynamic value
+        window.open('appointment_form?disease=' + diseaseContent, '_blank');
+    }
 </script>
 </body>
 

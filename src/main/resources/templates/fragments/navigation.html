@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<body th:fragment="navigationCode(pageMetaData, navigation)">
-<div class="container-fluid">
+<th:block xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="navigationCode(pageMetaData, navigation)">
+<div class="container-fluid navigationSpan">
     <div class="row flex-column flex-md-row text-white py-2 justify-content-between" style="background:#FDB139">
         <div class="col-12 col-md-8 col-lg-5 d-flex flex-column flex-md-row align-items-center gap-md-4 gap-2 ps-5 mb-2 mb-md-0">
             <div class="col-md-4">
-                <a href="#" th:href="'tel:' + ${@webUtils.validateString(pageMetaData.phoneNumber)}" class="text-decoration-none text-white"
+                <a href="#" th:href="'tel:' + ${@webUtils.validateString(pageMetaData.phoneNumber)}"
+                   class="text-decoration-none text-white"
                    target="_blank">
                     <i class="bi bi-telephone-fill"></i>
                     <span th:utext="${@webUtils.validateString(pageMetaData.phoneNumber)}">Telephone Number</span>
                 </a>
             </div>
             <div class="col-md-8">
-                <a href="#" th:href="'mailto:' + ${@webUtils.validateString(pageMetaData.email)}" class="text-decoration-none text-white"
+                <a href="#" th:href="'mailto:' + ${@webUtils.validateString(pageMetaData.email)}"
+                   class="text-decoration-none text-white"
                    target="_blank">
                     <i class="bi bi-envelope-fill"></i>
                     <span th:utext="${@webUtils.validateString(pageMetaData.email)}">email id</span>
@@ -23,12 +24,14 @@
         <div class="col-12 col-md-4  d-flex align-items-center justify-content-end ps-5 ps-md-0 gap-4 pe-5">
             <div class="d-flex align-items-center gap-4">
                 <div>
-                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.fbUrl)}" target="_blank" class="text-decoration-none text-white">
+                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.fbUrl)}" target="_blank"
+                       class="text-decoration-none text-white">
                         <i class="bi bi-facebook"></i>
                     </a>
                 </div>
                 <div>
-                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.xUrl)}" target="_blank" class="text-decoration-none text-white">
+                    <a href="#" th:href="${@webUtils.validateString(pageMetaData.xUrl)}" target="_blank"
+                       class="text-decoration-none text-white">
                         <i class="bi bi-twitter-x"></i>
                     </a>
                 </div>
@@ -39,63 +42,76 @@
                     </a>
                 </div>
             </div>
-            <a href="#" th:href="${@webUtils.validateString(pageMetaData.loginUrl)}" class="text-white rounded-pill" target="_blank">Login</a>
+            <a href="#" th:href="${@webUtils.validateString(pageMetaData.loginUrl)}" class="text-white rounded-pill"
+               target="_blank">Login</a>
         </div>
     </div>
 </div>
 <nav class="navbar navbar-expand-lg border-bottom" style="background:#eee">
-    <div class="container-fluid">
-        <a class="navbar-brand logo-wrapper" href="index.html" th:href="${@webUtils.validateString(pageMetaData.logoUrl)}">
-            <img src="logo_url" th:src="${@webUtils.validateString(pageMetaData.logoImgUrl)}" alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-auto" th:each="navigationtBlock: ${navigation}">
+    <div class="container-fluid row ms-auto me-auto custom-width">
+        <div class="col-md-1 col-10 logoDiv">
+            <a class="navbar-brand logo-wrapper" href="index.html"
+               th:href="${@webUtils.validateString(pageMetaData.logoUrl)}">
+                <img src="logo_url" th:src="${@webUtils.validateString(pageMetaData.logoImgUrl)}" alt="logo">
+            </a>
+        </div>
 
-                <!--  Dynamic URLs links start-->
+        <div class="col-2 pc-hide">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
+        <div class=" col-md-11 p-0 row">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-auto col-md-10" th:each="navigationtBlock: ${navigation}">
 
+                    <!--  Dynamic URLs links start-->
+                    <li class="nav-item d-flex align-items-center px-0 px-lg-2"
+                        th:each="slide, iterStat : ${navigationtBlock.slide}">
 
-                <li class="nav-item" th:each="slide, iterStat : ${navigationtBlock.slide}"  th:if="${#strings.trim(slide.slideTitle) == 'Contact' or #strings.trim(slide.slideTitle) == 'Investigators'}">
-                    <a class="nav-link header-link primary-text-color"  th:href="${@webUtils.createLink(slide.slideTitle)}" th:utext="${@webUtils.validateString(slide.slideTitle)}">Investigators</a>
-                </li>
+                        <!-- Check if slide has no contents, render a simple link -->
+                        <th:block th:if="${#lists.isEmpty(slide.slideContents)}" class="dropdown header-dropdown">
+                            <a class="nav-link header-link" th:href="${@webUtils.createLink(slide.slideTitle)}" th:utext="${@webUtils.validateString(slide.slideTitle)}"></a>
+                        </th:block>
 
+                        <!-- If slide has contents, render the dropdown -->
+                        <div th:unless="${#lists.isEmpty(slide.slideContents)}" class="dropdown header-dropdown">
+                            <button class="dropdown-toggle header-dropdown-btn primary-text-color" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:utext="${@webUtils.validateString(slide.slideTitle)}">
+                                Additional Links
+                            </button>
+                            <ul class="dropdown-menu special-dropdown-menu border-0 shadow">
+                                <li th:each="slideContent : ${slide.slideContents}">
+                                    <a class="dropdown-item" th:href="${@webUtils.createLink(slideContent.content)}"
+                                       th:utext="${@webUtils.validateString(slideContent.content)}"></a>
+                                </li>
+                            </ul>
+                        </div>
 
-                <li class="nav-item d-flex align-items-center px-0 px-lg-2" th:each="slide, iterStat : ${navigationtBlock.slide}" th:unless="${#strings.trim(slide.slideTitle) == 'Contact' or #strings.trim(slide.slideTitle) == 'Investigators'}">
-                    <div class="dropdown header-dropdown" >
-                        <button class="dropdown-toggle header-dropdown-btn primary-text-color" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" th:utext="${@webUtils.validateString(slide.slideTitle)}">
-                            Additional Links
-                        </button>
-                        <ul class="dropdown-menu special-dropdown-menu border-0 shadow">
+                    </li>
 
-                            <li th:each="slideContent : ${slide.slideContents}">
-                                <a class="dropdown-item" th:href="${@webUtils.createLink(slideContent.content)}"
-                                   th:utext="${@webUtils.validateString(slideContent.content)}">
+                    <!--Dynamic URLs links end--->
 
-                                </a>
-                            </li>
+                </ul>
+                <div class="col-md-2">
 
-                        </ul>
-                    </div>
-                </li>
-                <!--            Dynamic URLs links end--->
-
-            </ul>
-            <button class="btn-with-arrow"
-                    th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(pageMetaData.buttonUrl)} + '&quot;, &quot;_blank&quot;);'">
+                    <button class="btn-with-arrow button-nav"
+                            th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(pageMetaData.buttonUrl)} + '&quot;, &quot;_blank&quot;);'">
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
-                <span class="button-text" th:utext="${@webUtils.validateString(pageMetaData.buttonText)}">Participate Now
+                        <span class="button-text" th:utext="${@webUtils.validateString(pageMetaData.buttonText)}">Participate Now
           </span>
-            </button>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
-</body>
-</html>
+</div>
+</th:block>
 

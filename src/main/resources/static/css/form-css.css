@@ -15,7 +15,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     /* width: 85%; */
     max-width: 100%;
-    margin-top: 30%;
+    margin-top: 11%;
+}
+.space {
+    height: 20px;
 }
 .form-group {
     position: relative;
@@ -75,7 +78,7 @@ button:hover {
 }
 
 .logo-form img {
-    width: 30%;
+    width: 22%;
     text-align: center;
 
 }

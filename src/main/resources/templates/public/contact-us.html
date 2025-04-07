@@ -29,13 +29,14 @@
                     <p class="text-white regular-font mt-2 wow animate__animated animate__fadeInUp">Please reach out to us and a
                         LINQ Research team<br>
                         member will be in touch with you.</p>
-                    <form action="#" class="w-100 w-md-75 py-4">
-                        <input type="text" placeholder="First Name" class="w-100 myInput">
-                        <input type="text" placeholder="Last Name" class="w-100 myInput">
-                        <input type="email" placeholder="Email" class="w-100 myInput">
-                        <input type="tel" placeholder="Phone" class="w-100 myInput">
-                        <input type="tel" placeholder="Message" class="w-100 myInput">
+                    <form action="#" class="w-100 w-md-75 py-4" id="customerEnquiryForm">
+                        <input type="text" placeholder="First Name" class="w-100 myInput" id="firstName" minlength="4" maxlength="50" required>
+                        <input type="text" placeholder="Last Name" class="w-100 myInput" id="lastName" minlength="4" maxlength="50" required>
+                        <input type="email" placeholder="Email" class="w-100 myInput" id="email" minlength="5" maxlength="60" required>
+                        <input type="tel" placeholder="Phone" class="w-100 myInput" id="phone" pattern="[\+\-0-9]*" minlength="8" maxlength="20" required>
+                        <textarea placeholder="Message" class="w-100 myInput" id="message" minlength="20" max="500" required></textarea>
                         <button type="submit" class="btn btn-primary px-4 my-4">Send</button>
+                        <p id="responseMessage" style="color: red; display: none;"></p> <!-- Error/Success Message -->
                     </form>
                 </div>
                 <div class="col-md-6 py-4 px-0 overflow-hidden">
@@ -56,6 +57,8 @@
 
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+<script src="js/contact.js"></script>
 </body>
 
 </html>

@@ -5,6 +5,8 @@ import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.entity.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -39,7 +41,8 @@ public class MailService {
 
     private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 
-//    @Value("${spring.base.url}")
+    private static final Logger logger = LoggerFactory.getLogger(MailService.class); // Use logger
+
     @Value("${website.main.url}")
     private String baseUrl;
 
@@ -69,9 +72,11 @@ public class MailService {
             message.setFrom(fromMail);
             message.setSubject(subject);
             message.setText(content, isHtml);
+            logger.info("Sending email to: " + to + " From: "+fromMail);
             System.out.println("Sending email to: " + to+" From: "+fromMail);
             javaMailSender.send(mimeMessage);
         } catch (MailException | MessagingException e) {
+            logger.error("Sending email Exception [sendEmailSync]: "+e);
             throw new RuntimeException(e);
         }
     }

@@ -43,20 +43,11 @@ body {
 
 /* logo styles */
 .logo-wrapper {
-  /* background: white; */
-  position: absolute;
-   margin: 6px 0 0 27px;
-  top: 0px;
-  height: 100px;
-  width: 100px;
-  z-index: 4;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
-  padding-bottom: 31px;
+
 }
 
 .logo-wrapper img {
-  height: 100%;
-  width: 100%;
+    width: 80%;
 }
 
 /* /logo Styles */
@@ -213,13 +204,13 @@ body {
 .header-link,
 .header-dropdown-btn {
   font-weight: 400 !important;
-  font-size: 17px !important;
+      /* font-size: 0.9rem !important; */
 }
 
 .header-dropdown-btn::after {
   position: relative !important;
   top: 3px !important;
-  right: 5px !important;
+  right: 0px !important;
 }
 
 .header-link.active,
@@ -267,6 +258,7 @@ body {
 .special-dropdown-menu .dropdown-item {
   padding: 10px;
   border-radius: 7px;
+  font-size: 0.9rem;
 }
 
 .header-dropdown-btn {
@@ -319,7 +311,6 @@ button.btn-with-arrow {
   width: 14rem;
   height: auto;
   border: 0px solid var(--primary-color);
-  margin: 0 30px 0 0;
 
   border-radius: 30px;
 }
@@ -376,11 +367,10 @@ button.btn-with-arrow .button-text {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0.55rem 0;
+      padding: 0.68rem 0;
   margin: 0 0 0 1.85rem;
   color: var(--primary-color);
   font-weight: 400 !important;
-  font-size: 17px !important;
   line-height: 1.6;
   text-align: center;
 }
@@ -965,6 +955,7 @@ button:hover .button-text {
   height: 130px;
   border: 2px solid var(--primary-color);
   padding-top: 36px !important;
+  cursor: pointer;
 }
 
 .enroll-card::before {
@@ -1328,9 +1319,9 @@ button:hover .button-text {
     padding-right: 14px;
   }
 
-  .logo-wrapper {
-    height: 95px;
-    width: 95px;
+  .logo-wrapper img {
+        height: 70px;
+        width: 90px;
     right: 0;
   }
 
@@ -1395,6 +1386,16 @@ button:hover .button-text {
 .rm-mt-mb {
   margin-top: 0px !important;
 }
+
+.header-dropdown-btn {
+    height: 35px !important;
+}
+}
+
+@media only screen and (min-width: 1023px) {
+    .pc-hide {
+        display: none;
+    }
 }
 
 .psuedoText {
@@ -1584,4 +1585,88 @@ button:hover .button-text {
   .member-card img {
     width: 100%;
   }
+}
+
+
+.custom-width {
+  width: 99%;
+}
+
+@media (min-width: 1400px) and (max-width: 1450px) {
+.header-link,
+.header-dropdown-btn {
+    font-size: 0.9rem !important;
+}
+
+.logo-wrapper img {
+    width: 100%;
+}
+}
+
+/* Custom breakpoint for screens between 1200px and 1400px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    button.btn-with-arrow .button-text {
+        font-size: 0.8rem !important;
+        padding: 0.65rem 0;
+        top: 6px;
+    }
+
+    .header-link, .header-dropdown-btn {
+        font-size: 0.8rem !important;
+    }
+
+    button.btn-with-arrow {
+        width: 12rem;
+    }
+
+.logo-wrapper img {
+    width: 100%;
+}
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+    button.btn-with-arrow .button-text {
+        font-size: 0.7rem !important;
+        padding: 0.65rem 0;
+        top: 0px;
+            margin: 0 0 0 2rem;
+    }
+
+.header-link,
+.header-dropdown-btn {
+    font-size: 0.7rem !important;
+}
+
+    .header-link, .header-dropdown-btn {
+        font-size: 0.6rem !important;
+    }
+
+    button.btn-with-arrow {
+            width: 9rem;
+    }
+
+    button.btn-with-arrow .circle {
+        width: 2rem;
+        height: 2rem;
+        left: 0.2rem;
+    }
+
+.logo-wrapper img {
+    width: 100%;
+}
+
+button.btn-with-arrow .circle .icon.arrow::before {
+    right: 8px;
+}
+
+.navigationSpan span {
+    font-size: 0.8rem;
+}
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+
+.logoDiv {
+    width: 18% !important;
+}
 }
