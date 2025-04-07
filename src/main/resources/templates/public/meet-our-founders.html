@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head
+        th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+</head>
+
+<body>
+<!-- Dynamic navigation -->
+<div
+        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
+</div>
+
+
+<div class="container-fluid">
+    <!--
+      <div class="row mb-5">
+        <div class="contact-header">
+          <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Become a Principal Investigator</h2>
+        </div>
+      </div>
+    -->
+
+    <div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock1}">
+        <div th:each="slide : ${contentBlock.slide}" style="position: absolute; height: 100%; width: 100%; display: flex; align-items: center;justify-content: center;">
+            <h2 class="dark-secondary-text-color   fw-bold" style="font-size: 50px;" th:utext="${slide.slideContents[0].content}">Meet the Founders</h2>
+        </div>
+        <div class="col-md-6" style="padding: 0px;">
+            <img th:src="${slide.slideContents[1].content}" src="image/banner2.png" width="100%">
+        </div>
+        <div class="col-md-6" style="padding: 0px;">
+            <img th:src="${slide.slideContents[2].content}" src="image/banner.png" width="100%">
+        </div>
+    </div>
+
+    <div class="container">
+        <h2  th:utext="${contentBlock2.content}" class="  fw-bold text-center mt-5" style="color: #20385D;">
+            Together Hussein and Mustafa have dedicated over 15 years to
+            the field of clinical research, striving to deliver inclusive and
+            high-quality clinical research to the Houston area.
+        </h2>
+
+    </div>
+
+
+    <div class="container">
+        <h4  th:utext="${contentBlock3.content}" class="text-center mt-5">
+            In 2014, Hussein Aladin and Mustafa Noorbhai founded LINQ Research LLC with a shared vision in mind: to
+            shape the future of healthcare through a supportive, informative, and data-driven clinical research
+            environment.
+
+        </h4>
+    </div>
+
+
+    <div class="container">
+        <div class="row p-2 p-md-1 mt-5 align-items-stretch">
+
+            <div class="col-md-3 overflow-hidden p-0 rounded-end-4 no-border">
+                <img src="image/seo1.png" alt="" class="wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-5">
+            </div>
+
+            <div class="col-md-9 rounded-start-4 no-border">
+
+                <h2 class="dark-secondary-text-color   fw-bold">
+                    Hussein Aladin
+                </h2>
+                <h5 class="  fw-bold" style="color: #20385D;">
+                    CEO/ Co-Founder
+
+                </h5>
+                <p class=" mt-1 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated ">Hussein Aladin is a clinical research professional, with over 15 years of extensive experience.
+                    He graduated Cum Laude from the University of Houston, earning a degree in International
+                    Business and Communications. Hussein is a proud member of the Association of Clinical
+                    Research Professionals (ACRP) and holds the ACRP-CP certification.
+                    Throughout his career, Hussein has worked at various levels within the clinical research
+                    industry, including sponsor, Contract Research Organization (CRO), institution, and site
+                    management organization. His diverse background has equipped him with a comprehensive
+                    understanding of the clinical research process and a commitment to enhancing healthcare
+                    outcomes. Hussein's passion for research is evident in his dedication to his work and his
+                    continuous pursuit of excellence.
+
+                </p >
+                <p class=" mt-1 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated">
+
+                    Outside of his professional life, he enjoys hiking, exploring different restaurants, and spending
+                    quality time with his wife and son.
+                </p>
+                <a href="prinicipal-investigator-form.html" target="_blank"
+                   class="btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium  ">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row p-2 p-md-1 mt-5 align-items-stretch">
+
+            <div class="col-md-3 overflow-hidden p-0 rounded-end-4 no-border">
+                <img src="image/seo2.png" alt="" class="wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-5">
+            </div>
+
+            <div class="col-md-9 rounded-start-4 no-border">
+
+                <h2 class="dark-secondary-text-color   fw-bold">
+                    Mustafa Noorbhai
+                </h2>
+                <h5 class="  fw-bold" style="color: #20385D;">
+                    CEO/ Co-Founder
+
+                </h5>
+                <p class=" mt-1 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated ">Hussein Aladin is a clinical research professional, with over 15 years of extensive
+                    experience. He graduated Cum Laude from the University of Houston, earning a degree
+                    in International Business and Communications. Hussein is a proud member of the
+                    Association of Clinical Research Professionals (ACRP) and holds the ACRP-CP
+                    certification.
+
+
+                </p >
+                <p class=" mt-1 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated">
+                    Throughout his career, Hussein has worked at various levels within the clinical research
+                    industry, including sponsor, Contract Research Organization (CRO), institution, and site
+                    management organization. His diverse background has equipped him with a
+                    comprehensive understanding of the clinical research process and a commitment to
+                    enhancing healthcare outcomes. Hussein's passion for research is evident in his
+                    dedication to his work and his continuous pursuit of excellence.
+                    Outside of his professional life, he enjoys hiking, exploring different restaurants, and
+                    spending quality time with his wife and son.
+                </p>
+                <a href="prinicipal-investigator-form.html" target="_blank"
+                   class="btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium  ">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row mt-5">
+
+
+    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+</body>
+
+</html>
