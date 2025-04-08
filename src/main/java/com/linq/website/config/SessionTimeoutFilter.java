@@ -32,6 +32,8 @@ public class SessionTimeoutFilter extends OncePerRequestFilter {
 
         boolean isPublic = PUBLIC_PATHS.stream().anyMatch(path::startsWith);
 
+        System.out.println("isPublic: "+isPublic);
+        System.out.println("isSessionExpired: "+isSessionExpired);
         if (isSessionExpired && !isPublic) {
             response.sendRedirect("/login?sessionExpired");
             return;

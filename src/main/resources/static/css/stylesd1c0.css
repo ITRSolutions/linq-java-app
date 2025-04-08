@@ -8,7 +8,7 @@
 
 body {
   font-family: var(--regular-font);
-
+    overflow-x: hidden;
 }
 
 .primary-text-color {
@@ -44,6 +44,18 @@ body {
 /* logo styles */
 .logo-wrapper {
 
+}
+
+.banner-img {
+    object-position: right;
+}
+
+.emailId {
+  line-break: anywhere;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .logo-wrapper img {
@@ -88,8 +100,9 @@ body {
 }
 
 .carousel-caption {
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
+      padding-top: 0;
 }
 
 .hero-carousel {
@@ -1390,12 +1403,22 @@ button:hover .button-text {
 .header-dropdown-btn {
     height: 35px !important;
 }
+
+
 }
 
 @media only screen and (min-width: 1023px) {
     .pc-hide {
         display: none;
     }
+
+}
+
+@media only screen and (max-width: 1023px) {
+    .banner-img {
+        object-position: center;
+    }
+
 }
 
 .psuedoText {
@@ -1573,6 +1596,11 @@ button:hover .button-text {
   .member-card img {
     width: 80%;
   }
+
+
+    .connect {
+        margin-top: 2.4rem !important;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */

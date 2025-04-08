@@ -15,13 +15,23 @@
         <!-- carousel  -->
         <div id="carouselExampleCaptions" class="carousel slide hero-carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                <button type="button"
+                        th:each="slide, iterStat : ${contentBlock1.slide}"
+                        data-bs-target="#carouselExampleCaptions"
+                        th:attr="data-bs-slide-to=${iterStat.index}, aria-label='Slide ' + ${iterStat.index + 1}"
+                        th:classappend="${iterStat.index == 0} ? ' active' : ''"
+                        th:if="${iterStat.index == 0}"
+                        aria-current="true">
+                </button>
+                <button type="button"
+                        th:each="slide, iterStat : ${contentBlock1.slide}"
+                        data-bs-target="#carouselExampleCaptions"
+                        th:attr="data-bs-slide-to=${iterStat.index}, aria-label='Slide ' + ${iterStat.index + 1}"
+                        th:classappend="${iterStat.index != 0} ? '' : null"
+                        th:unless="${iterStat.index == 0}">
+                </button>
             </div>
+
 
             <!--  Dynamic Banner start -->
             <div class="carousel-inner vh-100">
@@ -29,8 +39,8 @@
                     <div class="carousel-item h-100" th:each="slide, iterStat  : ${contentBlock.slide}"
                          th:classappend="${iterStat.index == 0 ? ' active' : ''}">
                         <img src="image/12/AdobeStock_214310161-scaled.jpg" th:src="${@webUtils.validateString(slide.slideContents[0].content)}"
-                             class="d-block w-100 object-fit-cover"
-                             alt="..." height="100%" style="object-position:right"/>
+                             class="d-block w-100 object-fit-cover banner-img"
+                             alt="..." height="100%"/>
                         <div class="image-opacity"></div>
                         <div class="carousel-caption">
                             <h2 class="display-5 fw-bold mb-5 primary-text-color animate__animated animate__fadeInUp"

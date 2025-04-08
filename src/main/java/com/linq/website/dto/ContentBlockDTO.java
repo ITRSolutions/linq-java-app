@@ -12,7 +12,7 @@ public class ContentBlockDTO {
     public static class BaseContentBlock {
 
         @NotEmpty(message = "Content cannot be empty")
-        @Size(max = 50, message = "Content cannot be longer than 50 characters")
+        @Size(message = "Content cannot be longer than 50 characters")
         private String content;
     }
 
