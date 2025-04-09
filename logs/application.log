@@ -1,7 +1,2 @@
-2025-04-09T06:22:03.115+05:30  INFO 19156 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-09T06:22:11.426+05:30  INFO 19156 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 32.186 seconds (process running for 33.441)
-2025-04-09T06:22:22.118+05:30  INFO 19156 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-09T06:22:22.118+05:30  INFO 19156 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-09T06:22:22.122+05:30  INFO 19156 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-04-09T06:29:55.174+05:30  INFO 19156 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-09T06:29:55.185+05:30  INFO 19156 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-09T20:50:32.826+05:30  INFO 41312 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-09T20:50:40.869+05:30  INFO 41312 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 36.082 seconds (process running for 37.808)
