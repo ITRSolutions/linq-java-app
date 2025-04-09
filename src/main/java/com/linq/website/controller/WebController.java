@@ -36,7 +36,8 @@ public class WebController {
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
     public String getPage(@PathVariable(required = false) String slug, Model model,
-                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+                          @AuthenticationPrincipal CustomUserDetails userDetails,
+                          @RequestParam(value = "page", defaultValue = "") String paramPageName) {
 
         if (slug == null || slug.isEmpty()) {
             slug = "index";
@@ -46,6 +47,12 @@ public class WebController {
         }
 
         System.out.println("slug: "+slug);
+
+        String tempPageName = null;
+        if(!paramPageName.isEmpty()) {
+            tempPageName = slug;
+            slug = paramPageName;
+        }
         try {
             // Fetch dynamic page by slug
             DynamicPage page = dynamicPageService.getPageBySlug(slug);
@@ -103,7 +110,9 @@ public class WebController {
             List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");
             model.addAttribute("referFrdCommonArea", referFrdCommon);
 
-
+            if(!paramPageName.isEmpty()) {
+                slug = tempPageName;
+            }
 
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {

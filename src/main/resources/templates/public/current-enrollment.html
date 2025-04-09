@@ -27,27 +27,21 @@
 		</div>
 		
 		<!--  Are you Interested Area End -->
-		
-		
 
 		<!--  All Disease Container Start -->
 		<div class="row py-5 g-4 px-0 px-md-5" th:each="contentBlock : ${contentBlock3}">
 			<div class="col-md-4" th:each="slide : ${contentBlock.slide}">
-				<div class="enroll-card shadow-sm p-4">
+				<div class="enroll-card shadow-sm p-4" th:attr="onclick='window.open(&quot;disease?page=' + ${@webUtils.validateString(slide.slideContents[2].content)} + '&quot;, &quot;_blank&quot;);'">
 					<div class="left-area">
 						<img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
 						<div class="title" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"
-						th:if="${#lists.size(slide.slideContents) > 2}"
-						th:attr="onclick='window.open(&quot;' + ${@webUtils.validateString(slide.slideContents[2].content)} + '&quot;, &quot;_blank&quot;);'">
+						th:if="${#lists.size(slide.slideContents) > 2}">
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!--  All Disease Container End -->
-		
-		
-
 		
 	</div>
 	

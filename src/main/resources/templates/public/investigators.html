@@ -15,8 +15,6 @@
 	 </div>
 			
     <div class="container-fluid">
-        
-
       <div class="row my-5 p-2 p-md-5"  th:each="contentBlock : ${contentBlock2}">
             <div class="col-md-4 d-flex align-items-center justify-content-md-end justify-content-center" th:each="slide : ${contentBlock.slide}">
                 <img th:src="${slide.slideContents[0].content}" alt="" class="rounded investigator-img">
@@ -29,8 +27,6 @@
                 <p class="text-muted mt-4" style="font-size:17px" th:utext="${slide.slideContents[3].content}"></p>
             </div>
         </div>
-
-        
     </div>
 	
 	

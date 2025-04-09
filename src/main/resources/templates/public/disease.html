@@ -10,7 +10,6 @@
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}">
 </div>
 
-
 <div class="row mb-5">
 	<div class="contact-header">
 		<h2 class="text-white fw-bold" id="diseaseName" th:utext="${contentBlock1.content}"></h2>
@@ -18,7 +17,6 @@
 </div>
 
 <div class="container-fluid container-xxl">
-
 
 	<div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
 		<div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"

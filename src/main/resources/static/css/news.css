@@ -1,0 +1,280 @@
+/* Base Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Top Contact Bar */
+.top-contact-bar {
+  background-color: #FDB139;
+  font-size: 14px;
+}
+
+.top-contact-bar a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.top-contact-bar a:hover {
+  opacity: 0.9;
+}
+
+.top-contact-bar i {
+  margin-right: 5px;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #f8f9fa !important;
+  padding: 10px 0;
+}
+
+.navbar-brand img {
+  height: 50px;
+}
+
+.nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  padding: 8px 15px !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #2a6496 !important;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Page Header */
+.page-header {
+  background-image: url('../image/linq-research.png');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(42, 100, 150, 0.8);
+}
+
+.page-header h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+/* -------- News & Events Container --------- */
+
+/* News & Events Container */
+.news-events-container {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Container padding adjustments */
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 1400px) {
+  .news-events-container {
+      padding: 0 8%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .news-events-container {
+      padding: 0 10%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .news-events-container {
+      padding: 0 15%;
+  }
+}
+
+/* Card Styling */
+.news-card {
+  transition: all 0.9s ease;
+  border-radius: 8px !important;
+}
+
+.news-card .card-img {
+  transition: transform 0.9s ease;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.news-link:hover .news-card {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+}
+
+.news-link:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* Hover Line Effect */
+.hover-line {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.9s ease;
+}
+
+.news-link:hover .hover-line {
+  width: 100%;
+}
+
+/* Card overlay adjustments */
+.card-img-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem !important;
+}
+
+/* News Content Styling */
+.news-category {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.news-category .badge {
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #6c757d !important;
+}
+
+.news-date {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: white;
+}
+
+.news-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding-bottom: 10px;
+  display: inline-block;
+  color: white;
+}
+
+/* Adjust font sizes for smaller cards */
+.col-xl-4 .news-title,
+.col-lg-5 .news-title,
+.col-md-6 .news-title {
+  font-size: 1.1rem;
+}
+
+/* Pagination styling */
+.pagination {
+  gap: 6px;
+}
+
+.pagination-btn {
+  background-color: #FDB139 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+}
+
+.pagination-btn:hover {
+  background-color: #e09e30 !important;
+  color: white !important;
+}
+
+.page-item.active .pagination-btn {
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid #FDB139 !important;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+  .news-title {
+      font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .news-title {
+      font-size: 1.1rem;
+  }
+  
+  .card-img-overlay {
+      padding: 1rem !important;
+  }
+  
+  .pagination-btn {
+      min-width: 32px;
+      height: 32px;
+      font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .news-title {
+      font-size: 1rem;
+  }
+  
+  .pagination-btn {
+      min-width: 28px;
+      height: 28px;
+      font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .pagination-btn {
+      min-width: 24px;
+      height: 24px;
+      font-size: 0.75rem;
+  }
+}
+
+/* -------- News & Events Container Ends--------- */

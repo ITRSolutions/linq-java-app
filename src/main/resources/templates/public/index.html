@@ -203,9 +203,9 @@
 
             <!-- 6th health cards -->
             <div class="row health-card-wrapper mt-5 gap-3 gap-md-0" th:each="contentBlock : ${contentBlock6}">
-                <div class="col-md-6 col-lg-3" th:each="slide: ${contentBlock.slide}">
+                <div class="col-md-6 col-lg-6 col-xl-3" th:each="slide: ${contentBlock.slide}">
                     <div class="card border-0 text-center health-card mt-1">
-                        <div class="health-card-img-wrapper d-flex align-items-center justify-content-center">
+                        <div class="health-card-img-wrapper d-flex align-items-center justify-content-center mt-4">
                             <img src="image/01/screen_2x.webp" th:src="${@webUtils.validateString(slide.slideContents[0].content)}"
                                  class="health-card-img" alt="..."/>
                             <h5 class="card-title fw-bold mt-2 text-white z-2 position-absolute top-50 start-50 translate-middle"
@@ -235,7 +235,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Testimonial Section -->

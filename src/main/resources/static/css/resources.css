@@ -1,0 +1,293 @@
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Top Contact Bar */
+.top-contact-bar {
+  background-color: #FDB139;
+  font-size: 14px;
+}
+
+.top-contact-bar a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.top-contact-bar a:hover {
+  opacity: 0.9;
+}
+
+.top-contact-bar i {
+  margin-right: 5px;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #f8f9fa !important;
+  padding: 10px 0;
+}
+
+.navbar-brand img {
+  height: 50px;
+}
+
+.nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  padding: 8px 15px !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #2a6496 !important;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Page Header */
+.page-header {
+  background-image: url('../image/linq-research.png');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(42, 100, 150, 0.8);
+}
+
+.page-header h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Footer */
+footer {
+  background-color: #eee;
+  padding: 40px 0;
+}
+
+footer h3 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+footer h5 {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+footer a {
+  color: #6c757d;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #2a6496;
+  text-decoration: none;
+}
+
+.social-icons i {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  color: #6c757d;
+  transition: color 0.2s;
+}
+
+.social-icons i:hover {
+  color: #2a6496;
+}
+
+
+
+
+/*----------- Resources Grid -----------*/
+.resources-grid {
+  padding: 60px 0px;
+  background-color: #ffffff;
+}
+
+/* Custom padding for resources grid container */
+.container-fluid.resources-grid {
+  padding-left: 2rem;  /* 32px on large screens */
+  padding-right: 2rem; /* 32px on large screens */
+}
+
+/* Resource Card Styles */
+.resource-card {
+  background: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.resource-image-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.resource-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+              rgba(0,0,0,0.2) 0%, 
+              rgba(0,0,0,0) 30%);
+}
+
+.resource-card:hover .resource-image {
+  transform: scale(1.05);
+}
+
+.resource-date-badge {
+  position: absolute;
+  max-width:40px;
+  text-align: center;
+  top: 0px;
+  right: 8px;
+  background: #FDB139;
+  color: white;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.resource-content {
+  padding: 20px;
+}
+
+.resource-content h3 {
+  color: black;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.resource-content p {
+  color: #555555;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.resource-link {
+  color: #2A6496;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.resource-link i {
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.resource-link:hover {
+  color: #1D4B73;
+  text-decoration: none;
+}
+
+.resource-link:hover i {
+  transform: translateX(3px);
+}
+
+
+/* 4 cards on ≥1920px screens */
+@media (min-width: 1920px) {
+  .col-xxxl-3 {
+      flex: 0 0 25% !important; /* 4 cards */
+      max-width: 25% !important;
+  }
+}
+
+/* 3 cards on ≥1400px (Bootstrap xxl) - DEFAULT from col-lg-4 */
+/* 2 cards on ≥768px (Bootstrap md) - DEFAULT from col-md-6 */
+/* 1 card on <768px - DEFAULT (no class needed) */
+
+/* Tablet adjustments */
+@media (max-width: 992px) {
+  .page-header h1 {
+      font-size: 2rem;
+  }
+  .container-fluid.resources-grid {
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .navbar-collapse {
+      background-color: white;
+      padding: 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .resource-image-container {
+      height: 200px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+  .page-header {
+      padding: 60px 0;
+  }
+  .page-header h1 {
+      font-size: 1.8rem;
+  }
+  .top-contact-bar .col-12 {
+      justify-content: center !important;
+      text-align: center;
+  }
+  .resources-grid {
+      padding: 30px 0;
+  }
+}
+
+/*----------- Resources Grid Ends -----------*/

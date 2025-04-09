@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+
+</head>
+<link rel="stylesheet" href="css/resources.css">
+
+<body>
+<!-- Dynamic navigation -->
+<div
+        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
+</div>
+<!-- Page Header -->
+<div class="container-fluid page-header">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-white fw-bold">Resources & Guide to Clinical Trials</h1>
+        </div>
+    </div>
+</div>
+
+<!-- Resources Grid -->
+<div class="container-fluid resources-grid">
+    <div class="row px-md-5 px-3">
+
+
+        <!-- Card 1 -->
+        <div class="col-xxxl-3 col-lg-4 col-md-6 mb-4">
+            <div class="resource-card">
+                <div class="resource-image-container">
+                    <img src="image/resource-1.png" class="resource-image" alt="Placebos in Clinical Trials">
+                    <div class="resource-date-badge">Feb 24</div>
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="resource-content">
+                    <h3>The Role of Placebos in Clinical Trials</h3>
+                    <p>One of the key elements of a well-designed clinical trial is the use of placebos.</p>
+                    <a href="blog" target="_blank" class="resource-link">Read More <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+<script src="js/resources.js"></script>
+</body>
+
+</html>

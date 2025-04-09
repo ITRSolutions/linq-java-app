@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+</head>
+<link rel="stylesheet" href="css/news.details.css">
+
+<body>
+<!-- Dynamic navigation -->
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
+</div>
+
+<!-- News Content Section -->
+<section class="news-content-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12 text-start">
+        
+        <!-- News Heading -->
+        <h2 class="news-heading mb-4">Lorem ipsum dolor sit amet consectetur adipiscing elit</h2>
+        
+        <!-- News Metadata -->
+        <div class="news-meta mb-4">
+          <span class="news-date me-3">June 15, 2023</span>
+          <span class="news-author">By John Doe</span>
+        </div>
+        
+        <!-- News Paragraphs -->
+        <div class="news-body">
+          <p class="news-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.</p>
+          
+          Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit.
+          
+          Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Centered Horizontal Divider Line -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12">
+        <div class="news-divider my-5 mx-auto"></div>
+      </div>
+    </div>
+    
+    <!-- Centered Company Footer -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12 text-center">
+        <div class="news-footer">
+          <img src="image/logo.png" alt="Company Logo" class="company-logo mb-3">
+          <p class="footer-text mb-3">Stay updated with our latest news and announcements</p>
+          <div class="social-media">
+            <a href="#" class="social-icon me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon me-3"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon me-3"><i class="bi bi-instagram"></i></a>
+<!--            <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- News Details Ends-->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
