@@ -1,2 +1,2 @@
-2025-04-09T20:50:32.826+05:30  INFO 41312 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-09T20:50:40.869+05:30  INFO 41312 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 36.082 seconds (process running for 37.808)
+2025-04-10T01:19:01.234+05:30  INFO 31092 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-10T01:19:02.245+05:30  INFO 31092 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.793 seconds (process running for 523.325)

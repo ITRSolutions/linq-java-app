@@ -2,12 +2,16 @@ package com.linq.website.controller;
 
 import com.linq.website.enums.PageStatus;
 import com.linq.website.service.DynamicPageService;
+import com.linq.website.service.MailService;
 import com.linq.website.service.UserService;
 import com.linq.website.utility.CustomUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +35,8 @@ public class PanelController {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    private static final Logger logger = LoggerFactory.getLogger(PanelController.class);
+
     @GetMapping({"/", "/{slug}"})
     public String getPage(@PathVariable(required = false) String slug, Model model,
                           @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -38,7 +44,7 @@ public class PanelController {
             slug = "dashboard.html";
         }
 
-        try {
+        try { System.out.println("Hi there....");
             // Check if userDetails is null (in case of session timeout)
             if (userDetails == null) {
                 // Redirect or handle the session timeout scenario
@@ -73,20 +79,14 @@ public class PanelController {
             System.out.println("firstName: " + firstName);
             System.out.println("role: " + role);
             return "admin_panel/" + slug;
-        }  catch (Exception ex) {
-            return "redirect:/error_404";
+        } catch (Exception ex) {
+            return "redirect:/login?sessionExpired";
         }
-
     }
 
     private boolean templateExists(String templateName) {
         String templatePath = "classpath:/templates/" + templateName;
         Resource resource = resourceLoader.getResource(templatePath);
         return resource.exists();
-    }
-
-    @GetMapping("/test")
-    public String test(Model model) {
-        return "admin_panel/test.html";
     }
 }

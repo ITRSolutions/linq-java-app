@@ -3,8 +3,11 @@ package com.linq.website.controller;
 import com.linq.website.entity.*;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
+import com.linq.website.service.MailService;
 import com.linq.website.service.PageMetadataService;
 import com.linq.website.utility.CustomUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -32,6 +35,8 @@ public class WebController {
 
     private static final String YEAR = "year";
     private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+
+    private static final Logger logger = LoggerFactory.getLogger(WebController.class);
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
@@ -116,7 +121,7 @@ public class WebController {
 
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {
-            System.out.println(ex);
+            logger.error("PageNotFound : "+ex.getMessage());
             return "/error/404";
         }
     }

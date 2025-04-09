@@ -39,7 +39,7 @@ public class HttpSecurityConfig {
     private CustomAuthenticationFailureHandler failureHandler;
 
     @Autowired
-    private SessionTimeoutFilter sessionTimeoutFilter;
+    private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -48,7 +48,6 @@ public class HttpSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(sessionTimeoutFilter, UsernamePasswordAuthenticationFilter.class);
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
@@ -69,13 +68,13 @@ public class HttpSecurityConfig {
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
                         .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
-                        .requestMatchers("/api/v1/auth/**","/api/v1/logs").permitAll() // Allow authentication APIs
+                        .requestMatchers("/api/v1/auth/**", "/api/v1/logs").permitAll() // Allow authentication APIs
 
                         //  Restrict ADMIN-ONLY APIs
                         .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
-                                "/api/v1/actuator/**","/api/v1/content_block/**","/api/v1/web_page/**",
-                                "/api/v1/pageMetadata","/api/v1/slideContent/**","/api/v1/slide/**",
-                                "/api/v1/users/**","/actuator/**").hasRole("ADMIN")
+                                "/api/v1/actuator/**", "/api/v1/content_block/**", "/api/v1/web_page/**",
+                                "/api/v1/pageMetadata", "/api/v1/slideContent/**", "/api/v1/slide/**",
+                                "/api/v1/users/**", "/actuator/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated() // Require authentication for any other request
                 )
@@ -93,37 +92,13 @@ public class HttpSecurityConfig {
                         .deleteCookies("JSESSIONID") // Deletes session cookies
                         .permitAll()
                 );
-//                .sessionManagement(session -> session
-//                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Forces session authentication for requests
-//                        .invalidSessionUrl("/login?sessionExpired") // Redirect if session expires
-//                        .sessionFixation().newSession()
-//                );
 
-//        http
-//                .headers(headers -> headers
-//                        .frameOptions().sameOrigin() // Allows framing from the same origin
-//                );
-
-
+        http.exceptionHandling(exception -> exception
+                        .accessDeniedHandler(accessDeniedHandler)
+                );
         http.addFilterAfter(emailIsVerifiedFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-//    @Bean
-//    @Order(1)
-//    public SecurityFilterChain actuatorSecurity(HttpSecurity http) throws Exception {
-//        http
-//                .securityMatcher(EndpointRequest.toAnyEndpoint()) // Applies only to actuator endpoints
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(EndpointRequest.to("health", "info")).permitAll() // Public access
-//                        .requestMatchers(EndpointRequest.to("metrics", "env")).hasRole("ADMIN") // Protected
-//                        .anyRequest().denyAll() // Deny any other actuator endpoints if accessed
-//                )
-//                .httpBasic(Customizer.withDefaults()) // Basic auth for protected endpoints
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // No session
-//
-//        return http.build();
-//    }
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {
