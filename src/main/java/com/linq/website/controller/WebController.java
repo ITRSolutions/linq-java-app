@@ -33,9 +33,6 @@ public class WebController {
     @Autowired
     private CompanyPageMetaDataService companyPageMetaDataService;
 
-    private static final String YEAR = "year";
-    private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
@@ -122,7 +119,7 @@ public class WebController {
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {
             logger.error("PageNotFound : "+ex.getMessage());
-            return "/error/404";
+            return "/error";
         }
     }
 
@@ -178,12 +175,5 @@ public class WebController {
     public String activationError(@RequestParam("message") String message, Model model) {
         model.addAttribute("errorMessage", message);
         return "mail/activationError";
-    }
-
-    @GetMapping("/error_404")
-    public String handleError404(Model model) {
-        System.out.println("Error page access: "+currentYear);
-        model.addAttribute(YEAR, currentYear);
-        return "error/error_404"; // This will redirect to the 404 page
     }
 }
