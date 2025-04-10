@@ -1,10 +1,10 @@
-2025-04-10T01:41:15.650+05:30  INFO 31092 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-10T01:41:16.363+05:30  INFO 31092 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.562 seconds (process running for 1857.442)
-2025-04-10T01:41:16.372+05:30  INFO 31092 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-10T01:41:16.373+05:30  INFO 31092 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-10T01:41:16.374+05:30  INFO 31092 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-04-10T01:41:16.384+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-1] c.linq.website.controller.WebController  : PageNotFound : Page not found with name: meet-our-pri
-2025-04-10T01:41:16.392+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-1] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8095-exec-1] Exception processing template "/error": Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
+2025-04-10T06:36:07.374+05:30  INFO 27352 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-10T06:36:14.242+05:30  INFO 27352 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 24.911 seconds (process running for 26.117)
+2025-04-10T06:36:21.664+05:30  INFO 27352 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-10T06:36:21.664+05:30  INFO 27352 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-10T06:36:21.672+05:30  INFO 27352 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-04-10T06:37:23.049+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-10] c.linq.website.controller.WebController  : PageNotFound : Page not found with name: meet-our-principal-investigators
+2025-04-10T06:37:23.058+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-10] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8095-exec-10] Exception processing template "/error": Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 
 org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869) ~[thymeleaf-3.1.2.RELEASE.jar:3.1.2.RELEASE]
@@ -148,7 +148,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/erro
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
 	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-2025-04-10T01:41:16.395+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+2025-04-10T06:37:23.079+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
 
 org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869) ~[thymeleaf-3.1.2.RELEASE.jar:3.1.2.RELEASE]
@@ -292,8 +292,8 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/erro
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
 	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-2025-04-10T01:41:16.468+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-7] c.linq.website.controller.WebController  : PageNotFound : Page not found with name: favicon.ico
-2025-04-10T01:41:16.470+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-7] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8095-exec-7] Exception processing template "/error": Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
+2025-04-10T06:37:23.237+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-9] c.linq.website.controller.WebController  : PageNotFound : Page not found with name: favicon.ico
+2025-04-10T06:37:23.240+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-9] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8095-exec-9] Exception processing template "/error": Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 
 org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869) ~[thymeleaf-3.1.2.RELEASE.jar:3.1.2.RELEASE]
@@ -437,7 +437,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/erro
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
 	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-2025-04-10T01:41:16.473+05:30 ERROR 31092 --- [LINQ] [http-nio-8095-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+2025-04-10T06:37:23.251+05:30 ERROR 27352 --- [LINQ] [http-nio-8095-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
 
 org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/error], template might not exist or might not be accessible by any of the configured Template Resolvers
 	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869) ~[thymeleaf-3.1.2.RELEASE.jar:3.1.2.RELEASE]
@@ -581,3 +581,5 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [/erro
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.33.jar:10.1.33]
 	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
+2025-04-10T06:41:19.944+05:30  INFO 27352 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-10T06:41:19.968+05:30  INFO 27352 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

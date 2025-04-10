@@ -148,7 +148,25 @@ body {
 
 .circular-card {
   background: transparent;
+    height: 100%; /* Take full height of parent UI Bug Fix starts */
+    display: flex;
+    flex-direction: column;
 }
+
+.card-body {
+  flex: 1; /* Grow to fill remaining space */
+  min-height: 180px; /* Minimum height for text area */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out content */
+}
+
+.card-text {
+  flex-grow: 1; /* Make text take available space */
+  width: 100% !important; /* Override inline style */
+  margin-bottom: 1rem !important;
+}
+/* Take full height of parent UI Bug Fix Ends*/
 
 .health-card-wrapper {
   padding: 0px 40px;
@@ -1585,15 +1603,13 @@ button:hover .button-text {
   /* UI Bug fix */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   /* Fix text overflow in image */
-  .health-card-img-wrapper {
-    min-height: 180px;
-}
-  .card-title {
-    font-size: 1rem !important;
-  }
       .health-card-wrapper > .col-md-6:nth-child(n+3) {
         margin-top: 1.5rem !important;
       }
+  /* Specific selector for health card headers only */
+       .health-card .health-card-img-wrapper .card-title {
+         font-size: 1rem !important; /* Adjust font size */
+       }
 }
   /* UI Bug fix */
 
@@ -1607,6 +1623,9 @@ button:hover .button-text {
   .member-card img {
     width: 75%;
   }
+  .tablet-view {
+    margin-bottom: 0 !important
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1619,6 +1638,25 @@ button:hover .button-text {
   .member-card img {
     width: 80%;
   }
+    /* UI Bug Fix. */
+     .testimonail-wrapper {
+        padding: 30px 40px !important; /* Reduced from 50px 100px */
+     }
+    .testimonail-wrapper .col-md-4 {
+      padding-right: 20px !important; /* Space between image and text */
+    }
+    .testimonail-wrapper .col-md-8 {
+        padding-left: 30px !important; /* Balance the right padding */
+    }
+
+    /* UI Bug Fix */
+
+     /* UI Bug Fix White Space Above Enrollment*/
+       .enrollment-section {
+         margin-top: 0 !important;
+         margin-bottom: 0 !important;
+       }
+      /* UI Bug Fix */
 
     .connect {
         margin-top: 2.4rem !important;
@@ -1631,18 +1669,32 @@ button:hover .button-text {
 
 }
 
+@media (min-width: 767px) and (max-width: 860px) { /* Targetted for the iPad mini */
+    .owners-carousel .carousel-item img {
+        margin-left: 40px !important;  /* Push from left edge */
+    }
+}
+
 /* UI Bug Fix. ---5 */
 /* Mobile testimonial text width adjustment */
 @media (max-width: 767.98px) {
   .testimonail-wrapper {
-    padding: 40px 5% !important;
-    width: 90% !important;
+    padding: 40px 8% !important;
+    width: 85% !important;
     margin: 0 auto !important;
   }
+
+    .witness-pic {
+      display: block !important;
+      margin: 0 auto 20px !important;
+      width: 150px !important;
+      height: 150px !important;
+    }
 
     .testimonail-wrapper q,
     .testimonail-wrapper h6 {
       text-align: center !important; /* Ensure text centering */
+       padding: 0 5px !important;
     }
 }
 /* UI Bug Fix. ---5 */
@@ -1776,7 +1828,16 @@ button.btn-with-arrow .circle .icon.arrow::before {
 
 @media (min-width: 700px) and (max-width: 1023px) {
 
-.logoDiv {
-    width: 18% !important;
-}
+    .logoDiv {
+        width: 18% !important;
+    }
+
+    .tablet-view {
+        margin-bottom: 0 !important
+    }
+      /* Specific selector for health card headers only */
+      .health-card .health-card-img-wrapper .card-title {
+        font-size: 1rem !important; /* Adjust font size */
+      }
+
 }

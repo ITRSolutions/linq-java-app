@@ -5,6 +5,34 @@
         th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
 
+<style>
+    .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 32, 64, 0.75);
+}
+
+    .page-header {
+        padding: 0px;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    }
+
+    .banner-text {
+        font-size: 50px; color: #000;
+        position: absolute;
+        color: #fff;
+    }
+</style>
 <body>
 <!-- Dynamic navigation -->
 <div
@@ -23,14 +51,9 @@
 
     <div class="row align-items-stretch" th:each="contentBlock : ${contentBlock1}">
         <th:block th:each="slide : ${contentBlock.slide}">
-        <div style="position: absolute; height: 100%; width: 100%; display: flex; align-items: center;justify-content: center;">
-            <h2 class="dark-secondary-text-color   fw-bold" style="font-size: 50px;" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Meet the Founders</h2>
-        </div>
-        <div class="col-md-6" style="padding: 0px;">
-            <img th:src="${@webUtils.validateString(slide.slideContents[1].content)}" src="image/banner2.png" width="100%">
-        </div>
-        <div class="col-md-6" style="padding: 0px;">
-            <img th:src="${@webUtils.validateString(slide.slideContents[2].content)}" src="image/banner.png" width="100%">
+        <div class="col-md-12 page-header" >
+            <h2 class="fw-bold banner-text" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Meet the Founders</h2>
+            <img th:src="${@webUtils.validateString(slide.slideContents[1].content)}" width="100%">
         </div>
         </th:block>
     </div>
@@ -46,7 +69,6 @@
     <div class="container">
         <h5  th:utext="${@webUtils.validateString(contentBlock3.content)}" class="text-center mt-5">
             Header Text
-
         </h5>
     </div>
 

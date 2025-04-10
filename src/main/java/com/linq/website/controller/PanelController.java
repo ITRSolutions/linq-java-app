@@ -44,7 +44,7 @@ public class PanelController {
             slug = "dashboard.html";
         }
 
-        try { System.out.println("Hi there....");
+        try {
             // Check if userDetails is null (in case of session timeout)
             if (userDetails == null) {
                 // Redirect or handle the session timeout scenario

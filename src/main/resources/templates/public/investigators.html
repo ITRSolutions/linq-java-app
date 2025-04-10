@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+<head
+        th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
-
+<style>
+    .investigator {
+        background-color: rgb(196, 196, 196);
+    }
+</style>
 <body>
-    <!-- Navigation -->
-	<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}"></div>
-
-	<div class="row">
-	            <div class="investigator-header">
-	                <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock1.content)}"></h2>
-	            </div>
-	 </div>
-			
-    <div class="container-fluid">
-      <div class="row my-5 p-2 p-md-5"  th:each="contentBlock : ${contentBlock2}">
-            <div class="col-md-4 d-flex align-items-center justify-content-md-end justify-content-center" th:each="slide : ${contentBlock.slide}">
-                <img th:src="${slide.slideContents[0].content}" alt="" class="rounded investigator-img">
-            </div>
-            <div class="col-md-8 mt-4 mt-md-0" th:each="slide : ${contentBlock.slide}">
-                <h1 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
-                    th:text="${slide.slideContents[1].content}">
-                </h1>
-                <h5 class="primary-text-color fw-bold" th:text="${slide.slideContents[2].content}"></h5>
-                <p class="text-muted mt-4" style="font-size:17px" th:utext="${slide.slideContents[3].content}"></p>
-            </div>
+<!-- Dynamic navigation -->
+<div
+        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="investigator-header">
+            <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Principal Investigators</h2>
         </div>
     </div>
-	
-	
-	<!-- Company Footer Section -->
 
-	 <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+    <div class="row col-md-12">
+
+        <div class="col-md-3 p-0">
+
+            <div class="sidebar">
+                <br><br>
+                <ul>
+                    <li><a href="#" class="highlight">Family Medicine Specialist</a></li>
+                    <li><a href="#">Psychiatrist</a></li>
+                    <li><a href="#">Pulmonologist</a></li>
+                    <li><a href="#">Gastroenterologist</a></li>
+                    <li><a href="#">Ophthalmologist</a></li>
+                    <li><a href="#">Interventional Cardiologist</a></li>
+                    <li><a href="#">Internal Medicine</a></li>
+                    <li><a href="#">Obstetrics & Gynecology</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row my-5 p-2 ">
+                <div class="col-md-3 d-flex align-items-center justify-content-md-end justify-content-center" >
+                    <img src="image/Murtaza-Mussaji.png" alt=""
+                         class="rounded investigator">
+                </div>
+                <div class="col-md-9 mt-3 mt-md-0">
+                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                        Murtaza Mussaji, DO
+                    </h5>
+                    <p class="text-muted mt-3 " style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
+                        Dr. Murtaza Mussaji, a board-certified internal medicine physician, has been practicing in Houston since 2007. He earned his medical degree from Midwestern University in Arizona and completed his residency at UTHealth inHouston. Affiliated with Memorial Hermann Hospital.
+                    </p>
+                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
+                        Dr. Mussaji's clinical interests include diabetes, geriatrics, hypertension, asthma, COPD, heart disease, thyroid disorders, obesity, depression, and anxiety. He speaks Spanish, Hindi, Gujarati, and Swahili. He provides comprehensive, personalized care for patients of all ages, blending family medicine, internal medicine, and urgent care.  </p>
+                </div>
+            </div>
+            <div class="row my-5 p-2 ">
+                <div class="col-md-3 d-flex align-items-center justify-content-md-end justify-content-center">
+                    <img src="image/Kashif-Siddiqui.png" alt=""
+                         class="rounded investigator">
+                </div>
+                <div class="col-md-9 mt-3 mt-md-0">
+                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                        Kashif Siddiqui, MD
+                    </h5>
+                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
+                        Dr. Kashif Siddiqui is board certified in family medicine. He earned his medical degree from Karachi Medical and Dental College in Pakistan and completed his internship at Texas Children’s Hospital-Baylor College of Medicine in Houston, his residency at UT Southwestern Medical Center in Dallas, and a fellowship at Baylor College of Medicine in Houston
+                    </p>
+                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
+                        Dr. Siddiqui treats patients of all ages and speaks Urdu and Hindi. His clinical interests include high blood pressure, diabetes, high cholesterol, weight management, metabolic disorders, joint diseases, dementia, and memory care.   </p>
+                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
+                        His patient-centered practice ensures that every person feels heard and valued. Dr. Siddiqui offers comprehensive care, from preventive services to chronic disease management, utilizing the latest treatments and technologies to enhance patient outcomes and streamline the care process.  </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--  Company Footert Area -->
+    <div class="row mt-5">
+
+
+        <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+    </div>
 
     <!-- Footer -->
     <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
-
-    <!-- Scripts -->
-    <script th:src="@{/js/jquery/jquery.min.js}"></script>
-    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/js/custom.js}"></script>
 </body>
+
 </html>

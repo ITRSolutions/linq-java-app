@@ -26,7 +26,7 @@ public class CompanyPageMetaDataService {
 
     public void updateData(CompanyPageMetaData obj) {
         CompanyPageMetaData companyPageMetaData = companyPageMetaDataRepository.findById(1l).orElseThrow(() -> new PageNotFoundException("Company Page Meta Data not found"));
-        companyPageMetaData.setCompanyName(obj.getJoinCompanyDesc());
+        companyPageMetaData.setCompanyName(obj.getCompanyName());
         companyPageMetaData.setParticipateNowText(obj.getParticipateNowText());
         companyPageMetaData.setJoinCompanyDesc(obj.getJoinCompanyDesc());
         companyPageMetaDataRepository.save(companyPageMetaData);

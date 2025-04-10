@@ -4,20 +4,19 @@
 <head
         th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
-
 <body>
 <!-- Dynamic navigation -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
-<div class="row">
-    <div class="contact-header">
-        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
-            Clinical Trials</h2>
-    </div>
-</div>
-<div class="container-fluid container-xxl">
 
+<div class="container-fluid container-xxl">
+    <div class="row">
+        <div class="contact-header">
+            <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
+                Clinical Trials</h2>
+        </div>
+    </div>
 
     <div class="row p-2 p-md-5 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
         <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"

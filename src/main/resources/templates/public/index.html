@@ -79,9 +79,9 @@
 
         <div class="container-xxl">
             <!--2nd Content Block Dynamic circular cards -->
-            <div class="row circular-card-wrapper gap-5 gap-lg-0" th:each="contentBlock : ${contentBlock2}">
+            <div class="row circular-card-wrapper justify-content-md-center gap-5 gap-lg-0" th:each="contentBlock : ${contentBlock2}">
 
-                <div class="col-md-5 col-lg-4" th:each="slide : ${contentBlock.slide}">
+                <div class="col-md-5 col-lg-4 col-xl-4" th:each="slide : ${contentBlock.slide}">
                     <div class="card border-0 text-center circular-card">
                         <img src="image/12/AdobeStock_502590469-scaled.jpg"
                              class="circular-card-img object-fit-cover" alt="..."
@@ -99,7 +99,7 @@
             <!--2nd Content Block Dynamic circular cards End-->
 
             <!-- About Linq Research -->
-            <div class="row my-5">
+            <div class="row my-3 tablet-view">
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
                     <div id="carouselExample" class="carousel slide owners-carousel">
 
@@ -181,9 +181,9 @@
             </div>
 
             <!-- 5th Enrollment Options Section -->
-            <div class="row my-5" th:each="contentBlock : ${contentBlock5}">
+            <div class="row my-2 my-sm-0 enrollment-section" th:each="contentBlock : ${contentBlock5}">
                 <div th:each="slide: ${contentBlock.slide}" class="row">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center flex-column text-center gap-4 p-5">
+                    <div class="col-md-12 d-flex align-items-center justify-content-center flex-column text-center gap-4 px-5 py-2">
                         <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__animated animate__fadeInUp"
                             th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
                             Header
@@ -292,13 +292,15 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-5">
+            <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+        </div>
+
     </div>
 
 </div>
 
-<div class="row mt-5">
-    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
-</div>
 <!--footer code-->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </body>
