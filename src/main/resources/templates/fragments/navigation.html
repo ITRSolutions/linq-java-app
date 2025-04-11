@@ -49,14 +49,14 @@
 </div>
 <nav class="navbar navbar-expand-lg border-bottom" style="background:#eee">
     <div class="container-fluid row ms-auto me-auto custom-width">
-        <div class="col-md-1 col-10 logoDiv">
+        <div class="col-md-1 col-9 logoDiv">
             <a class="navbar-brand logo-wrapper" href="index.html"
                th:href="${@webUtils.validateString(pageMetaData.logoUrl)}">
                 <img src="logo_url" th:src="${@webUtils.validateString(pageMetaData.logoImgUrl)}" alt="logo">
             </a>
         </div>
 
-        <div class="col-2 pc-hide">
+        <div class="col-3 pc-hide">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -168,6 +168,7 @@ $(document).ready(function() {
                     $('input[name="companyName"]').val(data.companyName);
                     $('input[name="joinCompanyDesc"]').val(data.joinCompanyDesc);
                     $('input[name="participateNow"]').val(data.participateNowText);
+                    $('input[name="buttonURL"]').val(data.buttonURL);
                 } else {
                     // Handle if the response is not successful
                     $('#error-message1').text('Failed to load company data.').show();
@@ -188,7 +189,8 @@ $(document).ready(function() {
         var formData = {
             companyName: $('input[name="companyName"]').val(),
             joinCompanyDesc: $('input[name="joinCompanyDesc"]').val(),
-            participateNowText: $('input[name="participateNow"]').val()
+            participateNowText: $('input[name="participateNow"]').val(),
+            buttonURL: $('input[name="buttonURL"]').val()
         };
 
         // Make an AJAX PUT request

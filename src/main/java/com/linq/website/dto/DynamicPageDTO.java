@@ -16,11 +16,11 @@ public class DynamicPageDTO {
     @Setter
     public static class CreateDynamicPage {
         @NotEmpty(message = "Title cannot be empty")
-        @Size(max = 50, message = "Title cannot be longer than 50 characters")
+        @Size(message = "Title cannot be longer than 50 characters")
         private String title;
 
         @NotEmpty(message = "Slug cannot be empty")
-        @Size(max = 50, message = "Slug cannot be longer than 50 characters")
+        @Size(message = "Slug cannot be longer than 50 characters")
         private String slug;
 
         @NotNull(message = "Status cannot be null")
@@ -31,11 +31,11 @@ public class DynamicPageDTO {
     @Setter
     public static class UpdateDynamicPage {
         @NotEmpty(message = "Title cannot be empty")
-        @Size(max = 50, message = "Title cannot be longer than 50 characters")
+        @Size(message = "Title cannot be longer than 50 characters")
         private String title;
 
         @NotEmpty(message = "Slug cannot be empty")
-        @Size(max = 50, message = "Slug cannot be longer than 50 characters")
+        @Size(message = "Slug cannot be longer than 50 characters")
         private String slug;
 
         @NotNull(message = "Status cannot be null")
@@ -46,7 +46,7 @@ public class DynamicPageDTO {
     @Setter
     public static class SearchDynamicPage {
         @NotEmpty(message = "Slug cannot be empty")
-        @Size(max = 50, message = "Slug cannot be longer than 50 characters")
+        @Size(message = "Slug cannot be longer than 50 characters")
         private String slug;
     }
 }

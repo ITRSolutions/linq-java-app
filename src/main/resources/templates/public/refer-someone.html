@@ -2,91 +2,65 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+
 </head>
+<link rel="stylesheet" href="css/refer-friend.css">
 
 <body>
 <!-- Dynamic navigation -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="investigator-header">
             <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Refer a Friend</h2>
         </div>
     </div>
+    <div class="container mb-4 ">
+        <div class="row align-items-center">
+            <!-- Text Content -->
+            <div class="col-md-7 text-content">
+                <h6 class="fw-bold heading">Join a Clinical Trial</h6>
+                <h2 class="main-heading">Take the first step to a Brighter Future</h2>
+                <p>
+                    At LINQ Research, we believe in the power of hope and the promise of a healthier future.
+                    We are actively seeking participants for our open enrollment trials and warmly invite you
+                    to join us on this transformative journey.
+                </p>
+                <p>
+                    By joining a clinical trial, you pave the way for innovative treatments and cures by
+                    unlocking new possibilities in healthcare, bringing hope and healing to countless lives.
+                    Step forward and be the catalyst for a healthier future. Together, we can make a meaningful difference!
+                </p>
+                <p>
+                    Participating in a clinical trial is at no cost and open to everyone, regardless of age
+                    or background. Participants may also receive compensation for their time and travel.
+                </p>
+            </div>
 
-    <div class="row align-items-stretch refer-friend-page my-5 content">
-        <div class="col-md-6 p-5 rounded-start-4 no-border">
-            <!-- <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ms-5">
-              JOIN A CLINICAL RESEARCH STUDY
-            </h2> -->
-            <h2 class="dark-secondary-text-color wow animate__ animate__fadeInUp  fw-bold ms-3  animated" style="visibility: visible; animation-name: fadeInUp;">
-                Refer a Friend
-            </h2>
-            <h4 class="text-white mt-4 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated" style="visibility: visible; animation-name: fadeInUp;">
-                Spread the Word,
-            </h4>
-
-            <h3 class="text-white mt-3 animate__ animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3 animated txt-right animated" style="visibility: visible; animation-name: fadeInUp;">
-                Share the Benefits!
-            </h3>
+            <!-- Image -->
+            <div class="col-md-5 text-center mt-5">
+                <img src="image/refer-friend.png" style="width: 70%; border-radius: unset;" alt="Doctor with patient" class="img-circle" />
+            </div>
         </div>
-        <div class="col-md-6 overflow-hidden p-5 rounded-end-4 no-border align-items-center mobile-hide">
-            <img src="image/refer-friend-page.png" height="320" alt="" class="wow animate__ animate__fadeInRight object-fit-cover  d-block rounded-start-5  animated" style="visibility: visible; animation-name: fadeInRight;">
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5">
+            <h3 class="sub-heading">Interested in participating?</h3>
+            <p class="mx-auto visit-content">
+                Visit our current studies page to find a trial that fits your needs and see if you qualify
+                for any of our ongoing research studies. Once you apply, a Patient Enrollment Specialist
+                will contact you. They will guide you through the study details and answer any questions
+                you may have throughout the process.
+            </p>
+            <a href="#" class="custom-btn mb-5">Find a Trial</a>
         </div>
-    </div>
-
-    <div class="my-5">
-        <h2 class="dark-secondary-text-color   fw-bold text-center mt-5">
-            Know Someone Who'd Love to
-            Join a Study?
-        </h2>
-
-        <p class="w-75 m-auto text-center mt-4 regular-font lh-lg">
-            Spread the word and share your referral link!
-            Earn fantastic rewards for each friend who
-            qualifies and enrolls. It's a great way to help
-            others and benefit together!
-
-        </p>
-    </div>
-
-    <div class="my-5">
-        <h2 class="dark-secondary-text-color   fw-bold text-center mt-5">
-            Guidlines
-        </h2>
-        <ul style="list-style-type: square;">
-            <li class="w-75 m-auto text-leftmt-4 regular-font lh-lg">Referral rewards are issued only if you are a
-                participant in one of our studies and the
-                referred individuals successfully enroll.
-            </li>
-            <li class="w-75 m-auto text-leftmt-4 regular-font lh-lg">There's no limit on the number of people you can refer or rewards you can earn.
-
-            </li>
-            <li class="w-75 m-auto text-leftmt-4 regular-font lh-lg">As soon as the patient enrolls, you'll receive
-                your referral bonus in the form of a gift card.
-
-            </li>
-        </ul>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="company-footer">
-        <h2 class="dark-secondary-text-color fw-bold">LINQ Research LLC.</h2>
-        <p class="text-white fs-5">Join us in transforming lives through the power of accessible research
-        </p>
-        <a href="refer-friend-form.html"
-           class="btn text-white mt-2 health-card-btn px-4 fw-medium" target="_blank">Participate Now</a>
-    </div>
-</div>
-
-</div>
-
-<!-- Footer -->
-<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+    </div> </div>
+    <!-- Footer -->
+    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+    <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 </body>
 
 </html>

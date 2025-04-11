@@ -14,7 +14,7 @@ public class SlideDTO {
     public static class BaseSlideDTO {
 
         @NotNull(message = "Slide Title is required")
-        @Size(min = 1, max = 50, message = "Slide Title must be between 1 and 50 characters")
+        @Size(min = 1, message = "Slide Title must be between 1 and 50 characters")
         private String slideTitle;
 
         @NotNull(message = "orderIndex is required")

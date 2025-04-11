@@ -1,93 +1,402 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head
-        th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+
 </head>
-<style>
-    .investigator {
-        background-color: rgb(196, 196, 196);
-    }
-</style>
+<link rel="stylesheet" href="css/become-principle.css">
+
 <body>
 <!-- Dynamic navigation -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="investigator-header">
-            <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Principal Investigators</h2>
+<div class="row mb-5">
+    <div class="contact-header">
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Become a Principal Investigator</h2>
+    </div>
+</div>
+  <div class="container-fluid container-xxl">
+
+
+  <div class="row p-2 p-md-1 align-items-stretch">
+    <div class=" col-md-6 primary-bg-color p-5 rounded-start-4 no-border" id="disease">
+      <!-- <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ms-5">
+        JOIN A CLINICAL RESEARCH STUDY
+      </h2> -->
+      <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ms-3">
+        Are you ready to take
+        your research career to
+        the next level?
+      </h2>
+
+      <p class="text-white mt-4 animate__animated animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3  animated">Make a lasting impact—
+        LINQ Research is Looking for Talented Doctors! Join our
+        dynamic team as a Principal Investigator to explore
+        groundbreaking opportunities and unleash your full
+        potential!
+           
+      </p>
+      <a href="prinicipal-investigator-form.html" target="_blank"
+        class="btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-3">Learn More</a>
+    </div>
+    <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
+      <img src="image/principal-investigator.png" height="415" width="530"
+        alt="" class="picture wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-0">
+    </div>
+  </div>
+
+  <div class="row p-2 p-md-1 mt-4 align-items-stretch">
+    <div class="text-content  col-md-6 rounded-start-4 no-border">
+      <!-- <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ms-5">
+        JOIN A CLINICAL RESEARCH STUDY
+      </h2> -->
+      <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ">
+       About LINQ Research
+      </h2>
+      <h4 class="primary-text-color wow animate__ animate__fadeInUp mt-4  animated  wow animate__animated animate__fadeInUp " style="visibility: visible; animation-name: fadeInUp;">
+        A trusted partner in
+        delivering scientific
+        breakthroughs
+      </h4>
+      <p class=" mb-4 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated">As a leading research company in Pearland, TX, LINQ
+        As a leading research company in Pearland, TX, LINQ Research
+is committed to helping you elevate your career and unlock
+endless possibilities in research. For the past 10 years, we've
+partnered with physicians and pharmaceutical sponsors in the
+Houston area to conduct inclusive, high-quality research and
+drive groundbreaking scientific advancements. 
+      </p>
+      <a href="prinicipal-investigator-form.html" target="_blank"
+        class="mb-4 learn-btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium  ">Learn More</a>
+    </div>
+    <div class="col-md-6 overflow-hidden p-0 ">
+      <img src="image/linq-researches.png" class="research-img" 
+        alt=""/>
+    </div>
+  </div> 
+
+  <div class="align-items-center row col-md-12 mt-5">
+    <div  class="col-md-3"></div>
+    <div class="col-md-6 my-5 my-md-0 ">
+      <div class="row gy-5">
+        <div class="col-6 col-md-3">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.1s">
+            <h1 class="display-5 fw-bold primary-text-color ">
+              70+
+            </h1>
+            <p class="text-center regular-font">
+              Successful clinical
+trials
+            </p>
+          </div>
         </div>
+        <div class="col-6 col-md-3">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
+            <h1 class="display-5 fw-bold primary-text-color ">
+              20K+
+            </h1>
+            <p class="text-center regular-font">
+              Successful clinical
+            </p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
+            <h1 class="display-5 fw-bold primary-text-color ">
+              20K+
+            </h1>
+            <p class="text-center regular-font">
+              Patient Database
+            </p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
+            <h1 class="display-5 fw-bold primary-text-color ">
+              15K+
+            </h1>
+            <p class="text-center regular-font">
+              Patient Database
+            </p>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+    <h3 class="dark-secondary-text-color fw-bold text-center mt-5">
+      Our Therapeutic Expertise
+    </h3>
+    <div class="align-items-center row col-md-12 mt-5 p-3 clinical-research">
+      <div class="col-md-2"></div>
+      <div class="col-md-9 my-5 my-md-0 ">
+        <div class="row gy-5">
+          <div class="col-6 col-md-4 row mt-4">
+            <div class=" col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/internal.png" alt="">
+  
+              </div>
+            </div>
+            <div class=" col-md-8">
+              <p class=" regular-font mt-3">
+                Internal Medicine
+  
+              </p>
+            </div>
+          </div>
+  
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/women.png" alt="">
+  
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Women Health
+  
+              </p>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/Gastroenterology.png" alt="">
+  
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Gastroenterology
+              </p>
+            </div>
+          </div>
+  
+          <div class="col-6 col-md-4 row mt-4">
+            <div class=" col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/pulmonology.png" alt="">
+  
+              </div>
+            </div>
+            <div class=" col-md-8">
+              <p class=" regular-font mt-3">
+                Pulmonology
+              </p>
+            </div>
+          </div>
+  
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/psychiatry.png" alt="">
+  
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Psychiatry
+              </p>
+            </div>
+          </div>
+  
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/Endocrine.png" alt="">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Endocrine
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/vaccines.png" alt="">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Vaccines
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/pedriatrics.png" alt="">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Pediatrics 
+              </p>
+            </div>
+          </div> 
+          
+          <div class="col-6 col-md-4 row mt-4">
+            <div class="col-md-4">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+                <img src="image/dermatology.png" alt="">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class=" regular-font mt-3">
+                Dermatology  
+              </p>
+            </div>
+          </div> 
+  
+        </div>
+  
+      </div>
+      <div class="col-md-1"></div>
     </div>
 
-    <div class="row col-md-12">
+   </div>
 
-        <div class="col-md-3 p-0">
+   <div class="d-flex flex-wrap align-items-stretch mt-4">
 
-            <div class="sidebar">
-                <br><br>
-                <ul>
-                    <li><a href="#" class="highlight">Family Medicine Specialist</a></li>
-                    <li><a href="#">Psychiatrist</a></li>
-                    <li><a href="#">Pulmonologist</a></li>
-                    <li><a href="#">Gastroenterologist</a></li>
-                    <li><a href="#">Ophthalmologist</a></li>
-                    <li><a href="#">Interventional Cardiologist</a></li>
-                    <li><a href="#">Internal Medicine</a></li>
-                    <li><a href="#">Obstetrics & Gynecology</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="row my-5 p-2 ">
-                <div class="col-md-3 d-flex align-items-center justify-content-md-end justify-content-center" >
-                    <img src="image/Murtaza-Mussaji.png" alt=""
-                         class="rounded investigator">
-                </div>
-                <div class="col-md-9 mt-3 mt-md-0">
-                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                        Murtaza Mussaji, DO
-                    </h5>
-                    <p class="text-muted mt-3 " style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
-                        Dr. Murtaza Mussaji, a board-certified internal medicine physician, has been practicing in Houston since 2007. He earned his medical degree from Midwestern University in Arizona and completed his residency at UTHealth inHouston. Affiliated with Memorial Hermann Hospital.
-                    </p>
-                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
-                        Dr. Mussaji's clinical interests include diabetes, geriatrics, hypertension, asthma, COPD, heart disease, thyroid disorders, obesity, depression, and anxiety. He speaks Spanish, Hindi, Gujarati, and Swahili. He provides comprehensive, personalized care for patients of all ages, blending family medicine, internal medicine, and urgent care.  </p>
-                </div>
-            </div>
-            <div class="row my-5 p-2 ">
-                <div class="col-md-3 d-flex align-items-center justify-content-md-end justify-content-center">
-                    <img src="image/Kashif-Siddiqui.png" alt=""
-                         class="rounded investigator">
-                </div>
-                <div class="col-md-9 mt-3 mt-md-0">
-                    <h5 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                        Kashif Siddiqui, MD
-                    </h5>
-                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
-                        Dr. Kashif Siddiqui is board certified in family medicine. He earned his medical degree from Karachi Medical and Dental College in Pakistan and completed his internship at Texas Children’s Hospital-Baylor College of Medicine in Houston, his residency at UT Southwestern Medical Center in Dallas, and a fellowship at Baylor College of Medicine in Houston
-                    </p>
-                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
-                        Dr. Siddiqui treats patients of all ages and speaks Urdu and Hindi. His clinical interests include high blood pressure, diabetes, high cholesterol, weight management, metabolic disorders, joint diseases, dementia, and memory care.   </p>
-                    <p class="text-muted mt-3 "  style="font-size:14px; padding: 0 125px 0px 0; text-align: justify;">
-                        His patient-centered practice ensures that every person feels heard and valued. Dr. Siddiqui offers comprehensive care, from preventive services to chronic disease management, utilizing the latest treatments and technologies to enhance patient outcomes and streamline the care process.  </p>
-                </div>
-            </div>
-        </div>
-
+    <!-- Left side image -->
+    <div class="col-md-6 p-0">
+      <img src="image/office.png" alt="Why-Link" class="img-fluid w-100 h-100 section-image">
     </div>
-
-
-    <!--  Company Footert Area -->
-    <div class="row mt-5">
-
-
-        <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+    <div class="section-overlay position-absolute"></div>
+    <!-- Right side full blue background -->
+    <div class="col-md-6 p-0 d-flex justify-content-center align-items-center section-content-wrapper">
+      <div class="section-content  position-absolute">
+        <h4>Why Join LINQ Research LLC?</h4>
+        <p>Empower your vision with our infrastructure – where possibilities are endless!</p>
+      </div>
     </div>
+  </div>
+    </div>  
+  </div>
+   <p class="w-75 m-auto text-center mt-4 regular-font lh-lg">As a Principal Investigator with LINQ Research, you will gain exclusive access to a comprehensive network
+    of advanced resources and state-of-the-art facilities, all designed to elevate and support the success of
+    your research
+  </p>
+  
+ <div class="align-items-center row col-md-12 mt-5">
+  <div  class="col-md-3"></div>
+  <div class="col-md-6 my-5 my-md-0 ">
+    <div class="row gy-5">
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
+          <img src="image/collaborative.png" alt="">
+          <p class="text-center regular-font">
+            Collaborative<br>
+Research Spaces
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.2s">
+          <img src="image/centralized.png" alt="">
+          <p class="text-center regular-font">
+            Centralized<br>
+Support Teams
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.3s">
+          <img src="image/professional.png" alt="">
+          <p class="text-center regular-font">
+            Professional<br> Growth
+Opportunities
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.4s">
+          <img src="image/networking.png" alt="">
+          <p class="text-center regular-font">
+            Networking<br>
+Opportunities
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.5s">
+          <img src="image/dedicated.png" alt="">
+          <p class="text-center regular-font">
+            Dedicated Patient<br> 
+Recruitment Staff
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
+          <img src="image/Efficient.png" alt="">
+          <p class="text-center regular-font">
+            Efficient Trial<br> 
+Management Systems
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  class="col-md-3"></div>
+ </div>
 
-    <!-- Footer -->
-    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+  <h2 class="dark-secondary-text-color fw-bold text-center mt-5">
+    Your success is our mission
+  </h2>
+
+  <p class="w-75 m-auto text-center mt-4 regular-font lh-lg">
+    We understand that every organization has unique needs. Our team works closely with you to understand
+    your specific goals and challenges, providing customized solutions that address your particular
+    requirements. By providing personalized support and resources, we ensure that our collaboration is not
+    only effective but also perfectly aligned with your specific objectives.
+  </p>
+
+  <a type="button" xdata-bs-toggle="modal" xdata-bs-target="#joinNowModalX" href="prinicipal-investigator-form.html" target="_blank"
+    class="d-block mx-auto my-3 mb-5 text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn">Learn More</a>
+</div>
+
+<!-- <div class="company-footer">
+  <h2 class="dark-secondary-text-color fw-bold">LINQ Research LLC.</h2>
+  <p class="text-white fs-5">Join us in transforming lives through the power of accessible research
+  </p>
+  <a href="#" class="btn text-white mt-2 health-card-btn px-4 fw-medium">Participate Now</a>
+</div> -->
+
+<!-- LINQ Research LLC. -->
+<div class="row mt-5">
+  <div class="company-footer">
+    <h2 class="dark-secondary-text-color fw-bold m-2">LINQ Research LLC.</h2>
+    <p class="text-white fs-5">Join us in transforming lives through the power of accessible research
+    </p>
+    <a href="prinicipal-investigator-form.html" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium m-3">Participate Now</a>
+  </div>
+</div>
+<!-- LINQ Research LLC. -->
+
+<!-- Join Now Modal -->
+<div class="modal fade" id="joinNowModal" tabindex="-1" aria-labelledby="joinNowModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="btn-close custom-btn-close z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer border-0 justify-content-start">
+        <button type="button" class="btn btn primary-bg-color text-white">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 </body>
 
 </html>

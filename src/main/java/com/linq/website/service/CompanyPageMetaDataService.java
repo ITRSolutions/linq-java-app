@@ -29,6 +29,7 @@ public class CompanyPageMetaDataService {
         companyPageMetaData.setCompanyName(obj.getCompanyName());
         companyPageMetaData.setParticipateNowText(obj.getParticipateNowText());
         companyPageMetaData.setJoinCompanyDesc(obj.getJoinCompanyDesc());
+        companyPageMetaData.setButtonURL(obj.getButtonURL());
         companyPageMetaDataRepository.save(companyPageMetaData);
     }
 

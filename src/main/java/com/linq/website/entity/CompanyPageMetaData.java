@@ -16,6 +16,5 @@ public class CompanyPageMetaData {
 	private String companyName;
 	private String joinCompanyDesc;
 	private String participateNowText;
-
-
+	private String buttonURL;
 }

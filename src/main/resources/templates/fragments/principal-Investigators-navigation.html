@@ -1,0 +1,10 @@
+<div class="col-md-3 p-0" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="piNavigation(pi_Navigation)">
+    <div class="sidebar">
+        <br><br>
+        <ul>
+            <li th:each="slideContent : ${pi_Navigation.slide[0].slideContents}">
+                <a href="#" th:classappend="${slideContentStat.index == 0} ? 'highlight'" th:utext="${@webUtils.validateString(slideContent.content)}"></a>
+            </li>
+        </ul>
+    </div>
+</div>

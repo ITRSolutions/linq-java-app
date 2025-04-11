@@ -1429,7 +1429,6 @@ button:hover .button-text {
     .pc-hide {
         display: none;
     }
-
 }
 
 @media only screen and (max-width: 1023px) {

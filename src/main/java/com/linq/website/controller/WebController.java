@@ -104,6 +104,11 @@ public class WebController {
             CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
             model.addAttribute("cPageMetaData", cPageMetaData);
 
+            if(slug.equals("meet-our-principal-investigators")) {
+                List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
+                model.addAttribute("pi_Navigation", piNavigation);
+            }
+
             //Bottom links
             List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
             model.addAttribute("faqAllQuestions", faqAllQuestions);

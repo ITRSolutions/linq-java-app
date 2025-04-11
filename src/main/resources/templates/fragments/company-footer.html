@@ -6,7 +6,7 @@
 		<h2 class="dark-secondary-text-color fw-bold" th:utext="${cPageMetaData.companyName}">LINQ Research LLC.</h2>
 		<p class="text-white fs-5" th:utext="${cPageMetaData.joinCompanyDesc}">Join us in transforming lives through the power of accessible research
 		</p>
-		<a href="index-2.html" class="btn text-white mt-2 health-card-btn px-4 fw-medium" th:utext="${cPageMetaData.participateNowText}">Participate Now</a>
+		<a th:href="${cPageMetaData.buttonURL}" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium" th:utext="${cPageMetaData.participateNowText}">Participate Now</a>
 	</div>
 </body>
 
