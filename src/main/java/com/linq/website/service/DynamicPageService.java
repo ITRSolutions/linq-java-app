@@ -92,7 +92,6 @@ public class DynamicPageService {
         dynamicPageRepository.save(dynamicPage);
     }
 
-    // Find all resources by role with paginated
     public Page<DynamicPage> getDynamicPagesWithPagination(int page) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
 
