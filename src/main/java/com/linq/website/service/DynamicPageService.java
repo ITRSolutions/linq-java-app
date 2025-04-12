@@ -38,7 +38,7 @@ public class DynamicPageService {
 
     // Fetch dynamic page by slug
     public DynamicPage getPageBySlug(String slug) {
-        return dynamicPageRepository.findBySlugAndStatus(slug, PageStatus.PUBLISHED)
+        return dynamicPageRepository.findBySlugIgnoreCaseAndStatus(slug, PageStatus.PUBLISHED)
                 .orElseThrow(() -> new PageNotFoundException("Page not found with name: " + slug));
     }
 

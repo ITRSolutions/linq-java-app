@@ -4,95 +4,64 @@
 <head
         th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
-
-<style>
-    .page-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 32, 64, 0.75);
-}
-
-    .page-header {
-        padding: 0px;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    }
-
-    .banner-text {
-        font-size: 50px; color: #000;
-        position: absolute;
-        color: #fff;
-    }
-</style>
 <body>
-<!-- Dynamic navigation -->
+<!-- ========== DYNAMIC NAVIGATION ========== -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
 
 
 <div class="container-fluid">
-    <!--
-      <div class="row mb-5">
-        <div class="contact-header">
-          <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Become a Principal Investigator</h2>
-        </div>
-      </div>
-    -->
-
+    <!-- ========== BANNER SECTION ========== -->
     <div class="row align-items-stretch" th:each="contentBlock : ${contentBlock1}">
         <th:block th:each="slide : ${contentBlock.slide}">
-        <div class="col-md-12 page-header" >
-            <h2 class="fw-bold banner-text" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Meet the Founders</h2>
-            <img th:src="${@webUtils.validateString(slide.slideContents[1].content)}" width="100%">
-        </div>
+            <div class="col-md-12 page-header">
+                <h2 class="fw-bold banner-text" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Meet the Founders</h2>
+                <img th:src="${@webUtils.validateString(slide.slideContents[1].content)}" width="100%" class="img-fluid">
+            </div>
         </th:block>
     </div>
 
+    <!-- ========== MAIN HEADER SECTION ========== -->
     <div class="container">
-        <h3  th:utext="${@webUtils.validateString(contentBlock2.content)}" class="  fw-bold text-center mt-5" style="color: #20385D;">
+        <h3 th:utext="${@webUtils.validateString(contentBlock2.content)}" class="fw-bold text-center mt-5 mobile-pt-3" style="color: #20385D;">
             Header
         </h3>
-
     </div>
 
-
+    <!-- ========== SUB HEADER SECTION ========== -->
     <div class="container">
-        <h5  th:utext="${@webUtils.validateString(contentBlock3.content)}" class="text-center mt-5">
+        <h5 th:utext="${@webUtils.validateString(contentBlock3.content)}" class="text-center mt-5 mobile-mt-3">
             Header Text
         </h5>
     </div>
 
+    <!-- ========== FOUNDER PROFILES SECTION ========== -->
     <div class="container" th:each="contentBlock : ${contentBlock4}">
-        <div class="row p-2 p-md-1 mt-5 align-items-stretch" th:each="slide : ${contentBlock.slide}">
-                <div class="col-md-3 overflow-hidden p-0 rounded-end-4 no-border align-items-center">
-                    <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="" class="wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-5">
-                </div>
+        <div class="row p-2 p-md-1 mt-5 founder-profile-row" th:each="slide : ${contentBlock.slide}">
+            <!-- Founder Image Column -->
+            <div class="col-md-3 overflow-hidden p-0 no-border founder-image-column">
+                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
+                     class="wow animate__animated animate__fadeInRight">
+            </div>
 
-                <div class="col-md-9 rounded-start-4 no-border ps-lg-4">
-                    <h2 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
-                    <h5 class="fw-bold" style="color: #20385D;" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></h5>
-                    <p class="mt-1 animate__animated animate__fadeInUp w-100 m-auto wow animate__ animate__fadeInUp d animated" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></p>
-                    <!--                <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank" class="btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium">Learn More</a>-->
-                </div>
+            <!-- Founder Bio Column -->
+            <div class="col-md-9 no-border founder-bio-column">
+                <h2 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+                <h5 class="fw-bold" style="color: #20385D;" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></h5>
+                <p class="mt-1 animate__animated animate__fadeInUp w-100 m-auto wow animate__ animate__fadeInUp d animated"
+                   th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></p>
+            </div>
         </div>
     </div>
 
+    <!-- ========== COMPANY FOOTER SECTION ========== -->
     <div class="row mt-5">
         <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
     </div>
 </div>
 
-<!-- Footer -->
+<!-- ========== MAIN FOOTER SECTION ========== -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </body>
 

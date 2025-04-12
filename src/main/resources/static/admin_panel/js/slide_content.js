@@ -198,6 +198,10 @@ $(document).ready(function () {
                          fetchSlideContents();
                          alert(response.message);
                          $('#updateSlideContent').modal('hide');
+
+                         $(".contentSG").show();
+                         $(".imageUpload").html("");
+                         $("#contentSCLb").show();
                      } else {
                          alert('Failed to update slide content. Please try again.');
                      }

@@ -50,11 +50,16 @@ public class WebController {
 
         System.out.println("slug: "+slug);
 
-        String tempPageName = null;
+        String tempPageName = "";
         if(!paramPageName.isEmpty()) {
             tempPageName = slug;
             slug = paramPageName;
+        } else if (paramPageName.isEmpty() && slug.equals("meet-our-principal-investigators")) {
+            tempPageName = slug;
+            slug = "family-medicine-specialist";
+            paramPageName = "meet-our-principal-investigators";
         }
+
         try {
             // Fetch dynamic page by slug
             DynamicPage page = dynamicPageService.getPageBySlug(slug);
@@ -104,15 +109,13 @@ public class WebController {
             CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
             model.addAttribute("cPageMetaData", cPageMetaData);
 
-            if(slug.equals("meet-our-principal-investigators")) {
+            if(slug.equals("meet-our-principal-investigators") || tempPageName.equals("meet-our-principal-investigators")) {
                 List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
+            } else if(slug.equals("faqs")) {
+                List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
+                model.addAttribute("faqAllQuestions", faqAllQuestions);
             }
-
-            //Bottom links
-            List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
-            model.addAttribute("faqAllQuestions", faqAllQuestions);
-
 
             List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");
             model.addAttribute("referFrdCommonArea", referFrdCommon);
@@ -121,6 +124,7 @@ public class WebController {
                 slug = tempPageName;
             }
 
+            System.out.println("Render slug: "+slug);
             return "public/" +slug; // Thymeleaf page name
         } catch (RuntimeException ex) {
             logger.error("PageNotFound : "+ex.getMessage());

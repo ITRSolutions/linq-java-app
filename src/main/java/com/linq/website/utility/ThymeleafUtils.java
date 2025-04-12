@@ -7,7 +7,8 @@ public class ThymeleafUtils {
 
     public String createLink(String value) {
         value = value.trim();
-        String link = value.replaceAll("[^a-zA-Z0-9 ]", "").replace(" ", "-").toLowerCase();
+        String link = value.replaceAll("[^a-zA-Z0-9 ]", "")
+                .replace(" ", "-").replace("--", "-").toLowerCase();
         if (link.isEmpty()) {
             return "#";
         }

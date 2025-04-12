@@ -16,7 +16,8 @@ import java.util.Optional;
 
 @Repository
 public interface DynamicPageRepository extends JpaRepository<DynamicPage, Long> {
-    Optional<DynamicPage> findBySlugAndStatus(String slug, PageStatus status);
+//    Optional<DynamicPage> findBySlugAndStatus(String slug, PageStatus status);
+    Optional<DynamicPage> findBySlugIgnoreCaseAndStatus(String slug, PageStatus status);
 
     Optional<DynamicPage> findBySlug(String slug);
 

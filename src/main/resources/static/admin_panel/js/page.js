@@ -189,7 +189,7 @@ $(document).on('click', '.deletePage', function () {
       event.preventDefault(); // Prevent default button action
 
       let title = $("input[name='title']").val().trim();
-      let slug = $("select[name='slug']").val();
+      let slug = $("input[name='slug']").val();
       let status = $("select[name='status']").val();
 
       // Basic Validation
@@ -246,7 +246,7 @@ $("#updatePage form").submit(function (event) {
       event.preventDefault(); // Prevent default form submission
 
       let title = $("input[name='updateTitle']").val().trim();
-      let slug = $("select[name='updateSlug']").val();
+      let slug = $("input[name='updateSlug']").val();
       let status = $("select[name='updateStatus']").val();
       let rowIndex = $("input[name='rowId']").val();
 
