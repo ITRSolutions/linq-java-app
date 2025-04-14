@@ -1361,6 +1361,9 @@ button:hover .button-text {
       color: #fff;
 }
 
+.intro {
+    padding-right: 3rem;
+}
 
 @media only screen and (max-width: 600px) {
 
@@ -1456,7 +1459,9 @@ button:hover .button-text {
     height: 35px !important;
 }
 
-
+.intro {
+    padding-right: 0;
+}
 }
 
 @media only screen and (min-width: 1023px) {
@@ -1860,6 +1865,10 @@ button.btn-with-arrow .circle .icon.arrow::before {
 }
 }
 
+.pi-image img {
+    width: 80%;
+}
+
 @media (min-width: 700px) and (max-width: 1023px) {
 
     .logoDiv {
@@ -1874,6 +1883,17 @@ button.btn-with-arrow .circle .icon.arrow::before {
         font-size: 1rem !important; /* Adjust font size */
       }
 
+.intro {
+    padding-right: 0rem;
+}
+
+.pi-main {
+    font-size: 0.9rem;
+}
+
+.pi-image img {
+    width: 100%;
+}
 }
 
 

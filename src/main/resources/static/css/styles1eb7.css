@@ -203,8 +203,8 @@ form.submitting .wpcf7-spinner {
 .sidebar ul li a {
 	color: white;
 	text-decoration: none;
-	font-size: 16px;
 	color: #000;
+	font-size: 0.92rem;
 }
 .sidebar ul li a:hover {
 	text-decoration: none;

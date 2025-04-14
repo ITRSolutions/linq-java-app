@@ -58,6 +58,7 @@ public class WebController {
             tempPageName = slug;
             slug = "family-medicine-specialist";
             paramPageName = "meet-our-principal-investigators";
+            model.addAttribute("navigTitle", slug);
         }
 
         try {
@@ -112,6 +113,7 @@ public class WebController {
             if(slug.equals("meet-our-principal-investigators") || tempPageName.equals("meet-our-principal-investigators")) {
                 List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
+                model.addAttribute("navigTitle", slug);
             } else if(slug.equals("faqs")) {
                 List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);

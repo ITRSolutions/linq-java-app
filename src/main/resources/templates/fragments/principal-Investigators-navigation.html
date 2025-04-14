@@ -1,11 +1,11 @@
 <div class="col-md-3 p-0" xmlns:th="http://www.thymeleaf.org"
      th:fragment="piNavigation(pi_Navigation, navigTitle)">
     <div class="sidebar" th:each="contentBlock : ${pi_Navigation}">
-        <br><br>
+        <br>
         <ul>
             <li th:each="slideContent, blockStat : ${contentBlock.slide[0].slideContents}">
                 <a th:href="@{'/meet-our-principal-investigators'(page=${@webUtils.createLink(slideContent.content)})}"
-                   th:classappend="${@webUtils.validateString(navigTitle).equalsIgnoreCase(@webUtils.validateString(slideContent.content))} ? ' highlight' : ''"
+                   th:classappend="${navigTitle.equalsIgnoreCase(@webUtils.createLink(slideContent.content))} ? ' highlight' : ''"
                    th:utext="${@webUtils.validateString(slideContent.content)}">
                 </a>
             </li>
