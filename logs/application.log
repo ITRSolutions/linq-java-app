@@ -1,2 +1,2 @@
-2025-04-15T00:06:57.754+05:30  INFO 42476 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2025-04-15T00:06:57.816+05:30  INFO 42476 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-04-15T00:16:10.648+05:30  INFO 41272 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-15T00:16:15.974+05:30  INFO 41272 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 17.479 seconds (process running for 18.331)
