@@ -22,36 +22,42 @@ $(document).on('click', '#addSlideContentFunction', function () {
     $('#addSlideContent').modal('show');
 });
 
+$(document).on('change', '#contentTypeSG', function () {
+    const selectedValue = $(this).val();
+    checkImageField(selectedValue, 1);
+  });
+
         $(document).on('click', '.updateSlideContent', function() {
             let rowIndex = $(this).closest('tr').index();
             let selected = SlideContentTable[rowIndex];
 
             $('#updateSlideContent [name="updateContentTypeSG"]').val(selected.contentType);
-            !checkImageField() ? $('#updateSlideContent [name="updateContentSG"]').val(selected.content) : 0;
+            !checkImageField($('select[name="updateContentTypeSG"]').val(), '') ? $('#updateSlideContent [name="updateContentSG"]').val(selected.content) : 0;
             $('#updateSlideContent [name="updateOrderIndexSC"]').val(selected.orderIndex);
             $("#SCrowId").val(selected.id);
 
             $('#updateSlideContent').modal('show');
         });
 
-function checkImageField() {
-    if($('select[name="updateContentTypeSG"]').val() == "IMAGE") {
+function checkImageField(val, id) {
+    if(val == "IMAGE") {
         $(".contentSG").hide();
-        $("#contentSCLb").hide();
+        $(".contentSCLb").hide();
 
-        $(".imageUpload").html(`	<label>Upload Image: </label>
-        <a href="#" target="_blank" class="float-right" id="displayImg" style="display: none"><label> [Uploaded Image]</label></a>
+        $(".imageUpload"+id).html(`	<label>Upload Image: </label>
+        <a href="#" target="_blank" class="float-right displayImg" style="display: none"><label> [Uploaded Image]</label></a>
          	<input type="file" name="file" class="form-control1 control3 uploadImage" accept="image/*"
                  style="padding-top: 9px;" required>
 
-                     <p id="error-message" style="color: red; display: none;"></p>
-                     <p id="success-message" style="color: green; display: none;"></p>`);
+                     <p class="error-message" style="color: red; display: none;"></p>
+                     <p class="success-message" style="color: green; display: none;"></p>`);
 
          	return true;
     } else {
        $(".contentSG").show();
        $(".imageUpload").html("");
-       $("#contentSCLb").show();
+       $(".imageUpload1").html("");
+       $(".contentSCLb").show();
     }
 }
 
@@ -88,9 +94,10 @@ $(document).ready(function () {
                 var formData = new FormData();
                 formData.append("file", file);
 
-                $('#updateSlideContent [type="submit"]').prop('disabled', true);
-                $("#success-message").text("Uploading Image please wait....").show();
-                $("#error-message").hide();
+                var form = $(this).closest('form');
+                form.find('button[type="submit"], input[type="submit"]').prop('disabled', true);
+                $(".success-message").text("Uploading Image please wait....").show();
+                $(".error-message").hide();
 
                 // Make POST request to upload the image
                 $.ajax({
@@ -104,21 +111,23 @@ $(document).ready(function () {
                 },
                     success: function(response) {
                         if (response.status) {
-                            $('#updateSlideContent [type="submit"]').prop('disabled', false);
-                            $("#success-message").hide();
-                            $("#error-message").hide();
-                            $("#success-message").text(response.message).show();
-                            $("#displayImg").show();
-                            $("#displayImg")[0].href = response.data;
+                            form.find('button[type="submit"], input[type="submit"]').prop('disabled', false);
+
+                            $(".success-message").hide();
+                            $(".error-message").hide();
+                            $(".success-message").text(response.message).show();
+                            $(".displayImg").show();
+                            $(".displayImg")[0].href = response.data;
+                            $('textarea[name="contentSG"]').val(response.data);
                             $('textarea[name="updateContentSG"]').val(response.data);
                         } else {
-                            $("#success-message").hide();
-                            $("#error-message").text(response.errors.Image[0]).show();
+                            $(".success-message").hide();
+                            $(".error-message").text(response.errors.Image[0]).show();
                         }
                     },
                     error: function() {
-                        $("#success-message").hide();
-                        $("#error-message").text("An error occurred while uploading the image.").show();
+                        $(".success-message").hide();
+                        $(".error-message").text("An error occurred while uploading the image.").show();
                     }
                 });
 
@@ -158,6 +167,11 @@ $(document).ready(function () {
                      $('#addSlideContent').modal('hide'); // Close the modal after successful submission
                      // Optionally reset the form here
                      $('#addSlideContent form')[0].reset();
+
+                            $(".contentSG").show();
+                            $(".imageUpload").html("");
+                            $(".imageUpload1").html("");
+                            $(".contentSCLb").show();
                  } else {
                      alert('Failed to create slide content. Please try again.');
                  }
@@ -201,7 +215,8 @@ $(document).ready(function () {
 
                          $(".contentSG").show();
                          $(".imageUpload").html("");
-                         $("#contentSCLb").show();
+                         $(".imageUpload1").html("");
+                         $(".contentSCLb").show();
                      } else {
                          alert('Failed to update slide content. Please try again.');
                      }

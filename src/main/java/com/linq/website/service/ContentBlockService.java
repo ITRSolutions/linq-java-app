@@ -59,7 +59,7 @@ public class ContentBlockService {
         contentBlock.setPage(page);
         contentBlock.setContent(dto.getContent());
         contentBlock.setOrderIndex(dto.getOrderIndex());
-//        contentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        contentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save ContentBlock entity
         contentBlockRepository.save(contentBlock);
@@ -75,8 +75,8 @@ public class ContentBlockService {
 
         // Update fields
         existingContentBlock.setContent(dto.getContent());
-//        existingContentBlock.setOrderIndex(dto.getOrderIndex());
-//        existingContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+        existingContentBlock.setOrderIndex(dto.getOrderIndex());
+        existingContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         // Save the updated ContentBlock
         return contentBlockRepository.save(existingContentBlock);

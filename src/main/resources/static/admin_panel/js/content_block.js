@@ -68,8 +68,8 @@ $('.deleteContentBlock').click(function () {
     function renderTableCB(data) {
       let rows = "";
       data.forEach((item) => {
-        let updatedBy = item.page.updatedBy ? `${item.page.updatedBy.firstName} ${item.page.updatedBy.lastName}` : "N/A";
-        let updatedAt = item.page.updatedAt ? new Date(item.updatedAt).toLocaleString() : "N/A";
+        let updatedBy = item.updatedBy ? `${item.updatedBy.firstName} ${item.updatedBy.lastName}` : "N/A";
+        let updatedAt = item.updatedAt ? new Date(item.updatedAt).toLocaleString() : "N/A";
 
         rows += `
           <tr>

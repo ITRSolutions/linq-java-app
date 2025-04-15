@@ -9,7 +9,7 @@
 <body>
 <div id="wrapper">
     <!-- Start Navigation -->
-    <th th:replace="~{admin_panel/navigation :: navigateCode(firstName=${firstName})}"></th>
+    <th th:replace="~{admin_panel/navigation.html :: navigateCode(firstName=${firstName})}"></th>
     <!-- End Navigation -->
 
     <div id="page-wrapper">
@@ -64,7 +64,7 @@
                                                 </div>
 
                                                 <div class="btn btn_1 btn-default mrg5R" id="page_reload">
-                                                    <i class="fa fa-refresh" > </i>
+                                                    <i class="fa fa-refresh"> </i>
                                                 </div>
 
                                                 <div class="clearfix"></div>
@@ -160,7 +160,8 @@
 
 
                             <!--Slide contents tab -->
-                            <div role="tabpanel" class="tab-pane fade" id="slide_contents" aria-labelledby="slide_contents-tab">
+                            <div role="tabpanel" class="tab-pane fade" id="slide_contents"
+                                 aria-labelledby="slide_contents-tab">
 
                                 <div class="pd-0">
                                     <div class="mailbox-content pd-0">
@@ -442,7 +443,7 @@
                             <label>Select Slide: </label>
                             <input type="hidden" id="SlideIdSC" value="0">
                             <label>Select Content Type: </label>
-                            <select name="contentTypeSG" class="form-control1 control3" required>
+                            <select name="contentTypeSG" id="contentTypeSG" class="form-control1 control3" required>
                                 <option value="">Select Content Type</option>
                                 <option>TEXT</option>
                                 <option>BUTTON</option>
@@ -451,21 +452,21 @@
                                 <option>DISEASE_NAME</option>
                             </select>
 
-<!--                            <div class="imageUpload"> </div>-->
+                            <div class="imageUpload1"> </div>
 
-                            <label>Enter Slide Content: </label>
+                            <label class="contentSCLb">Enter Slide Content: </label>
                             <textarea name="contentSG" rows="4" class="form-control1 contentSG" placeholder="Enter your content here..." required></textarea>
 
                             <!-- Quill editor container -->
                             <!-- <div id="toolbar"></div> -->
 
-<!--                            <button type="button" id="custom-color-button" class="custom-color-picker">A</button>-->
-<!--                            <input type="color" id="color-picker" style="display:none;">-->
-<!--                            <div id="editor" class="editorText"></div>-->
-<!--                            <input type="hidden" class="form-control1 control3" name="slide_content">-->
+                            <!--                            <button type="button" id="custom-color-button" class="custom-color-picker">A</button>-->
+                            <!--                            <input type="color" id="color-picker" style="display:none;">-->
+                            <!--                            <div id="editor" class="editorText"></div>-->
+                            <!--                            <input type="hidden" class="form-control1 control3" name="slide_content">-->
 
-<!--                            <label>Custom CSS Code: </label>-->
-<!--                            <input type="text" name="customCss" class="form-control1 control3" required>-->
+                            <!--                            <label>Custom CSS Code: </label>-->
+                            <!--                            <input type="text" name="customCss" class="form-control1 control3" required>-->
                             <!-- <div class="line-numbers" id="lineNumbers"></div> -->
 
                             <label>Enter order Index: </label>
@@ -498,7 +499,8 @@
                             <label>Select Slide: </label>
                             <input type="hidden" id="SCrowId" value="0">
                             <label>Select Content Type: </label>
-                            <select name="updateContentTypeSG" class="form-control1 control3 contentTypeSG" required disabled>
+                            <select name="updateContentTypeSG" class="form-control1 control3 contentTypeSG" required
+                                    disabled>
                                 <option value="">Select Content Type</option>
                                 <option>TEXT</option>
                                 <option>BUTTON</option>
@@ -507,10 +509,12 @@
                                 <option>DISEASE_NAME</option>
                             </select>
 
-                            <div class="imageUpload"> </div>
+                            <div class="imageUpload"></div>
 
-                            <label id="contentSCLb" style="display: none">Enter Slide Content: </label>
-                            <textarea name="updateContentSG" rows="4" class="form-control1 contentSG" placeholder="Enter your content here..." style="display: none" required></textarea>
+                            <label class="contentSCLb" style="display: none">Enter Slide Content: </label>
+                            <textarea name="updateContentSG" rows="4" class="form-control1 contentSG"
+                                      placeholder="Enter your content here..." style="display: none"
+                                      required></textarea>
 
                             <!-- Quill editor container -->
                             <!-- <div id="toolbar"></div> -->
@@ -525,7 +529,8 @@
                             <!-- <div class="line-numbers" id="lineNumbers"></div> -->
 
                             <label>Enter order Index: </label>
-                            <input type="number" name="updateOrderIndexSC" class="form-control1 control3" required readonly>
+                            <input type="number" name="updateOrderIndexSC" class="form-control1 control3" required
+                                   readonly>
                         </div>
                     </div>
                     <div class="modal-footer">

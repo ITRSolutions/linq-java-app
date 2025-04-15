@@ -30,5 +30,8 @@ public class ContentBlockDTO {
     @Setter
     public static class UpdateContentBlock extends BaseContentBlock {
         private Long id;
+
+        @NotNull(message = "Order Index cannot be null")
+        private Integer orderIndex;
     }
 }

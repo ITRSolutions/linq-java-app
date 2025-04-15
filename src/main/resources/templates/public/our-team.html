@@ -1,418 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head
-        th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
-</head>
+<head th:replace="~{fragments/header.html :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 
 <body>
 <!-- Dynamic navigation -->
-<div
-        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
-</div>
-<div class="row">
-    <div class="contact-header">
-        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Meet Our Team</h2>
+<div th:replace="~{fragments/navigation.html :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
+
+<div class="row align-items-stretch">
+    <div class="col-md-12 page-header">
+        <h2 class="fw-bold banner-text" th:utext="${@webUtils.validateString(contentBlock1.slide[0].slideContents[1].content)}">Meet Our Team</h2>
+        <img th:src="${@webUtils.validateString(contentBlock1.slide[0].slideContents[0].content)}" width="100%" class="img-fluid">
     </div>
 </div>
 
 <div class="container-fluid">
+    <h1 class="fw-bold dark-secondary-text-color text-center my-5 animate__animated animate__fadeInUp">Our Leadership Team</h1>
 
-
-    <h1 class="fw-bold dark-secondary-text-color text-center my-5  animate__animated animate__fadeInUp">Our Leadership
-        Team</h1>
-    <div class="row justify-content-center px-4 mb-5">
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img
-                        src="image/12/95ac873b526cbeb9e4bdb84afd03b162-e1717236074932-1536x1536-removebg-preview.png"
-                        alt="">
+    <div class="row justify-content-center px-4 mb-5" th:each="memberBlock : ${contentBlock2}">
+        <div class="col text-center" style="flex: 0 0 17%;" th:each="slide : ${memberBlock.slide}">
+            <div class="member-card wow animate__animated animate__fadeInUp">
+                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
                 <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Hussein Aladin</h6>
-                    <small class="m-0 fw-light">CEO/ Co-Founder </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img
-                        src="image/12/3c177be7f8248c702f9d358b833925c0-e1717236100665-1536x1505-removebg-preview.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Mustafa Noorbhai</h6>
-                    <small class="m-0 fw-light">CEO/ Co-Founder </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/12/WhatsApp-Image-2024-06-01-at-14.54.19-e1717235700324-removebg-preview.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Muhmmad Tahir </h6>
-                    <small class="m-0 fw-light">Manager/ Financial Planning and Analysis </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img src="image/12/Aysha-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Aysha Amer </h6>
-                    <small class="m-0 fw-light">Patient Enrollment Manager </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">
-                <img src="image/12/Karmen-e1717235300763-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Karmen </h6>
-                    <small class="m-0 fw-light">Clinical Research Site Manager </small>
+                    <h6 class="m-0 fs-6 fw-normal" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h6>
+                    <small class="m-0 fw-light" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></small>
+                    <small class="m-0 fw-light" th:if="${slide.slideContents.size() > 3}" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></small>
                 </div>
             </div>
         </div>
     </div>
 
+    <h1 class="fw-bold dark-secondary-text-color text-center my-5" >Research Staff</h1>
 
-    <h1 class="fw-bold dark-secondary-text-color text-center my-5">Research Staff</h1>
-    <div class="row justify-content-center px-4 mb-5">
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img
-                        src="image/12/Branson-scaled-e1717235349517-1429x1536-removebg-preview.png"
-                        alt="">
+    <div class="row justify-content-center px-4 mb-5" th:each="staffBlock : ${contentBlock3}">
+        <div class="col text-center" style="flex: 0 0 17%;" th:each="slide : ${staffBlock.slide}">
+            <div class="member-card wow animate__animated animate__fadeInUp">
+                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
                 <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Branson </h6>
-                    <small class="m-0 fw-light">Clinical Research Coordinator </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img src="image/01/Ashley_Griffin-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Ashley </h6>
-                    <small class="m-0 fw-light">Clinical Research Coordinator </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/12/Grace-scaled-e1717235416529-1396x1536-removebg-preview.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Grace </h6>
-                    <small class="m-0 fw-light">Clinical Research Coordinator </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img src="image/12/Narse-1536x2048-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Narsedalia
-                    </h6>
-                    <small class="m-0 fw-light">Clinical Trial Assistant</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img src="image/12/Crystal-1536x2048-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Crystal
-                    </h6>
-                    <small class="m-0 fw-light">Patient Enrollment Specialist</small>
+                    <h6 class="m-0 fs-5 fw-normal" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h6>
+                    <small class="m-0 fw-light" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center px-4 mb-5">
 
+<!--    <h1 class="fw-bold dark-secondary-text-color text-center my-5" th:utext="${@webUtils.validateString(contentBlock6.slide[0].slideContents[0].content)}">Our Investigators</h1>-->
 
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/01/Rishi_Patel-removebg-preview-e1737740415585.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Rishi</h6>
-                    <small class="m-0 fw-light">Patient Enrollment Specialist
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img src="image/01/female-user-icon.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Farida
-                    </h6>
-                    <small class="m-0 fw-light">Patient Enrollment Specialist
-                    </small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img
-                        src="image/01/Abdullah_Yamani-removebg-preview-1-e1737740654923.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Abdullah</h6>
-                    <small class="m-0 fw-light">Patient Enrollment Specialist
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img
-                        src="image/12/Katherine-e1717235251691-removebg-preview-1.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Katherine</h6>
-                    <small class="m-0 fw-light">Regulatory Specialist</small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/12/Chris-B-scaled-e1717235328915-1526x1536-removebg-preview.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Chris</h6>
-                    <small class="m-0 fw-light">Senior Regulatory Specialist
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row justify-content-center px-4 mb-5">
-
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img
-                        src="image/01/Reynaldo_Sosa-removebg-preview-e1737740806191.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Reynaldo</h6>
-                    <small class="m-0 fw-light">Business Development Associate
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img src="image/01/female-user-icon.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Tasneem</h6>
-                    <small class="m-0 fw-light">Business Development Associate </small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img src="image/01/female-user-icon.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Elizabeth</h6>
-                    <small class="m-0 fw-light">Feasibility Consultant </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img src="image/01/Golam_-removebg-preview-e1737740916188.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Golam</h6>
-                    <small class="m-0 fw-light">IT Support Specialist </small>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-
-    <h1 class="fw-bold dark-secondary-text-color text-center my-5">Our Investigators</h1>
-    <div class="row justify-content-center px-4 mb-5">
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img src="image/12/download-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Murtaza Mussaji, DO </h6>
-                    <small class="m-0 fw-light">Family Medicine Specialist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img
-                        src="image/01/Aqeel_Hashmi-removebg-preview-e1737741927360.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Aqeel Hashmi, MD </h6>
-                    <small class="m-0 fw-light">Psychiatrist
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/01/Muhammad_Siddiqui-removebg-preview-e1737742026356.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Muhammad Siddiqui,
-                        MD</h6>
-                    <small class="m-0 fw-light">Pulmonologist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img
-                        src="image/12/download__2_-removebg-preview-e1737742305526.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Ahmad Farooq, MD</h6>
-                    <small class="m-0 fw-light">Gastroenterologist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">
-                <img
-                        src="image/01/Jignesh_Shah-removebg-preview-e1737742229765.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Jignesh Shah, MD
-                    </h6>
-                    <small class="m-0 fw-light">Gastroenterologist </small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row justify-content-center px-4 mb-5">
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img src="image/12/download__5_-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Kashif Siddiqui, MD</h6>
-                    <small class="m-0 fw-light">Family Medicine Specialist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img
-                        src="image/01/John-Goosey-removebg-preview-e1737742521930.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">John D. Goosey, MD</h6>
-                    <small class="m-0 fw-light">Ophthalmologist
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img
-                        src="image/01/Jeffery_Arnoult-removebg-preview-e1737742851640.png"
-                        alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Jeffrey B. Arnoult,
-                        MD</h6>
-                    <small class="m-0 fw-light">Ophthalmologist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img src="image/01/mustafa-mandviwala-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Mustafa Mandviwala,
-                        MD</h6>
-                    <small class="m-0 fw-light">Interventional Cardiologist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">
-                <img src="image/01/taher-mandviwala-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Taher Mandviwala,
-                        MD
-                    </h6>
-                    <small class="m-0 fw-light">Interventional Cardiologist
-                    </small>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="row justify-content-center px-4 mb-5">
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
-                <img src="image/01/Dr-Riaz-Ul-Haque-removebg-preview.png"
-                     alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Riaz Haque, MD
-                    </h6>
-                    <small class="m-0 fw-light">Family Medicine Specialist </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
-                <img src="image/01/Tanveer-Khan-PA__1_-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Tanveer Khan,MPAS,
-                        PA-C</h6>
-                    <small class="m-0 fw-light">Internal Medicine </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <img src="image/01/dr.-samira-khan-removebg-preview.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Samira Khan, MD
-                    </h6>
-                    <small class="m-0 fw-light">Internal Medicine
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="col text-center" style="flex: 0 0 17%;">
-            <div class="member-card  wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
-                <img src="image/01/Botros_rizk-removebg-preview-e1737744148254.png" alt="">
-                <div class="member-details rounded-1 text-white">
-                    <h6 class="m-0 fs-5 fw-normal">Botros Rizk, MD</h6>
-                    <small class="m-0 fw-light">Obstetrics & Gynecology</small>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="row justify-content-center px-4 mb-5" th:each="investigatorBlock : ${contentBlock7}">-->
+<!--        <div class="col text-center" style="flex: 0 0 17%;" th:each="slide : ${investigatorBlock.slide}">-->
+<!--            <div class="member-card wow animate__animated animate__fadeInUp" th:attr="data-wow-delay=${slide.slideContents[3].content}">-->
+<!--                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">-->
+<!--                <div class="member-details rounded-1 text-white">-->
+<!--                    <h6 class="m-0 fs-5 fw-normal" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h6>-->
+<!--                    <small class="m-0 fw-light" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></small>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
-<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
-
+<div th:replace="~{fragments/company-footer.html :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
 <!-- Footer -->
-<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<div th:replace="~{fragments/footer.html :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </body>
-
 </html>

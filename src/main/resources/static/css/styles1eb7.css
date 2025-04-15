@@ -236,3 +236,7 @@ form.submitting .wpcf7-spinner {
 		padding: 10px;
 	}
 }
+
+.small, small {
+    font-size: .7rem !important;
+}
