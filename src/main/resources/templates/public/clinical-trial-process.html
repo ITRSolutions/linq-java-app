@@ -4,20 +4,29 @@
 <head
         th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
+<style>
+    .round-shape {
+        height:470px;
+        --bs-border-radius-xxl: 3rem;
+    }
+
+    .blue-border {
+  border: 3px solid var(--primary-color);
+}
+
+</style>
 <body>
 <!-- Dynamic navigation -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
-
-<div class="container-fluid container-xxl">
-    <div class="row">
-        <div class="contact-header">
-            <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
-                Clinical Trials</h2>
-        </div>
+<div class="row">
+    <div class="contact-header">
+        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
+            Clinical Trials</h2>
     </div>
-
+</div>
+<div class="container-fluid container-xxl">
     <div class="row p-2 p-md-5 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
         <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"
              th:each="slide : ${contentBlock.slide}">
@@ -64,39 +73,51 @@
             </div>
         </div>
     </div>
+</div>
 
-    <h2 class="dark-secondary-text-color fw-bold text-center mx-5" th:utext="${contentBlock6.content}"></h2>
-
-
-    <div class="row p-2 p-md-5" th:each="contentBlock : ${contentBlock7}">
-        <div class="col-md-7" th:each="slide : ${contentBlock.slide}">
-            <h3 class="primary-text-color fw-bold wow animate__ animate__fadeInUp animated"
-                style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
-            </h3>
-            <p class="regular-font text-dark mt-4 wow animate__ animate__fadeInUp animated"
-               style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[1].content}">
-            </p>
-            <p class="regular-font text-dark mt-2 wow animate__ animate__fadeInUp animated"
-               style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[2].content}">
-            </p>
-        </div>
-        <div class="col-md-5" th:each="slide : ${contentBlock.slide}">
-            <img th:src="${slide.slideContents[3].content}" alt="" class="img-fluid">
-        </div>
+<div class="row p-2 p-md-1 align-items-stretch" th:each="slide : ${contentBlock7.slide}">
+    <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center "
+         id="disease">
+        <p class="text-white wow animate__ animate__fadeInUp fw-bold ms-3 animated w-100 w-md-80"
+           style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
+            Para-2
+        </p>
+        <h2 class="dark-secondary-text-color wow animate__ animate__fadeInUp fw-bold ms-3 animated w-100 w-md-80"
+            style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[1].content}">
+            Header - 1
+        </h2>
     </div>
+    <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
+        <img th:src="${slide.slideContents[2].content}" height="400" alt=""
+             class="picture wow animate__ animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-0 animated"
+             style="visibility: visible; animation-name: fadeInRight;">
+    </div>
+</div>
 
-    <h2 class="dark-secondary-text-color fw-bold text-center mx-5 mb-5" th:utext="${contentBlock8.content}"></h2>
+<div style="background:#eee">
+    <div class="text-center w-100 w-md-80 m-auto p-5" th:each="slide : ${contentBlock6.slide}">
+        <th:block th:each="slideContent : ${slide.slideContents}">
+            <p class="mx-auto visit-content fw-bold fs-5" th:utext="${slideContent.content}">
+                Visit our current studies page to find a trial that fits your needs and see if you qualify
+                for any of our ongoing research studies.
+            </p>
+        </th:block>
+    </div>
+</div>
 
+
+<div class="container-fluid container-xxl">
+    <h2 class="dark-secondary-text-color fw-bold text-center mx-5 m-5" th:utext="${contentBlock8.content}"></h2>
 
     <div class="row p-2 p-md-5 gy-5" th:each="contentBlock : ${contentBlock9}">
         <div class="col-md-3" th:each="slide : ${contentBlock.slide}">
-            <div class="step-card p-4 pt-5   position-relative" style="height:470px" data-wow-delay="0.1s">
+            <div class="p-4 pt-5 position-relative round-shape rounded-5 blue-border" data-wow-delay="0.1s">
                 <div class="rounded-icon">
                     <img th:src="${slide.slideContents[0].content}" alt="">
                 </div>
-                <p class="text-white text-center regular-font mt-4 fs-5"
+                <p class="text-center regular-font mt-4 fs-5 dark-secondary-text-color fw-bold"
                    th:utext="${slide.slideContents[1].content}"></p>
-                <p class="text-center text-white px-3 opacity-75" th:utext="${slide.slideContents[2].content}"></p>
+                <p class="text-center px-3 opacity-75" th:utext="${slide.slideContents[2].content}"></p>
             </div>
         </div>
     </div>
@@ -111,15 +132,15 @@
         a
         Study</a>
 
-
+</div>
     <div class="row primary-bg-color p-2 p-md-5 mt-5" th:each="contentBlock : ${contentBlock11}">
-        <div class="col-md-6 mt-4 mt-0" th:each="slide : ${contentBlock.slide[0]}">
+        <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center text-center" th:each="slide : ${contentBlock.slide[0]}">
             <h1 class="dark-secondary-text-color wow animate__ animate__fadeInUp fw-bold animated"
                 style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
             </h1>
             </h1>
             <p th:utext="${slide.slideContents[1].content}"
-               class="text-white mt-2 wow animate__ animate__fadeInUp animated"
+               class="text-white mt-2 wow animate__ animate__fadeInUp animated mt-5"
                style="visibility: visible; animation-name: fadeInUp;">
             </p>
         </div>
@@ -137,15 +158,14 @@
         </div>
     </div>
 
-
-    <h2 th:utext="${contentBlock13.content}"
-        class="dark-secondary-text-color fw-bold text-center mx-5 wow animate__ animate__fadeInUp mt-5 animated"
+    <h4 th:utext="${contentBlock13.content}"
+        class="primary-text-color text-center fw-bold mx-5 wow animate__ animate__fadeInUp mt-5 animated"
         style="visibility: visible; animation-name: fadeInUp;">
 
-    </h2>
+    </h4>
 
     <h2 th:utext="${contentBlock14.content}"
-        class="primary-text-color text-center mx-5 wow animate__ animate__fadeInUp mt-5 animated"
+        class=" dark-secondary-text-color fw-bold text-center mx-5 wow animate__ animate__fadeInUp mt-3 animated"
         style="visibility: visible; animation-name: fadeInUp;">
 
     </h2>
@@ -155,7 +175,6 @@
        style="visibility: visible; animation-name: fadeInUp;"></p>
 
     <div class="row p-2 p-md-5" th:each="contentBlock : ${faqAllQuestions}">
-
         <div class="col-md-9 m-auto">
             <div class="accordion" id="faqParent">
                 <div class="accordion-item mb-3" th:each="slide, iterStat : ${contentBlock.slide}">
@@ -178,9 +197,8 @@
                     </div>
                 </div>
                 <a href="faqs.html"
-                   class="d-block ms-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn mt-5">See
+                   class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn wow animate__ animate__fadeInUp  animated mt-5">See
                     More</a>
-
             </div>
         </div>
 
@@ -189,8 +207,6 @@
 </div>
 <!--  Company Footert Area -->
 <div class="row mt-5">
-
-
     <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
 </div>
 

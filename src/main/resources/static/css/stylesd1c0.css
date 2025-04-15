@@ -710,7 +710,7 @@ button:hover .button-text {
 }
 
 .member-details {
-  min-height: 60px;
+  min-height: 70px;
   width: 90%;
   margin: auto;
   background-color: var(--light-primary-color);

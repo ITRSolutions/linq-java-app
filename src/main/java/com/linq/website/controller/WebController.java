@@ -114,7 +114,7 @@ public class WebController {
                 List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
                 model.addAttribute("navigTitle", slug);
-            } else if(slug.equals("faqs")) {
+            } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
                 List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
             }
