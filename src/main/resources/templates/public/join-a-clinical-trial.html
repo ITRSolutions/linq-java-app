@@ -19,42 +19,48 @@
     
     <!-- Main Content: Intro Text and Image -->
 	
-    <div class="row p-5" th:each="contentBlock : ${contentBlock2}">
+    <div class="row p-2" th:each="contentBlock : ${contentBlock2}">
       <!-- Left Column: Text Content -->
-      <div class="col-lg-6" th:each="slide : ${contentBlock.slide}">
-        <h2 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
-            th:utext="${slide.slideContents[0].content}">
-        </h2>
-        <p class="regular-font text-dark mt-3 lh-lg" th:utext="${slide.slideContents[1].content}">
+      <div class="col-lg-7" th:each="slide : ${contentBlock.slide}">
+        <p class="regular-font primary-text-color mt-3 lh-lg wow animate__animated animate__fadeInUp fw-bold fs-5" th:utext="${slide.slideContents[0].content}">
         </p>
-        <p class="regular-font text-dark mt-3 lh-lg" th:utext="${slide.slideContents[2].content}">
-        </p>
-        <p class="regular-font text-dark mt-3 lh-lg" th:utext="${slide.slideContents[3].content}">
+
+        <h1 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
+            th:utext="${slide.slideContents[1].content}">
+        </h1>
+
+        <p class="regular-font text-dark mt-3 lh-lg wow animate__animated animate__fadeInUp" th:utext="${slide.slideContents[2].content}">
         </p>
       </div>
       <!-- Right Column: Image -->
-      <div class="col-lg-6 d-flex align-items-center justify-content-center" th:each="slide : ${contentBlock.slide}">
-        <img th:src="${slide.slideContents[4].content}" alt="Join a Clinical Trial"
+      <div class="col-lg-5 d-flex align-items-center justify-content-center" th:each="slide : ${contentBlock.slide}">
+        <img th:src="${slide.slideContents[3].content}" alt="Join a Clinical Trial"
              height="400" width="400" class="rounded-circle object-fit-cover">
       </div>
     </div>
 
     <!-- Participation Call-to-Action Section -->
-    <div class="my-5" th:each="contentBlock : ${contentBlock3}">
+    <div class="m-5" th:each="contentBlock : ${contentBlock3}">
       <h2 class="dark-secondary-text-color fw-bold text-center"
-          th:utext="${contentBlock.slide[0].slideContents[0].content}">
+          th:utext="${@webUtils.validateString(contentBlock.slide[0].slideTitle)}">
         Interested in participating?
       </h2>
-      <p class="regular-font text-dark mt-4 w-75 text-center mx-auto lh-lg"
-         th:utext="${contentBlock.slide[0].slideContents[1].content}">
-         <!-- Example: Visit our current studies page to find a trial that fits your needs... -->
-      </p>
-      <a href="#"
-         class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn mt-5"
-         th:utext="${contentBlock.slide[0].slideContents[2].content}">
-         Find a Trial
-      </a>
+
+      <ul class="mt-4">
+        <th:block th:each="slideContent : ${contentBlock.slide[1].slideContents}">
+        <li th:utext="${@webUtils.validateString(slideContent.content)}">This is the third point</li>
+        </th:block>
+      </ul>
+
+      <th:block th:each="slide : ${contentBlock.slide[2]}">
+        <a th:href="${@webUtils.validateString(slide.slideContents[1].content)}"
+           class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn mt-5"
+           th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">
+          Find a Trial
+        </a>
+      </th:block>
     </div>
+
 
     
   </div>
