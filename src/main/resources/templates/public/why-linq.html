@@ -3,17 +3,12 @@
 
 <head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 
-<style>
-    .big-font {
-        font-size: 3.5rem !important;
-    }
-</style>
 <body>
 <!-- Dynamic navigation -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
 
 <div class="row">
-    <div class="investigator-header">
+    <div class="contact-header">
         <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock1.content)}">Partner with LINQ</h2>
     </div>
 </div>
@@ -64,27 +59,12 @@
 
     <!-- Therapeutic Expertise Section -->
     <h3 class="fw-bold text-center dark-secondary-text-color" th:utext="${@webUtils.validateString(contentBlock6.content)}">Innovating Clinical Research for a Healthier Future</h3>
-    <div class="col-md-12 my-5 p-3 clinical-research row" th:each="contentBlock : ${contentBlock7}">
-        <div class="col-md-2 ipad-hide"></div>
-        <div class="col-md-9 my-5 my-md-0 ipad-w-100">
-            <div class="row gy-5 justify-content-center mob-center">
-                <div class="col-6 col-md-4 row mt-4" th:each="slide : ${contentBlock.slide}">
-                    <div class="col-md-4">
-                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <p class="regular-font mt-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-1 ipad-hide"></div>
-    </div>
+    <div th:replace="~{fragments/therapeutic-block :: therapeuticBlock(therapeutic=${therapeutic})}"></div>
 
 </div>
 
 <!-- Blue Stats Section -->
-<div class="row mt-3" style="background-color: #082652;" th:each="contentBlock : ${contentBlock8}">
+<div class="row mt-3 company-footer join-our-team" th:each="contentBlock : ${contentBlock8}">
     <div class="row g-5 Patient-num" >
         <div class="col-4 mt-0 mb-5" th:each="slide : ${contentBlock.slide}">
             <div class="d-flex flex-column justify-content-center align-items-center">

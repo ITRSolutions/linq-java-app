@@ -647,7 +647,7 @@ button:hover .button-text {
 
 .company-footer,
 .team-header {
-  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+  background-image: url('../image/bg-image-banner.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -800,9 +800,10 @@ button:hover .button-text {
 
 /* contact us page styles */
 .contact-header {
-  background-image: url('../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg');
+
+  background-image: url('../image/bg-image-banner.png');
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   height: 150px;
   display: flex;
@@ -811,6 +812,10 @@ button:hover .button-text {
   flex-direction: column;
   gap: 20px;
 }
+
+.join-our-team {
+    background-image: url('../image/bg-image-banner1.png') !important;
+ }
 
 .myInput {
   background-color: transparent;
@@ -2048,3 +2053,7 @@ button.btn-with-arrow .circle .icon.arrow::before {
     }
   }
 }
+
+    .big-font {
+        font-size: 4.5rem !important;
+    }

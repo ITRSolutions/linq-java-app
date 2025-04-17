@@ -24,7 +24,13 @@ $(document).on('click', '#addContentBlockFunction', function () {
     pageNameCB ? $('#addContentBlock').modal('show') : 0;
     $('#addContentBlock').find('[name="pageName"]').val(pageNameCB);
 
-    $("#orderIndex").val(contentBlockTable[contentBlockTable.length-1].orderIndex + 1);
+        var table = $("#contentBlockTable tbody tr");
+        if(!table[0].innerText.includes("No content blocks found")) {
+            var index = parseInt($(table[table.length-1]).find("td")[0].textContent);
+            $("#orderIndex").val(index + 1);
+        } else {
+            $("#orderIndex").val(1);
+        }
 });
 
 $(document).on('click', '.updateContentBlock', function () {

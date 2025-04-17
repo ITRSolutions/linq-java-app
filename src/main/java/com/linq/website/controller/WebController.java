@@ -117,6 +117,10 @@ public class WebController {
             } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
                 List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
+            } else if (slug.equals("why-linq") || slug.equals("investigators")) {
+                List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
+                model.addAttribute("therapeutic", therapeutic);
+                System.out.println("M in block----------------");
             }
 
             List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");

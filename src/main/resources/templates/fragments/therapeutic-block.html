@@ -1,0 +1,18 @@
+<th:block xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="therapeuticBlock(therapeutic)">
+<div class="col-md-12 my-5 p-3 clinical-research row" th:each="contentBlock : ${therapeutic}">
+    <div class="col-md-2 ipad-hide"></div>
+    <div class="col-md-9 my-5 my-md-0 ipad-w-100">
+        <div class="row gy-5 justify-content-center mob-center">
+            <div class="col-6 col-md-4 row mt-4" th:each="slide : ${contentBlock.slide}">
+                <div class="col-md-4">
+                    <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <p class="regular-font mt-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 ipad-hide"></div>
+</div>
+</th:block>

@@ -1,344 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
-
-</head>
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 <link rel="stylesheet" href="css/become-principle.css">
 
 <body>
-<!-- Dynamic navigation -->
-<div
-        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
-</div>
+<!-- Navigation -->
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
+
 <div class="row mb-5">
     <div class="contact-header">
-        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Become a Principal Investigator</h2>
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock1.content)}"></h2>
     </div>
 </div>
-  <div class="container-fluid container-xxl">
 
-
-  <div class="row p-2 p-md-1 align-items-stretch">
-    <div class=" col-md-6 primary-bg-color p-5 rounded-start-4 no-border" id="disease">
-        <h4 class="text-white fw-bold"> Become a Principle Investigator</h4>
-      <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ">
-        Are you ready to take
-        your research career to
-        the next level?
-      </h2>
-
-      <p class="text-white mt-4 animate__animated animate__fadeInUp w-100 m-auto wow animate__ animate__fadeInUp d animated">Make a lasting impact—
-        LINQ Research is Looking for Talented Doctors! Join our
-        dynamic team as a Principal Investigator to explore
-        groundbreaking opportunities and unleash your full
-        potential!
-           
-      </p>
-      <a href="prinicipal-investigator-form.html" target="_blank"
-        class="btn text-white wow animate__animated animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ">Learn More</a>
-    </div>
-    <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
-      <img src="image/principal-investigator.png" height="415" width="530"
-        alt="" class="picture wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-0">
-    </div>
-  </div>
-
-  <div class="row p-2 p-md-1 mt-4 align-items-stretch">
-    <div class="text-content  col-md-7 rounded-start-4 no-border p-5">
-      <h2 class="dark-secondary-text-color wow animate__animated animate__fadeInUp  fw-bold ">
-       About LINQ Research
-      </h2>
-      <h4 class="primary-text-color wow animate__ animate__fadeInUp mt-4  animated  wow animate__animated animate__fadeInUp " style="visibility: visible; animation-name: fadeInUp;">
-        A trusted partner in
-        delivering scientific
-        breakthroughs
-      </h4>
-      <p class=" mb-4 animate__animated animate__fadeInUp w-100  m-auto wow animate__ animate__fadeInUp d animated">As a leading research company in Pearland, TX, LINQ
-        As a leading research company in Pearland, TX, LINQ Research
-is committed to helping you elevate your career and unlock
-endless possibilities in research. For the past 10 years, we've
-partnered with physicians and pharmaceutical sponsors in the
-Houston area to conduct inclusive, high-quality research and
-drive groundbreaking scientific advancements. 
-      </p>
-        <a href="prinicipal-investigator-form.html" target="_blank"
-           class="btn text-white wow animate__animated animate__fadeInUp  health-card-btn px-4 fw-medium ">Learn More</a>
-    </div>
-    <div class="col-lg-5 d-flex align-items-center justify-content-center">
-      <img src="image/linq-researches.png" class="research-img" 
-        alt=""/>
-    </div>
-  </div> 
-
-  <div class="align-items-center row col-md-12 ">
-    <div class="col-md-12 my-md-0 p-5">
-      <div class="row gy-5">
-        <div class="col-6 col-md-3">
-          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.1s">
-            <h1 class="display-5 fw-bold primary-text-color ">
-              70+
-            </h1>
-            <p class="text-center regular-font fw-bold">
-              Successful clinical
-trials
-            </p>
-          </div>
+<div class="container-fluid container-xxl">
+    <!-- Principal Investigator CTA Section -->
+    <div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock2}" th:with="slide = ${contentBlock.slide[0]}">
+        <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border">
+            <h4 class="text-white fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h4>
+            <h2 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+            <p class="text-white mt-4" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
+            <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank" class="btn text-white mt-4 health-card-btn px-4 fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Learn More</a>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
-            <h1 class="display-5 fw-bold primary-text-color ">
-              20K+
-            </h1>
-            <p class="text-center regular-font fw-bold">
-              Successful clinical
-            </p>
-          </div>
+        <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
+            <img th:src="${@webUtils.validateString(slide.slideContents[5].content)}" height="415" alt="" class="picture object-fit-cover ms-auto d-block rounded-start-0">
         </div>
-        <div class="col-6 col-md-3">
-          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
-            <h1 class="display-5 fw-bold primary-text-color ">
-              20K+
-            </h1>
-            <p class="text-center regular-font fw-bold">
-              Patient Database
-            </p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="d-flex flex-column align-items-center justify-content-center gap-2 " data-wow-delay="0.2s">
-            <h1 class="display-5 fw-bold primary-text-color ">
-              15K+
-            </h1>
-            <p class="text-center regular-font fw-bold">
-              Patient Database
-            </p>
-          </div>
-        </div>
- 
-      </div>
     </div>
-    <h3 class="dark-secondary-text-color fw-bold text-center fw-bold">
-      Our Therapeutic Expertise
-    </h3>
-      <div class="col-md-12 my-5 p-3 clinical-research row">
-          <div class="col-md-2 ipad-hide"></div>
-          <div class="col-md-9 my-5 my-md-0 ipad-w-100">
-              <div class="row gy-5 justify-content-center mob-center">
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Internal-Medicine.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Internal Medicine</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Women-Health.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Women Health</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Gastroenterology.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Gastroenterology</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Pulmonology.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Pulmonology</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Psychiatry.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Psychiatry</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Endocrine.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Endocrine</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/Vaccines.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Vaccines</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/pediatrics.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Pediatrics</p>
-                      </div>
-                  </div>
-                  <div class="col-6 col-md-4 row mt-4">
-                      <div class="col-md-4">
-                          <img src="image/dermatology.png" alt="">
-                      </div>
-                      <div class="col-md-8">
-                          <p class="regular-font mt-3">Dermatology</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-1 ipad-hide"></div>
-      </div>
 
-   </div>
+    <!-- About LINQ Section -->
+    <div class="row p-2 p-md-1 mt-4 align-items-stretch" th:each="contentBlock : ${contentBlock3}" th:with="slide = ${contentBlock.slide[0]}">
+        <div class="text-content col-md-7 rounded-start-4 no-border p-5">
+            <h4 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h4>
+            <h2 class="fw-bold primary-text-color mt-4" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+            <p class="mb-4" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
+            <a th:href="${@webUtils.validateString(slide.slideContents[4].content)}" target="_blank" class="btn text-white health-card-btn px-4 fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Learn More</a>
+        </div>
+        <div class="col-lg-5 d-flex align-items-center justify-content-center">
+            <img th:src="${@webUtils.validateString(slide.slideContents[5].content)}" class="research-img" alt=""/>
+        </div>
+    </div>
 
-    </div>  
-  </div>
+    <!-- Data Stat Section -->
+    <div class="row col-md-12 px-5" th:each="contentBlock : ${contentBlock4}">
+        <div class="row gy-5 mt-0">
+            <div class="col-6 col-md-3" th:each="slide : ${contentBlock.slide}">
+                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
+                    <h1 class="display-5 fw-bold primary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h1>
+                    <p class="text-center regular-font fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="d-flex flex-wrap align-items-stretch mt-4">
+    <!-- Therapeutic Expertise Section -->
+    <h3 class="dark-secondary-text-color fw-bold text-center" th:utext="${@webUtils.validateString(contentBlock5.content)}">Our Therapeutic Expertise</h3>
+    <div th:replace="~{fragments/therapeutic-block :: therapeuticBlock(therapeutic=${therapeutic})}"></div>
+</div>
 
-    <!-- Left side image -->
+<!-- Blue Section CTA -->
+<div class="d-flex flex-wrap align-items-stretch mt-4" th:each="contentBlock : ${contentBlock6}" th:with="slide = ${contentBlock.slide[0]}">
     <div class="col-md-6 p-0 page-header">
-        <img src="image/office.png" alt="Why-Link" class="img-fluid w-100 h-100 section-image">
+        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="Why-LINQ" class="img-fluid w-100 h-100 section-image">
     </div>
-    <!-- Right side full blue background -->
     <div class="col-md-6 p-0 d-flex justify-content-center align-items-center section-content-wrapper primary-bg-color">
-        <div class="section-content position-absolute ">
-            <h3 class="fw-bold primary-text-color pb-1">Why Join LINQ Research LLC?</h3>
-            <h2 class="fw-bold text-white pt-1">Empower your vision with our infrastructure – where possibilities are endless!</h2>
+        <div class="section-content position-absolute">
+            <h3 class="fw-bold primary-text-color pb-1" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h3>
+            <h2 class="fw-bold text-white pt-1" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></h2>
         </div>
     </div>
 </div>
-   <p class="w-75 m-auto text-center mt-4 regular-font lh-lg">As a Principal Investigator with LINQ Research, you will gain exclusive access to a comprehensive network
-    of advanced resources and state-of-the-art facilities, all designed to elevate and support the success of
-    your research
-  </p>
-  
- <div class="align-items-center row col-md-12 mt-5">
-  <div  class="col-md-3"></div>
-  <div class="col-md-6 my-5 my-md-0 ">
-    <div class="row gy-5">
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-          <img src="image/collaborative.png" alt="">
-          <p class="text-center regular-font">
-            Collaborative<br>
-Research Spaces
-          </p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.2s">
-          <img src="image/centralized.png" alt="">
-          <p class="text-center regular-font">
-            Centralized<br>
-Support Teams
-          </p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.3s">
-          <img src="image/professional.png" alt="">
-          <p class="text-center regular-font">
-            Professional<br> Growth
-Opportunities
-          </p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.4s">
-          <img src="image/networking.png" alt="">
-          <p class="text-center regular-font">
-            Networking<br>
-Opportunities
-          </p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.5s">
-          <img src="image/dedicated.png" alt="">
-          <p class="text-center regular-font">
-            Dedicated Patient<br> 
-Recruitment Staff
-          </p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-          <img src="image/Efficient.png" alt="">
-          <p class="text-center regular-font">
-            Efficient Trial<br> 
-Management Systems
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div  class="col-md-3"></div>
- </div>
 
-  <h2 class="dark-secondary-text-color fw-bold text-center mt-5">
-    Your success is our mission
-  </h2>
-
-  <p class="w-75 m-auto text-center mt-4 regular-font lh-lg">
-    We understand that every organization has unique needs. Our team works closely with you to understand
-    your specific goals and challenges, providing customized solutions that address your particular
-    requirements. By providing personalized support and resources, we ensure that our collaboration is not
-    only effective but also perfectly aligned with your specific objectives.
-  </p>
-
-  <a type="button" xdata-bs-toggle="modal" xdata-bs-target="#joinNowModalX" href="prinicipal-investigator-form.html" target="_blank"
-    class="d-block mx-auto my-3 mb-5 text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn">Learn More</a>
-</div>
-
-<!-- <div class="company-footer">
-  <h2 class="dark-secondary-text-color fw-bold">LINQ Research LLC.</h2>
-  <p class="text-white fs-5">Join us in transforming lives through the power of accessible research
-  </p>
-  <a href="#" class="btn text-white mt-2 health-card-btn px-4 fw-medium">Participate Now</a>
-</div> -->
-
-<!-- LINQ Research LLC. -->
-<div class="row mt-5">
-  <div class="company-footer">
-    <h2 class="dark-secondary-text-color fw-bold m-2">LINQ Research LLC.</h2>
-    <p class="text-white fs-5">Join us in transforming lives through the power of accessible research
+<div>
+    <p class="w-75 m-auto text-center mt-4 regular-font lh-lg" th:utext="${@webUtils.validateString(contentBlock7.slide[0].slideTitle)}">
     </p>
-    <a href="prinicipal-investigator-form.html" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium m-3">Participate Now</a>
-  </div>
 </div>
-<!-- LINQ Research LLC. -->
 
-<!-- Join Now Modal -->
-<div class="modal fade" id="joinNowModal" tabindex="-1" aria-labelledby="joinNowModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <button type="button" class="btn-close custom-btn-close z-3" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer border-0 justify-content-start">
-        <button type="button" class="btn btn primary-bg-color text-white">Submit</button>
-      </div>
+<!-- iCOns-->
+<div class="align-items-center row col-md-12 mt-5" th:each="contentBlock : ${contentBlock8}">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 my-5 my-md-0">
+        <div class="row gy-5" >
+            <div class="col-6 col-md-4" th:each="slide : ${contentBlock.slide}">
+                <div class="d-flex flex-column align-items-center justify-content-center gap-4" data-wow-delay="0.1s">
+                    <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
+                    <p class="text-center regular-font" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="col-md-3"></div>
 </div>
+
+<!-- Your success -->
+<div th:each="contentBlock : ${contentBlock9}" th:with="slide = ${contentBlock.slide[0]}">
+    <h2 class="dark-secondary-text-color fw-bold text-center mt-5" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h2>
+    <p class="w-75 m-auto text-center mt-4 regular-font lh-lg" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
+    <a th:href="${@webUtils.validateString(slide.slideContents[2].content)}" target="_blank"
+       class="d-block mx-auto my-3 mb-5 text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn"
+       th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">Learn More</a>
+</div>
+
+<!-- Company Footer Section -->
+<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+
 <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 </body>
-
 </html>
