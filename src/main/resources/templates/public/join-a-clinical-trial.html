@@ -25,11 +25,15 @@
         <p class="regular-font primary-text-color mt-3 lh-lg wow animate__animated animate__fadeInUp fw-bold fs-5" th:utext="${slide.slideContents[0].content}">
         </p>
 
-        <h1 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
+        <h2 class="dark-secondary-text-color fw-bold wow animate__animated animate__fadeInUp"
             th:utext="${slide.slideContents[1].content}">
-        </h1>
+        </h2>
 
         <p class="regular-font text-dark mt-3 lh-lg wow animate__animated animate__fadeInUp" th:utext="${slide.slideContents[2].content}">
+        </p>
+        <p class="regular-font text-dark mt-3 lh-lg wow animate__animated animate__fadeInUp" th:utext="${slide.slideContents[4].content}">
+        </p>
+        <p class="regular-font text-dark mt-3 lh-lg wow animate__animated animate__fadeInUp" th:utext="${slide.slideContents[5].content}">
         </p>
       </div>
       <!-- Right Column: Image -->
@@ -40,17 +44,16 @@
     </div>
 
     <!-- Participation Call-to-Action Section -->
-    <div class="m-5" th:each="contentBlock : ${contentBlock3}">
+    <div class="my-5" th:each="contentBlock : ${contentBlock3}">
       <h2 class="dark-secondary-text-color fw-bold text-center"
           th:utext="${@webUtils.validateString(contentBlock.slide[0].slideTitle)}">
         Interested in participating?
       </h2>
 
-      <ul class="mt-4">
         <th:block th:each="slideContent : ${contentBlock.slide[1].slideContents}">
-        <li th:utext="${@webUtils.validateString(slideContent.content)}">This is the third point</li>
+          <p class="regular-font text-dark mt-3 lh-lg wow animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(slideContent.content)}">
+          </p>
         </th:block>
-      </ul>
 
       <th:block th:each="slide : ${contentBlock.slide[2]}">
         <a th:href="${@webUtils.validateString(slide.slideContents[1].content)}"

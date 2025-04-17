@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+
+</head>
+<link rel="stylesheet" th:href="@{css/our-location.css}">
 
 <body>
-<!-- Dynamic navigation -->
+<!-- ========== MAIN NAVIGATION ========== -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}">
 </div>
 
+<!-- ========== PAGE HEADER SECTION ========== -->
 <div class="row mb-5">
     <div class="contact-header">
-        <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${contentBlock1.content}">Our
-            Location</h2>
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${contentBlock1.content}">Locations</h2>
     </div>
 </div>
-<div class="container-fluid ">
 
+<!-- ========== MAIN CONTENT CONTAINER ========== -->
+<div class="container-fluid contact-container">
 
-
-    <div class="row" th:each="contentBlock : ${contentBlock2}">
-        <div class="col-md-9 m-auto">
-            <ul class="nav nav-pills mb-5 justify-content-center gap-5 mt-5" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation" th:each="slide, iterStat : ${contentBlock.slide}">
-                    <button class="nav-link rounded-pill" th:classappend="${iterStat.index == 0} ? 'active'"
+    <!-- ========== LOCATION TABS SECTION ========== -->
+    <div class="row px-auto p-2" th:each="contentBlock : ${contentBlock2}">
+        <div class="col-md-9 mx-auto">
+            <!-- Location Tab Navigation -->
+            <ul class="nav nav-pills-location mb-3 justify-content-center gap-5" id="pills-tab" role="tablist">
+                <li class="nav-item-location" role="presentation" th:each="slide, iterStat : ${contentBlock.slide}">
+                    <button class="nav-link-location" th:classappend="${iterStat.index == 0} ? 'active'"
                             th:id="'pills-location' + ${iterStat.index} + '-tab'"
                             data-bs-toggle="pill" th:data-bs-target="'#pills-location' + ${iterStat.index+1}"
                             type="button" role="tab" th:aria-controls="'pills-location' + ${iterStat.index+1}"
@@ -31,68 +36,75 @@
                     </button>
                 </li>
             </ul>
-            <div class="tab-content mb-5" id="pills-tabContent">
+
+            <!-- Location Tab Content -->
+            <div class="tab-content my-5" id="pills-tabContent">
                 <div class="tab-pane fade" th:classappend="${iterStat.index == 0} ? 'show active'"
                      th:id="'pills-location' + ${iterStat.index+1}" role="tabpanel"
                      th:aria-labelledby="'pills-location' + ${iterStat.index+1} + '-tab'" tabindex="0"
                      th:each="slide, iterStat : ${contentBlock.slide}">
-                    <div class="shadow-sm rounded-2 p-3 px-4 py-4 border">
-
-
-                        <div style="display: flex;">
-                            <div style="width: 65%">
-                                <iframe width="100%" height="300" frameborder="0" scrolling="no"
+                    <div class="shadow-sm rounded-2 p-3 px-4 py-4 border contact-info-container">
+                        <div class="d-flex flex-column flex-md-row">
+                            <!-- Google Map Container -->
+                            <div class="map-container me-md-4 mb-3 mb-md-0">
+                                <iframe width="100%" height="100%" frameborder="0" scrolling="no"
                                         th:src="${slide.slideContents[1].content}"></iframe>
                             </div>
-                            <div style="margin: 0 0 0 30px;">
+
+                            <!-- Contact Information -->
+                            <div class="contact-details">
                                 <p class="fw-bold" th:utext="${slide.slideContents[2].content}"></p>
-                                <div style="display: flex;">
-                                    <span><i class="bi bi-geo-alt-fill" style="color: #DD9B02;"></i></span>
-                                    <p th:utext="${slide.slideContents[3].content}"></p>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-geo-alt-fill contact-icon me-2"></i>
+                                    <p class="mb-0" th:utext="${slide.slideContents[3].content}"></p>
                                 </div>
-
-                                <div style="display: flex;"><span>
-                                    <i class="bi bi-telephone-fill" style="color: #DD9B02;"></i>
-					  </span>
-                                    <p th:utext="${slide.slideContents[4].content}"></p>
+                                <!-- Clickable Phone Number -->
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-telephone-fill contact-icon me-2"></i>
+                                    <a th:href="'tel:' + ${slide.slideContents[4].content}" class="mb-0 text-decoration-none text-dark" th:text="${slide.slideContents[4].content}"></a>
                                 </div>
-
-                                <div style="display: flex;">
-				  <span>
-					   <i class="bi bi-envelope-fill" style="color: #DD9B02;"></i>
-					  </span>
-                                    <p th:utext="${slide.slideContents[5].content}">
-                                    </p>
+                                <!-- Clickable Email Address -->
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-envelope-fill contact-icon me-2"></i>
+                                    <a th:href="'mailto:' + ${slide.slideContents[5].content}" class="mb-0 text-decoration-none text-dark" th:text="${slide.slideContents[5].content}"></a>
                                 </div>
-                                <p class="fw-bold" th:utext="${slide.slideContents[6].content}">
-                                </p>
-                                <p th:utext="${slide.slideContents[7].content}">
-                                </p>
+                                <p class="fw-bold" th:utext="${slide.slideContents[6].content}"></p>
+                                <p th:utext="${slide.slideContents[7].content}"></p>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row my-5" th:each="contentBlock : ${contentBlock3}">
-        <div class="col-md-7 m-auto shadow rounded-2 p-3" th:each="slide : ${contentBlock.slide}">
-            <video width="100%" height="450" controls="">
-                <source th:src="${slide.slideContents[0].content}"  type="video/mp4">
-            </video>
+
+    <!-- ========== VIRTUAL TOUR SECTION ========== -->
+    <div class="row my-3 p-2 tab-content2">
+        <div class="col-md-9 m-auto">
+            <h2 class="primary-text-color fw-bold mb-4">Virtual Tour</h2>
+            <div class="shadow rounded-2 p-3 video-container" th:each="contentBlock : ${contentBlock3}">
+                <div th:each="slide : ${contentBlock.slide}">
+                    <video width="100%" height="100%" controls class="w-100">
+                        <source th:src="${slide.slideContents[0].content}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-    <!-- Footer -->
-    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<!-- ========== COMPANY FOOTER ========== -->
+<div class="row mt-5">
+    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}">
+    </div>
+</div>
 
-    <!-- Scripts -->
-    <script th:src="@{/js/jquery/jquery.min.js}"></script>
-    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/js/custom.js}"></script>
+<!-- ========== MAIN FOOTER ========== -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+
+<!-- ========== JAVASCRIPT FILES ========== -->
+<script th:src="@{/js/jquery/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
 </body>
 </html>

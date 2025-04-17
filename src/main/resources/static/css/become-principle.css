@@ -5,12 +5,15 @@ width: 400px;
 margin-left: 50px;
 margin-top: 50px;
 }
+
 .learn-btn{
   top: 20px;
   margin-left:10px ;
   margin-bottom: 40px;
   padding: 8px;
 }
+
+
 /* Container height adjustment */
 .why-join-section {
     height: 500px; /* Adjust as per your need */
@@ -21,17 +24,6 @@ margin-top: 50px;
     object-fit: cover;
     height: 100%;
   }
-  /* .section-overlay {
-    background-color: #002B5B;
-    opacity: 0.55;
-    width: 667px;
-    height: 58%;
-    top: 200;
-    left: 200;
-    right: 200;
-    z-index: 1;
-  } */
-  
   /* Right side background and content styling */
   .section-content-wrapper {
     background-color: #002B5B;
@@ -40,258 +32,14 @@ margin-top: 50px;
   
   .section-content {
     background: #FFB13A;
-    padding: 30px 40px;
+    padding: 50px 40px;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 65%;
     z-index: 2;
     top: 50%;
-    left: 7%;
+    left: 16%;
     transform: translate(-50%, -50%);
+        width: 70%;
+        height: 60%;
   }
   
-  .section-content h4 {
-    color: #002B5B;
-    font-weight: bold;
-    margin-bottom: 20px;
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .section-content p {
-    color: white;
-    margin-top: 15px;
-    margin-bottom: 0;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1.4;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .why-join-section {
-      height: auto;
-    }
-  
-    .section-image {
-      height: auto;
-    }
-  
-    .section-content {
-      padding: 20px 30px;
-      max-width: 100%;
-    }
-    .picture{
-      height:510px
-    }
-    
-  }
-  /* ///////////////////////////////////////// */
-  /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .section-content {
-    padding: 40px 50px;
-    font-size: 24px;
-    width: 60%;
-  }
-
-  .research-img {
-    width: 450px;
-    height: 450px;
-    margin-left: 80px;
-    margin-top: 60px;
-  }
-}
-
-/* Large devices (desktops, 992px–1199px) */
-@media (max-width: 1199.98px) {
-  .section-content {
-    padding: 30px 40px;
-    font-size: 22px;
-    width: 70%;
-  }
-
-  .research-img {
-    width: 400px;
-    height: 400px;
-    margin-left: 50px;
-    margin-top: 50px;
-  }
-}
-
-/* Medium devices (tablets, 768px–991px) */
-@media (max-width: 991.98px) {
-  .why-join-section {
-    height: auto;
-    flex-direction: column;
-  }
-
-  .section-image {
-    height: auto;
-    width: 100%;
-  }
-
-  .section-content-wrapper {
-    width: 100%;
-  }
-
-  .section-content {
-    position: relative;
-    transform: none;
-    left: auto;
-    top: auto;
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-  }
-
-  .research-img {
-    width: 300px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 20px;
-  }
-}
-
-/* Small devices (landscape phones, 576px–767px) */
-@media (max-width: 767.98px) {
-  .section-content {
-    width: 95%;
-    padding: 15px;
-    text-align: center;
-  }
-
-  .section-content h4 {
-    font-size: 16px;
-  }
-
-  .section-content p {
-    font-size: 18px;
-  }
-
-  .research-img {
-    width: 250px;
-    height: 250px;
-    margin: 20px auto;
-  }
-
-  .section-overlay {
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-  }
-}
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
-  .section-content {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .section-content h4 {
-    font-size: 14px;
-  }
-
-  .section-content p {
-    font-size: 16px;
-  }
-
-  .research-img {
-    width: 300px;
-    height: 300px;
-    margin: 10px auto;
-  }
-
-  .section-overlay {
-    width: 100%;
-    height: 100%;
-    left: 8;
-    right: 0;
-  }
-}
-
-.section-overlay {
-  position: absolute;
-  background-color: #002B5B;
-  opacity: 0.55;
-  height: 60%;
-  height: 58%;
-    top: 200;
-    left: 200;
-    right: 200;
-  z-index: 1;
-  transition: all 0.3s ease; 
-}
-
-/* Large desktops (1200px and up) */
-@media (min-width: 1200px) {
-  .section-overlay {
-    width: 40%;
-        height: 58.2%;
-        top: 225vh;
-        left: 11%;
-        right: 900px
-  }
-}
-
-/* Desktops (992px–1199px) */
-@media (max-width: 1199.98px) {
-  .section-overlay {
-    width: 60%;
-    height: 25%;
-    top: 116.vh;
-    left: 0%;
-  }
-}
-
-/* Tablets (768px–991px) */
-@media (max-width: 991.98px) {
-  .section-overlay {
-    width: 80%;
-    height: 30%;
-    top: calc(100vh + 90vh);
-    left: 10%;
-  }
-}
-/* @media (min-width: 1051px) {
-  .section-overlay {
-    width: 75%;
-    height: 27%;
-    top: 104vh;
-    left: 0%;
-    right: 900px;
-  }
-} */
-
-/* Mobile landscape (576px–767px) */
-@media (max-width: 867.98px) {
-  .section-overlay {
-    width: 100%;
-    height: 28%;
-    top: calc(100vh + 87vh);
-    left: 0;
-  }
-}
-
-/* Mobile portrait (less than 576px) */
-@media (max-width: 575.98px) {
-    .section-overlay {
-        width: 100%;
-        height: 30%;
-        top: calc(150vh + 187vh);
-        left: 0;
-  }
-  }
-@media (max-width: 390px) {
-  .section-overlay {
-    width: 100%;
-        height: 30%;
-        top: calc(180vh + 194vh);
-        left: 0;
-  }
-}

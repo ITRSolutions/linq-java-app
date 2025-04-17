@@ -20,6 +20,12 @@
 
 $(document).on('click', '#addSlideContentFunction', function () {
     $('#addSlideContent').modal('show');
+    if(SlideContentTable.length) {
+        $("#orderIndexSC").val(SlideContentTable[SlideContentTable.length-1].orderIndex + 1);
+    } else {
+        $("#orderIndexSC").val(1);
+    }
+
 });
 
 $(document).on('change', '#contentTypeSG', function () {

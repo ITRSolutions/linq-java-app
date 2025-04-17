@@ -1,392 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head
-        th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
-</head>
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 
+<style>
+    .big-font {
+        font-size: 3.5rem !important;
+    }
+</style>
 <body>
 <!-- Dynamic navigation -->
-<div
-        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
-</div>
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
 
 <div class="row">
     <div class="investigator-header">
-        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Partner with <span class="dark-secondary-text-color">LINQ</span> Research
-
-            <h4 class=" text-white animate__animated animate__fadeInUp">
-                Bring your Innovation to life
-            </h4>
-        </h2>
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock1.content)}">Partner with LINQ</h2>
     </div>
 </div>
 
 <div class="container-fluid container-xxl">
-
-
-    <div class="my-5 row p-5 mt-2 mb-2 pb-2">
-        <h2 class="primary-text-color fw-bold mt-0">
-            Why Choose <span class="dark-secondary-text-color">LINQ</span> ?
-        </h2>
-
-        <p class=" mt-2 regular-font lh-lg">
-            LINQ Research LLC is a premier network of investigator sites, headquartered in Pearland, TX, with a growing
-            presence in the Houston area. We specialize in transforming innovative ideas into groundbreaking clinical
-            solutions. Our trials are led by our own network of dedicated Principal Investigators, committed to advancing
-            medical research across a wide range of therapeutic areas.
-
-        </p>
+    <div class="my-5 row p-5 mt-2 mb-2 pb-2 align-items-center flex-column text-center" th:each="contentBlock : ${contentBlock2}" th:with="slide = ${contentBlock.slide[0]}">
+        <h5 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Why Choose LINQ</h5>
+        <h2 class="primary-text-color fw-bold mt-0" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Why Choose ?</h2>
+        <p class="mt-2 regular-font lh-lg" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
     </div>
 
-    <!-- <div class="row my-2 mt-0 pt-2">
-      <div class="col-md-6 middle-contents">
-        <img src="image/why-linq.png" alt="" style="width: 70%;">
-      </div>
-      <div class="col-md-6 middle-contents">
-        <img src="image/why-linq-details.png" alt="" style="width: 70%;">
-      </div>
-    </div> -->
-
-    <div class="align-items-center row col-md-12 mt-1">
+    <!-- Features Icons Section -->
+    <div class="row col-md-12 mt-1" th:each="contentBlock : ${contentBlock3}">
         <div class="col-md-1"></div>
-        <div class="col-md-10  my-md-0 pt-0 pb-0">
+        <div class="col-md-10 pt-0 pb-0">
             <div class="row gy-5 justify-content-center">
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                        <img src="image/diverse-patient.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Diverse Patient<br>Population
-                        </p>
+                <div class="col-6 col-md-2" th:each="slide : ${contentBlock.slide}">
+                    <div class="d-flex flex-column align-items-center justify-content-center gap-4">
+                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="" >
+                        <p class="text-center facility-fnt" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
                     </div>
                 </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.2s">
-                        <img src="image/experienced-staff.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Experienced Staff
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.3s">
-                        <img src="image/quality-data-facility.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Quality Data
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.4s">
-                        <img src="image/large-physician.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Large Physician<br> Network
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.5s">
-                        <img src="image/remote-archival.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Remote Archival<br> Storage
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/hybrid-monitoring.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Hybrid Monitoring <br>Access
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/utilize-central.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Utilize Central IRB
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/wi-fi.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Full Wi-Fi access
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/week-study.png" alt="">
-                        <p class="text-center facility-fnt">
-                            2 week Study <br>Startup
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/ultrasound-facility.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Ultrasound Facility
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/freezer-incubator.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Access to -70<br>
-                            Freezer, -20 Freezer,<br>
-                            Incubator and<br>
-                            Refrigerator
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/clinical-trial.png" alt="">
-                        <p class="text-center facility-fnt">
-                            21-CFR Compliant<br>
-                            Clinical Trial<br>
-                            Management<br>
-                            System
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2 mt-4">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.6s">
-                        <img src="image/sleep-lab-facility.png" alt="">
-                        <p class="text-center facility-fnt">
-                            Sleep Lab <br>Facility
-                        </p>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
 
-    <div class="row my-2 mt-0 ">
-        <div class="col-md-6 d-flex align-items-center flex-column text-center gap-4 p-5">
-            <h5 class="card-title fw-bold mt-2 fs-2 wow animate__ animate__fadeInUp animated"
-                style="visibility: visible; animation-name: fadeInUp;">
-                Inclusive Research, Inclusive Results
-            </h5>
-            <h4 class="fw-bold wow animate__ animate__fadeInUp wow animate__animated animate__fadeInUp  animated"
-                style="visibility: visible; animation-name: fadeInUp;">
-                Embrace Diversity with <span class="dark-secondary-text-color">LINQ</span>
-            </h4>
-            <p class="card-text fw-medium wow animate__ animate__fadeInUp animated"
-               style="visibility: visible; animation-name: fadeInUp;">
-                At LINQ Research, our recruitment team is highly committed to meeting our enrollment commitments. With a
-                diversity score of 95
-                out of 100, Houston is one of the most diverse cities in the US. This
-                diversity, combined with our extensive patient database, allows us
-                to access a wide range of patient populations within our
-                community. We also actively partner with local community
-                organizations to enhance our outreach and recruitment efforts,helping us engage with diverse populations and
-                ensure that our
-                clinical trials are inclusive and representative.
-            </p>
+    <!-- Embrace Diversity Section -->
+    <div class="row my-2 mt-0" th:each="contentBlock : ${contentBlock4}" th:with="slide = ${contentBlock.slide[0]}">
+        <div class="col-md-7 d-flex flex-column gap-1 p-4">
+            <h5 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h5>
+            <h2 class="fw-bold primary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+            <p class="card-text fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
         </div>
-        <div class="col-md-6 middle-contents">
-            <img src="image/Mask-group.png" alt="" style="width: 70%;">
+        <div class="col-md-5 middle-contents p-4">
+            <img th:src="${@webUtils.validateString(slide.slideContents[3].content)}" alt="" class="rounded-circle object-fit-cover" style="width: 70%;">
         </div>
     </div>
 
-    <div class="row my-2 mt-0 ">
-        <div class="col-md-6 middle-contents">
-            <img src="image/quality-data.png" alt="" style="width: 70%;">
-        </div>
-        <div class="col-md-6 d-flex align-items-center flex-column text-center gap-4 p-5">
-            <h5 class="card-title fw-bold mt-2 fs-2 wow animate__ animate__fadeInUp animated"
-                style="visibility: visible; animation-name: fadeInUp;">
-                Quality Data, Every Time
-
-            </h5>
-            <h4 class="fw-bold wow animate__ animate__fadeInUp wow animate__animated animate__fadeInUp  animated"
-                style="visibility: visible; animation-name: fadeInUp;">
-                Precision and Excellence in Clinical Trials, Driven
-                by Our Skilled Recruitment Team
-            </h4>
-            <p class="card-text fw-medium wow animate__ animate__fadeInUp animated"
-               style="visibility: visible; animation-name: fadeInUp;">
-                At LINQ Research LLC, our team of highly skilled recruiters brings extensive experience in
-                clinical research. We excel in streamlining the recruitment, screening, retention, and follow-up
-                processes for our clients, ensuring each clinical trial is conducted with precision and excellence.
-                Our dedicated bilingual recruiters bridge language gaps, facilitating clear communication and
-                engagement with participants from diverse linguistic backgrounds. Our unwavering commitment
-                to delivering high- quality results in every study we undertake truly sets us apart in the industry.
-            </p>
+    <!-- Quality Data Section -->
+    <div class="row my-2 mt-0" th:each="contentBlock : ${contentBlock5}" th:with="slide = ${contentBlock.slide[0]}">
+        <div class="col-md-12 d-flex align-items-center flex-column text-center gap-4 p-5 pt-1 pb-3">
+            <h2 class="card-title fw-bold mt-2 fs-2 dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h2>
+            <h5 class="fw-bold primary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h5>
+            <p class="card-text fw-medium mt-2" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
         </div>
     </div>
 
-    <h3 class="fw-bold text-center">
-        Innovating Clinical Research for a Healthier Future
-    </h3>
-    <div class="align-items-center row col-md-12 mt-5 p-3 clinical-research">
-        <div class="col-md-2"></div>
-        <div class="col-md-9 my-5 my-md-0 ">
-            <div class="row gy-5">
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class=" col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Internal-Medicine.png" alt="">
-
-                        </div>
-                    </div>
-                    <div class=" col-md-8">
-                        <p class=" regular-font mt-3">
-                            Internal Medicine
-
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
+    <!-- Therapeutic Expertise Section -->
+    <h3 class="fw-bold text-center dark-secondary-text-color" th:utext="${@webUtils.validateString(contentBlock6.content)}">Innovating Clinical Research for a Healthier Future</h3>
+    <div class="col-md-12 my-5 p-3 clinical-research row" th:each="contentBlock : ${contentBlock7}">
+        <div class="col-md-2 ipad-hide"></div>
+        <div class="col-md-9 my-5 my-md-0 ipad-w-100">
+            <div class="row gy-5 justify-content-center mob-center">
+                <div class="col-6 col-md-4 row mt-4" th:each="slide : ${contentBlock.slide}">
                     <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/women.png" alt="">
-
-                        </div>
+                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
                     </div>
                     <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Women Health
-
-                        </p>
+                        <p class="regular-font mt-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></p>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Gastroenterology.png" alt="">
-
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Gastroenterology
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class=" col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Pulmonology.png" alt="">
-
-                        </div>
-                    </div>
-                    <div class=" col-md-8">
-                        <p class=" regular-font mt-3">
-                            Pulmonology
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Pulmonology.png" alt="">
-
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Psychiatry
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Endocrine.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Endocrine
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/Vaccines.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Vaccines
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/pediatrics.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Pediatrics
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 row mt-4">
-                    <div class="col-md-4">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 " data-wow-delay="0.1s">
-                            <img src="image/dermatology.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <p class=" regular-font mt-3">
-                            Dermatology
-                        </p>
-                    </div>
-                </div>
-
             </div>
-
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-1 ipad-hide"></div>
     </div>
 
 </div>
-<div class="row mt-3" style="background-color: #082652;">
-    <div class="row g-5 Patient-num">
-        <div class="col-4 mt-0 mb-5">
+
+<!-- Blue Stats Section -->
+<div class="row mt-3" style="background-color: #082652;" th:each="contentBlock : ${contentBlock8}">
+    <div class="row g-5 Patient-num" >
+        <div class="col-4 mt-0 mb-5" th:each="slide : ${contentBlock.slide}">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <h3 class="text-warning fw-bold fs-1 count text-white" data-count="50">50+</h3>
-                <h5 class="fw-bold text-white">
-                    Clinical Trials
-                </h5>
-            </div>
-        </div>
-        <div class="col-4 mt-0 mb-5">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <h3 class="text-warning fw-bold fs-1 count text-white" data-count="20">20K+</h3>
-                <h5 class="fw-bold text-white">
-                    Patient Database
-                </h5>
-            </div>
-        </div>
-        <div class="col-4 mt-0 mb-5">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <h3 class="text-warning fw-bold fs-1 count exception text-white" data-count="15">15+</h3>
-                <h5 class="fw-bold text-white">
-                    Principal Investigators
-                </h5>
+                <h1 class="fw-bold text-white big-font" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h1>
+                <h5 class="fw-bold text-white" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h5>
             </div>
         </div>
     </div>

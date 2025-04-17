@@ -1462,6 +1462,10 @@ button:hover .button-text {
 .intro {
     padding-right: 0;
 }
+
+.mob-center {
+    text-align: center !important;
+}
 }
 
 @media only screen and (min-width: 1023px) {
@@ -1476,6 +1480,13 @@ button:hover .button-text {
         object-position: center;
     }
 
+    .ipad-hide {
+        display: none;
+    }
+
+    .ipad-w-100 {
+        width: 100%;
+    }
 }
 
 .psuedoText {
@@ -1894,6 +1905,8 @@ button.btn-with-arrow .circle .icon.arrow::before {
 .pi-image img {
     width: 100%;
 }
+
+
 }
 
 

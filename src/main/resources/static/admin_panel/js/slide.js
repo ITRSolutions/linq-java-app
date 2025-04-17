@@ -26,8 +26,16 @@
 
         $('#addSlide').modal('show');
         $('#addSlide').find('[name="CBName"]').val(CBNameSlide);
-    });
 
+//        $("#slideOrderIndex").val(SlideTable[SlideTable.length-1].orderIndex + 1);
+        var table = $("#slideTable tbody tr");
+        if(!table[0].innerText.includes("No slide found")) {
+            var index = parseInt($(table[table.length-1]).find("td")[0].textContent);
+            $("#slideOrderIndex").val(index + 1);
+        } else {
+            $("#slideOrderIndex").val(1);
+        }
+    });
 
         $(document).on('click', '.updateSlide', function() {
             const slideId = $(this).data('slide-id');

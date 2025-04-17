@@ -23,6 +23,8 @@ $(document).on('click', '#addContentBlockFunction', function () {
 
     pageNameCB ? $('#addContentBlock').modal('show') : 0;
     $('#addContentBlock').find('[name="pageName"]').val(pageNameCB);
+
+    $("#orderIndex").val(contentBlockTable[contentBlockTable.length-1].orderIndex + 1);
 });
 
 $(document).on('click', '.updateContentBlock', function () {
