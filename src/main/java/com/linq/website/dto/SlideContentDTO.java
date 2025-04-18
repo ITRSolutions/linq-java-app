@@ -21,7 +21,7 @@ public class SlideContentDTO {
         private ContentType contentType;
 
         @NotNull(message = "Content cannot be null")
-        @Size(max = 2000, message = "Content length cannot exceed 2000 characters")
+        @Size(max = 5000, message = "Content length cannot exceed 5000 characters")
         private String content;
 
         private String imageAltText;

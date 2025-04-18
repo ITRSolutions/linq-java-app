@@ -1,11 +1,16 @@
 package com.linq.website.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.linq.website.entity.*;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.MailService;
 import com.linq.website.service.PageMetadataService;
 import com.linq.website.utility.CustomUserDetails;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.linq.website.service.CompanyPageMetaDataService;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
 
 @Controller
 public class WebController {
@@ -53,6 +62,7 @@ public class WebController {
 
         System.out.println("slug: "+slug);
 
+        List<ContentBlock> CB = new ArrayList<>(); //this will be used for blog pages only
         String tempPageName = "";
         if(!paramPageName.isEmpty()) {
             tempPageName = slug;
@@ -75,7 +85,6 @@ public class WebController {
             for (ContentBlock contentBlock : contentBlocks) {
                 // Fetch slides related to the current content block
                 List<Slide> slides = dynamicPageService.getSlides(contentBlock.getId());
-
                 // Debugging: print slide info
                 System.out.println("ContentBlock ID: " + contentBlock.getId() + " has " + slides.size() + " slides.");
 
@@ -91,11 +100,19 @@ public class WebController {
 
                 // Add slides to the content block
                 contentBlock.setSlide(slides);
-
                 System.out.println("getContent: "+contentBlock.getContent());
-                // Add attributes to the model for Thymeleaf
-                model.addAttribute("contentBlock"+count, contentBlock);
+
+                if(slug.equals("resources") || slug.equals("news-and-events")) {
+                    CB.add(contentBlock);
+                } else {
+                    // Add attributes to the model for Thymeleaf
+                    model.addAttribute("contentBlock"+count, contentBlock);
+                }
                 count++;
+            }
+
+            if(slug.equals("resources") || slug.equals("news-and-events")) {
+                model.addAttribute("articlePage", CB);
             }
 
             PageMetadata pageMetaData = pageMetadataService.getPageMetaData();
@@ -123,7 +140,7 @@ public class WebController {
             } else if (slug.equals("why-linq") || slug.equals("investigators")) {
                 List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
                 model.addAttribute("therapeutic", therapeutic);
-            } else if (slug.equals("blog") || slug.equals("resources")) {
+            } else if (slug.equals("blog")) {
                 YEAR = "year";
                 currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
                 model.addAttribute(YEAR, currentYear);

@@ -1,54 +1,128 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
+
+</head>
 <link rel="stylesheet" href="css/refer-friend.css">
 
 <body>
 <!-- Dynamic navigation -->
-<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
+<div
+        th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
+</div>
 
 <div class="container-fluid">
-    <div class="row" th:each="contentBlock : ${contentBlock1}">
+    <div class="row">
         <div class="investigator-header">
-            <h2 class="text-white fw-bold animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(contentBlock.slide[0].slideContents[0].content)}">Refer a Friend</h2>
+            <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Refer a Friend</h2>
         </div>
     </div>
-
-    <div class="container mb-4" th:each="contentBlock : ${contentBlock2}" th:with="slide = ${contentBlock.slide[0]}">
-        <div class="row align-items-center">
+    <div class="container mb-4 refer-block">
+        <div class="row align-items-center py-5">
             <!-- Text Content -->
-            <div class="col-md-7 text-content">
-                <h6 class="fw-bold heading" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Join a Clinical Trial</h6>
-                <h2 class="main-heading" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Take the first step to a Brighter Future</h2>
-                <p th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
-                <p th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></p>
-                <p th:utext="${@webUtils.validateString(slide.slideContents[4].content)}"></p>
+            <div class="col-lg-7 col-md-12 text-content">
+                <h6 class="fw-bold heading">LINQ Research Referral Program</h6>
+                <h2 class="main-heading">Spread The Word, <br> Share the Benefits</h2>
+                <p class="content-text">
+                    Spread the word and refer a friend, and you'll get a $50 gift card for each friend who qualifies and enrolls. It's a great way to help others and benefit together!
+                </p>
+                <a href="#" class="custom-btn">Refer Someone</a>
             </div>
 
             <!-- Image -->
-            <div class="col-md-5 text-center mt-5">
-                <img th:src="${@webUtils.validateString(slide.slideContents[5].content)}" style="width: 70%; border-radius: unset;" alt="Doctor with patient" class="img-circle" />
+            <div class="col-lg-5 col-md-12 text-center image-container">
+                <img src="image/refer-friend.png" alt="Doctor with patient" class="refer-img" />
             </div>
         </div>
+    </div>
 
-        <!-- Call to Action -->
-        <div class="text-center mt-5" th:each="ctaBlock : ${contentBlock3}" th:with="ctaSlide = ${ctaBlock.slide[0]}">
-            <h3 class="sub-heading" th:utext="${@webUtils.validateString(ctaSlide.slideContents[0].content)}">Interested in participating?</h3>
-            <p class="mx-auto visit-content" th:utext="${@webUtils.validateString(ctaSlide.slideContents[1].content)}"></p>
-            <a th:href="${@webUtils.validateString(ctaSlide.slideContents[2].content)}" class="custom-btn mb-5" th:utext="${@webUtils.validateString(ctaSlide.slideContents[3].content)}">Find a Trial</a>
+
+    <div class="refer-block-work">
+        <h2 class="text-white fw-bold mb-4">How it Works</h2>
+
+        <!-- Icons Row -->
+        <div class="d-flex justify-content-center gap-5 mb-4 icons-row">
+            <div class="text-center">
+                <i class="fas fa-user-friends fa-3x mb-3" style="color: #DB9908;"></i>
+                <p class="secondary-text-color fs-5 mb-3 fw-bold">Refer a friend</p>
+                <p class="text-white fs-6 max-desc-width">Refer a friend for any of our ongoing trials</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-check-circle fa-3x mb-3" style="color: #DB9908;"></i>
+                <p class="secondary-text-color fs-5 mb-3 fw-bold">Your Friend Qualifies</p>
+                <p class="text-white fs-6 max-desc-width">When your friend qualifies and enrolls, they get a $25 Bonus</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-gift fa-3x mb-3" style="color: #DB9908;"></i>
+                <p class="secondary-text-color fs-5 mb-3 fw-bold">Get rewarded</p>
+                <p class="text-white fs-6 max-desc-width">For each friend who enrolls using your link, you'll get a $25 gift card</p>
+            </div>
         </div>
+    </div>
+
+    <div class="faq-block mt-5">
+    <!-- FAQ main heading -->
+    <p
+            class="primary-text-color fw-bold text-center mx-5 wow animate__ animate__fadeInUp mt-3 animated"
+            style="visibility: visible; animation-name: fadeInUp;"> FAQ's
+    </p>
+    <!-- FAQ introductory text -->
+    <h2
+            class="mx-5 dark-secondary-text-color  text-center wow animate__ animate__fadeInUp mt-4 animated"
+            style="visibility: visible; animation-name: fadeInUp;"> Frequently Asked Questions </h2>
+
+
+    <div class="row p-2 p-md-5">
+        <div class="col-md-9 m-auto">
+            <div class="accordion" id="faqParent">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button regular-font collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#faq1"
+                                aria-expanded="false" aria-controls="faq1">
+                            What is the LINQ Research Referral Program?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqParent">
+                        <div class="accordion-body">
+                            The LINQ Research Referral Program allows you to refer friends to participate in studies.
+                            For each qualified referral who enrolls, you'll receive a $50 gift card as a thank you.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button regular-font collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#faq2"
+                                aria-expanded="false" aria-controls="faq2">
+                            How do I refer someone to the program?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqParent">
+                        <div class="accordion-body">
+                            You can refer someone by clicking the "Refer Someone" button on our website and filling out
+                            the referral form with your friend's contact information. We'll take care of the rest!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Company footer section - replaced by Thymeleaf fragment -->
+    <div class="row mt-5">
+        <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
     </div>
 </div>
 
-<!-- Company Footer Section -->
-<div class="row mt-5">
-    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
-</div>
 
-<!-- Footer -->
-<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
-<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+    <!-- Footer -->
+    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+    <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 </body>
 
 </html>

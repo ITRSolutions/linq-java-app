@@ -4,70 +4,75 @@
 <head
         th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
 </head>
-<style>
-    .round-shape {
-        height:470px;
-        --bs-border-radius-xxl: 3rem;
-    }
-
-    .blue-border {
-  border: 3px solid var(--primary-color);
-}
-
-</style>
+<link rel="stylesheet" href="css/clinical-trials.css">
 <body>
-<!-- Dynamic navigation -->
+<!-- Dynamic navigation section - replaced by Thymeleaf fragment -->
 <div
         th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}">
 </div>
+
+<!-- Page header section -->
 <div class="row">
     <div class="contact-header">
-        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
-            Clinical Trials</h2>
+        <!-- Main page heading -->
+        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About Clinical Trials</h2>
     </div>
 </div>
+
+<!-- Main content container -->
 <div class="container-fluid container-xxl">
-    <div class="row p-2 p-md-5 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
-        <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"
+    <!-- Video and text content section -->
+    <div class="row p-2 p-md-5 align-items-stretch content-block-2" th:each="contentBlock : ${contentBlock2}">
+        <!-- Left column with text content -->
+        <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border content-block-2-left"
              th:each="slide : ${contentBlock.slide}">
+            <h5 class="text-white mt-4 fw-bold" th:utext="${slide.slideContents[3].content}"></h5>
             <h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
             <p class="text-white mt-4" th:utext="${slide.slideContents[1].content}"></p>
         </div>
-        <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border"
+        <!-- Right column with embedded video -->
+        <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border content-block-2-right"
              th:each="slide : ${contentBlock.slide}">
-            <iframe class="wow animate__animated animate__fadeInRight" width="100%" height="100%"
+            <iframe class="wow animate__animated animate__fadeInRight content-block-2-iframe"
                     th:src="${slide.slideContents[2].content}" title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
-                    style="visibility: visible; animation-name: fadeInRight;"></iframe>
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+            </iframe>
         </div>
     </div>
 
-    <h2 class="dark-secondary-text-color fw-bold text-center mx-5" th:utext="${contentBlock3.content}"></h2>
-    <p class="mx-5 regular-font text-center mt-4" th:utext="${contentBlock4.content}"></p>
+    <!-- Section heading and description -->
+    <h2 class="dark-secondary-text-color fw-bold text-center py-4" th:utext="${contentBlock3.content}"></h2>
+    <p class="mx-3 mx-md-5 regular-font text-center pb-3" th:utext="${contentBlock4.content}"></p>
 
-
-    <div class="row p-2 p-md-5 gy-4" th:each="contentBlock : ${contentBlock5}">
-        <div class="col-md-3" th:each="slide : ${contentBlock.slide}">
-            <div class="phase-card">
-                <div class="phase-card-header p-4">
-                    <h4 class="text-white text-center fw-bold" th:utext="${slide.slideContents[0].content}"></h4>
-                    <p class="dark-secondary-text-color text-center regular-font mt-2"
+    <!-- Clinical trial phases cards section -->
+    <div class="row p-2 p-md-5 g-4 phase-cards-container" th:each="contentBlock : ${contentBlock5}">
+        <div class="col-12 col-md-6 col-lg-3" th:each="slide : ${contentBlock.slide}">
+            <!-- Individual phase card -->
+            <div class="phase-card h-100">
+                <!-- Card header with title and description -->
+                <div class="phase-card-header p-3 p-md-4">
+                    <h4 class="text-white text-center fw-bold phase-card-title" th:utext="${slide.slideContents[0].content}"></h4>
+                    <p class="dark-secondary-text-color text-center regular-font mt-2 phase-card-subtitle"
                        th:utext="${slide.slideContents[1].content}"></p>
-                    <p class="text-center text-white px-3" th:utext="${slide.slideContents[2].content}"></p>
+                    <p class="text-center text-white px-2 px-md-3 phase-card-description" th:utext="${slide.slideContents[2].content}"></p>
                 </div>
 
-                <div class="phase-card-footer">
+                <!-- Card footer with images and captions -->
+                <div class="phase-card-footer p-3 p-md-4">
                     <div class="text-center">
-                        <img width="50" th:src="${@webUtils.validateString(slide.slideContents[3].content)}"
+                        <img width="40" class="phase-card-icon"
+                             th:src="${@webUtils.validateString(slide.slideContents[3].content)}"
                              alt="Phase Image 1">
-                        <p class="text-center text-white mt-2" style="font-size:13px"
+                        <p class="text-center text-white mt-2 phase-card-caption"
                            th:utext="${slide.slideContents[4].content}"></p>
                     </div>
-                    <div class="text-center">
-                        <img th:src="${@webUtils.validateString(slide.slideContents[5].content)}"
+                    <div class="text-center mt-3 mt-md-4">
+                        <img width="40" class="phase-card-icon"
+                             th:src="${@webUtils.validateString(slide.slideContents[5].content)}"
                              alt="Phase Image 2">
-                        <p class="text-center text-white mt-2" th:utext="${slide.slideContents[6].content}"></p>
+                        <p class="text-center text-white mt-2 phase-card-caption"
+                           th:utext="${slide.slideContents[6].content}"></p>
                     </div>
                 </div>
             </div>
@@ -75,8 +80,10 @@
     </div>
 </div>
 
-<div class="row p-2 p-md-1 align-items-stretch" th:each="slide : ${contentBlock7.slide}">
-    <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center "
+<!-- Image and text section -->
+<div class="row align-items-stretch call-action" th:each="slide : ${contentBlock7.slide}">
+    <!-- Left column with text content -->
+    <div class="col-md-6 primary-bg-color p-2 p-lg-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center"
          id="disease">
         <p class="text-white wow animate__ animate__fadeInUp fw-bold ms-3 animated w-100 w-md-80"
            style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
@@ -87,6 +94,7 @@
             Header - 1
         </h2>
     </div>
+    <!-- Right column with image -->
     <div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border">
         <img th:src="${slide.slideContents[2].content}" height="400" alt=""
              class="picture wow animate__ animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-0 animated"
@@ -94,8 +102,9 @@
     </div>
 </div>
 
-<div style="background:#eee">
-    <div class="text-center w-100 w-md-80 m-auto p-5" th:each="slide : ${contentBlock6.slide}">
+<!-- Call-to-action section with light background -->
+<div style="background:#eee" class="call-action-text mx-auto">
+    <div class="text-center w-100 w-md-80 m-auto p-3 p-lg-5" th:each="slide : ${contentBlock6.slide}">
         <th:block th:each="slideContent : ${slide.slideContents}">
             <p class="mx-auto visit-content fw-bold fs-5" th:utext="${slideContent.content}">
                 Visit our current studies page to find a trial that fits your needs and see if you qualify
@@ -105,113 +114,123 @@
     </div>
 </div>
 
+<!-- Benefits section -->
+<div class="container-fluid container-xxl benefits-container">
+    <!-- Section heading -->
+    <h2 class="dark-secondary-text-color fw-bold text-center mx-5 my-4 pt-2" th:utext="${contentBlock8.content}"></h2>
 
-<div class="container-fluid container-xxl">
-    <h2 class="dark-secondary-text-color fw-bold text-center mx-5 m-5" th:utext="${contentBlock8.content}"></h2>
-
-    <div class="row p-2 p-md-5 gy-5" th:each="contentBlock : ${contentBlock9}">
-        <div class="col-md-3" th:each="slide : ${contentBlock.slide}">
-            <div class="p-4 pt-5 position-relative round-shape rounded-5 blue-border" data-wow-delay="0.1s">
+    <!-- Benefits cards grid -->
+    <div class="row p-2 p-md-5 g-4 my-3" th:each="contentBlock : ${contentBlock9}">
+        <div class="col-12 col-md-6 col-lg-3" th:each="slide : ${contentBlock.slide}">
+            <!-- Individual benefit card -->
+            <div class="benefit-card h-100 p-4 pt-5 position-relative rounded-5">
+                <!-- Icon at the top of the card -->
                 <div class="rounded-icon">
-                    <img th:src="${slide.slideContents[0].content}" alt="">
+                    <img th:src="${slide.slideContents[0].content}" alt="" class="benefit-icon">
                 </div>
-                <p class="text-center regular-font mt-4 fs-5 dark-secondary-text-color fw-bold"
+                <!-- Card content -->
+                <p class="text-center regular-font mt-4 benefit-title"
                    th:utext="${slide.slideContents[1].content}"></p>
-                <p class="text-center px-3 opacity-75" th:utext="${slide.slideContents[2].content}"></p>
+                <p class="text-center px-3 benefit-description"
+                   th:utext="${slide.slideContents[2].content}"></p>
             </div>
         </div>
     </div>
 
-    <p class="mx-5 regular-font text-center wow animate__ animate__fadeInUp mt-4 animated"
-       style="visibility: visible; animation-name: fadeInUp;" th:utext="${contentBlock10.content}">
-    </p>
+    <!-- Additional content paragraph -->
+    <div th:each="slide : ${contentBlock10.slide[0]}" class="w-100 w-md-80 m-auto gap-5">
+        <p class="mx-5 regular-font text-center wow animate__ animate__fadeInUp mt-4 animated mb-5"
+           style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
+        </p>
 
-    <a href="#"
-       class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn wow animate__ animate__fadeInUp animated"
-       style="visibility: visible; animation-name: fadeInUp;">Join
-        a
-        Study</a>
-
+<!--        Button-->
+        <a href="#" target="_blank" th:href="${@webUtils.validateString(slide.slideContents[2].content)}" class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn wow animate__ animate__fadeInUp animated"
+           style="visibility: visible; animation-name: fadeInUp;" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Join a Study</a>
+    </div>
 </div>
-    <div class="row primary-bg-color p-2 p-md-5 mt-5" th:each="contentBlock : ${contentBlock11}">
-        <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center text-center" th:each="slide : ${contentBlock.slide[0]}">
-            <h1 class="dark-secondary-text-color wow animate__ animate__fadeInUp fw-bold animated"
-                style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
-            </h1>
-            </h1>
-            <p th:utext="${slide.slideContents[1].content}"
-               class="text-white mt-2 wow animate__ animate__fadeInUp animated mt-5"
-               style="visibility: visible; animation-name: fadeInUp;">
-            </p>
-        </div>
-        <div class="col-md-6 my-5 my-md-0" th:each="contentBlock : ${contentBlock12}">
-            <div class="row gy-5">
-                <div class="col-6 col-md-4" th:each="slide : ${contentBlock.slide}">
-                    <div class="d-flex flex-column align-items-center justify-content-center gap-4 "
-                         data-wow-delay="0.1s">
-                        <img th:src="${slide.slideContents[0].content}" alt="">
-                        <p th:utext="${slide.slideContents[1].content}" class="text-white text-center regular-font">
-                        </p>
-                    </div>
+
+<!-- Stats/numbers section with primary background -->
+<div class="row primary-bg-color p-2 p-md-5 mt-5" th:each="contentBlock : ${contentBlock11}">
+    <!-- Left column with main heading and text -->
+    <div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border d-flex flex-column justify-content-center align-items-center text-center" th:each="slide : ${contentBlock.slide[0]}">
+        <h1 class="dark-secondary-text-color wow animate__ animate__fadeInUp fw-bold animated"
+            style="visibility: visible; animation-name: fadeInUp;" th:utext="${slide.slideContents[0].content}">
+        </h1>
+        <p th:utext="${slide.slideContents[1].content}"
+           class="text-white mt-2 wow animate__ animate__fadeInUp animated mt-5 left-stats-content"
+           style="visibility: visible; animation-name: fadeInUp;">
+        </p>
+    </div>
+    <!-- Right column with stats grid -->
+    <div class="col-md-6 my-5 my-md-0" th:each="contentBlock : ${contentBlock12}">
+        <div class="row gy-5">
+            <!-- Individual stat item with icon and text -->
+            <div class="col-6 col-md-4" th:each="slide : ${contentBlock.slide}">
+                <div class="d-flex flex-column align-items-center justify-content-center gap-4"
+                     data-wow-delay="0.1s">
+                    <img th:src="${slide.slideContents[0].content}" alt="">
+                    <p th:utext="${slide.slideContents[1].content}" class="text-white text-center regular-font">
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <h4 th:utext="${contentBlock13.content}"
-        class="primary-text-color text-center fw-bold mx-5 wow animate__ animate__fadeInUp mt-5 animated"
-        style="visibility: visible; animation-name: fadeInUp;">
+<!-- FAQ section heading -->
+<h4 th:utext="${contentBlock13.content}"
+    class="primary-text-color text-center fw-bold mx-5 wow animate__ animate__fadeInUp mt-5 animated"
+    style="visibility: visible; animation-name: fadeInUp;">
+</h4>
 
-    </h4>
+<!-- FAQ main heading -->
+<h2 th:utext="${contentBlock14.content}"
+    class=" dark-secondary-text-color fw-bold text-center mx-5 wow animate__ animate__fadeInUp mt-3 animated"
+    style="visibility: visible; animation-name: fadeInUp;">
+</h2>
 
-    <h2 th:utext="${contentBlock14.content}"
-        class=" dark-secondary-text-color fw-bold text-center mx-5 wow animate__ animate__fadeInUp mt-3 animated"
-        style="visibility: visible; animation-name: fadeInUp;">
+<!-- FAQ introductory text -->
+<p th:utext="${contentBlock15.content}"
+   class="mx-5 regular-font text-center wow animate__ animate__fadeInUp mt-4 animated"
+   style="visibility: visible; animation-name: fadeInUp;"></p>
 
-    </h2>
-
-    <p th:utext="${contentBlock15.content}"
-       class="mx-5 regular-font text-center wow animate__ animate__fadeInUp mt-4 animated"
-       style="visibility: visible; animation-name: fadeInUp;"></p>
-
-    <div class="row p-2 p-md-5" th:each="contentBlock : ${faqAllQuestions}">
-        <div class="col-md-9 m-auto">
-            <div class="accordion" id="faqParent">
-                <div class="accordion-item mb-3" th:each="slide, iterStat : ${contentBlock.slide}">
-                    <div th:if="${iterStat.index < 6}">
-                        <h2 class="accordion-header">
-                            <button th:utext="${slide.slideContents[0].content}"
-                                    class="accordion-button regular-font collapsed" type="button"
-                                    data-bs-toggle="collapse"
-                                    th:data-bs-target="'#faq' + ${iterStat.index +1}" aria-expanded="false"
-                                    th:aria-controls="'faq' + ${iterStat.index +1 }">
-                            </button>
-                        </h2>
-                        <div th:id="'faq' + ${iterStat.index +1}" class="accordion-collapse collapse"
-                             data-bs-parent="#faqParent">
-                            <div class="accordion-body" th:utext="${slide.slideContents[1].content}">
-
-                            </div>
-
+<!-- FAQ accordion section -->
+<div class="row p-2 p-md-5" th:each="contentBlock : ${faqAllQuestions}">
+    <div class="col-md-9 m-auto">
+        <div class="accordion" id="faqParent">
+            <!-- Individual FAQ item (showing first 6 items) -->
+            <div class="accordion-item mb-3" th:each="slide, iterStat : ${contentBlock.slide}">
+                <div th:if="${iterStat.index < 6}">
+                    <!-- FAQ question as accordion header -->
+                    <h2 class="accordion-header">
+                        <button th:utext="${slide.slideContents[0].content}"
+                                class="accordion-button regular-font collapsed" type="button"
+                                data-bs-toggle="collapse"
+                                th:data-bs-target="'#faq' + ${iterStat.index +1}" aria-expanded="false"
+                                th:aria-controls="'faq' + ${iterStat.index +1 }">
+                        </button>
+                    </h2>
+                    <!-- FAQ answer in collapsible content -->
+                    <div th:id="'faq' + ${iterStat.index +1}" class="accordion-collapse collapse"
+                         data-bs-parent="#faqParent">
+                        <div class="accordion-body" th:utext="${slide.slideContents[1].content}">
                         </div>
                     </div>
                 </div>
-                <a href="faqs.html"
-                   class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn wow animate__ animate__fadeInUp  animated mt-5">See
-                    More</a>
             </div>
+            <!-- Link to full FAQ page -->
+            <a href="faqs"
+               class="d-block m-auto text-white rounded-3 text-decoration-none primary-bg-color joinAStudy-btn wow animate__ animate__fadeInUp  animated mt-5">See More</a>
         </div>
-
     </div>
-
 </div>
-<!--  Company Footert Area -->
+
+<!-- Company footer section - replaced by Thymeleaf fragment -->
 <div class="row mt-5">
     <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
 </div>
 
-<!-- Footer -->
+<!-- Main footer section - replaced by Thymeleaf fragment -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </body>
-
 </html>

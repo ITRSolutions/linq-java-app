@@ -27,7 +27,7 @@ public class SlideContent {
     @Enumerated(EnumType.STRING)
     private ContentType contentType;
 
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String content;
 
     private String customCss;
