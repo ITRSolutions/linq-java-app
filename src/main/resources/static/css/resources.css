@@ -52,7 +52,7 @@ body {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Page Header */
+/* Page Header
 .page-header {
   background-image: url('../image/linq-research.png');
   background-size: cover;
@@ -79,7 +79,7 @@ body {
   margin: 0;
   position: relative;
   z-index: 1;
-}
+}*/
 
 
 /* Footer */

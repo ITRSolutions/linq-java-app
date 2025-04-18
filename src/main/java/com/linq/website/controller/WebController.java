@@ -33,6 +33,9 @@ public class WebController {
     @Autowired
     private CompanyPageMetaDataService companyPageMetaDataService;
 
+    private static String YEAR;
+    private static String currentYear;
+
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
@@ -120,7 +123,10 @@ public class WebController {
             } else if (slug.equals("why-linq") || slug.equals("investigators")) {
                 List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
                 model.addAttribute("therapeutic", therapeutic);
-                System.out.println("M in block----------------");
+            } else if (slug.equals("blog") || slug.equals("resources")) {
+                YEAR = "year";
+                currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+                model.addAttribute(YEAR, currentYear);
             }
 
             List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");
