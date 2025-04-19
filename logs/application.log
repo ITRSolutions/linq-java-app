@@ -1,8 +1,7 @@
-2025-04-19T17:02:20.834+05:30  INFO 21732 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-19T17:02:29.521+05:30  INFO 21732 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 37.659 seconds (process running for 39.385)
-2025-04-19T17:15:56.963+05:30  WARN 21732 --- [LINQ] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s323ms629µs700ns).
-2025-04-19T17:16:32.349+05:30  INFO 21732 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-19T17:16:32.349+05:30  INFO 21732 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-19T17:16:32.352+05:30  INFO 21732 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-04-19T17:26:44.629+05:30  INFO 21732 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-19T17:26:44.647+05:30  INFO 21732 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-19T22:53:35.508+05:30  INFO 32672 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-19T22:53:38.184+05:30  INFO 32672 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-19T22:53:38.188+05:30  INFO 32672 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-19T22:53:38.190+05:30  INFO 32672 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-19T22:53:38.198+05:30  INFO 32672 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 6.105 seconds (process running for 15851.605)
+2025-04-19T22:55:01.389+05:30  INFO 32672 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-04-19T22:55:01.389+05:30  INFO 32672 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

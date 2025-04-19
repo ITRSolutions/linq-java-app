@@ -146,9 +146,6 @@ public class WebController {
                 model.addAttribute(YEAR, currentYear);
             }
 
-            List<ContentBlock>  referFrdCommon = getNavigationSlides("refer-frd-area");
-            model.addAttribute("referFrdCommonArea", referFrdCommon);
-
             if(!paramPageName.isEmpty()) {
                 slug = tempPageName;
             }

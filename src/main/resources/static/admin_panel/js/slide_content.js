@@ -1,3 +1,4 @@
+
  var SlideIdSC = 0;
  var SlideContentTable = null;
  var SlideNameSC = null;
@@ -67,10 +68,27 @@ function checkImageField(val, id) {
     }
 }
 
-$('.deleteSlideContent').click(function () {
-    if (confirm("Are you sure to delete this slide content row!")) {
+$(document).on('click', '.deleteSlideContent', function(e) {
+    e.preventDefault();
 
+    const icon = $(this);
+    const id = icon.data('id');
+    const url = `/api/v1/slideContent/${id}`;
 
+    if (confirm('Are you sure you want to delete this item?')) {
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function(response) {
+                // Optionally show a toast or alert
+                alert('Deleted successfully!');
+                // Remove the closest row or container
+                icon.closest('tr').remove(); // Adjust selector as needed
+            },
+            error: function(xhr, status, error) {
+                alert('Error deleting item: ' + error);
+            }
+        });
     }
 });
 
@@ -256,7 +274,7 @@ $(document).ready(function () {
               <tr>
                 <td>${item.orderIndex}</td>
                 <td>${item.contentType}</td>
-                <td>${truncateText(item.content, item.contentType, 40)}</td>
+                <td>${truncateText(item.content, item.contentType, 40)}</code></td>
                 <td>${item.slide.slideTitle}</td>
                 <td>${item.slide.contentBlock.content}</td>
                 <td>${item.slide.contentBlock.page.slug}</td>
@@ -264,7 +282,7 @@ $(document).ready(function () {
                 <td>${item.updatedBy ? item.updatedBy.firstName + ' ' + item.updatedBy.lastName : 'N/A'}</td>
                 <td>
                   <i class="fa fa-edit text-success text-active updateSlideContent"></i> <br>
-                  <i class="fa fa-times text-danger text deleteSlideContent" style="display:none"></i>
+                  <i class="fa fa-times text-danger text deleteSlideContent" data-id="${item.id}"></i>
                 </td>
               </tr>
             `;
@@ -287,7 +305,7 @@ $(document).ready(function () {
   }
 
     function truncateText(text, type, length) {
-        let textC = text.length > length ? text.substring(0, length) + '...' : text;
+        textC = text.length > length ? text.substring(0, length) + '...' : text;
 
 if (type == "IMAGE" || type == "URL") {
     let hrefs = (text.startsWith("http") || text.startsWith("/")) ? text : "/" + text;
@@ -300,7 +318,9 @@ if (type == "IMAGE" || type == "URL") {
     })[0].outerHTML;
 
     return anchorTag;
-}
+} else if(type == "TEXT") {
+    textC = textC.replaceAll("<","").trim();
+ }
 
         return textC;
 }
