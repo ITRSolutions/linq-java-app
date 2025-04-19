@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+
+<body>
+	<!-- Dynamic navigation -->
+	<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}">
+	</div>
+	
+	<div class="row">
+				<div class="contact-header">
+					<h2 class="text-white fw-bold " th:utext="${@webUtils.validateString(contentBlock1.content)}">Currently
+						Enrolling</h2>
+				</div>
+			</div>
+	<div class="container-fluid container-xxl">
+		
+
+		<!--  Are you Interested Area Start -->
+		
+		<div class="mt-5 mb-3" th:each="contentBlock : ${contentBlock2}">
+			<h3 class="primary-text-color fw-bold wow animate__animated animate__fadeInUp text-center"
+				th:utext="${@webUtils.validateString(contentBlock.slide[0].slideContents[0].content)}"></h3>
+			<p class="regular-font text-dark mt-4 wow animate__animated animate__fadeInUp text-center mx-auto text-center w-75 lh-lg"
+				th:utext="${@webUtils.validateString(contentBlock.slide[0].slideContents[1].content)}"></p>
+		</div>
+		
+		<!--  Are you Interested Area End -->
+
+		<!--  All Disease Container Start -->
+		<div class="row py-5 g-4 px-0 px-md-5" th:each="contentBlock : ${contentBlock3}">
+			<div class="col-md-4" th:each="slide : ${contentBlock.slide}">
+				<div class="enroll-card shadow-sm p-4" th:attr="onclick='window.open(&quot;disease?page=' + ${@webUtils.validateString(slide.slideContents[2].content)} + '&quot;, &quot;_blank&quot;);'">
+					<div class="left-area">
+						<img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
+						<div class="title" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"
+						th:if="${#lists.size(slide.slideContents) > 2}">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--  All Disease Container End -->
+		
+	</div>
+	
+	</div>
+	
+	<!--  Company Footert Area -->
+	        
+			<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+
+	<!-- Footer -->
+	<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+	<script>
+		new WOW().init();
+	</script>
+
+</body>
+
+</html>

@@ -13,12 +13,13 @@
 <!-- Dynamic navigation -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="contact-header">
-            <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Principal Investigators</h2>
-        </div>
+<div class="row">
+    <div class="contact-header">
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Principal Investigators</h2>
     </div>
+</div>
+
+<div class="container-fluid">
 
     <div class="row col-md-12 pi-main">
         <div th:replace="~{fragments/principal-Investigators-navigation :: piNavigation(
@@ -27,30 +28,36 @@
         </div>
         <div class="col-md-9" th:each="contentBlock : ${contentBlock1}">
             <th:block th:each="slide, blockStat : ${contentBlock.slide}">
-            <div class="row p-2" th:classappend="${blockStat.index == 0 ? 'mt-5 mb-3' : 'mb-2'}">
-                <div class="col-md-3 d-flex align-items-center align-items-md-start justify-content-center pi-image">
-                    <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="" class="mt-2 rounded investigator">
-                </div>
-                <div class="col-md-9 mt-3 mt-md-0 intro">
-                    <h5 class="card-title fw-bold mt-2 fs-4 primary-text-color wow animate__ animate__fadeInUp animated" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h5>
-                    <p class="text-muted mt-3" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
-                    <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 3}" th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></p>
-                    <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 4}" th:utext="${@webUtils.validateString(slide.slideContents[4].content)}"></p>
-                    <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 5}" th:utext="${@webUtils.validateString(slide.slideContents[5].content)}"></p>
-                </div>
+                <div class="row p-2" th:classappend="${blockStat.index == 0 ? 'mt-5 mb-3' : 'mb-2'}">
+                    <div class="col-md-3 d-flex align-items-center align-items-md-start justify-content-center pi-image">
+                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
+                             class="mt-2 rounded investigator">
+                    </div>
+                    <div class="col-md-9 mt-3 mt-md-0 intro">
+                        <h5 class="card-title fw-bold mt-2 fs-4 primary-text-color wow animate__ animate__fadeInUp animated"
+                            th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h5>
+                        <p class="text-muted mt-3"
+                           th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
+                        <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 3}"
+                           th:utext="${@webUtils.validateString(slide.slideContents[3].content)}"></p>
+                        <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 4}"
+                           th:utext="${@webUtils.validateString(slide.slideContents[4].content)}"></p>
+                        <p class="text-muted mt-3" th:if="${slide.slideContents.size() > 5}"
+                           th:utext="${@webUtils.validateString(slide.slideContents[5].content)}"></p>
+                    </div>
                 </div>
             </th:block>
         </div>
     </div>
-
-    <!-- Company Footer Area -->
-    <div class="row mt-0">
-        <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
-    </div>
-
-    <!-- Footer -->
-    <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </div>
+<!-- Company Footer Area -->
+<div class="row mt-0">
+    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+
 
 </body>
 

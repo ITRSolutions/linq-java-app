@@ -140,7 +140,7 @@ public class WebController {
             } else if (slug.equals("why-linq") || slug.equals("investigators")) {
                 List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
                 model.addAttribute("therapeutic", therapeutic);
-            } else if (slug.equals("blog")) {
+            } else if (tempPageName.equals("blog")) {
                 YEAR = "year";
                 currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
                 model.addAttribute(YEAR, currentYear);

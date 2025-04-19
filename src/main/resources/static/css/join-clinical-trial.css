@@ -1,0 +1,77 @@
+/* Custom container padding */
+.container-join-trial {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Text styles */
+.join-trial-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.join-trial-heading {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.join-trial-btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+/* Image styles */
+.trial-image {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+/* Responsive adjustments */
+@media (min-width: 576px) {
+  .container-join-trial {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .join-trial-heading {
+    font-size: 2rem;
+  }
+
+  .trial-image {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-join-trial {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .join-trial-text {
+    font-size: 1.1rem;
+  }
+
+  .join-trial-heading {
+    font-size: 2.25rem;
+  }
+
+  .trial-image {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .container-join-trial {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}

@@ -35,7 +35,7 @@
                 <div class="resource-content">
                     <h3 th:utext="${@webUtils.validateString(card.slideContents[2].content)}">Title</h3>
                     <p th:utext="${@webUtils.validateString(card.slideContents[3].content)}">Short description here...</p>
-                    <a th:href="'blog.html?page=' + ${@webUtils.validateString(card.slideContents[2].content)}" target="_blank" class="resource-link">
+                    <a th:href="@{'/blog'(page=${@webUtils.createLink(card.slideContents[2].content)})}" target="_blank" class="resource-link">
                         Read More <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>

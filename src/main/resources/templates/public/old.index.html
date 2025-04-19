@@ -113,7 +113,7 @@
                         <div class="carousel-inner" th:each="contentBlock : ${contentBlock3}">
                             <div class="position-relative m-3" th:each="slide, iterStat : ${contentBlock.slide}">
 
-                                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" class="img-fluid w-100 h-auto" alt=""
+                                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
                                      style="height: 412px;"/>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                     <h3 class="text-warning fw-bold fs-1 count"
                                         th:attr="data-count=${slide.slideContents[2].content != null ? slide.slideContents[2].content : 10}"
                                         th:utext="${@webUtils.validateString(slide.slideContents[2].content)}">0+</h3>
-                                    <h5 class="fw-bold fs-6 fs-md-4"
+                                    <h5 class="fw-bold"
                                         th:utext="${@webUtils.validateString(slide.slideContents[5].content)}">
                                         Years of <br/>
                                         Experience
@@ -152,7 +152,7 @@
                                     <h3 class="text-warning fw-bold fs-1 count"
                                         th:attr="data-count=${@webUtils.validateString(slide.slideContents[3].content)}"
                                         th:utext="${@webUtils.validateString(slide.slideContents[3].content)}">0+</h3>
-                                    <h5 class="fw-bold fs-6 fs-md-4"
+                                    <h5 class="fw-bold"
                                         th:utext="${@webUtils.validateString(slide.slideContents[6].content)}">
                                         Successful <br/>
                                         Trials
@@ -164,7 +164,7 @@
                                     <h3 class="text-warning fw-bold fs-1 count exception"
                                         th:attr="data-count=${@webUtils.validateString(slide.slideContents[4].content)}"
                                         th:utext="${@webUtils.validateString(slide.slideContents[4].content)}">0k+</h3>
-                                    <h5 class="fw-bold fs-6 fs-md-4"
+                                    <h5 class="fw-bold"
                                         th:utext="${@webUtils.validateString(slide.slideContents[7].content)}">
                                         Enrolled <br/>
                                         Subjects
