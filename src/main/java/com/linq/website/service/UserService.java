@@ -174,6 +174,7 @@ public class UserService {
             try {
                 switch (stat) {
                     case 1:
+                        LoggerFactory.getLogger(getClass()).info("Sending mails calling method: sendContactUsEnquiryMail");
                         mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
                         break;
 

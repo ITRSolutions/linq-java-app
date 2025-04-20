@@ -31,11 +31,6 @@ body {
   background-color: #f8f9fa !important;
   padding: 10px 0;
 }
-
-.navbar-brand img {
-  height: 50px;
-}
-
 .nav-link {
   color: #333 !important;
   font-weight: 500;
