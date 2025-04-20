@@ -6,6 +6,7 @@ import com.linq.website.entity.User;
 import com.linq.website.enums.RoleType;
 import com.linq.website.repository.UserRepository;
 import com.linq.website.utility.LoggedUser;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,8 @@ public class UserService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class); // Use logger
 
     // Count total users by role
     public Long countUsers(RoleType role) {
@@ -153,7 +156,7 @@ public class UserService {
             userRepository.save(user.get());
         } else {
             // Log the error
-            LoggerFactory.getLogger(getClass()).error("Failed to activate user email, because admin not found: " + key);
+            logger.error("Failed to activate user email, because admin not found: " + key);
         }
 
         return user;
@@ -174,7 +177,7 @@ public class UserService {
             try {
                 switch (stat) {
                     case 1:
-                        LoggerFactory.getLogger(getClass()).info("Sending mails calling method: sendContactUsEnquiryMail");
+                        logger.info("Sending mails calling method: sendContactUsEnquiryMail");
                         mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
                         break;
 
@@ -183,7 +186,7 @@ public class UserService {
                         break;
                 }
             } catch (Exception e) {
-                LoggerFactory.getLogger(getClass()).error("Failed to send email to admin: " + admin.getEmail(), e);
+                logger.error("Failed to send email to admin: " + admin.getEmail(), e);
             }
         }
     }
