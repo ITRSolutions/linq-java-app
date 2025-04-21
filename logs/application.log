@@ -1,5 +1,5 @@
-2025-04-21T22:16:35.160+05:30  INFO 32180 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-21T22:16:35.910+05:30  INFO 32180 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 2.048 seconds (process running for 122950.771)
-2025-04-21T22:18:11.364+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-5] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-21T22:18:11.365+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-21T22:18:11.367+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-22T03:39:56.710+05:30  INFO 32180 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-22T03:39:57.958+05:30  INFO 32180 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 3.387 seconds (process running for 142352.819)
+2025-04-22T03:39:57.967+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22T03:39:57.967+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-22T03:39:57.969+05:30  INFO 32180 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms

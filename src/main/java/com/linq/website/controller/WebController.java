@@ -47,6 +47,8 @@ public class WebController {
 
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
 
+//    List<ContentBlock> CB = new ArrayList<>();
+
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
     public String getPage(@PathVariable(required = false) String slug, Model model,

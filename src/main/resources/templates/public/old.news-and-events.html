@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+<link rel="stylesheet" href="css/news.css">
+
+<body>
+<!-- Dynamic navigation -->
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}"></div>
+
+<!-- Page Header -->
+<div class="row">
+    <div class="contact-header">
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp">News & Events</h2>
+    </div>
+</div>
+
+<!-- News & Events Section -->
+<div class="news-events-container py-5">
+    <div class="container-fluid px-lg-5 px-xl-3">
+        <div class="row gx-4 gy-4">
+
+            <th:block th:each="contentBlock, iterStat : ${articlePage}" th:with="card = ${contentBlock.slide[0]}">
+
+                <!-- Large Div if index % 3 == 0 -->
+                <div class="col-xl-8 col-lg-7 col-md-6 col-12 largeDiv"
+                     th:if="${iterStat.index % 3 == 0}">
+                    <a th:href="@{'/blog'(page=${@webUtils.createLink(card.slideContents[2].content)})}" class="news-link h-100">
+                        <div class="card h-100 border-0 shadow-sm overflow-hidden news-card">
+                            <div class="ratio ratio-16x9 h-100">
+                                <img th:src="${@webUtils.validateString(card.slideContents[0].content)}" class="card-img object-fit-cover" alt="News Image">
+                                <div class="card-img-overlay d-flex flex-column justify-content-end p-4">
+                                    <div class="news-date text-white mb-2" th:text="${@webUtils.validateString(card.slideContents[1].content)}">July 17, 2023</div>
+                                    <h3 class="news-title text-white position-relative" th:utext="${@webUtils.validateString(card.slideContents[2].content)}">Title</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Small Div if index % 3 == 1 or 2 -->
+                <div class="col-xl-4 col-lg-5 col-md-6 col-12 smallDiv"
+                     th:if="${iterStat.index % 3 == 1 or iterStat.index % 3 == 2}">
+                    <a th:href="@{'/blog'(page=${@webUtils.createLink(card.slideContents[2].content)})}" class="news-link h-100">
+                        <div class="card h-100 border-0 shadow-sm overflow-hidden news-card">
+                            <div class="ratio ratio-16x9 h-100">
+                                <img th:src="${@webUtils.validateString(card.slideContents[0].content)}" class="card-img object-fit-cover" alt="News Image">
+                                <div class="card-img-overlay d-flex flex-column justify-content-end p-3">
+                                    <h3 class="news-title text-white position-relative" th:utext="${@webUtils.validateString(card.slideContents[2].content)}">Title</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </th:block>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="container-fluid px-lg-5 px-xl-3">
+        <div class="row mt-5">
+            <div class="col-12 d-flex justify-content-center">
+                <nav aria-label="News pagination">
+                    <ul class="pagination mb-0" id="pagination">
+                        <!-- Will be dynamically generated -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+<script src="js/news.js"></script>
+<script src="js/article.js"></script>
+</body>
+</html>
