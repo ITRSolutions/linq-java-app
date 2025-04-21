@@ -42,8 +42,8 @@ public class WebController {
     @Autowired
     private CompanyPageMetaDataService companyPageMetaDataService;
 
-    private static String YEAR;
-    private static String currentYear;
+    private static final String YEAR = "year";
+    private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
 
@@ -130,6 +130,8 @@ public class WebController {
             CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
             model.addAttribute("cPageMetaData", cPageMetaData);
 
+            model.addAttribute(YEAR, currentYear); //footer line
+
             if(slug.equals("meet-our-principal-investigators") || tempPageName.equals("meet-our-principal-investigators")) {
                 List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
@@ -140,10 +142,6 @@ public class WebController {
             } else if (slug.equals("why-linq") || slug.equals("investigators")) {
                 List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
                 model.addAttribute("therapeutic", therapeutic);
-            } else if (tempPageName.equals("blog")) {
-                YEAR = "year";
-                currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-                model.addAttribute(YEAR, currentYear);
             }
 
             if(!paramPageName.isEmpty()) {

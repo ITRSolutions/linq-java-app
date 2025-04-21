@@ -1,4 +1,52 @@
-/* Base styles */
+/* Updated Disease Card Styles */
+.custom-disease-card {
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    cursor: pointer;
+    height: 100%;
+   /* border: 2px solid var(--primary-color);  Blue border */
+    border: 2px solid var(--dark-secondary-color);
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    z-index: 1;
+}
+
+.custom-disease-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: -1;
+
+        background-image: url(../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg);
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+.custom-disease-card:hover {
+    transform: translateY(-5px);
+}
+
+.custom-disease-card:hover::before {
+    width: 100%;
+    right: auto;
+    left: 0;
+}
+
+/* Text and icon colors that change on hover */
+.custom-disease-card:hover .custom-disease-title,
+.custom-disease-card:hover .custom-disease-img {
+    color: white;
+    filter: brightness(0) invert(1);
+}
+
+/* Rest of your existing CSS remains the same */
 .custom-interest-container {
     padding: 0 15px;
 }
@@ -22,20 +70,7 @@
 }
 
 .custom-disease-container {
-    padding: 2rem 2rem;
-}
-
-.custom-disease-card {
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    height: 100%;
-    border: 1px solid #eee;
-}
-
-.custom-disease-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    padding: 2rem 0;
 }
 
 .custom-card-content {
@@ -52,13 +87,16 @@
     width: 50px;
     height: 50px;
     object-fit: contain;
+    transition: filter 0.3s ease;
 }
 
 .custom-disease-title {
     font-weight: 600;
     font-size: 1.1rem;
     margin-left: 1rem;
+    transition: color 0.3s ease;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
