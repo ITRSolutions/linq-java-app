@@ -15,12 +15,6 @@
             <div class="col-lg-12 col-md-12 col-12 text-start " th:each="contentBlock : ${contentBlock1}">
 
                 <th:block th:each="slide : ${contentBlock.slide[0]}">
-                    <!-- Image-->
-                    <div class="overflow-hidden mb-4">
-                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" height="400" alt=""
-                             class="picture wow animate__ animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-0  animated  m-auto"
-                             style="visibility: visible; animation-name: fadeInRight;">
-                    </div>
 
                     <!-- News Heading -->
                     <h2 class="news-heading mb-4" th:utext="${@webUtils.validateString(contentBlock.content)}"></h2>
@@ -31,6 +25,13 @@
                               th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></span>
                         <span class="news-author"
                               th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></span>
+                    </div>
+
+                    <!-- Image-->
+                    <div class="overflow-hidden mb-4">
+                        <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
+                             class="picture wow animate__ animate__fadeInRight object-fit-cover me-auto d-block rounded-start-0  animated"
+                             style="visibility: visible; animation-name: fadeInRight;">
                     </div>
                 </th:block>
 

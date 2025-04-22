@@ -32,14 +32,14 @@ refer-block {
 }
 
 .heading {
-  color: #14203a;
+  color: var(--primary-color);
   font-size: 1.25rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .main-heading {
-  color: #DB9908;
+  color: var(--dark-secondary-color);
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -47,7 +47,7 @@ refer-block {
 }
 
 .content-text {
-  color: #4a5568;
+  color: var(--primary-text-color);
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -56,7 +56,7 @@ refer-block {
 /* Button Styles */
 .custom-btn {
   display: inline-block;
-  background-color: #1a2e4f;
+  background-color: var(--primary-color);
   color: white;
   padding: 0.8rem 2rem;
   border-radius: 8px;
@@ -68,7 +68,7 @@ refer-block {
 }
 
 .custom-btn:hover {
-  background-color: #14203a;
+  background-color: var(--dark-secondary-color);
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -120,7 +120,7 @@ refer-block {
 }
 
 .secondary-text-color {
-  color: #DB9908;
+  color: var(--dark-secondary-color);
   font-weight: 600;
 }
 

@@ -2,62 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}">
-	<!-- Animation CSS library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
-<!-- Dynamic navigation section - replaced with Thymeleaf fragment -->
+<!-- Dynamic navigation -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, navigation=${navigation})}">
 </div>
 
-<!-- Disease/Page Title Section -->
 <div class="row mb-5">
 	<div class="contact-header">
 		<h2 class="text-white fw-bold" id="diseaseName" th:utext="${contentBlock1.content}"></h2>
 	</div>
 </div>
 
-<!-- Main Content Container -->
 <div class="container-fluid container-xxl">
 
-	<!-- Hero Content Section with Image and CTA - Stack columns on mobile -->
-	<div class="row g-0 p-2 hero-stacked align-items-stretch" th:each="contentBlock : ${contentBlock2}">
-		<!-- Left Column: Text Content - Full width on mobile, half on md+ -->
-		<div class="col-12 col-md-6 primary-bg-color left-column p-3 p-md-5 rounded-start-4"
+	<div class="row p-2 p-md-1 align-items-stretch" th:each="contentBlock : ${contentBlock2}">
+		<div class="col-md-6 primary-bg-color p-5 rounded-start-4 no-border"
 			 th:each="slide : ${contentBlock.slide}">
-			<p class="text-white wow animate__animated animate__fadeInUp fs-5 fw-bold ms-0 ms-md-3"
-			   th:utext="${slide.slideContents[0].content}"></p>
-			<h2 class="dark-secondary-text-color mt-2 fw-bold animate__animated animate__fadeInUp w-100 m-auto wow animate__animate__fadeInUp ms-0 ms-md-3"
-				th:utext="${slide.slideContents[1].content}"></h2>
-			<a th:href="${slide.slideContents[2].content}"
-			   class="btn text-white wow animate__animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-0 ms-md-3 mb-3 mb-md-0">
-				Join Now
-			</a>
+			<p class="text-white wow animate__animated animate__fadeInUp fs-5 fw-bold ms-3" th:utext="${slide.slideContents[0].content}"></p>
+			<h2 class=" dark-secondary-text-color mt-2 fw-bold animate__animated animate__fadeInUp w-100 w-md-80 m-auto wow animate__ animate__fadeInUp d ms-3  animated" th:utext="${slide.slideContents[1].content}"></h2>
+			<a th:href="${slide.slideContents[2].content}"  class="btn text-white wow animate__ animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-3 animated">Join Now</a>
 		</div>
-		<!-- Right Column: Image -->
-		<div class="col-md-6 primary-bg-color right-column overflow-hidden p-0 rounded-end-4 no-border"
+		<div class="col-md-6 primary-bg-color overflow-hidden p-0 rounded-end-4 no-border"
 			 th:each="slide : ${contentBlock.slide}">
 			<img th:src="${slide.slideContents[3].content}" height="420" alt=""
-				 class="hero-img rounded-start-5 wow animate__animated animate__fadeInRight object-fit-cover w-100 h-100">
+				 class="wow animate__animated animate__fadeInRight object-fit-cover ms-auto d-block rounded-start-5">
 		</div>
 	</div>
 
-	<!-- Information Highlight Section - Adjusted padding for mobile -->
-	<div class="row text-center p-5 p-md-4 py-md-5 mt-3 mt-md-4 mb-4 mb-md-5 shadow-sm border g-0"
-		 style="background:#F8F8F8"
+	<div class="row text-center p-4 py-5 mt-4 mb-5 shadow-sm border" style="background:#F8F8F8"
 		 th:each="contentBlock : ${contentBlock3}">
-		<div class="col-12 m-auto px-2 px-md-3" th:each="slide : ${contentBlock.slide}">
-			<h5 class="primary-text-color mt-0 mt-md-2 fw-bold"
-				th:utext="${slide.slideContents[0].content}"></h5>
-			<p class="mt-3 mt-md-4 px-0 px-md-3"
-			   th:utext="${slide.slideContents[1].content}"></p>
+		<div class="col-md-12 m-auto" th:each="slide : ${contentBlock.slide}">
+			<h5 class="primary-text-color mt-2 fw-bold" th:utext="${slide.slideContents[0].content}"></h5>
+			<p class="mt-4" th:utext="${slide.slideContents[1].content}"></p>
 		</div>
 	</div>
 
-	<!-- Detailed Content Section with Side Cards -->
 	<div class="row px-5" th:each="contentBlock : ${contentBlock4}">
-		<!-- Main Content Column -->
 		<div class="col-lg-7 mt-4" th:each="slide : ${contentBlock.slide}">
 			<h2 class="dark-secondary-text-color fw-bold" th:utext="${slide.slideContents[0].content}"></h2>
 			<p class="regular-font text-dark mt-4  lh-lg" th:utext="${slide.slideContents[1].content}"></p>
@@ -70,15 +53,14 @@
 			<h2 class="dark-secondary-text-color fw-bold mt-5" th:utext="${slide.slideContents[6].content}"></h2>
 			<p class="regular-font text-dark mt-2  lh-lg" th:utext="${slide.slideContents[7].content}"></p>
 		</div>
-		<!-- Side Cards Column - Full width on mobile, appears below content -->
-		<div class="col-12 col-lg-5 mt-3 mt-md-4 p-0 p-lg-3 p-xl-5">
-			<div class="row g-2 g-md-3" th:each="contentBlock1 : ${contentBlock5}">
-				<div class="col-12 col-sm-6" th:each="slide1 : ${contentBlock1.slide}">
-					<div class="condition-card p-3 d-flex flex-column align-items-center justify-content-center gap-2 h-100">
+		<div class="col-lg-5 mt-4 p-5">
+			<div class="row g-4" th:each="contentBlock1 : ${contentBlock5}">
+				<div class="col-lg-6" th:each="slide1 : ${contentBlock1.slide}">
+					<div class="condition-card p-3 d-flex flex-column align-items-center justify-content-center gap-2">
 						<h5 class="dark-secondary-text-color text-center m-0"
 							th:utext="${slide1.slideContents[0].content}"></h5>
-						<small class="text-center text-white regular-font m-0"
-							   th:utext="${slide1.slideContents[1].content}"></small>
+						<small class="text-center text-white regular-font m-0 "
+						   th:utext="${slide1.slideContents[1].content}"></small>
 					</div>
 				</div>
 			</div>
@@ -86,8 +68,9 @@
 	</div>
 
 
-	<!-- CTA Section -->
+
 	<h1 class=" primary-text-color  fw-bold text-center mt-3" th:utext="${contentBlock7.content}"> </h1>
+
 	<p class="w-75 m-auto text-center mt-4 regular-font lh-lg" th:utext="${contentBlock8.content}">
 	</p>
 	<a type="button" onclick="openAppointmentForm()"
@@ -95,7 +78,6 @@
 	   th:utext="${contentBlock9.content}"></a>
 </div>
 
-<!-- Refer a Friend Section -->
 <div class="row justify-content-center align-items-center refer-friend text-center" th:each="contentBlock : ${referFrdCommonArea}">
 	<div class="col-md-8  rounded-4 no-border" th:each="slide, iterStat : ${contentBlock.slide}">
 		<h4 th:utext="${slide.slideContents[0].content}"  class="text-white mt-2 animate__animated animate__fadeInUp w-100 w-md-80 mx-auto wow txt-right" style="visibility: visible; animation-name: fadeInUp;">YOU MAY BE ELIGIBLE FOR BONUS</h4>
@@ -110,36 +92,29 @@
 	</div>
 </div>
 
-<!-- Modal Dialog (currently empty) -->
 <div class="modal fade" id="joinNowModal" tabindex="-1" aria-labelledby="joinNowModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<button type="button" class="btn-close custom-btn-close z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+
 		</div>
 	</div>
 </div>
 
-<!-- Company Footer Section -->
-<div class="row mt-5">
-	<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}">
-	</div>
-</div>
 
 
-<!-- Footer Section - replaced with Thymeleaf fragment -->
+<!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
-
-<!-- JavaScript Libraries and Custom Scripts -->
 <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script>
 	new WOW().init();
 
-	// Function to open appointment form with disease name
 	function openAppointmentForm() {
         var diseaseContent = $("#diseaseName").html().trim(); // You can replace this with a dynamic value
         window.open('appointment_form?disease=' + diseaseContent, '_blank');
     }
 </script>
 </body>
+
 </html>

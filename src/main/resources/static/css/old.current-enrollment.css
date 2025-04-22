@@ -1,26 +1,50 @@
 /* Updated Disease Card Styles */
 .custom-disease-card {
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
     cursor: pointer;
     height: 100%;
-    border: 2px solid var(--dark-secondary-color); /* Primary color border */
-    background-color: transparent;
+   /* border: 2px solid var(--primary-color);  Blue border */
+    border: 2px solid var(--dark-secondary-color);
     position: relative;
+    overflow: hidden;
+    background-color: white;
+    z-index: 1;
+}
+
+.custom-disease-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: -1;
+
+        background-image: url(../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e.jpg);
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: cover;
 }
 
 .custom-disease-card:hover {
     transform: translateY(-5px);
-    background-color: color-mix(in srgb, var(--primary-color) 90%, transparent); /* 15% opacity of primary color */
 }
 
-/* White text and icon on hover */
+.custom-disease-card:hover::before {
+    width: 100%;
+    right: auto;
+    left: 0;
+}
+
+/* Text and icon colors that change on hover */
 .custom-disease-card:hover .custom-disease-title,
 .custom-disease-card:hover .custom-disease-img {
     color: white;
-    filter: brightness(0) invert(1); /* Converts icon to white */
+    filter: brightness(0) invert(1);
 }
-
 
 /* Rest of your existing CSS remains the same */
 .custom-interest-container {

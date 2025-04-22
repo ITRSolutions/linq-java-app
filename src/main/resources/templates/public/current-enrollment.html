@@ -19,6 +19,7 @@
 
 		<!-- Are you Interested Area Start -->
 		<div class="custom-interest-wrapper" th:each="contentBlock : ${contentBlock2}">
+			<h4 class="secondary-text-color text-center fw-bold fs-4">Currently Enrolling</h4>
 			<h3 class="custom-interest-heading wow animate__animated animate__fadeInUp text-center"
 				th:utext="${@webUtils.validateString(contentBlock.slide[0].slideContents[0].content)}"></h3>
 			<p class="custom-interest-text wow animate__animated animate__fadeInUp text-center mx-auto lh-lg"

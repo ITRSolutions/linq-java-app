@@ -1655,6 +1655,10 @@ button:hover .button-text {
 
 }
 
+.footer p {
+    font-size: 0.8rem;
+}
+
   /* UI Bug fix */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   /* Fix text overflow in image */
@@ -1785,41 +1789,6 @@ button:hover .button-text {
 }
 
 
-/* UI Bug fixes code --- 1 */
-/* Fix for owner image cropping on small screens */
-@media (max-width: 430px) {
-  .owners-carousel .carousel-inner .carousel-item img {
-    width: 100% !important; /* Force full width */
-    height: auto !important; /* Maintain aspect ratio */
-    max-width: 100vw; /* Prevent horizontal overflow */
-    object-fit: contain !important; /* Show full image without cropping */
-    margin: 0 auto; /* Center the image */
-    padding: 0 10px; /* Add small side padding */
-  }
-    .owners-carousel {
-      height: 370px;
-    }
-    /* UI Bug fixes code ---2 */
-      .row.g-5 {
-        margin-left: 5px !important;
-        margin-right: 5px !important;
-      }
-
-      .row.g-5 > .col-4 {
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-      }
-
-      .row.g-5 .d-flex.flex-column {
-        background-clip: content-box;
-        padding-left: 8px !important;
-        padding-right: 8px !important;
-      }
-    /* UI Bug fixes code ---2 */
-}
-/* UI Bug fixes code ---1 */
-
-
 /* Custom breakpoint for screens between 1200px and 1400px */
 @media (min-width: 1200px) and (max-width: 1399px) {
     button.btn-with-arrow .button-text {
@@ -1839,6 +1808,8 @@ button:hover .button-text {
 .logo-wrapper img {
     width: 100%;
 }
+
+
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
@@ -1910,7 +1881,6 @@ button.btn-with-arrow .circle .icon.arrow::before {
 .pi-image img {
     width: 100%;
 }
-
 
 }
 
@@ -2057,3 +2027,27 @@ button.btn-with-arrow .circle .icon.arrow::before {
     .big-font {
         font-size: 4.5rem !important;
     }
+
+
+@media (max-height: 650px) {
+
+  .carousel-caption h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .carousel-caption p {
+    margin-bottom: 1rem !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -50,6 +50,10 @@
     ]
 </script>
 
+<!-- Company footer section -->
+<div class="row">
+    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+</div>
 
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>

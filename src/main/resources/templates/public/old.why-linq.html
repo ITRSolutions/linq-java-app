@@ -37,17 +37,14 @@
     </div>
 
     <!-- Embrace Diversity Section -->
-    <!-- Embrace Diversity Section -->
-    <div class="row my-2 mt-0 px-4" th:each="contentBlock : ${contentBlock4}" th:with="slide = ${contentBlock.slide[0]}">
-        <div class="col-12 col-md-7 order-md-1 order-2 d-flex flex-column gap-1 px-4 py-3 px-md-4 py-md-4">
+    <div class="row my-2 mt-0" th:each="contentBlock : ${contentBlock4}" th:with="slide = ${contentBlock.slide[0]}">
+        <div class="col-md-7 d-flex flex-column gap-1 p-4">
             <h5 class="dark-secondary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h5>
             <h2 class="fw-bold primary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
             <p class="card-text fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
         </div>
-        <div class="col-12 col-md-5 order-md-2 order-1 middle-contents px-4 py-3 px-md-4 py-md-4 d-flex justify-content-center align-items-center">
-            <div class="ratio ratio-1x1" style="max-width: 70%;">
-                <img th:src="${@webUtils.validateString(slide.slideContents[3].content)}" alt="" class="rounded-circle object-fit-cover w-100 h-100">
-            </div>
+        <div class="col-md-5 middle-contents p-4">
+            <img th:src="${@webUtils.validateString(slide.slideContents[3].content)}" alt="" class="rounded-circle object-fit-cover" style="width: 70%;">
         </div>
     </div>
 
@@ -78,10 +75,6 @@
     </div>
 </div>
 
-<!-- Company footer section -->
-<div class="row">
-    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
-</div>
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 </body>

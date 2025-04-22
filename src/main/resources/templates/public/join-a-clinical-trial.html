@@ -49,7 +49,7 @@
       </h2>
 
       <th:block th:each="slideContent : ${contentBlock.slide[1].slideContents}">
-        <p class="join-trial-text text-dark mt-3 wow animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(slideContent.content)}">
+        <p class="join-trial-text text-dark mt-3 text-center wow animate__animated animate__fadeInUp" th:utext="${@webUtils.validateString(slideContent.content)}">
         </p>
       </th:block>
 

@@ -1,0 +1,17 @@
+/* disease.css */
+/* Hero Section - Mobile Stacked Layout */
+@media (max-width: 767.98px) {
+  /* Left Column - Top Rounded */
+  .hero-stacked .left-column {
+    border-radius: 1rem 1rem 0 0 !important;
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Right Column - Bottom Rounded */
+  .hero-stacked .right-column {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+  .hero-img {
+  border-radius: 0rem !important;
+  }
+ }

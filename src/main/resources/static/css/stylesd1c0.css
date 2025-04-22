@@ -6,9 +6,14 @@
   --regular-font:  "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
+/* Prevent horizontal scrolling */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
   font-family: var(--regular-font);
-    overflow-x: hidden;
 }
 
 .primary-text-color {
@@ -1655,10 +1660,6 @@ button:hover .button-text {
 
 }
 
-.footer p {
-    font-size: 0.8rem;
-}
-
   /* UI Bug fix */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   /* Fix text overflow in image */
@@ -1808,8 +1809,6 @@ button:hover .button-text {
 .logo-wrapper img {
     width: 100%;
 }
-
-
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
@@ -2040,9 +2039,6 @@ button.btn-with-arrow .circle .icon.arrow::before {
     margin-bottom: 1rem !important;
   }
 }
-
-
-
 
 
 

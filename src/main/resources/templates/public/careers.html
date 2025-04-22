@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData})}"></head>
+<link rel="stylesheet" href="css/refer-friend.css">
+
+<body>
+<!-- Dynamic navigation -->
+<div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="investigator-header">
+            <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Refer a Friend</h2>
+        </div>
+    </div>
+
+    <div class="row p-2 p-md-5 mt-5">
+        <!-- Right column with stats grid -->
+        <div class="col-md-10 my-5 my-md-0 m-auto">
+            <div class="row p-2 p-md-5 align-items-center justify-content-center">
+                <!-- Individual stat item with icon and text -->
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column align-items-center justify-content-center gap-4" data-wow-delay="0.1s">
+                        <img src="image/01/Group-1217.png" alt="">
+                        <p class="primary-text-color fs-5 text-center regular-font fw-bold">Right to<br>withdraw</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column align-items-center justify-content-center gap-4" data-wow-delay="0.1s">
+                        <img src="image/01/Group-1222.png" alt="">
+                        <p class="primary-text-color fs-5 text-center regular-font fw-bold">Know Risks<br> and Benefits</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column align-items-center justify-content-center gap-4" data-wow-delay="0.1s">
+                        <img src="image/01/Group-1218.png" alt="">
+                        <p class="primary-text-color fs-5 text-center regular-font fw-bold">Informed <br>Consent</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column align-items-center justify-content-center gap-4" data-wow-delay="0.1s">
+                        <img src="image/01/Group-1219.png" alt="">
+                        <p class="primary-text-color fs-5 text-center regular-font fw-bold">Confidentiality
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-4 refer-block">
+        <div class="row align-items-center py-5">
+            <!-- Text Content -->
+            <div class="col-lg-7 col-md-12 text-content">
+                <h3 class="fw-bold dark-secondary-text-color"> Promoting Diversity and Inclusion
+                </h3>
+                <h2 class="primary-text-color fw-bold"> Where Every Voice Matters,
+                    and Every Perspective Counts</h2>
+                <p class="content-text"> At LINQ Research LLC, we believe that innovation thrives when diverse
+                    voices come together. We are committed to building a workplace
+                    where everyone—regardless of background, identity, or experience—
+                    feels valued, heard, and empowered.<br>
+                    By fostering an environment that celebrates unique perspectives, we
+                    create stronger research, better solutions, and a lasting impact on
+                    healthcare. If you're looking for a team where collaboration, inclusivity,
+                    and forward-thinking ideas drive progress, you've found the right
+                    place.</p>
+            </div>
+            <!-- Image -->
+            <div class="col-lg-5 col-md-12 text-center image-container">
+                <img src="image/refer-friend.png" alt="Refer a Friend" class="refer-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Company footer section -->
+    <div class="row">
+
+        <div class="company-footer join-our-team">
+            <h2 class="dark-secondary-text-color fw-bold">Join Our Team</h2>
+            <p class="text-white fs-5">Explore Career Opportunities with LINQ Research LLC</p>
+            <a href="/careers" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium"> Careers</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
+<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+</body>
+
+</html>
