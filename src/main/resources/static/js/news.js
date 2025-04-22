@@ -46,7 +46,7 @@ $(document).ready(function() {
 
     function largeNewsDiv(news) {
         return `
-        <a href="${news.url}" class="news-link h-100">
+        <a href="/blog?page=${news.url}" class="news-link h-100">
             <div class="card h-100 border-0 shadow-sm overflow-hidden news-card" style="transform: translateY(-5px);">
                 <div class="ratio ratio-16x9 h-100">
                     <img src="${news.image}" class="card-img object-fit-cover" alt="News Image" style="transform: scale(1.05);">
@@ -62,7 +62,7 @@ $(document).ready(function() {
     function smallNewsDiv(news) {
         return `
         <div class="col-12">
-            <a href="${news.url}" class="news-link h-100">
+            <a href="/blog?page=${news.url}" class="news-link h-100">
                 <div class="card h-100 border-0 shadow-sm overflow-hidden news-card" style="transform: translateY(0px);">
                     <div class="ratio ratio-16x9 h-100">
                         <img src="${news.image}" class="card-img object-fit-cover" alt="News Image" style="transform: scale(1);">
