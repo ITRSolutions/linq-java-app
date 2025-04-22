@@ -2040,7 +2040,9 @@ button.btn-with-arrow .circle .icon.arrow::before {
   }
 }
 
-
+.footer p {
+    font-size: 0.8rem;
+}
 
 
 
