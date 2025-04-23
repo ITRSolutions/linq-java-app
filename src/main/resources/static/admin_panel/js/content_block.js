@@ -212,4 +212,3 @@ $('.deleteContentBlock').click(function () {
         //<------------Update ContentBlocks End------------->
 
   });
-

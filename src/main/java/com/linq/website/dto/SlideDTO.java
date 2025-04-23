@@ -32,5 +32,7 @@ public class SlideDTO {
     @Getter
     @Setter
     public static class UpdateSlideDTO extends BaseSlideDTO {
+        @NotNull(message = "Status cannot be null")
+        private Boolean slideActive;
     }
 }

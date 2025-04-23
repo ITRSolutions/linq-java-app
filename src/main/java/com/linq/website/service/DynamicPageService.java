@@ -58,6 +58,13 @@ public class DynamicPageService {
     public List<Slide> getSlides(Long contentBlockId) {
         ContentBlock contentBlock = contentBlockRepository.findById(contentBlockId)
                 .orElseThrow(() -> new PageNotFoundException("Content Block not found with ID: " + contentBlockId));
+        return slideRepository.findByContentBlockAndSlideActiveTrue(contentBlock);
+    }
+
+    // Fetch slides for a content block
+    public List<Slide> getSlidesForAdminPanel(Long contentBlockId) {
+        ContentBlock contentBlock = contentBlockRepository.findById(contentBlockId)
+                .orElseThrow(() -> new PageNotFoundException("Content Block not found with ID: " + contentBlockId));
         return slideRepository.findByContentBlock(contentBlock);
     }
 

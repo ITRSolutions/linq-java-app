@@ -27,31 +27,33 @@ $(document).on('click', '#addSlideContentFunction', function () {
         $("#orderIndexSC").val(1);
     }
 
+    activateEditor($('#addSlideContent').find('.contentTypeSG')[0]);
 });
-
-$(document).on('change', '#contentTypeSG', function () {
-    const selectedValue = $(this).val();
-    checkImageField(selectedValue, 1);
-  });
 
         $(document).on('click', '.updateSlideContent', function() {
             let rowIndex = $(this).closest('tr').index();
             let selected = SlideContentTable[rowIndex];
 
             $('#updateSlideContent [name="updateContentTypeSG"]').val(selected.contentType);
-            !checkImageField($('select[name="updateContentTypeSG"]').val(), '') ? $('#updateSlideContent [name="updateContentSG"]').val(selected.content) : 0;
+            activateEditor($('#updateSlideContent').find('.contentTypeSG')[0]); //Activate Editor if blog is selected
+
+            checkImageField($('select[name="updateContentTypeSG"]').val(), $('#updateContentSG').parent().parent());
+            $('#updateSlideContent [name="updateContentSG"]').val(selected.content);
+
             $('#updateSlideContent [name="updateOrderIndexSC"]').val(selected.orderIndex);
             $("#SCrowId").val(selected.id);
 
             $('#updateSlideContent').modal('show');
         });
 
-function checkImageField(val, id) {
+function checkImageField(val, thisVal) {
     if(val == "IMAGE") {
-        $(".contentSG").hide();
-        $(".contentSCLb").hide();
+        $(thisVal).find(".contentSG").hide();
+        $(thisVal).find(".contentSCLb").hide();
 
-        $(".imageUpload"+id).html(`	<label>Upload Image: </label>
+        console.log("IMAGE SELECTED ");
+
+        $(thisVal).find(".imageUpload").html(`	<label>Upload Image: </label>
         <a href="#" target="_blank" class="float-right displayImg" style="display: none"><label> [Uploaded Image]</label></a>
          	<input type="file" name="file" class="form-control1 control3 uploadImage" accept="image/*"
                  style="padding-top: 9px;" required>
@@ -61,10 +63,11 @@ function checkImageField(val, id) {
 
          	return true;
     } else {
-       $(".contentSG").show();
-       $(".imageUpload").html("");
-       $(".imageUpload1").html("");
-       $(".contentSCLb").show();
+
+       val != "BLOG" ? $(thisVal).find(".contentSG").show() : 0;
+       $(thisVal).find(".imageUpload").html("");
+       $(thisVal).find(".contentSCLb").show();
+       return false;
     }
 }
 
@@ -161,6 +164,7 @@ $(document).ready(function () {
      $('#addSlideContent form').on('submit', function(e) {
          e.preventDefault(); // Prevent default form submission
 
+         getEditorContent();
          // Collect the form data
          var slideId = $('#SlideIdSC').val(); // Get the Slide ID (hidden input)
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)

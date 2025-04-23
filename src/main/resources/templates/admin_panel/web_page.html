@@ -145,6 +145,7 @@
                                                 <th>Slide Title</th>
                                                 <th>Content Block Title</th>
                                                 <th>Page Name</th>
+                                                <th>Status</th>
                                                 <th>Updated</th>
                                                 <th>Updated By</th>
                                                 <th></th>
@@ -412,6 +413,11 @@
                             <label>Enter Slide Title: </label>
                             <input type="text" name="updateSlideTitle" class="form-control1 control3" required>
                             <input type="hidden" id="sliderowId" value="">
+                            <label>Select Status : </label>
+                            <select name="slideStatus" class="form-control1 control3" required>
+                                <option value="true">Active</option>
+                                <option value="false">In-active</option>
+                            </select>
                             <label>Enter order Index: </label>
                             <input type="number" name="updateSlideOrderIndex" class="form-control1 control3" required>
                         </div>
@@ -443,16 +449,20 @@
                             <label>Select Slide: </label>
                             <input type="hidden" id="SlideIdSC" value="0">
                             <label>Select Content Type: </label>
-                            <select name="contentTypeSG" id="contentTypeSG" class="form-control1 control3" required>
+                            <select name="contentTypeSG" id="contentTypeSG" class="form-control1 control3 contentTypeSG" required>
                                 <option value="">Select Content Type</option>
                                 <option selected>TEXT</option>
                                 <option>BUTTON</option>
                                 <option>IMAGE</option>
                                 <option>URL</option>
+                                <option>BLOG</option>
                                 <option>DISEASE_NAME</option>
                             </select>
 
-                            <div class="imageUpload1"> </div>
+                            <div class="imageUpload"> </div>
+
+                            <!-- Quill Display Editor -->
+                            <div class="quillEditor" style="height: 300px; display:none; font-size:1rem;"></div>
 
                             <label class="contentSCLb">Enter Slide Content: </label>
                             <textarea name="contentSG" rows="4" class="form-control1 contentSG" placeholder="Enter your content here..." required></textarea>
@@ -505,13 +515,17 @@
                                 <option>BUTTON</option>
                                 <option>IMAGE</option>
                                 <option>URL</option>
+                                <option>BLOG</option>
                                 <option>DISEASE_NAME</option>
                             </select>
 
                             <div class="imageUpload"></div>
 
+                            <!-- Quill Display Editor -->
+                            <div class="quillEditor" style="height: 300px; display:none; font-size:1rem;"></div>
+
                             <label class="contentSCLb" style="display: none">Enter Slide Content: </label>
-                            <textarea name="updateContentSG" rows="4" class="form-control1 contentSG"
+                            <textarea name="updateContentSG" id="updateContentSG" rows="4" class="form-control1 contentSG"
                                       placeholder="Enter your content here..." style="display: none"
                                       required></textarea>
 
@@ -546,6 +560,13 @@
 
 </div>
 
+<!-- Quill core styles -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<!-- Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<script src="js/quillEditor.js"></script>
 </body>
 
 </html>

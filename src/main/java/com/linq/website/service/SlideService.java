@@ -63,6 +63,7 @@ public class SlideService {
 
         // Update fields
         slideBlock.setSlideTitle(dto.getSlideTitle());
+        slideBlock.setSlideActive(dto.getSlideActive());
         slideBlock.setOrderIndex(dto.getOrderIndex());
         slideBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 

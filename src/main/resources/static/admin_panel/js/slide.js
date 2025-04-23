@@ -48,6 +48,7 @@
             $('#updateSlide [name="updateCBName"]').val(CBName);
             $('#updateSlide [name="updateSlideTitle"]').val(selectedSlide.slideTitle);
             $('#updateSlide [name="updateSlideOrderIndex"]').val(selectedSlide.orderIndex);
+            $('#updateSlide [name="slideStatus"]').val(selectedSlide.slideActive+"");
             $("#sliderowId").val(selectedSlide.id);
 
             $('#updateSlide').modal('show');
@@ -90,6 +91,7 @@ function renderTableSlide(data) {
                 data.forEach(function(item) {
                     const contentBlock = item.contentBlock; // Get the content block details
                     const updatedBy = item.updatedBy ? item.updatedBy.firstName + ' ' + item.updatedBy.lastName : 'N/A';
+                    const status = item.slideActive == true ? "<span style='color: green'>Active</span>" : "<span style='color: red'>In-Active</span>";
                     const updatedAt = new Date(item.updatedAt).toLocaleString();
 
                     // Create a new table row for each item
@@ -107,6 +109,9 @@ function renderTableSlide(data) {
                             <td>
                                 ${contentBlock.page.slug}
                             </td>
+                                                        <td>
+                                                            ${status}
+                                                        </td>
                             <td>
                                 ${updatedAt}
                             </td>
@@ -183,8 +188,10 @@ $(document).ready(function() {
 
         const slideId = $("#sliderowId").val(); // Get the slideId from the form data attribute
 
+        let status = $("select[name='slideStatus']").val();
         const updateData = {
             slideTitle: $('input[name="updateSlideTitle"]').val(),
+            slideActive: status,
             orderIndex: $('input[name="updateSlideOrderIndex"]').val(),
         };
 

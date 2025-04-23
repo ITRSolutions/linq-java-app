@@ -5,5 +5,6 @@ public enum ContentType {
     IMAGE,
     BUTTON,
     URL,
-    DISEASE_NAME
+    DISEASE_NAME,
+    BLOG
 }

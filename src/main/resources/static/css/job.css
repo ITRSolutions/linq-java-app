@@ -1,0 +1,166 @@
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    input[type="text"], input[type="email"], textarea, select {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+        .upload-box {
+          border: 2px dashed #ccc;
+          border-radius: 10px;
+          padding: 2rem;
+          text-align: center;
+          position: relative;
+          cursor: pointer;
+          font-family: Arial, sans-serif;
+          color: #333;
+          transition: border 0.3s ease;
+        }
+
+        .upload-box:hover {
+          border-color: #0071bc;
+        }
+
+        .upload-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: #f0f6ff;
+          border: 2px solid #003865;
+          color: #003865;
+          padding: 0.6rem 1.2rem;
+          font-weight: 600;
+          border-radius: 30px;
+          cursor: pointer;
+        }
+
+        .upload-btn:hover {
+          background-color: #dbeaff;
+        }
+
+        .upload-box input[type="file"] {
+          display: none;
+        }
+
+        .upload-text {
+          display: inline-block;
+          margin-left: 1rem;
+          color: #555;
+        }
+
+
+            .job-details {
+              max-width: 90%;
+            }
+            .job-detail {
+              margin-bottom: 1.5rem;
+            }
+            .job-detail label {
+              display: block;
+              font-size: 0.85rem;
+              color: #555;
+              margin-bottom: 0.3rem;
+            }
+            .job-detail p {
+              font-size: 1.1rem;
+              font-weight: 500;
+              margin: 0 0 0.3rem 0;
+            }
+            .underline {
+              height: 1px;
+              background: #ccc;
+              width: 100%;
+            }
+
+                .nav-tabs {
+                  border-bottom: none;
+                }
+
+                .nav-tabs .nav-link {
+                  color: #000;
+                  font-weight: 600;
+                  border: none;
+                  position: relative;
+                }
+
+                .nav-tabs .nav-link.active {
+                  color: var(--primary-color);
+                }
+
+                .nav-tabs .nav-link.active::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -6px;
+                  left: 0;
+                  width: 100%;
+                  height: 4px;
+                  background-color: var(--dark-secondary-color); /* yellow/orange underline */
+                  border-radius: 2px;
+                }
+
+                    .radio-toggle {
+                      display: inline-flex;
+                      border: 1px solid #ccc;
+                      border-radius: 6px;
+                      overflow: hidden;
+                      font-family: Arial, sans-serif;
+                    }
+
+                    .radio-toggle input[type="radio"] {
+                      display: none;
+                    }
+
+                    .radio-toggle label {
+                      padding: 0.6rem 1.2rem;
+                      cursor: pointer;
+                      border-left: 1px solid #ccc;
+                      background: #fff;
+                      color: #000;
+                      text-align: center;
+                      user-select: none;
+                      margin-bottom: 0 !important;
+                    }
+
+                    .radio-toggle label:first-child {
+                      border-left: none;
+                    }
+
+                    .radio-toggle input[type="radio"]:checked + label {
+                          background-color: var(--primary-color);
+                      color: #fff;
+                    }
+
+                      .file-name {
+                        margin-top: 10px;
+                        font-weight: 500;
+                        color: #333;
+                      }
+
+                      .error-msg {
+                        color: red;
+                        display: none;
+                        margin-top: 8px;
+                      }
+
+                      .upload-box.dragover {
+                        border-color: #003366;
+                        background-color: #f0f8ff;
+                      }

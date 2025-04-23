@@ -44,7 +44,7 @@ public class SlideController {
 
     @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse> getSlideByContentBlockId(@PathVariable Long id) {
-        List<Slide> slides = dynamicPageService.getSlides(id);
+        List<Slide> slides = dynamicPageService.getSlidesForAdminPanel(id);
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of slide.", slides));
     }
 

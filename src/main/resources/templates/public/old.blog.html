@@ -31,13 +31,17 @@
                     <div class="overflow-hidden mb-4">
                         <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt=""
                              class="picture wow animate__ animate__fadeInRight object-fit-cover me-auto d-block rounded-start-0  animated"
-                             style="visibility: visible; animation-name: fadeInRight;" width="550">
+                             style="visibility: visible; animation-name: fadeInRight;">
                     </div>
                 </th:block>
 
+                <th:block th:each="slideContent : ${contentBlock.slide[1].slideContents}">
                     <!-- News Paragraphs -->
-                    <div class="news-body" th:utext="${@webUtils.validateString(contentBlock.slide[1].slideContents[0].content)}">
+                    <div class="news-body">
+                        <p class="news-paragraph"
+                           th:utext="${@webUtils.validateString(slideContent.content)}"></p>
                     </div>
+                </th:block>
             </div>
         </div>
 

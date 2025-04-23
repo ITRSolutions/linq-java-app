@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface SlideRepository extends JpaRepository<Slide, Long> {
     List<Slide> findByContentBlock(ContentBlock contentBlock);
+
+    List<Slide> findByContentBlockAndSlideActiveTrue(ContentBlock contentBlock);
+
 }

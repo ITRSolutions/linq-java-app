@@ -26,6 +26,9 @@ public class Slide {
 
     private Integer orderIndex;
 
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean slideActive = true;
+
     @ManyToOne
     @JoinColumn(name = "updated_by")
     private User updatedBy;
