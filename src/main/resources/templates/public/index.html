@@ -252,13 +252,29 @@
                     <p class="text-center text-dark regular-font fw-medium fs-5">See what people are saying</p>
                     <div id="carouselExampleIndicators" class="carousel slide">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="active"
-                                    aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
+<!--                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"-->
+<!--                                    class="active"-->
+<!--                                    aria-current="true" aria-label="Slide 1"></button>-->
+<!--                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"-->
+<!--                                    aria-label="Slide 2"></button>-->
+<!--                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"-->
+<!--                                    aria-label="Slide 3"></button>-->
+
+                            <button type="button"
+                                    th:each="slide, iterStat : ${contentBlock7.slide}"
+                                    data-bs-target="#carouselExampleIndicators"
+                                    th:attr="data-bs-slide-to=${iterStat.index}, aria-label='Slide ' + ${iterStat.index + 1}"
+                                    th:classappend="${iterStat.index == 0} ? ' active' : ''"
+                                    th:if="${iterStat.index == 0}"
+                                    aria-current="true">
+                            </button>
+                            <button type="button"
+                                    th:each="slide, iterStat : ${contentBlock7.slide}"
+                                    data-bs-target="#carouselExampleIndicators"
+                                    th:attr="data-bs-slide-to=${iterStat.index}, aria-label='Slide ' + ${iterStat.index + 1}"
+                                    th:classappend="${iterStat.index != 0} ? '' : null"
+                                    th:unless="${iterStat.index == 0}">
+                            </button>
                         </div>
 
                         <!-- 7th dynamic Testimonial Section -->

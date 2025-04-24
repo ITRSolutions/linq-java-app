@@ -164,7 +164,6 @@ $(document).ready(function () {
      $('#addSlideContent form').on('submit', function(e) {
          e.preventDefault(); // Prevent default form submission
 
-         getEditorContent();
          // Collect the form data
          var slideId = $('#SlideIdSC').val(); // Get the Slide ID (hidden input)
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)
