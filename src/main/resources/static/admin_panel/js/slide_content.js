@@ -216,11 +216,14 @@ $(document).ready(function () {
      $('#updateSlideContent form').on('submit', function(event) {
          event.preventDefault(); // Prevent default form submission
 
+         let contentType = $('select[name="updateContentTypeSG"]').val();
+         let content = (contentType == "BLOG") ?
+                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>") : $('textarea[name="updateContentSG"]').val();
          // Collect form data
          var formData = {
              orderIndex: $('input[name="updateOrderIndexSC"]').val(),
-             contentType: $('select[name="updateContentTypeSG"]').val(),
-             content: $('textarea[name="updateContentSG"]').val() || '' // If textarea is not visible, fallback to empty
+             contentType: contentType,
+             content: content
          };
 
          // Check if the required fields are valid

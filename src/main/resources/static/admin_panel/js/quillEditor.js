@@ -79,9 +79,11 @@ function activateEditor(thisVar) {
 
 
       // Optional: Sync on form submit
-      $form.on('submit', function () {
-        $textAreaWrapper.val(quill.root.innerHTML);
-      });
+//      $form.on('submit', function () {
+//        let code =  quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("<p><br></p>","");
+//        $textAreaWrapper.val(code);
+//        console.log("code: "+code);
+//      });
     } else {
         $form.find('.ql-toolbar').show();
     }
