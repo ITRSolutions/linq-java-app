@@ -328,7 +328,7 @@ if (type == "IMAGE" || type == "URL") {
 
     return anchorTag;
 } else if(type == "TEXT") {
-    textC = textC.replaceAll("<","").trim();
+    textC = textC.replaceAll("<p>","").trim();
  }
 
         return textC;
