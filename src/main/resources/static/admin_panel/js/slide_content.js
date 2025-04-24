@@ -327,7 +327,7 @@ if (type == "IMAGE" || type == "URL") {
     })[0].outerHTML;
 
     return anchorTag;
-} else if(type == "TEXT") {
+} else if(type == "TEXT" || type == "BLOG") {
     textC = textC.replaceAll("<p>","").trim();
  }
 
