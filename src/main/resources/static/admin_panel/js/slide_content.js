@@ -27,7 +27,7 @@ $(document).on('click', '#addSlideContentFunction', function () {
         $("#orderIndexSC").val(1);
     }
 
-    activateEditor($('#addSlideContent').find('.contentTypeSG')[0]);
+    activateEditor($('#addSlideContent').find('.contentTypeSG'));
 });
 
         $(document).on('click', '.updateSlideContent', function() {
@@ -35,10 +35,11 @@ $(document).on('click', '#addSlideContentFunction', function () {
             let selected = SlideContentTable[rowIndex];
 
             $('#updateSlideContent [name="updateContentTypeSG"]').val(selected.contentType);
-            activateEditor($('#updateSlideContent').find('.contentTypeSG')[0]); //Activate Editor if blog is selected
+            $('#updateSlideContent [name="updateContentSG"]').val(selected.content);
+
+            activateEditor($('#updateSlideContent').find('.contentTypeSG')); //Activate Editor if blog is selected
 
             checkImageField($('select[name="updateContentTypeSG"]').val(), $('#updateContentSG').parent().parent());
-            $('#updateSlideContent [name="updateContentSG"]').val(selected.content);
 
             $('#updateSlideContent [name="updateOrderIndexSC"]').val(selected.orderIndex);
             $("#SCrowId").val(selected.id);
@@ -167,7 +168,9 @@ $(document).ready(function () {
          // Collect the form data
          var slideId = $('#SlideIdSC').val(); // Get the Slide ID (hidden input)
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)
-         var slideContent = $('textarea[name="contentSG"]').val(); // Get the slide content text
+         var slideContent = (contentType == "BLOG") ?
+                                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>")
+                                                      : $('textarea[name="contentSG"]').val();
          var orderIndex = $('input[name="orderIndexSC"]').val(); // Get the order index (position)
 
          // Prepare the data to be sent in the request

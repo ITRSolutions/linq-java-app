@@ -60,7 +60,6 @@ function activateEditor(thisVar) {
 
   const $quillWrapper = $form.find('.quillEditor'); // The div for Quill
   const $textAreaWrapper = $form.find('.contentSG'); // The original textarea wrapper
-  const $hiddenTextarea = $textAreaWrapper.find('textarea'); // The textarea inside .contentSG
 
   if (selectedValue === "BLOG") {
     console.log("BLOG selected!");
@@ -76,8 +75,6 @@ function activateEditor(thisVar) {
         theme: 'snow'
       });
 
-
-
       // Optional: Sync on form submit
 //      $form.on('submit', function () {
 //        let code =  quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("<p><br></p>","");
@@ -90,11 +87,13 @@ function activateEditor(thisVar) {
           // Optional: Load value from textarea if needed
           const initialVal = $textAreaWrapper.val();
           if (initialVal) {
-            quill.root.innerHTML = initialVal;
+            $form.find('.ql-editor').html(initialVal);
           }
 
               $quillWrapper.show();
               $textAreaWrapper.hide();
+
+    $($textAreaWrapper).removeAttr('required');
 
   } else {
     // Clear quill content if needed
@@ -104,6 +103,7 @@ function activateEditor(thisVar) {
     }
 
     $quillWrapper.hide();
+    $($textAreaWrapper).attr('required', 'required');
   }
 }
 
