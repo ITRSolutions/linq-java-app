@@ -5,12 +5,9 @@
 <link rel="stylesheet" href="css/careers.css">
 
 <body>
-<!-- Dynamic navigation - Loads navigation bar from fragments/navigation template -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData},cPageMetaData=${cPageMetaData},navigation=${navigation})}"></div>
 
-<!-- Main container for page content -->
 <div class="container-fluid p-0">
-    <!-- Header Section -->
     <div class="row">
         <div class="investigator-header">
             <h2 class="text-white fw-bold animate__animated animate__fadeInUp">Careers with LinQ Research</h2>
@@ -20,25 +17,26 @@
     <!-- ================= SECTION 1: JOB SEARCH & VACANCIES ================= -->
     <!-- Light grey background section containing job search and vacancies table -->
     <div class="bg-light py-5">
-        <div class="container mb-5">
-            <!-- Job Search Component -->
+        <div class="container mb-4">
             <div class="bg-white rounded-3 shadow-sm p-5 mx-md-5 job-search-overlap">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <p class="fw-semibold primary-text-color">Job search</p>
-                    <span class="text-muted small border-bottom border-primary">Showing 2 positions open</span>
+                    <span class="text-muted small border-bottom border-primary">Showing <span th:text="${#lists.size(contentBlock1.slide)}" id="totalResult"></span> positions open</span>
                 </div>
                 <form class="row g-3 align-items-end">
                     <div class="col-md-5">
                         <label for="keyword" class="form-label small text-muted">Keyword</label>
-                        <input type="text" class="form-control" id="keyword" placeholder="Job title or keywords">
+                        <input type="text" class="form-control" name="keyword" minlength="3" maxlength="40" placeholder="Job title or keywords">
                     </div>
                     <div class="col-md-5">
                         <label for="location" class="form-label small text-muted">Location</label>
-                        <select class="form-select" id="location">
+                        <select class="form-select" name="location">
                             <option selected>All Locations</option>
-                            <option>Pearland, TX</option>
-                            <option>Houston, TX</option>
-                            <option>Austin, TX</option>
+                            <th:block  th:each="contentBlock : ${contentBlock1}">
+                                <th:block  th:each="slide : ${contentBlock.slide}">
+                                    <option th:text="${@webUtils.validateString(slide.slideContents[1].content)}"> Options </option>
+                                </th:block>
+                            </th:block>
                         </select>
                     </div>
                     <div class="col-md-2 mt-2">
@@ -48,7 +46,48 @@
             </div>
         </div>
 
-        <!-- Latest Vacancies Section -->
+        <!-- Job search div -->
+        <div class="container my-5 mt-2 mb-2"
+             th:if="${param.keyword != null and param.keyword[0] != '' or param.location != null and param.location[0] != ''}">
+
+        <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <p class="fw-semibold primary-text-color">Search result</p>
+                    <div class="bg-white rounded-4 shadow-sm p-3 p-md-4">
+                        <div class="table-responsive">
+                            <table class="table table-borderless align-middle mb-0" >
+                                <thead class="border-bottom">
+                                <tr>
+                                    <th class="fw-bold py-3">Job Title</th>
+                                    <th class="fw-bold py-3">Location</th>
+                                    <th class="fw-bold py-3 text-end"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="job_search">
+                                <th:block  th:each="contentBlock : ${contentBlock1}">
+                                    <tr class="border-bottom"
+                                        th:each="slide : ${contentBlock.slide}"
+                                        th:if="${(param.keyword != null or param.location != null)
+        and slide.slideContents[0].content.toLowerCase().contains(param.keyword[0].trim().toLowerCase())
+        and (slide.slideContents[1].content.contains(param.location[0].trim())
+             or param.location[0].trim().toLowerCase().equals('all locations'))}">
+
+                                        <td class="py-3 fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Job Title</td>
+                                        <td class="py-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Location</td>
+                                        <td class="py-3 text-end">
+                                            <a th:href="@{'/job-description'(page=${@webUtils.createLink(slide.slideContents[0].content)})}"
+                                               target="_blank" class="custom-btn rounded-2 py-2 px-4">Apply Now</a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row vacancy-text justify-content-center align-items-center text-center py-3 py-md-4 px-2 px-md-0">
             <div class="col-12 col-md-10 col-lg-8">
                 <h2 class="mb-3 primary-text-color">LATEST VACANCIES</h2>
@@ -56,8 +95,7 @@
             </div>
         </div>
 
-        <!-- Vacancies Table -->
-        <div class="container my-5">
+        <div class="container my-5 mt-2 mb-2">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-10">
                     <div class="bg-white rounded-4 shadow-sm p-3 p-md-4">
@@ -71,27 +109,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="border-bottom">
-                                    <td class="py-3 fw-medium">Patient Enrollment Specialist</td>
-                                    <td class="py-3">Pearland, TX</td>
-                                    <td class="py-3 text-end">
-                                        <button class="custom-btn rounded-2 py-2 px-4">Apply Now</button>
-                                    </td>
+                                <th:block  th:each="contentBlock : ${contentBlock1}">
+                                    <tr class="border-bottom"
+                                        th:each="slide : ${contentBlock.slide}"
+                                        th:if="${slide.slideTitle.contains('[NEW]')}">
+
+                                    <td class="py-3 fw-medium" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}">Job Title</td>
+                                        <td class="py-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Location</td>
+                                        <td class="py-3 text-end">
+                                            <a th:href="@{'/job-description'(page=${@webUtils.createLink(slide.slideContents[0].content)})}"
+                                               target="_blank" class="custom-btn rounded-2 py-2 px-4">Apply Now</a>
+                                        </td>
                                 </tr>
-                                <tr class="border-bottom">
-                                    <td class="py-3 fw-medium">Patient Enrollment Specialist</td>
-                                    <td class="py-3">Pearland, TX</td>
-                                    <td class="py-3 text-end">
-                                        <button class="custom-btn rounded-2 py-2 px-4">Apply Now</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 fw-medium">Clinical Research Coordinator</td>
-                                    <td class="py-3">Houston, TX</td>
-                                    <td class="py-3 text-end">
-                                        <button class="custom-btn rounded-2 py-2 px-4">Apply Now</button>
-                                    </td>
-                                </tr>
+                                </th:block>
                                 </tbody>
                             </table>
                         </div>
@@ -105,59 +135,54 @@
     <div class="container">
         <div class="row vacancy-text justify-content-center align-items-center text-center py-3 py-md-4 px-2 px-md-0">
             <div class="col-12 col-md-10 col-lg-8">
-                <h2 class="mb-5 dark-secondary-text-color">ABOUT US</h2>
-                <p class="mb-4 primary-text-color">LINQ Research is redefining the future of clinical research in Houston, TX, and beyond—where science meets purpose to drive life-changing medical advancements. Here, discovery isn't just a goal—it's a movement. Innovation isn't just an idea—it's action. And patient-centered care isn't an afterthought—it's the foundation of everything we do.</p>
-                <p class="mb-4 primary-text-color">If you're ready to push boundaries, accelerate breakthroughs, and be part of cutting-edge research that transforms lives, then you're in the right place. Let's shape the future of healthcare—together.</p>
+                <h2 class="mb-5 dark-secondary-text-color" th:utext="${@webUtils.validateString(contentBlock2.content)}">ABOUT US</h2>
+                <p class="mb-4 primary-text-color" th:utext="${@webUtils.validateString(contentBlock2.slide[0].slideContents[0].content)}"></p>
+                <p class="mb-4 primary-text-color" th:utext="${@webUtils.validateString(contentBlock2.slide[0].slideContents[1].content)}"></p>
             </div>
         </div>
     </div>
 
     <!-- ================= SECTION 2: Image Grid ================= -->
     <div class="d-flex justify-content-center align-items-center mx-auto container">
-    <div class="image-grid-wrapper">
-        <div class="row g-3 justify-content-center align-items-center">
-            <!-- Left squares -->
-            <div class="col-md-3">
-                <div class="square-img-container">
-                    <img src="image/principal-investigator.png" alt="" class="img-fluid rounded-5">
+        <div class="image-grid-wrapper">
+            <div class="row g-3 justify-content-center align-items-center">
+                <div class="col-md-3">
+                    <div class="square-img-container">
+                        <img th:src="${@webUtils.validateString(contentBlock3.slide[0].slideContents[0].content)}" alt="" class="img-fluid rounded-5">
+                    </div>
+                    <div class="square-img-container mt-3">
+                        <img th:src="${@webUtils.validateString(contentBlock3.slide[0].slideContents[1].content)}" alt="" class="img-fluid rounded-5">
+                    </div>
                 </div>
-                <div class="square-img-container mt-3">
-                    <img src="image/resource-1.png" alt="" class="img-fluid rounded-5">
+                <div class="col-md-4">
+                    <div class="rectangle-img-container">
+                        <img th:src="${@webUtils.validateString(contentBlock3.slide[0].slideContents[2].content)}" alt="" class="img-fluid rounded-5">
+                    </div>
                 </div>
-            </div>
-
-            <!-- Center rectangle -->
-            <div class="col-md-4">
-                <div class="rectangle-img-container">
-                    <img src="image/principal-investigator.png" alt="" class="img-fluid rounded-5">
-                </div>
-            </div>
-
-            <!-- Right squares -->
-            <div class="col-md-3">
-                <div class="square-img-container">
-                    <img src="image/resource-1.png" alt="" class="img-fluid rounded-5">
-                </div>
-                <div class="square-img-container mt-3">
-                    <img src="image/principal-investigator.png" alt="" class="img-fluid rounded-5">
+                <div class="col-md-3">
+                    <div class="square-img-container">
+                        <img th:src="${@webUtils.validateString(contentBlock3.slide[0].slideContents[3].content)}" alt="" class="img-fluid rounded-5">
+                    </div>
+                    <div class="square-img-container mt-3">
+                        <img th:src="${@webUtils.validateString(contentBlock3.slide[0].slideContents[4].content)}" alt="" class="img-fluid rounded-5">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- ================= SECTION 3: WHO WE ARE ================= -->
     <!-- Primary background section with full-width (no side margins) -->
     <div class="primary-bg-color p-5 mx-0 mt-4">
         <div class="container-fluid px-0">
-            <div class="row align-items-center">
+            <div class="row align-items-center" th:each="contentBlock : ${contentBlock4}" th:with="slide = ${contentBlock.slide[0]}">
                 <div class="col-lg-5 col-md-12 text-center image-container">
-                    <img src="image/refer-friend.png" alt="Team photo" class="img-fluid refer-img-2">
+                    <img th:src="${@webUtils.validateString(slide.slideContents[3].content)}" alt="Team photo" class="img-fluid refer-img-2">
                 </div>
                 <div class="col-lg-7 col-md-12 p-5">
-                    <h3 class="text-white fw-bold">Who we are?</h3>
-                    <h2 class="fw-bold dark-secondary-text-color">Building the Future of Healthcare - Together</h2>
-                    <p class="text-white">At LINQ Research LLC, we don't wait for the future of healthcare—we build it. Through every trial, every partnership, and every patient experience, we're creating a world where innovation is driven by empathy and grounded in impact. We're more than a research company—we're a mission-driven community of innovators, changemakers, and visionaries united by a single goal: to turn groundbreaking research into real-world impact.</p>
+                    <h3 class="text-white fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h3>
+                    <h2 class="fw-bold dark-secondary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+                    <p class="text-white" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
                 </div>
             </div>
         </div>
@@ -165,82 +190,50 @@
 
     <!-- ================= SECTION 4: EMPLOYEE BENEFITS & DIVERSITY ================= -->
     <div class="container py-5">
-        <!-- Employee Benefits Section -->
         <div class="row vacancy-text justify-content-center align-items-center text-center py-3 py-md-4 px-2 px-md-0">
             <div class="col-12 col-md-10 col-lg-8">
-                <h2 class="mb-3 primary-text-color fw-bold">Employee Benefits at LINQ Research LLC.</h2>
-                <p class="primary-text-color">We believe that investing in our team is key to driving innovation and success. That's why we offer competitive benefits designed to support your well-being, professional growth, and work-life balance.</p>
+                <h2 class="mb-3 primary-text-color fw-bold ${@webUtils.validateString(contentBlock5.content)}">Employee Benefits at LINQ Research LLC.</h2>
+                <p class="primary-text-color" th:utext="${@webUtils.validateString(contentBlock5.slide[0].slideContents[0].content)}"></p>
             </div>
         </div>
 
-        <!-- Benefits Icons Grid -->
+<!-- ================= SECTION 4: EMPLOYEE BENEFITS & DIVERSITY ================= -->
         <div class="row px-2 mt-2">
             <div class="col-md-10 my-5 my-md-0 mx-auto">
-                <div class="row p-1 p-lg-5 justify-content-center">
-                    <!-- Item 1 -->
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 h-100">
-                            <img src="image/01/Group-1217.png" alt="Withdraw icon" class="img-fluid">
-                            <p class="primary-text-color fs-6 fs-lg-3 text-center fw-bold">Right to<br>withdraw</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 h-100">
-                            <img src="image/01/Group-1222.png" alt="Risks and benefits icon" class="img-fluid">
-                            <p class="primary-text-color fs-6 fs-lg-3 text-center fw-bold">Know Risks<br> and Benefits</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="col-6 col-md-3">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 h-100">
-                            <img src="image/01/Group-1218.png" alt="Consent icon" class="img-fluid">
-                            <p class="primary-text-color fs-6 fs-lg-3 text-center fw-bold">Informed <br>Consent</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="col-6 col-md-3">
-                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 h-100">
-                            <img src="image/01/Group-1219.png" alt="Confidentiality icon" class="img-fluid">
-                            <p class="primary-text-color fs-6 fs-lg-3 text-center fw-bold">Confidentiality</p>
+                <div class="row p-1 p-lg-5 justify-content-center" th:each="benefitBlock : ${contentBlock6}" th:with="slide = ${benefitBlock.slide[0]}">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0" th:each="benefit : ${slide.slideContents}">
+                        <div class="d-flex flex-column align-items-center justify-content-center gap-4 h-100" th:utext="${benefit.content}">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Diversity and Inclusion Section -->
-        <div class="container refer-block">
+        <div class="container refer-block" th:each="contentBlock : ${contentBlock7}" th:with="slide = ${contentBlock.slide[0]}">
             <div class="row align-items-center py-3">
                 <div class="col-lg-7 col-md-12">
-                    <h3 class="fw-bold dark-secondary-text-color">Promoting Diversity and Inclusion</h3>
-                    <h2 class="primary-text-color fw-bold">Where Every Voice Matters, and Every Perspective Counts</h2>
-                    <p class="content-text">At LINQ Research LLC, we believe that innovation thrives when diverse voices come together. We are committed to building a workplace where everyone—regardless of background, identity, or experience—feels valued, heard, and empowered. By fostering an environment that celebrates unique perspectives, we create stronger research, better solutions, and a lasting impact on healthcare.</p>
+                    <h3 class="fw-bold dark-secondary-text-color" th:utext="${@webUtils.validateString(slide.slideContents[0].content)}"></h3>
+                    <h2 class="primary-text-color fw-bold" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"></h2>
+                    <p class="content-text" th:utext="${@webUtils.validateString(slide.slideContents[2].content)}"></p>
                 </div>
                 <div class="col-lg-5 col-md-12 text-center image-container">
-                    <img src="image/refer-friend.png" alt="Diverse team" class="img-fluid refer-img">
+                    <img th:src="${@webUtils.validateString(slide.slideContents[3].content)}" alt="Diverse team" class="img-fluid refer-img">
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-    <!-- Company footer/CTA section -->
-    <div class="row">
-        <div class="company-footer join-our-team">
-            <h2 class="dark-secondary-text-color fw-bold">Join Our Team</h2>
-            <p class="text-white fs-5">Explore Career Opportunities with LINQ Research LLC</p>
-            <a href="/careers" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium"> Careers</a>
-        </div>
+<div class="row">
+    <div class="company-footer join-our-team">
+        <h2 class="dark-secondary-text-color fw-bold">Join Our Team</h2>
+        <p class="text-white fs-5">Explore Career Opportunities with LINQ Research LLC</p>
+        <a href="/careers" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium"> Careers</a>
     </div>
+</div>
 
-
-<!-- Page footer loaded from template -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
-<script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/careers.js"></script>
 </body>
 
 </html>

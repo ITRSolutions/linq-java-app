@@ -170,7 +170,7 @@ $(document).ready(function () {
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)
          var slideContent = (contentType == "BLOG") ?
                                 quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>")
-                                                      : $('textarea[name="contentSG"]').val();
+                                                      : $('textarea[name="contentSG"]').val().trim();
          var orderIndex = $('input[name="orderIndexSC"]').val(); // Get the order index (position)
 
          // Prepare the data to be sent in the request
@@ -220,7 +220,7 @@ $(document).ready(function () {
 
          let contentType = $('select[name="updateContentTypeSG"]').val();
          let content = (contentType == "BLOG") ?
-                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>") : $('textarea[name="updateContentSG"]').val();
+                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>") : $('textarea[name="updateContentSG"]').val().trim();
          // Collect form data
          var formData = {
              orderIndex: $('input[name="updateOrderIndexSC"]').val(),
@@ -327,8 +327,8 @@ if (type == "IMAGE" || type == "URL") {
     })[0].outerHTML;
 
     return anchorTag;
-} else if(type == "TEXT" || type == "BLOG") {
-    textC = textC.replaceAll("<p>","").trim();
+} else {
+    textC = textC.replaceAll("<","").trim();
  }
 
         return textC;
