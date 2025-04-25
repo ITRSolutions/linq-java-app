@@ -74,7 +74,7 @@
 
                         <!-- Check if slide has no contents, render a simple link -->
                         <th:block th:if="${#lists.isEmpty(slide.slideContents)}" class="dropdown header-dropdown">
-                            <a class="nav-link header-link" th:href="${@webUtils.createLink(slide.slideTitle)}" th:utext="${@webUtils.validateString(slide.slideTitle)}"></a>
+                            <a class="nav-link header-link primary-text-color" th:href="${@webUtils.createLink(slide.slideTitle)}" th:utext="${@webUtils.validateString(slide.slideTitle)}"></a>
                         </th:block>
 
                         <!-- If slide has contents, render the dropdown -->

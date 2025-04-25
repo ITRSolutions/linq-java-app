@@ -1,9 +1,12 @@
 package com.linq.website.service;
 
+import com.linq.website.dto.ApplicationRequestDto;
 import com.linq.website.dto.FormSubmissionDTO;
 import com.linq.website.entity.FormSubmission;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.exceptions.ResourceNotFoundException;
 import com.linq.website.repository.FormSubmissionRepository;
+import com.linq.website.repository.JobApplicationRepository;
 import com.linq.website.utility.LoggedUser;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,9 @@ public class FormSubmissionService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    JobApplicationRepository jobRepo;
 
     // Create a logger instance for your class
     private static final Logger logger = Logger.getLogger(FormSubmissionService.class.getName());
@@ -94,5 +100,19 @@ public class FormSubmissionService {
 
     public List<FormSubmission> searchSubmissionsByStringAndPageName(String searchString, String pageName) {
         return repository.searchByStringAndPageName(searchString, pageName);
+    }
+
+    public void submitJobApplicationForm(ApplicationRequestDto dto) {
+        JobApplication jobApplication = new JobApplication();
+        jobApplication.setName(dto.getName());
+        jobApplication.setEmail(dto.getEmail());
+        jobApplication.setPhone(dto.getPhone());
+        jobApplication.setEligibleToWorkInUSA(dto.getEligibility());
+        jobApplication.setRequiresVisaSponsorship(dto.getVisa());
+        jobApplication.setResidesInUSA(dto.getReside());
+        jobApplication.setCompensation(dto.getCompensation());
+        jobApplication.setPageName(dto.getPageName());
+
+        jobRepo.save(jobApplication);
     }
 }

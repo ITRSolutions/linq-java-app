@@ -57,7 +57,7 @@ public class DynamicPageController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateDynamicPage(@Valid @RequestBody DynamicPageDTO.UpdateDynamicPage dto, @PathVariable Long id) {
         try {
-            dynamicPageService.getPageByName(dto.getSlug());
+//            dynamicPageService.getPageByName(dto.getSlug());
             dynamicPageService.updateDynamicPage(dto, id);
             System.out.println("updateDynamicPage");
         } catch (PageNotFoundException e) {

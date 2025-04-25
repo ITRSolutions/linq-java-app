@@ -1,63 +1,88 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Become a Principal Investigator | LINQ</title>
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/form-css.css">
-    <link rel="stylesheet" href="css/refer-friend-form.css">
     <script src="js/forms.js"></script>
-
-    <style>
-        .form-container {
-    margin-top: 30px;
-}
-    </style>
+    <!-- Responsive Form Styles -->
 </head>
 <body>
+
+<!-- Main Form Container -->
 <div class="form-container">
-    <a class="logo-form" href="old.index.html">
-        <img src="image/logo.png" alt="logo">
+
+    <!-- Logo Section -->
+    <a class="logo-form" href="/" aria-label="LINQ Research Home">
+        <img src="image/logo.png" alt="LINQ Research Logo">
     </a>
+
+    <!-- Principal Investigator Application Form -->
     <form id="contact-form">
-        <div class="form-group">
-            <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="first-name">First Name*</label>
+
+        <!-- Personal Information Section -->
+        <div class="form-row">  <!-- Name fields in row -->
+            <div class="form-group">
+                <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
+                <label for="first-name">First Name*</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
+                <label for="last-name">Last Name*</label>
+            </div>
         </div>
+
+        <!-- Date of Birth Field -->
         <div class="form-group">
-            <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="last-name">Last Name*</label>
-        </div>
-        <div class="form-group">
-            <input type="date" id="dob" required>
+            <input type="date" id="dob" required pattern="\d{4}-\d{2}-\d{2}"
+                   placeholder="YYYY-MM-DD">
             <label for="dob">Date of Birth*</label>
         </div>
-        <div class="form-group">
-            <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
-            <label for="phone">Primary Phone Number*</label>
+
+        <!-- Contact Information Section -->
+        <div class="form-row">  <!-- Contact fields in row -->
+            <div class="form-group">
+                <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
+                <label for="phone">Primary Phone Number*</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
+                <label for="email">Email*</label>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
-            <label for="email">Email*</label>
+
+        <!-- Professional Information Section -->
+        <div class="form-row">  <!-- Professional fields in row -->
+            <div class="form-group">
+                <input type="text" id="speciality" placeholder=" " required>
+                <label for="speciality">Speciality*</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="state" placeholder=" " required>
+                <label for="state">State*</label>
+                <span class="error"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="text" id="speciality" placeholder=" " required>
-            <label for="speciality">Speciality*</label>
-        </div>
-        <div class="form-group">
-            <input type="text" id="state" placeholder=" " required>
-            <label for="state">State*</label>
-            <span class="error"></span>
-        </div>
+
+        <!-- Hidden Field for Page Tracking -->
         <input type="hidden" id="pageName" value="become-principal-investigator">
-        <p id="response-message"></p>
+
+        <!-- Response Message Area -->
+        <p id="response-message" role="alert" aria-live="polite"></p>
+
+        <!-- Submit Button Section -->
         <div class="md-btn">
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn-principal-form">Submit</button>
         </div>
-        <p class="error"></p>
+
+        <!-- Error Message Container -->
+        <p class="error" role="alert" aria-live="assertive"></p>
     </form>
 </div>
 </body>

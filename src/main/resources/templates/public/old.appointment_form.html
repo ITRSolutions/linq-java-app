@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form | LINQ</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="css/form-css.css">
+    <script src="js/forms.js"></script>
+</head>
+<body>
+<div class="form-container">
+    <a class="logo-form" href=" ">
+        <img src="image/logo.png" alt="logo">
+    </a>
+    <form id="contact-form">
+        <div class="form-group">
+            <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
+            <label for="first-name">First Name*</label>
+        </div>
+        <div class="form-group">
+            <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
+            <label for="last-name">Last Name*</label>
+        </div>
+        <div class="form-group">
+            <input type="date" id="dob" required>
+            <label for="dob">Date of Birth*</label>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
+            <label for="phone">Primary Phone Number*</label>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
+            <label for="email">Email*</label>
+        </div>
+        <div class="checkbox-group">
+            <p>What is the best time to contact you?</p>
+            <p><input type="checkbox" name="contact-time" value="8am-12pm"> Between 8 am - 12 pm</p>
+            <p><input type="checkbox" name="contact-time" value="12pm-5pm"> Between 12 pm - 5 pm</p>
+            <p><input type="checkbox" name="contact-time" value="5pm-8pm"> Between 5 pm - 8 pm</p>
+            <p><input type="checkbox" name="contact-time" value="weekends"> Weekends</p>
+        </div>
+        <div class="form-group">
+            <input type="text" id="zip" placeholder=" " required minlength="4" maxlength="10">
+            <label for="zip">Zip Code*</label>
+        </div>
+        <div class="form-group">
+            <input type="text" id="state" placeholder=" " required minlength="4" maxlength="50">
+            <label for="state">State*</label>
+        </div>
+        <input type="hidden" id="pageName" th:value="${pageName}">
+        <p class="footer-text">By submitting this form, you agree to receive notifications
+            from LINQ Research LLC.</p>
+
+        <p id="response-message"></p>
+        <div class="md-btn">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

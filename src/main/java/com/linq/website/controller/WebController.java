@@ -181,10 +181,10 @@ public class WebController {
         return navigationBlocks;
     }
 
-    @GetMapping("/employee_registration")
-    public String employeeRegistration(Model model) {
-        return "registration_form/employee_registration";
-    }
+//    @GetMapping("/employee_registration")
+//    public String employeeRegistration(Model model) {
+//        return "registration_form/employee_registration";
+//    }
 
     @GetMapping("/appointment_form")
     public String appointmentForm(@RequestParam(value = "disease") String disease, Model model) {

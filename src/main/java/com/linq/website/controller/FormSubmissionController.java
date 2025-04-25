@@ -1,10 +1,12 @@
 package com.linq.website.controller;
 
+import com.linq.website.dto.ApplicationRequestDto;
 import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.dto.FormSubmissionDTO;
 import com.linq.website.dto.SuccessResponse;
 import com.linq.website.entity.FormSubmission;
 import com.linq.website.service.FormSubmissionService;
+import com.linq.website.service.S3Service;
 import com.linq.website.service.SlideContentService;
 import com.linq.website.service.UserService;
 import jakarta.annotation.security.PermitAll;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,6 +32,9 @@ public class FormSubmissionController {
 
     @Autowired
     private SlideContentService slideContentService;
+
+    @Autowired
+    private S3Service s3Service;
 
     @PermitAll
     @PostMapping()
@@ -74,5 +80,22 @@ public class FormSubmissionController {
     public ResponseEntity<?> getDiseases() {
         List<String> diseasesList = slideContentService.getDiseasesList();
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of Diseases.", diseasesList));
+    }
+
+    @PostMapping("/apply")
+    public ResponseEntity<?> apply(@Valid @RequestBody ApplicationRequestDto dto) {
+        System.out.println("Received application from: " + dto.getName());
+
+        // Save resume & cover letter to S3
+        try {
+            s3Service.uploadPdfFile(dto.getResume());
+            s3Service.uploadPdfFile(dto.getCoverLetter());
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ResponseEntity.ok(new SuccessResponse(true, "Application submitted successfully.",null));
     }
 }

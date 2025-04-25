@@ -2,40 +2,64 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Appointment Form | LINQ</title>
     <!-- Favicon -->
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <!-- JavaScript Libraries -->
     <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/form-css.css">
     <script src="js/forms.js"></script>
+    <!-- Responsive Styles -->
+
 </head>
 <body>
+
+<!-- Main Form Container -->
 <div class="form-container">
-    <a class="logo-form" href=" ">
-        <img src="image/logo.png" alt="logo">
+
+    <!-- Logo Section -->
+    <a class="logo-form" href="/">
+        <img src="image/logo.png" alt="LINQ Research Logo">
     </a>
+
+    <!-- Appointment Form -->
     <form id="contact-form">
-        <div class="form-group">
-            <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="first-name">First Name*</label>
+
+        <!-- Personal Information Section -->
+        <div class="form-row">  <!-- Row for name fields -->
+            <div class="form-group">
+                <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
+                <label for="first-name">First Name*</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
+                <label for="last-name">Last Name*</label>
+            </div>
         </div>
+
+        <!-- Date of Birth Field -->
         <div class="form-group">
-            <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="last-name">Last Name*</label>
-        </div>
-        <div class="form-group">
-            <input type="date" id="dob" required>
+            <input type="date" id="dob" required pattern="\d{4}-\d{2}-\d{2}"
+                   placeholder="YYYY-MM-DD">
             <label for="dob">Date of Birth*</label>
         </div>
-        <div class="form-group">
-            <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
-            <label for="phone">Primary Phone Number*</label>
+
+        <!-- Contact Information Section -->
+        <div class="form-row">  <!-- Row for phone/email -->
+            <div class="form-group">
+                <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
+                <label for="phone">Primary Phone Number*</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
+                <label for="email">Email*</label>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
-            <label for="email">Email*</label>
-        </div>
+
+        <!-- Preferred Contact Time (Checkbox Group) -->
         <div class="checkbox-group">
             <p>What is the best time to contact you?</p>
             <p><input type="checkbox" name="contact-time" value="8am-12pm"> Between 8 am - 12 pm</p>
@@ -43,21 +67,32 @@
             <p><input type="checkbox" name="contact-time" value="5pm-8pm"> Between 5 pm - 8 pm</p>
             <p><input type="checkbox" name="contact-time" value="weekends"> Weekends</p>
         </div>
-        <div class="form-group">
-            <input type="text" id="zip" placeholder=" " required minlength="4" maxlength="10">
-            <label for="zip">Zip Code*</label>
+
+        <!-- Location Information Section -->
+        <div class="form-row">  <!-- Row for zip/state -->
+            <div class="form-group">
+                <input type="text" id="zip" placeholder=" " required minlength="4" maxlength="10">
+                <label for="zip">Zip Code*</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="state" placeholder=" " required minlength="4" maxlength="50">
+                <label for="state">State*</label>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="text" id="state" placeholder=" " required minlength="4" maxlength="50">
-            <label for="state">State*</label>
-        </div>
+
+        <!-- Hidden Field for Page Tracking -->
         <input type="hidden" id="pageName" th:value="${pageName}">
+
+        <!-- Form Footer (Consent Text) -->
         <p class="footer-text">By submitting this form, you agree to receive notifications
             from LINQ Research LLC.</p>
 
+        <!-- Response Message Area -->
         <p id="response-message"></p>
+
+        <!-- Submit Button Section -->
         <div class="md-btn">
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn-appointment-form">Submit</button>
         </div>
     </form>
 

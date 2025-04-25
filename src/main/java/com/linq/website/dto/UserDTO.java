@@ -56,24 +56,6 @@ public class UserDTO {
         //@Pattern(regexp = "^(\\+1\\s?)?\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{4}$", message = "Contact number must be a valid US phone number.")
         private String contactNumber;
 
-        @NotBlank(message = "Gender is required.")
-        private String gender;
-
-        @NotBlank(message = "Date of Birth is required.")
-        private String dob;
-
-        @NotBlank(message = "City is required.")
-        private String city;
-//
-        @NotBlank(message = "State is required.")
-        private String state;
-//
-        @NotBlank(message = "Country is required.")
-        private String country;
-//
-        @NotBlank(message = "ZIP code is required.")
-        private String zipCode;
-
         @NotBlank(message = "Email address is required.")
         @Email(message = "Email address should be valid.")
         private String email;
@@ -85,6 +67,9 @@ public class UserDTO {
         @NotBlank(message = "Confirm password is required.")
         @Size(min = 8, message = "Confirm password must be at least 8 characters long.")
         private String confirmPassword;
+
+        @NotNull(message = "activateUser is required.")
+        private Boolean activateUser;
     }
 
     @Getter

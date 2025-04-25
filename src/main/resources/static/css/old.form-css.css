@@ -54,7 +54,7 @@ input:not(:placeholder-shown) + label {
     color: #000;
 }
 button {
-    width: 140px;
+    width: 140px; 
     padding: 10px;
     background-color: #20385D;
     color: white;
@@ -63,7 +63,7 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
-button:hover {
+button:hover { 
     background-color: #20385D;
 }
 .footer-text {
@@ -83,10 +83,10 @@ button:hover {
 
 }
 
-.logo-form  {
+.logo-form  { 
     text-align: center;
     display: grid;
-    place-items: center;
+    place-items: center;   
     margin-bottom: 23px;
 }
 
@@ -118,40 +118,3 @@ select {
     margin: 0 auto;
     text-align: center;
 } */
-
-
-
-
-        /* Appointment form responsive styles */
-        .form-container {
-            max-width: 800px;
-            margin: 10 auto;
-            padding: 20px;
-        }
-
-        /* Two-column layout for larger screens */
-        @media (min-width: 768px) {
-            .form-row {
-                display: flex;
-                gap: 20px;
-            }
-            .form-row .form-group {
-                flex: 1;
-            }
-        }
-
-        /* Mobile-specific adjustments */
-        @media (max-width: 767px) {
-            .form-group {
-                margin-bottom: 15px;
-            }
-            .checkbox-group p {
-                margin: 10px 0;
-            }
-            .btn-appointment-form, .btn-principal-form {
-                width: 100%
-            }
-            .form-container {
-                border-radius: 0 !important;
-            }
-        }

@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 mt-2">
-                        <button type="submit" class="custom-btn w-100 py-2 fw-semibold">Search</button>
+                        <button type="submit" class="custom-btn w-100 py-2 mx-auto fw-semibold">Search</button>
                     </div>
                 </form>
             </div>
@@ -76,7 +76,7 @@
                                         <td class="py-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Location</td>
                                         <td class="py-3 text-end">
                                             <a th:href="@{'/job-description'(page=${@webUtils.createLink(slide.slideContents[0].content)})}"
-                                               target="_blank" class="custom-btn rounded-2 py-2 px-4">Apply Now</a>
+                                               target="_blank" class="custom-btn rounded-2 py-2 px-4 text-decoration-none d-inline-block text-center">Apply Now</a>
                                         </td>
                                     </tr>
                                 </th:block>
@@ -118,7 +118,7 @@
                                         <td class="py-3" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">Location</td>
                                         <td class="py-3 text-end">
                                             <a th:href="@{'/job-description'(page=${@webUtils.createLink(slide.slideContents[0].content)})}"
-                                               target="_blank" class="custom-btn rounded-2 py-2 px-4">Apply Now</a>
+                                               target="_blank" class="custom-btn rounded-2 py-2 px-4 text-decoration-none d-inline-block text-center">Apply Now</a>
                                         </td>
                                 </tr>
                                 </th:block>
@@ -224,11 +224,9 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="company-footer join-our-team">
-        <h2 class="dark-secondary-text-color fw-bold">Join Our Team</h2>
-        <p class="text-white fs-5">Explore Career Opportunities with LINQ Research LLC</p>
-        <a href="/careers" target="_blank" class="btn text-white mt-2 health-card-btn px-4 fw-medium"> Careers</a>
+<!-- Company Footer Section -->
+<div class="row mt-5">
+    <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}">
     </div>
 </div>
 

@@ -14,13 +14,7 @@ let totalUsers = 0;
         $('#contactNumber').val(selected.contactNumber);
 
         let dob = selected.dob;
-        if(dob.includes("/")) {
-            let parts = dob.split('/');
-            let formattedDob = parts[2] + '-' + parts[0] + '-' + parts[1];
-            $("#dob").val(formattedDob);
-        } else {
-            $('#dob').val(dob);
-        }
+        $('#dob').val(dob);
 
         $('#gender').val(selected.gender);
         $('#city').val(selected.city);
@@ -41,6 +35,10 @@ let totalUsers = 0;
                loadUsers(currentPage);
           });
 
+
+          $(document).on('click', '#addUser', function () {
+               $('#createUser').modal('show');
+          });
 
 //<------------Display User Start------------->
 
@@ -118,16 +116,16 @@ let totalUsers = 0;
 
         // Get the updated data from the form
         const updatedData = {
-            firstName: $('#firstName').val(),
-            lastName: $('#lastName').val(),
-            contactNumber: $('#contactNumber').val(),
-            dob: $('#dob').val(),
-            gender: $('#gender').val(),
-            city: $('#city').val(),
-            state: $('#state').val(),
-            zipCode: $('#zipCode').val(),
-            country: $('#country').val(),
-            activateUser: $('#activateUser').val()
+            firstName: $('#firstName').val().trim(),
+            lastName: $('#lastName').val().trim(),
+            contactNumber: $('#contactNumber').val().trim(),
+            dob: $('#dob').val().trim(),
+            gender: $('#gender').val().trim(),
+            city: $('#city').val().trim(),
+            state: $('#state').val().trim(),
+            zipCode: $('#zipCode').val().trim(),
+            country: $('#country').val().trim(),
+            activateUser: $('#activateUser').val().trim()
         };
 
         const userId = $('#updateUserRow').val();
@@ -236,4 +234,77 @@ let totalUsers = 0;
                     }
                 });
 //<------------Delete User End------------->
+
+//<------------Create User------------->
+    $('#createUser form').on('submit', function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const formData = {
+        firstName: $('input[name="firstName"]').val().trim(),
+        lastName: $('input[name="lastName"]').val().trim(),
+        contactNumber: $('input[name="contactNumber"]').val().trim(),
+        email: $('input[name="email"]').val().trim(), // Fixed name below
+        password: $('input[name="password"]').val().trim(),
+        confirmPassword: $('input[name="confirm_password"]').val().trim(),
+        activateUser: $('select[name="activateUser"]').val().trim()
+      };
+
+      if(!validateForm()) {
+        return false;
+      }
+
+      $.ajax({
+        url: '/api/v1/auth/register',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader("X-CSRF-TOKEN", $("#_csrf").val());
+                        },
+        success: function (response) {
+           loadUsers(currentPage);
+          alert('User created successfully!');
+          $('#createUser').modal('hide'); // Hide modal if using Bootstrap JS
+        },
+        error: function (xhr) {
+          alert('Failed to create user: ' + xhr.responseText);
+        }
       });
+    });
+
+     $('#generatePasswordBtn').click(function () {
+          const newPassword = generateReadablePassword();
+          $('input[name="password"]').val(newPassword);
+          $('input[name="confirm_password"]').val(newPassword);
+        });
+
+    			function validateForm() {
+    			    let password = $('input[name="password"]').val().trim();
+                    let confirmPassword = $('input[name="confirm_password"]').val().trim();
+
+    			    if (password !== confirmPassword) {
+    			        alert("Confirm password is not matching");
+    			        return false;
+    			    }
+
+    			    // If everything is valid, form can be submitted
+    			    return true;
+    			}
+
+
+    			  function generateReadablePassword() {
+                    const syllables = ["ba", "lo", "mi", "ra", "ka", "ti", "zo", "nu", "ve", "si"];
+                    let password = "";
+
+                    while (password.length < 6) {
+                      password += syllables[Math.floor(Math.random() * syllables.length)];
+                    }
+
+                    // Trim to 6 characters, then add 2 random digits
+                    password = password.substring(0, 6) + Math.floor(10 + Math.random() * 90); // adds two-digit number
+
+                    return password;
+                  }
+      });
+
+

@@ -29,22 +29,22 @@ public class User {
     @Column(name = "contactNumber", nullable = false)
     private String contactNumber;
 
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender", nullable = true)
     private String gender;
 
-    @Column(name = "dob", nullable = false)
+    @Column(name = "dob", nullable = true)
     private String dob;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city", nullable = true)
     private String city;
 
-    @Column(name = "state", nullable = false)
+    @Column(name = "state", nullable = true)
     private String state;
 
-    @Column(name = "country", nullable = false)
+    @Column(name = "country", nullable = true)
     private String country;
 
-    @Column(name = "zipCode", nullable = false)
+    @Column(name = "zipCode", nullable = true)
     private String zipCode;
 
     @Column(name = "email", unique = true, nullable = false)

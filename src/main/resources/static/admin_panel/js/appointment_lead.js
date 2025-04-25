@@ -31,11 +31,13 @@ $(document).ready(function() {
             // Loop through each disease
             diseases.forEach(function(disease) {
                 // Format the disease name (replace spaces with dash, remove quotes)
-                let formattedDisease = disease
-                    .replace(/\s*\([^)]*\)/g, '')      // Remove parentheses and content inside
-                    .toLowerCase()                     // Convert to lowercase
-                    .replace(/ /g, '-')                // Replace spaces with dash
-                    .replace(/'/g, '');                // Remove single quotes
+let formattedDisease = disease
+    .replace(/\s*\([^)]*\)/g, '')         // Remove parentheses and content inside
+    .replace(/[^\w\s-]/g, '')             // Remove special characters except dash and space
+    .trim()                               // Trim leading/trailing whitespace
+    .toLowerCase()                        // Convert to lowercase
+    .replace(/\s+/g, '-')                 // Replace spaces with single dash
+    .replace(/-+/g, '-');                 // Collapse multiple dashes
 
                 // Append the formatted disease to the select box
                 $('#diseaseSelect').append(

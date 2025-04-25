@@ -73,15 +73,16 @@ public class UserService {
         userData.setFirstName(data.getFirstName());
         userData.setLastName(data.getLastName());
         userData.setContactNumber(data.getContactNumber());
-        userData.setCity(data.getCity());
-        userData.setState(data.getState());
-        userData.setCountry(data.getCountry());
-        userData.setZipCode(data.getZipCode());
+//        userData.setCity(data.getCity());
+//        userData.setState(data.getState());
+//        userData.setCountry(data.getCountry());
+//        userData.setZipCode(data.getZipCode());
         userData.setEmail(data.getEmail());
         userData.setPassword(hashPassword);
-        userData.setDob(data.getDob());
-        userData.setGender(data.getGender());
+//        userData.setDob(data.getDob());
+//        userData.setGender(data.getGender());
         userData.setRole(role);
+        userData.setActivateUser(data.getActivateUser());
         userRepository.save(userData);
 
         mailService.sendActivationEmail(userData);

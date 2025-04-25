@@ -3,7 +3,7 @@
       sec:authorize="hasRole('ROLE_ADMIN')">
 
 <head>
-    <th th:replace="admin_panel/header.html"></th>
+    <th:block th:insert="~{admin_panel/header.html}"></th:block>
 
     <style>
         .success {
@@ -51,6 +51,9 @@
                                     <div class="mailbox-content pd-0">
                                         <div class="mail-toolbar clearfix pd-t-0">
                                             <div class="float-left pd-t-20">
+                                                <button type="button" class="btn btn_1 btn-default mrg5R" id="addUser">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
 
                                                 <div class="btn btn_1 btn-default mrg5R" id="refresh">
                                                     <i class="fa fa-refresh"> </i>
@@ -101,7 +104,7 @@
             <div class="clearfix"></div>
             <div class="padding-t-15">
                 <!----Footer-->
-                <th th:replace="admin_panel/footer.html"></th>
+                <th th:replace="~{admin_panel/footer.html}"></th>
                 <!----Footer-->
             </div>
         </div>
@@ -110,7 +113,62 @@
 
     <script src="js/users.js"></script>
 
-    <!-------------------- Slide-Content Code Block Start -------------------->
+    <!-------------------- User Code Block Start -------------------->
+    <!-- Update User PopUp Start -->
+    <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="createUser" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h2 class="modal-title text-center">Add User</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel-body">
+
+                            <div class="col-md-6">
+                                <label>* First Name</label>
+                                <input type="text" class="form-control1 control3" name="firstName" minlength="3" maxlength="40" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Last Name</label>
+                                <input type="text" class="form-control1 control3" name="lastName" minlength="3" maxlength="40"  required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Contact Number :</label>
+                                <input type="tel" pattern="[\+\-0-9]*" name="contactNumber" minlength="5" maxlength="20" class="form-control1 control3" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Email :</label>
+                                <input type="email" name="email" minlength="5" maxlength="50" class="form-control1 control3" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Password :</label>
+                                <input type="text" name="password" class="form-control1 control3" minlength="8" maxlength="15"  required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Confirm Password :</label>
+                                <input type="text" name="confirm_password" class="form-control1 control3" minlength="8" maxlength="15" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Activate User:</label>
+                                <select name="activateUser" class="form-control1 control3">
+                                    <option value="true">Activated</option>
+                                    <option value="false">Deactivate</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="generatePasswordBtn">Generate Password</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Add Slide PopUp End -->
 
     <!-- Update User PopUp Start -->
     <div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="updateSlideContentLabel"
@@ -144,7 +202,7 @@
                             <div class="col-md-6">
                                 <label>Update Gender:</label>
                                 <select id="gender" class="form-control1 control3" required>
-                                    <option>Select Gender</option>
+                                    <option value="">Select Gender</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
@@ -159,7 +217,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Update Zip Code:</label>
-                                <input type="number" class="form-control1 control3" id="zipCode" required>
+                                <input type="text" class="form-control1 control3" id="zipCode" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Update Country:</label>

@@ -91,7 +91,7 @@ public class DynamicPageService {
         DynamicPage dynamicPage = dynamicPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
         dynamicPage.setTitle(dto.getTitle());
-//        dynamicPage.setSlug(dto.getSlug());
+        dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
         dynamicPage.setUpdatedBy(loggedUser.getUpdatedByUserObj());  // Set the logged-in user (admin)
 

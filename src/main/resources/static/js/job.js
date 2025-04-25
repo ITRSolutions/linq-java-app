@@ -122,3 +122,71 @@ if (!$("input[name='reside']:checked").val()) {
       }
     });
   });
+
+  function submitForm() {
+      const form = $('#job_application');
+      const formData = new FormData(form);
+
+      const resumeFile = formData.get('resume');
+      const coverLetterFile = formData.get('coverLetter');
+
+      if (!resumeFile || !coverLetterFile) {
+          alert("Please upload both resume and cover letter PDFs.");
+          return;
+      }
+
+      // Read files as Base64
+      Promise.all([
+          fileToBase64(resumeFile),
+          fileToBase64(coverLetterFile)
+      ]).then(function ([resumeBase64, coverLetterBase64]) {
+          const payload = {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              eligibility: formData.get('eligibility'),
+              visa: formData.get('visa'),
+              reside: formData.get('reside'),
+              compensation: formData.get('compensation'),
+              pageName: formData.get('pageName'),
+              resume: {
+                  fileName: resumeFile.name,
+                  contentType: resumeFile.type,
+                  content: resumeBase64
+              },
+              coverLetter: {
+                  fileName: coverLetterFile.name,
+                  contentType: coverLetterFile.type,
+                  content: coverLetterBase64
+              }
+          };
+
+          // Send JSON POST
+          $.ajax({
+              url: '/api/v1/your-endpoint',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify(payload),
+              success: function (response) {
+                  alert("Application submitted successfully!");
+              },
+              error: function (err) {
+                  alert("Failed to submit application.");
+                  console.error(err);
+              }
+          });
+      }).catch(function (err) {
+          console.error('Error reading files:', err);
+          alert("Could not read uploaded files.");
+      });
+  }
+
+  // Helper: Convert file to Base64
+  function fileToBase64(file) {
+      return new Promise(function (resolve, reject) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result.split(',')[1]); // Get Base64 only
+          reader.onerror = reject;
+      });
+  }

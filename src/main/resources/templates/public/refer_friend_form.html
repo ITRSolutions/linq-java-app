@@ -11,74 +11,112 @@
     <link rel="stylesheet" href="css/refer-friend-form.css">
     <script src="js/forms.js"></script>
 </head>
-<body><br><br>
+<body>
+<!-- Form Container: Wrapper for the entire form section -->
 <div class="form-container">
-    <a class="logo-form" href="old.index.html">
-        <img src="image/logo.png" alt="logo">
+    <!-- Logo linking back to the homepage -->
+    <a class="logo-form" href="/" aria-label="LINQ Research Home">
+        <img src="image/logo.png" alt="LINQ Research Logo">
     </a>
 
-    <!-- Paragraph at the top -->
-    <p>Please fill out the form below to refer a friend to LINQ Research.</p>
+    <!-- Form Introduction -->
+    <p class="form-intro">Please fill out the form below to refer a friend to LINQ Research.</p>
 
+    <!-- Main Form -->
     <form id="contact-form">
-        <div class="form-group">
-            <input type="text" id="first-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="first-name">First Name*</label>
-        </div>
-        <div class="form-group">
-            <input type="text" id="last-name" placeholder=" " required minlength="2" maxlength="50">
-            <label for="last-name">Last Name*</label>
-        </div>
-        <div class="form-group">
-            <input type="date" id="dob" required>
-            <label for="dob">Date of Birth*</label>
-        </div>
-        <div class="form-group">
-            <input type="tel" id="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15">
-            <label for="phone">Primary Phone Number*</label>
-        </div>
-        <div class="form-group">
-            <input type="email" id="email" placeholder=" " minlength="8" maxlength="50" required>
-            <label for="email">Email*</label>
-        </div>
-        <div class="form-group">
-            <p>Are you a current LinQ Research Employee?</p>
-            <select id="isEmployee" required>
-                <option value="">Select</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <p>Are you an active participant in any LinQ studies?</p>
-            <select id="isStudyParticipant" required>
-                <option value="">Select</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-        </div>
+        <!-- Referrer's Personal Information Section -->
+        <fieldset class="form-section" aria-labelledby="referrer-info-heading">
+            <legend id="referrer-info-heading" class="visually-hidden">Your Information</legend>
 
-        <!-- New section for referred person's details -->
-        <div class="form-group">
-            <p style="text-align: center;">Please provide the referred person's details:</p>
-        </div>
-        <div class="form-group">
-            <input type="text" id="refName" placeholder=" " minlength="2" maxlength="70" required>
-            <label for="refName">Referred Person's Name*</label>
-        </div>
-        <div class="form-group">
-            <input type="tel" id="refContactNumber" class="phone" placeholder=" " pattern="[\+]?[0-9-]*" minlength="10" maxlength="15" required>
-            <label for="refContactNumber">Referred Person's Contact Number*</label>
-        </div>
-        <input type="hidden" id="pageName" value="refer-friend">
+            <!-- First Name -->
+            <div class="form-group">
+                <input type="text" id="first-name" name="first-name" placeholder=" " required minlength="2" maxlength="50" aria-required="true">
+                <label for="first-name">First Name*</label>
+            </div>
 
-        <p class="footer-text">By submitting this form, you agree to receive notifications
-            from LINQ Research LLC.</p>
+            <!-- Last Name -->
+            <div class="form-group">
+                <input type="text" id="last-name" name="last-name" placeholder=" " required minlength="2" maxlength="50" aria-required="true">
+                <label for="last-name">Last Name*</label>
+            </div>
 
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <input type="date" id="dob" name="dob" required aria-required="true" pattern="\d{4}-\d{2}-\d{2}"
+                       placeholder="YYYY-MM-DD">
+                <label for="dob">Date of Birth*</label>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" class="phone" placeholder=" " required pattern="[\+]?[0-9-]*" minlength="10" maxlength="15" aria-required="true">
+                <label for="phone">Primary Phone Number*</label>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " minlength="8" maxlength="50" required aria-required="true">
+                <label for="email">Email*</label>
+            </div>
+        </fieldset>
+
+        <!-- Employment & Participation Section -->
+        <fieldset class="form-section" aria-labelledby="employment-heading">
+            <legend id="employment-heading" class="visually-hidden">Employment Details</legend>
+
+            <!-- Current Employee -->
+            <div class="form-group">
+                <p id="employee-label">Are you a current LinQ Research Employee?</p>
+                <select id="isEmployee" name="isEmployee" required aria-required="true" aria-labelledby="employee-label">
+                    <option value="">Select</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <!-- Study Participant -->
+            <div class="form-group">
+                <p id="participant-label">Are you an active participant in any LinQ studies?</p>
+                <select id="isStudyParticipant" name="isStudyParticipant" required aria-required="true" aria-labelledby="participant-label">
+                    <option value="">Select</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <!-- Referred Person's Details Section -->
+        <fieldset class="form-section" aria-labelledby="referred-info-heading">
+            <legend id="referred-info-heading" class="section-title">Referred Person's Details</legend>
+
+            <!-- Referred Name -->
+            <div class="form-group">
+                <input type="text" id="refName" name="refName" placeholder=" " minlength="2" maxlength="70" required aria-required="true">
+                <label for="refName">Referred Person's Name*</label>
+            </div>
+
+            <!-- Referred Contact Number -->
+            <div class="form-group">
+                <input type="tel" id="refContactNumber" name="refContactNumber" class="phone" placeholder=" " pattern="[\+]?[0-9-]*" minlength="10" maxlength="15" required aria-required="true">
+                <label for="refContactNumber">Referred Person's Contact Number*</label>
+            </div>
+        </fieldset>
+
+        <!-- Hidden Field for Tracking -->
+        <input type="hidden" id="pageName" name="pageName" value="refer-friend">
+
+        <!-- Form Footer (Consent Text) -->
+        <p class="footer-text" aria-hidden="true">
+            By submitting this form, you agree to receive notifications from LINQ Research LLC.
+        </p>
+
+        <!-- Submit Button -->
         <div class="md-btn">
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn-refer-form" aria-label="Submit Referral Form">Submit</button>
         </div>
-        <p class="error"></p>
+
+        <!-- Error Message Container -->
+        <p class="error-message" role="alert" aria-live="assertive"></p>
     </form>
 </div>
 </body>

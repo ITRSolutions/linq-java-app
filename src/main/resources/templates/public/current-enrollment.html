@@ -30,7 +30,7 @@
 		<!-- All Disease Container Start - Updated layout -->
 		<div class="row custom-disease-container g-4" th:each="contentBlock : ${contentBlock3}">
 			<div class="col-md-4 col-sm-6 col-12" th:each="slide : ${contentBlock.slide}">
-				<div class="custom-disease-card shadow-sm p-3" th:attr="onclick='window.open(&quot;disease?page=' + ${@webUtils.validateString(slide.slideContents[2].content)} + '&quot;, &quot;_blank&quot;);'">
+				<div class="custom-disease-card shadow-sm p-3" th:attr="onclick='window.open(&quot;disease?page=' + ${@webUtils.createLink(slide.slideContents[1].content)} + '&quot;, &quot;_blank&quot;);'">
 					<div class="custom-card-content d-flex align-items-center">
 						<div class="custom-icon-wrapper me-3">
 							<img class="custom-disease-img" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">

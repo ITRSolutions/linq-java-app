@@ -108,12 +108,6 @@ refer-block {
     text-align: center;
   }
 
-    .job-search-overlap {
-      margin-top: -80px; /* Adjust this value to control how much it overlaps */
-      position: relative; /* Needed for z-index */
-      z-index: 10; /* Ensure it appears above the header */
-    }
-
   .text-content, .image-container {
     width: 100%;
     max-width: 100%;
@@ -165,6 +159,11 @@ refer-block {
   .image-container {
     padding: 1rem 2rem; /* Added left padding */
   }
+    .job-search-overlap {
+      margin-top: -80px; /* Adjust this value to control how much it overlaps */
+      position: relative; /* Needed for z-index */
+      z-index: 10; /* Ensure it appears above the header */
+    }
     .text-content {
       padding: 1rem 2rem; /* Added right padding */
     }

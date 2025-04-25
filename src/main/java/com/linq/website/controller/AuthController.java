@@ -39,6 +39,7 @@ public class AuthController {
 
 
     // Register an account
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody UserDTO.CreateUser request) {
 

@@ -6,12 +6,16 @@ import org.springframework.stereotype.Component;
 public class ThymeleafUtils {
 
     public String createLink(String value) {
-        value = value.trim();
-        String link = value.replaceAll("[^a-zA-Z0-9 ]", "")
-                .replace(" ", "-").replace("--", "-").toLowerCase();
-        if (link.isEmpty()) {
+        if (value.trim().isEmpty()) {
             return "#";
         }
+        value = value.replaceAll("\\s*\\([^)]*\\)", "");               // Remove parentheses and content inside
+        value = value.replaceAll("[^a-zA-Z0-9\\s-]", "");              // Remove special characters except space and dash
+        value = value.trim();                                         // Trim leading/trailing spaces
+        String link = value.replaceAll("\\s+", "-")                   // Replace one or more spaces with dash
+                .replaceAll("-+", "-")                    // Collapse multiple dashes
+                .toLowerCase();                           // Convert to lowercase
+
         return link;
     }
 
