@@ -12,8 +12,7 @@
 </div>
 <div class="row">
     <div class="contact-header">
-        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}">About
-            Clinical Trials</h2>
+        <h2 class="text-white fw-bold" th:utext="${@webUtils.validateString(contentBlock1.content)}"> </h2>
     </div>
 </div>
 
@@ -40,7 +39,7 @@
                     </form>
                 </div>
                 <div class="col-md-6 py-4 px-0 overflow-hidden">
-                    <img src="image/01/Rectangle-516.png" alt=""
+                    <img th:src="${@webUtils.validateString(contentBlock2.slide[0].slideContents[0].content)}" alt=""
                          class="img-fluid wow animate__animated animate__fadeInRight">
                 </div>
             </div>

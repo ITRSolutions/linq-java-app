@@ -13,7 +13,7 @@
 
     <div class="container-fluid container-xxxl p-0 overflow-hidden">
         <!-- carousel  -->
-        <div id="carouselExampleCaptions" class="carousel slide hero-carousel" data-bs-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide hero-carousel">
             <div class="carousel-indicators">
                 <button type="button"
                         th:each="slide, iterStat : ${contentBlock1.slide}"
@@ -45,7 +45,7 @@
                         <div class="image-opacity"></div>
                         <div class="carousel-caption"
                              th:style="${iterStat.index % 2 == 0 ? 'text-align: center;' : 'text-align: left;'}">
-                            <h2 class="display-5 fw-bold mb-2 mb-md-5 primary-text-color animate__animated animate__fadeInUp"
+                            <h2 class="display-5 fw-bold mb-5 primary-text-color animate__animated animate__fadeInUp"
                                 th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
                                 Headline
                             </h2>
@@ -114,8 +114,8 @@
                         <div class="carousel-inner" th:each="contentBlock : ${contentBlock3}">
                             <div class="position-relative m-3" th:each="slide, iterStat : ${contentBlock.slide}">
 
-                                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" class="img-fluid w-100 h-auto rounded-circle p-0 p-lg-5" alt=""
-                                     style="aspect-ratio: 1/1; object-fit: cover; height: 412px;"/>
+                                <img th:src="${@webUtils.validateString(slide.slideContents[0].content)}" class="img-fluid w-100 h-auto" alt=""
+                                     style="height: 412px;"/>
                             </div>
                         </div>
                         <!--Dynamic owner image end-->
@@ -251,7 +251,7 @@
                 <div class="col-md-10 m-auto testimonail-wrapper">
                     <h4 class="text-center text-dark regular-font fw-bold testimonial">Testimonials</h4>
                     <p class="text-center text-dark regular-font fw-medium fs-5">See what people are saying</p>
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide">
                         <div class="carousel-indicators">
 <!--                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"-->
 <!--                                    class="active"-->
@@ -331,13 +331,6 @@
 
 <!--footer code-->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
-
-
-
-<!-- Load script at the end of the body -->
-<script type="text/javascript" src="js/index_slider.js"></script>
-
-
 </body>
 
 </html>
