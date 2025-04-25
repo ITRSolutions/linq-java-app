@@ -35,8 +35,7 @@
 						<div class="custom-icon-wrapper me-3">
 							<img class="custom-disease-img" th:src="${@webUtils.validateString(slide.slideContents[0].content)}" alt="">
 						</div>
-						<div class="custom-disease-title" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}"
-							 th:if="${#lists.size(slide.slideContents) > 2}">
+						<div class="custom-disease-title" th:utext="${@webUtils.validateString(slide.slideContents[1].content)}">
 						</div>
 					</div>
 				</div>
