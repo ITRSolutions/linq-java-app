@@ -168,10 +168,13 @@ $(document).ready(function () {
          // Collect the form data
          var slideId = $('#SlideIdSC').val(); // Get the Slide ID (hidden input)
          var contentType = $('select[name="contentTypeSG"]').val(); // Get the content type (Button/Text/Image/URL/Disease)
-         var slideContent = (contentType == "BLOG") ?
-                                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>")
-                                                      : $('textarea[name="contentSG"]').val().trim();
+         var slideContent = $('textarea[name="contentSG"]').val().trim();
          var orderIndex = $('input[name="orderIndexSC"]').val(); // Get the order index (position)
+
+         if(contentType == "BLOG") {
+            slideContent = cleanQuillHtml(quill.root.innerHTML);
+            slideContent = slideContent.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>");
+         }
 
          // Prepare the data to be sent in the request
          var data = {
@@ -219,8 +222,13 @@ $(document).ready(function () {
          event.preventDefault(); // Prevent default form submission
 
          let contentType = $('select[name="updateContentTypeSG"]').val();
-         let content = (contentType == "BLOG") ?
-                quill.root.innerHTML.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>") : $('textarea[name="updateContentSG"]').val().trim();
+         let content = $('textarea[name="updateContentSG"]').val().trim();
+
+              if(contentType == "BLOG") {
+                 content = cleanQuillHtml(quill.root.innerHTML);
+                 content = content.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>");
+              }
+
          // Collect form data
          var formData = {
              orderIndex: $('input[name="updateOrderIndexSC"]').val(),
@@ -332,4 +340,26 @@ if (type == "IMAGE" || type == "URL") {
  }
 
         return textC;
+}
+
+function cleanQuillHtml(html) {
+    // Create a temporary DOM element
+    let tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Remove all <span> tags
+    tempDiv.querySelectorAll('span').forEach(span => {
+        const parent = span.parentNode;
+        while (span.firstChild) {
+            parent.insertBefore(span.firstChild, span);
+        }
+        parent.removeChild(span);
+    });
+
+    // Remove all inline style attributes
+    tempDiv.querySelectorAll('[style]').forEach(el => {
+        el.removeAttribute('style');
+    });
+
+    return tempDiv.innerHTML;
 }

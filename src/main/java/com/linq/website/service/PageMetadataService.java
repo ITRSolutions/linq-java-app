@@ -7,6 +7,7 @@ import com.linq.website.exceptions.ResourceNotFoundException;
 import com.linq.website.repository.PageMetadataRepository;
 import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,6 +21,7 @@ public class PageMetadataService {
     @Autowired
     LoggedUser loggedUser;
 
+    @Cacheable(value = "companyMetaData", key = "'companyMetaData'")
     public PageMetadata getPageMetaData() {
         Optional<PageMetadata> metadata  = pageMetadataRepository.findById(1L);
         return metadata.orElse(null);

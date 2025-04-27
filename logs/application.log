@@ -1,2 +1,9 @@
-2025-04-26T04:29:50.169+05:30  INFO 28184 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
-2025-04-26T04:29:55.541+05:30  INFO 28184 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 18.543 seconds (process running for 19.362)
+2025-04-28T00:31:12.500+05:30  INFO 32440 --- [LINQ] [restartedMain] com.linq.website.config.LogFileCleaner   : Log file cleared on startup.
+2025-04-28T00:31:13.130+05:30  WARN 32440 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'companyMetaData' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
+2025-04-28T00:31:13.130+05:30  WARN 32440 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'footerBlocks' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
+2025-04-28T00:31:13.130+05:30  WARN 32440 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'navigation' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
+2025-04-28T00:31:13.131+05:30  WARN 32440 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'pageMetaData' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
+2025-04-28T00:31:13.243+05:30  INFO 32440 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.879 seconds (process running for 1508.625)
+2025-04-28T00:32:05.382+05:30  INFO 32440 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-28T00:32:05.382+05:30  INFO 32440 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-28T00:32:05.385+05:30  INFO 32440 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms

@@ -155,3 +155,8 @@ select {
                 border-radius: 0 !important;
             }
         }
+
+.footer p {
+    font-size: 12px !important;
+    text-align: center;
+}

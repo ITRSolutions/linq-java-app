@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" sec:authorize="hasAnyRole('ADMIN', 'USER')" >
 
 <head>
-    <th th:replace="admin_panel/header.html"></th>
+    <th:block th:insert="~{admin_panel/header.html}"></th:block>
 </head>
 
 <body>
@@ -229,7 +229,7 @@
                     <div class="clearfix"></div>
                 </div>
 
-                <th th:replace="admin_panel/footer.html"></th>
+                <th:block th:insert="~{admin_panel/footer.html}"></th:block>
 
                 <!-- /#page-wrapper -->
             </div>

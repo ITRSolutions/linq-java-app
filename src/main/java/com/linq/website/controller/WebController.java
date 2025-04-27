@@ -1,34 +1,24 @@
 package com.linq.website.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.linq.website.entity.*;
-import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
-import com.linq.website.service.MailService;
 import com.linq.website.service.PageMetadataService;
 import com.linq.website.utility.CustomUserDetails;
-import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.linq.website.service.CompanyPageMetaDataService;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.zip.GZIPOutputStream;
 
 @Controller
 public class WebController {
@@ -117,32 +107,39 @@ public class WebController {
                 model.addAttribute("articlePage", CB);
             }
 
+            //Cached
             PageMetadata pageMetaData = pageMetadataService.getPageMetaData();
             model.addAttribute("pageMetaData", pageMetaData);
+
             model.addAttribute("title", page.getTitle());
 
             //Navigation links
-            List<ContentBlock> navigationBlocks = getNavigationSlides("navigation");
+            //Cached
+//            List<ContentBlock> navigationBlocks = getDynamicPageData("navigation");
+            List<ContentBlock> navigationBlocks = getNavigationBar();
             model.addAttribute("navigation", navigationBlocks);
 
             //Bottom links
-            List<ContentBlock> footerBlocks = getNavigationSlides("footer");
+            //Cached
+//            List<ContentBlock> footerBlocks = getDynamicPageData("footer");
+            List<ContentBlock> footerBlocks = getFooterBlocks();
             model.addAttribute("footerBlocks", footerBlocks);
 
+            //Cached
             CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
             model.addAttribute("cPageMetaData", cPageMetaData);
 
             model.addAttribute(YEAR, currentYear); //footer line
 
             if(slug.equals("meet-our-principal-investigators") || tempPageName.equals("meet-our-principal-investigators")) {
-                List<ContentBlock> piNavigation = getNavigationSlides("principal-Investigators-navigation");
+                List<ContentBlock> piNavigation = getDynamicPageData("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
                 model.addAttribute("navigTitle", slug);
             } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
-                List<ContentBlock> faqAllQuestions = getNavigationSlides("faq-all-questions");
+                List<ContentBlock> faqAllQuestions = getDynamicPageData("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
             } else if (slug.equals("why-linq") || slug.equals("investigators")) {
-                List<ContentBlock> therapeutic = getNavigationSlides("therapeutic-block");
+                List<ContentBlock> therapeutic = getDynamicPageData("therapeutic-block");
                 model.addAttribute("therapeutic", therapeutic);
             }
 
@@ -158,7 +155,17 @@ public class WebController {
         }
     }
 
-    public List<ContentBlock> getNavigationSlides(String slug) {
+    @Cacheable(value = "footerBlocks", key = "'footerBlocks'")
+    public List<ContentBlock> getFooterBlocks() {
+        return getDynamicPageData("footer");
+    }
+
+    @Cacheable(value = "navigation", key = "'navigation'")
+    public List<ContentBlock> getNavigationBar() {
+        return getDynamicPageData("navigation");
+    }
+
+    public List<ContentBlock> getDynamicPageData(String slug) {
         DynamicPage navigation = dynamicPageService.getPageBySlug(slug);
         List<ContentBlock> navigationBlocks = dynamicPageService.getContentBlocks(navigation.getId());
 
@@ -191,6 +198,11 @@ public class WebController {
         if(!disease.isEmpty()) {
             disease = disease.replace(" ","-").replaceAll("[^a-zA-Z0-9-]", "").toLowerCase();
             model.addAttribute("pageName", disease);
+
+            PageMetadata pageMetaData = pageMetadataService.getPageMetaData();
+            model.addAttribute("LogoImgUrl", pageMetaData.getLogoImgUrl());
+
+            model.addAttribute(YEAR, currentYear);
             return "public/appointment_form";
         }
         return "redirect:/public/current-enrollment";
@@ -198,11 +210,13 @@ public class WebController {
 
     @GetMapping("/refer_friend_form")
     public String referFriendForm(Model model) {
+        model.addAttribute(YEAR, currentYear);
         return "public/refer_friend_form";
     }
 
     @GetMapping("/prinicipal_investigator_form")
     public String prinicipalInvestigatorForm(Model model) {
+        model.addAttribute(YEAR, currentYear);
         return "public/prinicipal_investigator_form";
     }
 

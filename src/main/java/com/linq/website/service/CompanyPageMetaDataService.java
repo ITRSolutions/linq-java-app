@@ -3,6 +3,7 @@ package com.linq.website.service;
 
 import com.linq.website.exceptions.PageNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.linq.website.entity.CompanyPageMetaData;
@@ -16,6 +17,7 @@ public class CompanyPageMetaDataService {
     @Autowired
     private CompanyPageMetaDataRepository companyPageMetaDataRepository;
 
+    @Cacheable(value = "pageMetaData", key = "'pageMetaData'")
     public CompanyPageMetaData getCompanyPageMetaData() {
         CompanyPageMetaData metadata  = companyPageMetaDataRepository.findFirstByOrderByIdAsc();
         if(metadata  == null) {

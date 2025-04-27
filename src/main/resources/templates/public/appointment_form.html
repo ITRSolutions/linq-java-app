@@ -22,7 +22,7 @@
 
     <!-- Logo Section -->
     <a class="logo-form" href="/">
-        <img src="image/logo.png" alt="LINQ Research Logo">
+        <img src="image/logo.png" th:src="${@webUtils.validateString(LogoImgUrl)}" alt="LINQ Research Logo">
     </a>
 
     <!-- Appointment Form -->
@@ -96,6 +96,9 @@
         </div>
     </form>
 
+    <div class="footer">
+        <p class="footer-text" th:utext="#{email.footer(${year})}"> footer </p>
+    </div>
 </div>
 </body>
 </html>

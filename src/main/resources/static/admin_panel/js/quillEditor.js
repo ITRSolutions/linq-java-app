@@ -3,27 +3,26 @@
 //     theme: 'snow'
 //   });
 
-//  const toolbarOptions = [
-//    ['bold', 'italic', 'underline'],
-//    ['link'],
-//
-//    [{ 'header': 1 }, { 'header': 2 }],
-//    [{ 'script': 'sub'}, { 'script': 'super' }],
-//
-//    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-//
-//
-//    ['clean']
-//  ];
-//    $("#updateContentSG").val(quill.root.innerHTML.replaceAll("<p>","").replaceAll("</p>","").replaceAll("&nbsp;",""));
-
   const toolbarOptions = [
     ['bold', 'italic', 'underline'],
     ['link'],
+
+    [{ 'header': 1 }, { 'header': 2 }],
     [{ 'script': 'sub'}, { 'script': 'super' }],
+
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
 
     ['clean']
   ];
+
+//  const toolbarOptions = [
+//    ['bold', 'italic', 'underline'],
+//    ['link'],
+//    [{ 'script': 'sub'}, { 'script': 'super' }],
+//
+//    ['clean']
+//  ];
 
 
   $('#custom-color-button').on('click', function() {
