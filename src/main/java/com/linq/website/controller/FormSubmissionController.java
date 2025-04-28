@@ -5,6 +5,7 @@ import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.dto.FormSubmissionDTO;
 import com.linq.website.dto.SuccessResponse;
 import com.linq.website.entity.FormSubmission;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.service.FormSubmissionService;
 import com.linq.website.service.S3Service;
 import com.linq.website.service.SlideContentService;
@@ -105,5 +106,30 @@ public class FormSubmissionController {
         }
 
         return ResponseEntity.ok(new SuccessResponse(true, "Application submitted successfully.",null));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/search-application")
+    public ResponseEntity<?> searchJobApplication(
+            @RequestParam String searchString,
+            @RequestParam String pageName) {
+        List<JobApplication> formList = service.searchJobApplicationByKeyword(searchString, pageName);
+
+        return ResponseEntity.ok(new SuccessResponse(true, "Search result of pageName: "+pageName,formList));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/get-job-applications")
+    public ResponseEntity<SuccessResponse> getApplicationByPageName(@RequestParam String pageName,
+                                                                 @RequestParam(defaultValue = "0") int page) {
+        Page<JobApplication> pageData = service.getJobApplicationByPageNamePagination(pageName, page);
+        return ResponseEntity.ok(new SuccessResponse(true, "List of job applications according to page_name: "+pageName,pageData));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/get-job-role")
+    public ResponseEntity<?> getJobPositions() {
+        List<String> jobPositions = service.getUniqueJobPositions();
+        return ResponseEntity.ok(new SuccessResponse<>(true, "List of Job Positions.", jobPositions));
     }
 }

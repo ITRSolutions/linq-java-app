@@ -3,7 +3,14 @@
 
 <head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 <link rel="stylesheet" href="css/job.css">
-
+<style>
+    #formMessage.success {
+    color: green;
+}
+#formMessage.error {
+    color: red;
+}
+</style>
 <body>
 <!-- Navigation -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
@@ -132,6 +139,9 @@
                                 <p class="error-msg text-danger"></p>
                             </div>
 
+                            <p id="formMessage" style="margin-top: 10px;"></p>
+
+                            <input type="hidden" name="jobTitle" th:value="${contentBlock1.content}" />
                             <input type="hidden" name="pageName" th:value="${param.page[0]}" />
 
                             <button type="button" id="submit" class="btn primary-bg-color text-white">Submit Application</button>

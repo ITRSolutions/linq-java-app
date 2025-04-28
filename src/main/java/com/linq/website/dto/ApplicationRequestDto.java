@@ -39,6 +39,9 @@ public class ApplicationRequestDto {
     private String resumeURL;
     private String coverURL;
 
+    @NotNull(message = "jobTitle is required.")
+    private String jobTitle;
+
     @Data
     public static class FileUpload {
 

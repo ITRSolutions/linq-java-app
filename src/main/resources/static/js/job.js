@@ -145,23 +145,30 @@ if (!$("input[name='reside']:checked").val()) {
   });
 
 function submitForm() {
-    const form = $('#job_application')[0]; // Fix: get DOM element
+    const form = $('#job_application')[0]; // get DOM element
     const formData = new FormData(form);
-
     const resumeFile = formData.get('resume');
     const coverLetterFile = formData.get('coverLetter');
+    const $submitBtn = $('#submit');
+    const $messageTag = $('#formMessage');
+
+    // Reset message
+    $messageTag.text('').removeClass('error success');
 
     if (!resumeFile || resumeFile.size === 0) {
-        alert("Please upload the resume PDF.");
+        $messageTag.text("Please upload the resume PDF.").addClass('error');
         return;
     }
 
-    // Read files as Base64 (resume is required, coverLetter optional)
+    $messageTag.text("We are processing you data. Kindly wait...").addClass('success');
+
+    // Disable the submit button
+    $submitBtn.prop('disabled', true);
+
     Promise.all([
         fileToBase64(resumeFile),
         coverLetterFile && coverLetterFile.size > 0 ? fileToBase64(coverLetterFile) : Promise.resolve(null)
     ]).then(function ([resumeBase64, coverLetterBase64]) {
-
         const payload = {
             name: formData.get('name'),
             email: formData.get('email'),
@@ -170,6 +177,7 @@ function submitForm() {
             visa: formData.get('visa'),
             reside: formData.get('reside'),
             compensation: formData.get('compensation'),
+            jobTitle: formData.get('jobTitle'),
             pageName: formData.get('pageName'),
             resume: {
                 fileName: resumeFile.name,
@@ -178,7 +186,6 @@ function submitForm() {
             }
         };
 
-        // Add cover letter only if uploaded
         if (coverLetterFile && coverLetterFile.size > 0 && coverLetterBase64) {
             payload.coverLetter = {
                 fileName: coverLetterFile.name,
@@ -187,27 +194,30 @@ function submitForm() {
             };
         }
 
-        // Send JSON POST
         $.ajax({
             url: '/api/v1/forms/apply-job',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(payload),
             success: function (response) {
-                alert("Application submitted successfully!");
+                $messageTag.text("Application submitted successfully!").addClass('success');
                 form.reset();
+                $submitBtn.prop('disabled', false);
             },
             error: function (err) {
-                alert("Failed to submit application.");
+                $messageTag.text("Failed to submit application.").addClass('error');
                 console.error(err);
+                $submitBtn.prop('disabled', false);
             }
         });
 
     }).catch(function (err) {
         console.error('Error reading files:', err);
-        alert("Could not read uploaded files.");
+        $messageTag.text("Could not read uploaded files.").addClass('error');
+        $submitBtn.prop('disabled', false);
     });
 }
+
 
   // Helper: Convert file to Base64
 function fileToBase64(file) {

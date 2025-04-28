@@ -44,6 +44,9 @@ public class JobApplication {
     private String compensation;
 
     @Column(nullable = false)
+    private String jobTitle;
+
+    @Column(nullable = false)
     private String pageName;
 
     @Column(nullable = false, updatable = false)

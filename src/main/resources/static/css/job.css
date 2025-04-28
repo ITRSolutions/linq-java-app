@@ -164,3 +164,13 @@
                         border-color: #003366;
                         background-color: #f0f8ff;
                       }
+
+@media (max-width: 767px) {
+  .card-title {
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }

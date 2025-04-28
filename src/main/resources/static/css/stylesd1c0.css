@@ -819,6 +819,10 @@ button:hover .button-text {
   gap: 20px;
 }
 
+.contact-header h2{
+    text-align: center;
+}
+
 .join-our-team {
     background-image: url('../image/bg-image-banner1.png') !important;
  }
@@ -1427,8 +1431,8 @@ button:hover .button-text {
 
   .company-footer {
     text-align: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .overlay {

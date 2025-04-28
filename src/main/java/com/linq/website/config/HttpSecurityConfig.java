@@ -74,7 +74,7 @@ public class HttpSecurityConfig {
                         .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
                                 "/api/v1/actuator/**", "/api/v1/content_block/**", "/api/v1/web_page/**",
                                 "/api/v1/pageMetadata", "/api/v1/slideContent/**", "/api/v1/slide/**",
-                                "/api/v1/users/**", "/actuator/**").hasRole("ADMIN")
+                                "/api/v1/users/**", "/actuator/**","/search-application","/get-job-applications").hasRole("ADMIN")
 
                         .anyRequest().authenticated() // Require authentication for any other request
                 )
