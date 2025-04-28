@@ -34,8 +34,10 @@ public class ApplicationRequestDto {
     @NotNull(message = "Resume file is required.")
     private FileUpload resume;
 
-    @NotNull(message = "Cover letter file is required.")
     private FileUpload coverLetter;
+
+    private String resumeURL;
+    private String coverURL;
 
     @Data
     public static class FileUpload {

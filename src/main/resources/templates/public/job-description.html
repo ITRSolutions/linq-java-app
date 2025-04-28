@@ -52,20 +52,20 @@
 
                     <!-- Application Tab -->
                     <div class="tab-pane fade show active mb-5" id="application" role="tabpanel">
-                        <form action="#" method="POST" enctype="multipart/form-data" id="job_application">
+                        <form action="#" method="POST" enctype="multipart/form-data" id="job_application" onsubmit="return false">
                             <div class="form-group">
-                                <label for="name">Name*</label>
+                                <label for="name">Name *</label>
                                 <input type="text" id="name" name="name" minlength="2" maxlength="50" required/>
                                 <p class="error-msg text-danger"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email*</label>
+                                <label for="email">Email *</label>
                                 <input type="email" id="email" name="email" minlength="6" maxlength="60" required/>
                                 <p class="error-msg text-danger"></p>
                             </div>
 
-                            <label for="resume-upload">Resume*</label>
+                            <label for="resume-upload">Resume *</label>
                             <label class="upload-box mb-2 file-upload" for="resume-upload">
                                 <span class="upload-btn">📎 Upload File</span>
                                 <span class="upload-text">or drag or drop here</span>
@@ -79,23 +79,23 @@
                                 <p class="error-msg text-danger"></p>
                             </div>
 
-                            <label for="cover-letter-upload">Cover Letter*</label>
+                            <label for="cover-letter-upload">Cover Letter (Optional)</label>
                             <label class="upload-box mb-2 file-upload" for="cover-letter-upload">
                                 <span class="upload-btn">📎 Upload File</span>
                                 <span class="upload-text">or drag or drop here</span>
-                                <input type="file" class="upload-input" name="coverLetter" accept=".pdf" required />
+                                <input type="file" class="upload-input" name="coverLetter" accept=".pdf" />
                                 <div class="file-name"></div>
                                 <div class="error-msg">Invalid file. Only PDF files under 1MB are allowed.</div>
                             </label>
 
                             <div class="form-group">
-                                <label> Are you currently eligible to work in the United States of America?
+                                <label> Are you currently eligible to work in the United States of America? *
                                 </label>
                                 <div class="radio-toggle">
-                                    <input type="radio" id="eligible-yes" name="eligibility" value="yes">
+                                    <input type="radio" id="eligible-yes" name="eligibility" value="true">
                                     <label for="eligible-yes">Yes</label>
 
-                                    <input type="radio" id="eligible-no" name="eligibility" value="no">
+                                    <input type="radio" id="eligible-no" name="eligibility" value="false">
                                     <label for="eligible-no">No</label>
                                 </div>
                                 <p class="error-msg text-danger"></p>
@@ -103,38 +103,38 @@
 
                             <div class="form-group">
                                 <label>Do you now or in the future require visa sponsorship to continue
-                                    working in the United States?</label>
+                                    working in the United States? *</label>
                                 <div class="radio-toggle">
-                                    <input type="radio" id="visa-yes" name="visa" value="Yes" required>
+                                    <input type="radio" id="visa-yes" name="visa" value="true" required>
                                     <label for="visa-yes">Yes</label>
 
-                                    <input type="radio" id="visa-no" name="visa" value="No">
+                                    <input type="radio" id="visa-no" name="visa" value="false">
                                     <label for="visa-no">No</label>
                                 </div>
                                 <p class="error-msg text-danger"></p>
                             </div>
 
                             <div class="form-group">
-                                <label>Do you currently live within the United States?</label>
+                                <label>Do you currently live within the United States? *</label>
                                 <div class="radio-toggle">
-                                    <input type="radio" id="reside-yes" name="reside" value="Yes" required>
+                                    <input type="radio" id="reside-yes" name="reside" value="true" required>
                                     <label for="reside-yes">Yes</label>
 
-                                    <input type="radio" id="reside-no" name="reside" value="No">
+                                    <input type="radio" id="reside-no" name="reside" value="false">
                                     <label for="reside-no">No</label>
                                 </div>
                                 <p class="error-msg text-danger"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="compensation">What are your compensation expectations?</label>
-                                <input type="text" id="compensation" name="compensation" minlength="5" maxlength="100"/>
+                                <label for="compensation">What are your compensation expectations? *</label>
+                                <input type="text" id="compensation" name="compensation" minlength="5" maxlength="60"/>
                                 <p class="error-msg text-danger"></p>
                             </div>
 
                             <input type="hidden" name="pageName" th:value="${param.page[0]}" />
 
-                            <button type="submit" id="submit" class="btn primary-bg-color text-white">Submit Application</button>
+                            <button type="button" id="submit" class="btn primary-bg-color text-white">Submit Application</button>
                         </form>
                     </div>
                 </div>
@@ -145,6 +145,7 @@
 
 <!-- Footer -->
 <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 
 <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>

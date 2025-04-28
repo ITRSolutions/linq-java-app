@@ -113,6 +113,9 @@ public class FormSubmissionService {
         jobApplication.setCompensation(dto.getCompensation());
         jobApplication.setPageName(dto.getPageName());
 
+        jobApplication.setResumeURL(dto.getResumeURL());
+        jobApplication.setCoverURL(dto.getCoverURL());
+
         jobRepo.save(jobApplication);
     }
 }

@@ -18,7 +18,7 @@ public class CacheConfig {
         // Declare all cache names you'll use
         cacheManager.setCacheNames(List.of("pageMetaData", "companyMetaData", "footerBlocks", "navigation"));
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                .expireAfterWrite(12, TimeUnit.HOURS)
+                .expireAfterWrite(6, TimeUnit.HOURS)
                 .maximumSize(100));
         return cacheManager;
     }

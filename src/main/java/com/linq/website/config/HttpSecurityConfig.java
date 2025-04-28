@@ -66,7 +66,7 @@ public class HttpSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Permit all static resources
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
-                        .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
+                        .requestMatchers("/apply-job").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**", "/api/v1/logs").permitAll() // Allow authentication APIs
 
