@@ -42,7 +42,7 @@ public class AsyncMailExecutor {
         mailService.sendEmailFromTemplateSync(user, "/mail/passwordResetEmail", "email.reset.title");
     }
 
-    @Async
+//    @Async
     public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
         mailService.sendEmailToAdmin(dto, user, "/mail/contactUsEmail", "contact.title", 1);
     }
