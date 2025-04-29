@@ -190,7 +190,7 @@ public class UserService {
                 logger.error("Failed to send email to admin: " + admin.getEmail(), e);
             }
         }
-        return false;
+        return false + "";
     }
 
     // Search for users by a search term (could be firstName, lastName, or email)
