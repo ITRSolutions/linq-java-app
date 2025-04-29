@@ -89,9 +89,9 @@ public class MailService {
         this.sendEmailSync(user.getEmail(), subject, content, false, true);
     }
 
-    protected Boolean sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
+    protected String sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
         if (admin.getEmail() == null) {
-            return false;
+            return false + " admin.getEmail()";
         }
         Context context = new Context(Locale.ENGLISH);
         context.setVariable(YEAR, currentYear);
@@ -105,7 +105,7 @@ public class MailService {
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
         this.sendEmailSync(admin.getEmail(), subject, content, false, true);
-        return true;
+        return true+"";
     }
 }
 

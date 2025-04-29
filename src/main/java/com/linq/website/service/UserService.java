@@ -163,16 +163,16 @@ public class UserService {
         return user;
     }
 
-    public Boolean sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
+    public String sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
         return sendEmailsAdmin(1, contactDTO);
 //        logger.info("END: sendContactUsEnquiryMail()");
     }
 
-    public Boolean sendEmailsAdmin(int stat, Object obj) {
+    public String sendEmailsAdmin(int stat, Object obj) {
         List<User> admins = userRepository.findByRole(RoleType.ADMIN);
 
         if (admins.isEmpty()) {
-            return false; // No admins found
+            return false + "admins.isEmpty(): "+admins.isEmpty(); // No admins found
         }
 
         for (User admin : admins) {
