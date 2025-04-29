@@ -163,16 +163,16 @@ public class UserService {
         return user;
     }
 
-    public void sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
-        sendEmailsAdmin(1, contactDTO);
-        logger.info("END: sendContactUsEnquiryMail()");
+    public Boolean sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
+        return sendEmailsAdmin(1, contactDTO);
+//        logger.info("END: sendContactUsEnquiryMail()");
     }
 
-    public void sendEmailsAdmin(int stat, Object obj) {
+    public Boolean sendEmailsAdmin(int stat, Object obj) {
         List<User> admins = userRepository.findByRole(RoleType.ADMIN);
 
         if (admins.isEmpty()) {
-            return; // No admins found
+            return false; // No admins found
         }
 
         for (User admin : admins) {
@@ -180,8 +180,7 @@ public class UserService {
                 switch (stat) {
                     case 1:
                         logger.info("Sending mails calling method: sendContactUsEnquiryMail");
-                        asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
-                        break;
+                        return asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
 
                     case 2:
                         asyncMailExecutor.sendNewUserRegisterEmail((User) obj, admin);
@@ -191,6 +190,7 @@ public class UserService {
                 logger.error("Failed to send email to admin: " + admin.getEmail(), e);
             }
         }
+        return false;
     }
 
     // Search for users by a search term (could be firstName, lastName, or email)
