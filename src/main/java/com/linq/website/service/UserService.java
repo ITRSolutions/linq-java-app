@@ -24,7 +24,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private MailService mailService;
+    private AsyncMailExecutor asyncMailExecutor;
 
     @Autowired
     LoggedUser loggedUser;
@@ -85,7 +85,7 @@ public class UserService {
         userData.setActivateUser(data.getActivateUser());
         userRepository.save(userData);
 
-        mailService.sendActivationEmail(userData);
+        asyncMailExecutor.sendActivationEmail(userData);
 
         //Sending email to admins -> New person register
         sendEmailsAdmin(2, userData);
@@ -180,11 +180,11 @@ public class UserService {
                 switch (stat) {
                     case 1:
                         logger.info("Sending mails calling method: sendContactUsEnquiryMail");
-                        mailService.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
+                        asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
                         break;
 
                     case 2:
-                        mailService.sendNewUserRegisterEmail((User) obj, admin);
+                        asyncMailExecutor.sendNewUserRegisterEmail((User) obj, admin);
                         break;
                 }
             } catch (Exception e) {

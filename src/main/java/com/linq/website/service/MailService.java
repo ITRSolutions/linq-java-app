@@ -59,12 +59,7 @@ public class MailService {
         this.templateEngine = templateEngine;
     }
 
-    @Async
-    public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
-        this.sendEmailSync(to, subject, content, isMultipart, isHtml);
-    }
-
-    private void sendEmailSync(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
+    protected void sendEmailSync(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, StandardCharsets.UTF_8.name());
@@ -81,12 +76,7 @@ public class MailService {
         }
     }
 
-    @Async
-    public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
-        this.sendEmailFromTemplateSync(user, templateName, titleKey);
-    }
-
-    private void sendEmailFromTemplateSync(User user, String templateName, String titleKey) {
+    protected void sendEmailFromTemplateSync(User user, String templateName, String titleKey) {
         if (user.getEmail() == null) {
             return;
         }
@@ -99,32 +89,7 @@ public class MailService {
         this.sendEmailSync(user.getEmail(), subject, content, false, true);
     }
 
-    @Async
-    public void sendActivationEmail(User user) {
-        this.sendEmailFromTemplateSync(user, "/mail/activationEmail", "email.activation.title");
-    }
-
-    @Async
-    public void sendNewUserRegisterEmail(User user, User admin) {
-        this.sendEmailToAdmin(user, admin, "/mail/NewUserRegisterEmail", "email.registerUser.title", 2);
-    }
-
-    @Async
-    public void sendCreationEmail(User user) {
-        this.sendEmailFromTemplateSync(user, "/mail/creationEmail", "email.activation.title");
-    }
-
-    @Async
-    public void sendPasswordResetMail(User user) {
-        this.sendEmailFromTemplateSync(user, "/mail/passwordResetEmail", "email.reset.title");
-    }
-
-    @Async
-    public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        this.sendEmailToAdmin(dto, user, "/mail/contactUsEmail", "contact.title", 1);
-    }
-
-    private void sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
+    protected void sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
         if (admin.getEmail() == null) {
             return;
         }
