@@ -4,3 +4,8 @@
 2025-04-30T00:43:02.469+05:30  WARN 23456 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'navigation' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
 2025-04-30T00:43:02.469+05:30  WARN 23456 --- [LINQ] [restartedMain] i.m.c.i.b.cache.CaffeineCacheMetrics     : The cache 'pageMetaData' is not recording statistics. No meters except 'cache.size' will be registered. Call 'Caffeine#recordStats()' prior to building the cache for metrics to be recorded.
 2025-04-30T00:43:02.564+05:30  INFO 23456 --- [LINQ] [restartedMain] com.linq.website.LinqApplication         : Started LinqApplication in 1.804 seconds (process running for 3857.415)
+2025-04-30T00:43:36.406+05:30  INFO 23456 --- [LINQ] [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-30T00:43:36.406+05:30  INFO 23456 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-30T00:43:36.406+05:30  INFO 23456 --- [LINQ] [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-04-30T00:44:02.576+05:30  INFO 23456 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2025-04-30T00:44:02.576+05:30  INFO 23456 --- [LINQ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
