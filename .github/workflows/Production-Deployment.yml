@@ -1,10 +1,10 @@
-name: Deploy to Production
+name: Deploy to http://stg-java.linqresearchllc.com/
 on:
   push:
     branches: 
       - main
 jobs:
-  Production-Deploy:
+  stg-java-linqresearchllc-com:
     runs-on: ubuntu-latest
     steps:      
       - name: Deploy to EC2
