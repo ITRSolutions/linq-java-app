@@ -62,8 +62,8 @@ public class FormSubmissionController {
 
     @PostMapping("/customer_enquiry")
     public ResponseEntity<SuccessResponse> sendContactEnquiry(@Valid @RequestBody ContactUsDTO dto) {
-//        userService.sendContactUsEnquiryMail(dto);
-        return ResponseEntity.ok(new SuccessResponse(true, "Form submitted successfully.",userService.sendContactUsEnquiryMail(dto)));
+        userService.sendContactUsEnquiryMail(dto);
+        return ResponseEntity.ok(new SuccessResponse(true, "Form submitted successfully.", null));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
