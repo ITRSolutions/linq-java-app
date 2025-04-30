@@ -43,7 +43,7 @@ public class AsyncMailExecutor {
     }
 
     @Async
-    public String sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        return mailService.sendEmailToAdmin(dto, user, "mail/contactUsEmail", "contact.title", 1);
+    public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
+        mailService.sendEmailToAdmin(dto, user, "mail/contactUsEmail", "contact.title", 1);
     }
 }

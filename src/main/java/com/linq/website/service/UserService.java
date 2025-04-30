@@ -175,8 +175,8 @@ public class UserService {
             return false + "admins.isEmpty(): "+admins.isEmpty(); // No admins found
         }
 
-        String temp = asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admins.get(0));
-        return temp + " - "+ admins.get(0).getEmail();
+        asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admins.get(0));
+        return admins.get(0).getEmail();
 /*
         for (User admin : admins) {
             try {
