@@ -105,7 +105,7 @@ public class MailService {
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
         this.sendEmailSync(admin.getEmail(), subject, content, false, true);
-        return true+"";
+        return true+" all done";
     }
 }
 

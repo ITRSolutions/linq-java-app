@@ -175,15 +175,15 @@ public class UserService {
             return false + "admins.isEmpty(): "+admins.isEmpty(); // No admins found
         }
 
-        String temp = null;
-        int cnt = 0;
+        String temp = asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admins.get(0));
+        return temp + " - "+ admins.get(0).getEmail();
+/*
         for (User admin : admins) {
             try {
                 switch (stat) {
                     case 1:
-                        cnt++;
                         logger.info("Sending mails calling method: sendContactUsEnquiryMail");
-                        return temp = asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
+                        return asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
 
                     case 2:
                         asyncMailExecutor.sendNewUserRegisterEmail((User) obj, admin);
@@ -192,8 +192,7 @@ public class UserService {
             } catch (Exception e) {
                 logger.error("Failed to send email to admin: " + admin.getEmail(), e);
             }
-        }
-        return cnt+"";
+        } */
     }
 
     // Search for users by a search term (could be firstName, lastName, or email)
