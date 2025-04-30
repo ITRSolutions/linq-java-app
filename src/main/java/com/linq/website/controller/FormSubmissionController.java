@@ -67,7 +67,8 @@ public class FormSubmissionController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/search")    public ResponseEntity<?> searchSubmissions(
+    @GetMapping("/search")
+    public ResponseEntity<?> searchSubmissions(
             @RequestParam String searchString,
             @RequestParam String pageName) {
         List<FormSubmission> formList = service.searchSubmissionsByStringAndPageName(searchString, pageName);

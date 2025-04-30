@@ -164,8 +164,8 @@ public class UserService {
     }
 
     public String sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
+        logger.info("END: sendContactUsEnquiryMail()");
         return sendEmailsAdmin(1, contactDTO);
-//        logger.info("END: sendContactUsEnquiryMail()");
     }
 
     public String sendEmailsAdmin(int stat, Object obj) {
