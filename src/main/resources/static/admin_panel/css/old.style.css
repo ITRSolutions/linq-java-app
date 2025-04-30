@@ -599,7 +599,7 @@ h4.pull-left{
 	padding:1.5em 0;
 }
 .copy p, .copy_layout p{
-	font-size:0.85rem;
+	font-size:0.85em;
 	color:#555;
 }
 .copy p a, .copy_layout p a{
@@ -1480,12 +1480,6 @@ div.checker input {
 .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
   padding:15px !important;
 }
-
-    .table td {
-      white-space: normal; /* Normal behavior by default */
-      word-break: break-word; /* Break long words if needed */
-    }
-
 .table > thead > tr > th {
   border-bottom: 1px solid #ddd !important;
 }
@@ -2530,9 +2524,6 @@ p.monday {
 .copy {
   padding: 1em 0;
 }
-.copy p, .copy_layout p{
-	font-size: 10px;
-}
 ul.new {
   text-align: center;
 }
@@ -2558,30 +2549,6 @@ form.navbar-form.navbar-right {
 .media_1-right {
   padding:0;
 }
-
-/* ======================
-   Table Responsive Styles
-   ====================== */
-  .mailbox-content {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    padding-bottom: 15px; /* Space for scrollbar */
-  }
-
-  /* Table container styling */
-  .mailbox-content table {
-    width: auto; /* Let table expand naturally */
-    min-width: 100%; /* But at least full width */
-    border-collapse: separate;
-    border-spacing: 15px 10px; /* Add space between columns and rows */
-  }
-
-  /* Table cell styling */
-  .mailbox-content table th, .mailbox-content table td {
-    white-space: nowrap; /* Prevent line breaks */
-    min-width: 70px; /* Minimum column width */
-  }
-
 }
 @media (max-width:480px){
 .pagination {
