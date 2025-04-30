@@ -176,10 +176,12 @@ public class UserService {
         }
 
         String temp = null;
+        int cnt = 0;
         for (User admin : admins) {
             try {
                 switch (stat) {
                     case 1:
+                        cnt++;
                         logger.info("Sending mails calling method: sendContactUsEnquiryMail");
                         return temp = asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
 
@@ -191,7 +193,7 @@ public class UserService {
                 logger.error("Failed to send email to admin: " + admin.getEmail(), e);
             }
         }
-        return temp;
+        return cnt+"";
     }
 
     // Search for users by a search term (could be firstName, lastName, or email)
