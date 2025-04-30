@@ -267,6 +267,7 @@ let totalUsers = 0;
           $('#createUser').modal('hide'); // Hide modal if using Bootstrap JS
         },
         error: function (xhr) {
+          alert('Failed to create user: ' + xhr.responseText);
           alert('Email already in use. Please enter another or login.');
         }
       });
