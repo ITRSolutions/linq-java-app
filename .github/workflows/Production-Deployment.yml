@@ -1,18 +1,18 @@
-name: Deploy to http://stg-java.linqresearchllc.com/
+name: Deploy to linqresearchllc.com/
 on:
   push:
     branches: 
       - prod-app
 jobs:
-  stg-java-linqresearchllc-com:
+  linqresearchllc-com:
     runs-on: ubuntu-latest
     steps:      
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.PROD_IP }}
-          username: ${{ secrets.EC2_SRVR_USERNAME }}
-          password: ${{ secrets.EC2_SRVR_SECRET }}
+          username: ${{ secrets.PROD_USERNAME }}
+          password: ${{ secrets.PROD_SECRET }}
           port: 22
           script: |
             /bin/bash -e /var/www/java-app.sh
