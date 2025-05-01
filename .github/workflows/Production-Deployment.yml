@@ -1,18 +1,26 @@
+<<<<<<< HEAD
 name: Deploy to Production
+=======
+name: Deploy to linqresearchllc.com/
+>>>>>>> 52c74880139696c75b3404323ba21bd2240b6680
 on:
   push:
     branches: 
-      - main
+      - prod-app
 jobs:
+<<<<<<< HEAD
   Production-Deploy:
+=======
+  linqresearchllc-com:
+>>>>>>> 52c74880139696c75b3404323ba21bd2240b6680
     runs-on: ubuntu-latest
     steps:      
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_SRVR_IP }}
-          username: ${{ secrets.EC2_SRVR_USERNAME }}
-          password: ${{ secrets.EC2_SRVR_SECRET }}
+          host: ${{ secrets.PROD_IP }}
+          username: ${{ secrets.PROD_USERNAME }}
+          password: ${{ secrets.PROD_SECRET }}
           port: 22
           script: |
             /bin/bash -e /var/www/java-app.sh
