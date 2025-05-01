@@ -317,12 +317,6 @@ $(document).ready(function () {
     });
   }
 
-  // Helper function to format the date
-  function formatDate(dateString) {
-    var date = new Date(dateString);
-    return date.toLocaleString();
-  }
-
     function truncateText(text, type, length) {
         textC = text.length > length ? text.substring(0, length) + '...' : text;
 

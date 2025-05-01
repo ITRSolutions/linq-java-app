@@ -156,11 +156,6 @@ let totalUsers = 0;
         });
 //<------------Update User End------------->
 
-          function formatDate(dateString) {
-            var date = new Date(dateString);
-            return date.toLocaleString();
-          }
-
 //<------------Search User start------------->
            // Function to perform the search and update the table
             function searchUsers(searchTerm) {

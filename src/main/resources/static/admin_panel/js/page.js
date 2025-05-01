@@ -98,7 +98,7 @@ $(document).on('click', '.deletePage', function () {
             </td>
             <td>${item.title}</td>
             <td>${item.status}</td>
-            <td>${new Date(item.updatedAt).toLocaleString()}</td>
+            <td>${formatDate(item.updatedAt)}</td>
             <td>${item.updatedBy ? item.updatedBy.firstName + ' ' + item.updatedBy.lastName : 'N/A'}</td>
             <td>
               <i class="fa fa-edit text-success text-active updatePage"></i>

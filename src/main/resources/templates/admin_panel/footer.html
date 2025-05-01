@@ -17,8 +17,17 @@
 <script src="/admin_panel/js/bootstrap.min.js"></script>
 
 <script src="/admin_panel/js/custom.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
 <script>
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     $("#current_year").html(currentYear);
+
+function formatDate(dateString) {
+    // Assume input is in CST (UTC-6) with no offset info
+    return moment.tz(dateString, "YYYY-MM-DDTHH:mm:ss", "America/Chicago")
+                 .format("MMMM D, YYYY, h:mm:ss A");
+}
 </script>

@@ -152,11 +152,6 @@ $(document).ready(function() {
     return (URL.startsWith("http") || URL.startsWith("/")) ? URL : "/" + URL;
 }
 
-    function formatDate(dateString) {
-        var date = new Date(dateString);
-        return date.toLocaleString();
-    }
-
 //--------------Display Company metaData start----------------------
         $.ajax({
             url: '/api/v1/pageMetadata/company', // API endpoint to fetch company metadata
