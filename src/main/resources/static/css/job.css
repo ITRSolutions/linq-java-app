@@ -166,11 +166,12 @@
                       }
 
 @media (max-width: 767px) {
-  .card-title {
-    text-align: center !important;
-    justify-content: center !important;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
+    .card-title {
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100%;
+    }
+}

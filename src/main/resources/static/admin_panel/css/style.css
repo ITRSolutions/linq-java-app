@@ -2582,6 +2582,52 @@ form.navbar-form.navbar-right {
     min-width: 70px; /* Minimum column width */
   }
 
+  /* ======================
+     Modal Responsive Styles
+     ====================== */
+    #viewPatientData .modal-dialog {
+      margin: 10px auto;
+      width: 95%;
+      max-width: 100%;
+    }
+
+    #viewPatientData .modal-content {
+      padding: 15px;
+    }
+
+    #viewPatientData .stats-info1 {
+      display: block; /* Stack the columns */
+    }
+
+    #viewPatientData .panel-body2 {
+      width: 100% !important;
+      float: none;
+      padding: 0;
+    }
+
+    #viewPatientData .list-unstyled li {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    #viewPatientData .text-success {
+      display: block;
+      float: none;
+      margin-top: 5px;
+      word-break: break-word;
+    }
+
+    #viewPatientData .form-control1 {
+      font-size: 14px;
+      height: 40px;
+    }
+
+    #viewPatientData .modal-footer .btn {
+      width: 100%;
+      margin-bottom: 10px;
+      margin-left: 0px;
+    }
+
 }
 @media (max-width:480px){
 .pagination {
