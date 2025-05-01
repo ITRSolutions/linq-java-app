@@ -28,19 +28,22 @@ function formatDate(dateString) {
     var date = new Date(dateString);
     date.setHours(date.getHours() - 5); // Subtract 5 hours for CST
 
-    // Format the date into a readable format
-    var options = {
+    // Format date part
+    var datePart = date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
+        day: 'numeric'
+    });
+
+    // Format time part (without seconds)
+    var timePart = date.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
         hour12: true
-    };
+    });
 
-    // Return the formatted date
-    return date.toLocaleString('en-US', options) + " CST";
+    // Combine parts with "at"
+    return `${datePart} ${timePart} CST`;
 }
 
 </script>
