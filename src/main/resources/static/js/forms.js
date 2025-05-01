@@ -29,7 +29,6 @@ $('#contact-form').on('submit', function(event) {
         phoneNumber: $('#phone').val(),
         email: $('#email').val(),
         bestContactTime: $('input[name="contact-time"]:checked').val(),
-        zipCode: $('#zip').val(),
         state: $('#state').val(),
         pageName: $('#pageName').val(),
 

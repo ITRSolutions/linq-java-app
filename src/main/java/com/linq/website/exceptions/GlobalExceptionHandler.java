@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     public String handle404Error(NoHandlerFoundException ex, Model model) {
         logger.error("NoHandlerFoundException : "+ex.getMessage());
         model.addAttribute("error", "The page you are looking for does not exist.");
-        return "error/404"; // View for 404 error
+        return "/error/404"; // View for 404 error
     }
 
     // Handle Page Not Found error for Thymeleaf
@@ -34,19 +34,20 @@ public class GlobalExceptionHandler {
     public String handlePageNotFound(PageNotFoundException ex, Model model) {
         logger.error("PageNotFoundException : "+ex.getMessage());
         model.addAttribute("error", ex.getMessage());
-        return "forward:/error"; // View for PageNotFound error
+        return "/error/404"; // View for PageNotFound error
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public String handleResourceNotFound(ResourceNotFoundException ex, Model model) {
         logger.error("ResourceNotFoundException : "+ex);
         model.addAttribute("message", ex.getMessage());
-        return "forward:/error"; // Custom error page for 404 errors
+        return "error/error_404"; // Custom error page for 404 errors
     }
 
     // Handle other exceptions for Thymeleaf
     @ExceptionHandler(AccessDeniedException.class)
     public String handleAccessDeniedException(AccessDeniedException ex) {
+        logger.error("AccessDeniedException caught globally : "+ex);
         return "redirect:/login?sessionExpired"; //  Redirect works without @ResponseStatus
     }
 
@@ -56,6 +57,6 @@ public class GlobalExceptionHandler {
     public String handleException(Exception ex, Model model) {
         logger.error("Global Exception: "+ex);
         model.addAttribute("error", "Error: An unexpected error occurred.");
-        return "forward:/error";
+        return "/error/error";
     }
 }

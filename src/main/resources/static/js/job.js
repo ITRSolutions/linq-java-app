@@ -33,11 +33,11 @@ $(document).ready(function () {
     }
 
     // Validate cover letter file
-//    const coverLetter = $("input[name='coverLetter']")[0].files[0];
-//    if (!coverLetter || coverLetter.type !== "application/pdf" || coverLetter.size > 1024 * 1024) {
-//      $("input[name='coverLetter']").siblings(".error-msg").text("Upload a PDF under 1MB.");
-//      isValid = false;
-//    }
+    const coverLetter = $("input[name='coverLetter']")[0].files[0];
+    if (!coverLetter || coverLetter.type !== "application/pdf" || coverLetter.size > 1024 * 1024) {
+      $("input[name='coverLetter']").siblings(".error-msg").text("Upload a PDF under 1MB.");
+      isValid = false;
+    }
 
     // Validate radio groups
 if (!$("input[name='eligibility']:checked").val()) {
@@ -52,8 +52,8 @@ if (!$("input[name='visa']:checked").val()) {
 
     // Optional: Validate compensation
     const compensation = $("#compensation").val().trim();
-    if (compensation.length < 5 || compensation.length > 60) {
-      $("#compensation").next(".error-msg").text("Must be between 5 and 60 characters.");
+    if (compensation.length < 5 || compensation.length > 100) {
+      $("#compensation").next(".error-msg").text("Must be between 5 and 100 characters.");
       isValid = false;
     }
 
@@ -64,29 +64,8 @@ if (!$("input[name='reside']:checked").val()) {
     if (!isValid) {
     e.preventDefault(); // prevent form submission
     $(".error-msg").show();
-    } else {
-        submitForm();
     }
   });
-
-    $('#phone').on('input', function () {
-        let val = this.value;
-
-        // Remove invalid characters (keep digits, one leading +, and -)
-        val = val.replace(/[^0-9+\-]/g, '');
-
-        // Ensure + appears only once and only at the start
-        if (val.indexOf('+') > 0) {
-            val = val.replace(/\+/g, '');
-        } else {
-            val = '+' + val.replace(/\+/g, '');
-        }
-
-        // Optional: prevent multiple dashes in a row
-        val = val.replace(/-{2,}/g, '-');
-
-        this.value = val;
-    });
 });
 
   function validateFile(file) {
@@ -144,87 +123,70 @@ if (!$("input[name='reside']:checked").val()) {
     });
   });
 
-function submitForm() {
-    const form = $('#job_application')[0]; // get DOM element
-    const formData = new FormData(form);
-    const resumeFile = formData.get('resume');
-    const coverLetterFile = formData.get('coverLetter');
-    const $submitBtn = $('#submit');
-    const $messageTag = $('#formMessage');
+  function submitForm() {
+      const form = $('#job_application');
+      const formData = new FormData(form);
 
-    // Reset message
-    $messageTag.text('').removeClass('error success');
+      const resumeFile = formData.get('resume');
+      const coverLetterFile = formData.get('coverLetter');
 
-    if (!resumeFile || resumeFile.size === 0) {
-        $messageTag.text("Please upload the resume PDF.").addClass('error');
-        return;
-    }
+      if (!resumeFile || !coverLetterFile) {
+          alert("Please upload both resume and cover letter PDFs.");
+          return;
+      }
 
-    $messageTag.text("We are processing you data. Kindly wait...").addClass('success');
+      // Read files as Base64
+      Promise.all([
+          fileToBase64(resumeFile),
+          fileToBase64(coverLetterFile)
+      ]).then(function ([resumeBase64, coverLetterBase64]) {
+          const payload = {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              eligibility: formData.get('eligibility'),
+              visa: formData.get('visa'),
+              reside: formData.get('reside'),
+              compensation: formData.get('compensation'),
+              pageName: formData.get('pageName'),
+              resume: {
+                  fileName: resumeFile.name,
+                  contentType: resumeFile.type,
+                  content: resumeBase64
+              },
+              coverLetter: {
+                  fileName: coverLetterFile.name,
+                  contentType: coverLetterFile.type,
+                  content: coverLetterBase64
+              }
+          };
 
-    // Disable the submit button
-    $submitBtn.prop('disabled', true);
-
-    Promise.all([
-        fileToBase64(resumeFile),
-        coverLetterFile && coverLetterFile.size > 0 ? fileToBase64(coverLetterFile) : Promise.resolve(null)
-    ]).then(function ([resumeBase64, coverLetterBase64]) {
-        const payload = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            eligibility: formData.get('eligibility'),
-            visa: formData.get('visa'),
-            reside: formData.get('reside'),
-            compensation: formData.get('compensation'),
-            jobTitle: formData.get('jobTitle'),
-            pageName: formData.get('pageName'),
-            resume: {
-                fileName: resumeFile.name,
-                contentType: resumeFile.type,
-                content: resumeBase64
-            }
-        };
-
-        if (coverLetterFile && coverLetterFile.size > 0 && coverLetterBase64) {
-            payload.coverLetter = {
-                fileName: coverLetterFile.name,
-                contentType: coverLetterFile.type,
-                content: coverLetterBase64
-            };
-        }
-
-        $.ajax({
-            url: '/api/v1/forms/apply-job',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(payload),
-            success: function (response) {
-                $messageTag.text("Application submitted successfully!").addClass('success');
-                form.reset();
-                $submitBtn.prop('disabled', false);
-            },
-            error: function (err) {
-                $messageTag.text("Failed to submit application.").addClass('error');
-                console.error(err);
-                $submitBtn.prop('disabled', false);
-            }
-        });
-
-    }).catch(function (err) {
-        console.error('Error reading files:', err);
-        $messageTag.text("Could not read uploaded files.").addClass('error');
-        $submitBtn.prop('disabled', false);
-    });
-}
-
+          // Send JSON POST
+          $.ajax({
+              url: '/api/v1/your-endpoint',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify(payload),
+              success: function (response) {
+                  alert("Application submitted successfully!");
+              },
+              error: function (err) {
+                  alert("Failed to submit application.");
+                  console.error(err);
+              }
+          });
+      }).catch(function (err) {
+          console.error('Error reading files:', err);
+          alert("Could not read uploaded files.");
+      });
+  }
 
   // Helper: Convert file to Base64
-function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]); // return only base64
-        reader.onerror = error => reject(error);
-    });
-}
+  function fileToBase64(file) {
+      return new Promise(function (resolve, reject) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result.split(',')[1]); // Get Base64 only
+          reader.onerror = reject;
+      });
+  }

@@ -1807,9 +1807,8 @@ button:hover .button-text {
         top: 6px;
     }
 
-    .header-link,
-    .header-dropdown-btn {
-        font-size: 0.9rem !important;
+    .header-link, .header-dropdown-btn {
+        font-size: 0.8rem !important;
     }
 
     button.btn-with-arrow {
@@ -1831,7 +1830,11 @@ button:hover .button-text {
 
     .header-link,
     .header-dropdown-btn {
-        font-size: 0.8rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .header-link, .header-dropdown-btn {
+        font-size: 0.6rem !important;
     }
 
     button.btn-with-arrow {

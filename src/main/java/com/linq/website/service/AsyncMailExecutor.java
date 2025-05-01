@@ -24,26 +24,26 @@ public class AsyncMailExecutor {
 
     @Async
     public void sendActivationEmail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "mail/activationEmail", "email.activation.title");
+        mailService.sendEmailFromTemplateSync(user, "/mail/activationEmail", "email.activation.title");
     }
 
     @Async
     public void sendNewUserRegisterEmail(User user, User admin) {
-        mailService.sendEmailToAdmin(user, admin, "mail/NewUserRegisterEmail", "email.registerUser.title", 2);
+        mailService.sendEmailToAdmin(user, admin, "/mail/NewUserRegisterEmail", "email.registerUser.title", 2);
     }
 
     @Async
     public void sendCreationEmail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "mail/creationEmail", "email.activation.title");
+        mailService.sendEmailFromTemplateSync(user, "/mail/creationEmail", "email.activation.title");
     }
 
     @Async
     public void sendPasswordResetMail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "mail/passwordResetEmail", "email.reset.title");
+        mailService.sendEmailFromTemplateSync(user, "/mail/passwordResetEmail", "email.reset.title");
     }
 
-    @Async
-    public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        mailService.sendEmailToAdmin(dto, user, "mail/contactUsEmail", "contact.title", 1);
+//    @Async
+    public String sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
+        return mailService.sendEmailToAdmin(dto, user, "/mail/contactUsEmail", "contact.title", 1);
     }
 }

@@ -3,36 +3,68 @@
 
 <head th:replace="~{fragments/header :: headerCode(title=${title}, pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData})}"></head>
 <link rel="stylesheet" href="css/job.css">
-
 <body>
 <!-- Navigation -->
 <div th:replace="~{fragments/navigation :: navigationCode(pageMetaData=${pageMetaData}, cPageMetaData=${cPageMetaData}, navigation=${navigation})}"></div>
 
 <div class="row mb-5">
     <div class="contact-header">
-        <h2 class="text-white fw-bold animate__animated animate__fadeInUp" >Job Details</h2>
+        <h2 class="text-white fw-bold animate__animated animate__fadeInUp"></h2>
     </div>
 </div>
 
 <div class="container-fluid container-xxl">
+
     <div class="row">
-        <h2 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp m-4"
-            th:utext="${contentBlock1.content}">Job Title</h2>
-
-        <!-- Job Details Column -->
+        <h2 class="card-title fw-bold mt-2 fs-2 primary-text-color wow animate__ animate__fadeInUp m-4" style="visibility: visible; animation-name: fadeInUp;"> Human Resouce Specialist
+        </h2>
         <div class="job-details col-md-4 p-5 mt-2">
-            <th:bock th:each="contentBlock : ${contentBlock2}">
-            <div class="job-detail" th:each="slide : ${contentBlock.slide}">
-                    <label th:text="${slide.slideContents[0].content}">Label</label>
-                    <p th:text="${slide.slideContents[1].content}">Value</p>
-                    <div class="underline"></div>
+            <div class="job-detail">
+                <label>Location</label>
+                <p>Pearland, TX</p>
+                <div class="underline"></div>
             </div>
-            </th:bock>
-        </div>
 
-        <!-- Tabbed Section Column -->
-        <div class="col-md-6">
+            <div class="job-detail">
+                <label>Employement Type</label>
+                <p>Full Time</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="job-detail">
+                <label>Location Type</label>
+                <p>On-site</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="job-detail">
+                <label>Job Title</label>
+                <p>Human Resource Specialist</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="job-detail">
+                <label>Deadline to Apply</label>
+                <p>April 18, 2025 at 4:00 PM CDT</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="job-detail">
+                <label>Compensation</label>
+                <p>$45,000.00 - $55,000.00 per year</p>
+                <div class="underline"></div>
+            </div>
+
+            <div class="job-detail">
+                <label>Schedule</label>
+                <p>Monday - Friday</p>
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+
             <section>
+
                 <ul class="nav nav-tabs mb-3" id="jobTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
@@ -43,16 +75,41 @@
                 </ul>
 
                 <div class="tab-content" id="jobTabContent">
-                    <!-- Overview Tab -->
                     <div class="tab-pane fade" id="overview" role="tabpanel">
-                        <div class="container my-4" >
-                            <th:block th:utext="${contentBlock3.slide[0].slideContents[0].content}"></th:block>
-                        </div>
-                    </div>
+                        <div class="container my-4">
+                            <p>
+                                We are seeking a dedicated and knowledgeable <strong>Human Resources Generalist</strong> to join our team. This role is essential in supporting our HR functions and ensuring a positive work environment. The ideal candidate will have a strong background in various HR disciplines, including talent management, performance management, and administrative tasks. You will play a crucial role in fostering a culture of engagement and compliance within the organization.
+                            </p>
 
-                    <!-- Application Tab -->
+                            <h5 class="mt-4"><strong>Key Responsibilities</strong></h5>
+                            <ul>
+                                <li>Generating official internal documents such as offer letters, appointment letters, salary slips and warning letters</li>
+                                <li>Creating onboarding plans and educating newly hired employees on HR policies, internal procedures and regulations</li>
+                                <li>Maintaining physical and digital files for employees and their documents, benefits and attendance records</li>
+                                <li>Creating employee engagement plans, getting necessary budget approval and initiating activities</li>
+                                <li>Collaborating with outside vendors, upper management and employees to maintain CSR standards conscripted by authorities</li>
+                                <li>Evaluating employee performance and appraising their pay scale accordingly</li>
+                                <li>Taking appropriate disciplinary action against employees who violate rules and regulations and addressing employee grievances</li>
+                                <li>Successfully process Payroll and timesheet activities</li>
+                                <li>Conduct employee onboarding</li>
+                                <li>Presents new-hire orientation and benefits explanation</li>
+                                <li>Maintain knowledge of personnel changes</li>
+                                <li>Address baseline employee relations concerns</li>
+                                <li>Ability to compartmentalize information and maintain strict confidentiality</li>
+                                <li>Self-directed and possesses a high level of productivity and personal organization while dealing with frequent interruptions</li>
+                                <li>Plans and organizes tasks & work responsibilities to achieve goals and objectives while remaining calm & professional under pressure</li>
+                            </ul>
+
+                            <h5 class="mt-4"><strong>Qualifications</strong></h5>
+                            <ul>
+                                <li>Bachelor's degree in Human Resources or related field</li>
+                                <li>Two years of Human Resources experience</li>
+                            </ul>
+                        </div>
+
+                    </div>
                     <div class="tab-pane fade show active mb-5" id="application" role="tabpanel">
-                        <form action="#" method="POST" enctype="multipart/form-data" id="job_application">
+                        <form action="#" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="name">Name*</label>
                                 <input type="text" id="name" name="name" minlength="2" maxlength="50" required/>
@@ -132,22 +189,23 @@
                                 <p class="error-msg text-danger"></p>
                             </div>
 
-                            <input type="hidden" name="pageName" th:value="${param.page[0]}" />
-
                             <button type="submit" id="submit" class="btn primary-bg-color text-white">Submit Application</button>
                         </form>
                     </div>
                 </div>
+
             </section>
         </div>
+
     </div>
 </div>
-
-<!-- Footer -->
+<!-- Company Footer Section -->
 <div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}"></div>
+<!-- Footer -->
 <div th:replace="~{fragments/footer :: footerCode(pageMetaData=${pageMetaData})}"></div>
 
 <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="/js/job.js"></script>
+
 </body>
 </html>

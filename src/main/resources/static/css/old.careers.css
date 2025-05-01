@@ -1,0 +1,231 @@
+/* Main Container Styles */
+refer-block {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Optional hover effects */
+.square-img-container img:hover,
+.rectangle-img-container img:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+
+
+/* Text Content Section */
+.text-content {
+  padding: 1rem;
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+/* Button Styles */
+.custom-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+    transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn:hover {
+  background-color: var(--dark-secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Image Container */
+.image-container {
+  padding: 1rem;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.refer-img, .refer-img-2 {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+}
+
+.refer-img {
+      border-radius: 50%;
+      border: 8px solid #f8f9fa;
+}
+
+
+.refer-img:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+
+
+/* Animations (unchanged) */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+
+  .refer-img {
+    max-width: 350px;
+  }
+
+    .icons-row {
+      gap: 3rem !important;
+    }
+  refer-block {
+    padding: 4rem 6rem; /* Even more padding for larger laptops */
+  }
+}
+
+@media (max-width: 768px) {
+  .row.align-items-center {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+    .job-search-overlap {
+      margin-top: -80px; /* Adjust this value to control how much it overlaps */
+      position: relative; /* Needed for z-index */
+      z-index: 10; /* Ensure it appears above the header */
+    }
+
+  .text-content, .image-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+
+  .custom-btn {
+  margin: 0 1rem;
+  }
+  }
+
+  .refer-img {
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+
+    .refer-block-work {
+      min-height: auto;
+      padding: 2rem 1rem;
+    }
+
+    .icons-row {
+      flex-direction: column;
+      gap: 3rem !important;
+    }
+
+    .max-desc-width {
+      max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+  .main-heading {
+    font-size: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.1rem;
+  }
+
+  .refer-img {
+    max-width: 250px;
+    border-width: 5px;
+  }
+}
+
+/* Increased padding for image on medium+ screens */
+@media (min-width: 768px) {
+  .image-container {
+    padding: 1rem 2rem; /* Added left padding */
+  }
+    .text-content {
+      padding: 1rem 2rem; /* Added right padding */
+    }
+}
+
+
+/* Custom CSS for iPad Mini (768px width) - Square images in 3-2 pattern */
+@media only screen and (min-width: 768px) and (max-width: 810px) {
+    .image-grid-wrapper .row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .image-grid-wrapper .col-md-3,
+    .image-grid-wrapper .col-md-4 {
+        width: auto;
+        max-width: none;
+        padding: 0;
+        flex: 0 0 auto;
+    }
+
+    /* Left squares container */
+    .image-grid-wrapper .col-md-3:first-child {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    /* Center rectangle container - converted to square */
+    .image-grid-wrapper .col-md-4 {
+        width: auto;
+    }
+
+    /* Right squares container */
+    .image-grid-wrapper .col-md-3:last-child {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    /* Make all images square */
+    .image-grid-wrapper .square-img-container,
+    .image-grid-wrapper .rectangle-img-container {
+        width: 220px;
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .image-grid-wrapper .square-img-container img,
+    .image-grid-wrapper .rectangle-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Remove margins between squares */
+    .image-grid-wrapper .mt-3 {
+        margin-top: 0 !important;
+    }
+}

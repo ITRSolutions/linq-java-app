@@ -77,7 +77,7 @@ $('.deleteContentBlock').click(function () {
       let rows = "";
       data.forEach((item) => {
         let updatedBy = item.updatedBy ? `${item.updatedBy.firstName} ${item.updatedBy.lastName}` : "N/A";
-        let updatedAt = item.updatedAt ? formatDate(item.updatedAt) : "N/A";
+        let updatedAt = item.updatedAt ? new Date(item.updatedAt).toLocaleString() : "N/A";
 
         rows += `
           <tr>
@@ -212,4 +212,3 @@ $('.deleteContentBlock').click(function () {
         //<------------Update ContentBlocks End------------->
 
   });
-

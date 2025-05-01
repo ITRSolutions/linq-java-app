@@ -112,24 +112,7 @@ public class FormSubmissionService {
         jobApplication.setResidesInUSA(dto.getReside());
         jobApplication.setCompensation(dto.getCompensation());
         jobApplication.setPageName(dto.getPageName());
-        jobApplication.setJobTitle(dto.getJobTitle());
-
-        jobApplication.setResumeURL(dto.getResumeURL());
-        jobApplication.setCoverURL(dto.getCoverURL());
 
         jobRepo.save(jobApplication);
-    }
-
-    public Page<JobApplication> getJobApplicationByPageNamePagination(String pageName, int page) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
-        return jobRepo.findByPageName(pageName, pageable);
-    }
-
-    public List<JobApplication> searchJobApplicationByKeyword(String searchString, String pageName) {
-        return jobRepo.searchByPageNameAndKeyword(pageName,searchString);
-    }
-
-    public List<String> getUniqueJobPositions() {
-        return jobRepo.findDistinctJobTitlesIgnoreCase();
     }
 }

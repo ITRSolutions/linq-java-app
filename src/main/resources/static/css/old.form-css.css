@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin: 0;
+    flex-direction: column;
+}
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* width: 85%; */
+    max-width: 100%;
+    margin-top: 30px;
+        margin-bottom: 30px;
+}
+.space {
+    height: 20px;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+/* Apply styles only to text inputs and date picker */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"] {
+    width: 100%;
+    padding: 10px 10px 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    background: white;
+}
+label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: white;
+    padding: 0 5px;
+}
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 12px;
+    color: #000;
+}
+button {
+    width: 140px; 
+    padding: 10px;
+    background-color: #20385D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover { 
+    background-color: #20385D;
+}
+.footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+}
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.logo-form img {
+    width: 22%;
+    text-align: center;
+
+}
+
+.logo-form  { 
+    text-align: center;
+    display: grid;
+    place-items: center;   
+    margin-bottom: 23px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="black" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    background-size: 18px;
+}
+
+select {
+    width: 20%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.checkbox-groups {
+    display: flex;
+    align-items: center;
+}
+.checkbox-groups input {
+    width: auto;
+    margin-right: 10px;
+}
+/* .md-btn {
+    margin: 0 auto;
+    text-align: center;
+} */
