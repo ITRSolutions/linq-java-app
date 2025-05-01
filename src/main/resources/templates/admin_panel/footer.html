@@ -17,8 +17,33 @@
 <script src="/admin_panel/js/bootstrap.min.js"></script>
 
 <script src="/admin_panel/js/custom.js"></script>
+
 <script>
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     $("#current_year").html(currentYear);
+
+function formatDate(dateString) {
+    // Convert UTC timestamp to CST (UTC-5)
+    var date = new Date(dateString);
+    date.setHours(date.getHours() - 5); // Subtract 5 hours for CST
+
+    // Format date part
+    var datePart = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Format time part (without seconds)
+    var timePart = date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    // Combine parts with "at"
+    return `${datePart} ${timePart} CST`;
+}
+
 </script>

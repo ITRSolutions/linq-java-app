@@ -66,7 +66,7 @@ public class HttpSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Permit all static resources
                         .requestMatchers("/", "/{slug}", "/{slug}/**", "/error", "/css/**", "/js/**", "/image/**", "/font/**").permitAll()
-                        .requestMatchers("/employee_registration", "/registration_form/**").permitAll()
+                        .requestMatchers("/apply-job").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
                         .requestMatchers("/api/v1/auth/**", "/api/v1/logs").permitAll() // Allow authentication APIs
 
@@ -74,7 +74,7 @@ public class HttpSecurityConfig {
                         .requestMatchers("/api/v1/users/**", "/api/v1/s3/**", "/api/v1/web_page/**",
                                 "/api/v1/actuator/**", "/api/v1/content_block/**", "/api/v1/web_page/**",
                                 "/api/v1/pageMetadata", "/api/v1/slideContent/**", "/api/v1/slide/**",
-                                "/api/v1/users/**", "/actuator/**").hasRole("ADMIN")
+                                "/api/v1/users/**", "/actuator/**","/search-application","/get-job-applications").hasRole("ADMIN")
 
                         .anyRequest().authenticated() // Require authentication for any other request
                 )

@@ -1,6 +1,7 @@
 package com.linq.website.controller;
 
 import com.linq.website.entity.*;
+import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.service.DynamicPageService;
 import com.linq.website.service.PageMetadataService;
 import com.linq.website.utility.CustomUserDetails;
@@ -87,7 +88,6 @@ public class WebController {
 
                     // Debugging: print slide info
                     System.out.println("slide ID: " + slide.getId() + " has " + slideContents.size() + " slideContents.");
-                    System.out.println("slideContents: "+slideContents);
                 }
 
                 // Add slides to the content block
@@ -149,9 +149,11 @@ public class WebController {
 
             System.out.println("Render slug: "+slug);
             return "public/" +slug; // Thymeleaf page name
-        } catch (RuntimeException ex) {
+        } catch (PageNotFoundException ex) {
             logger.error("PageNotFound : "+ex.getMessage());
-            return "/error";
+            throw new PageNotFoundException("PageNotFound : "+ex.getMessage());
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -178,7 +180,6 @@ public class WebController {
 
                 // Debugging: print slide info
                 System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
-//                System.out.println("navigation slideContents: "+slideContents);
             }
 
             // Add slides to the content block

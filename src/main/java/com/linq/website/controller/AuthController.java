@@ -5,7 +5,7 @@ import com.linq.website.dto.SuccessResponse;
 import com.linq.website.dto.UserDTO;
 import com.linq.website.entity.User;
 import com.linq.website.enums.RoleType;
-import com.linq.website.service.MailService;
+import com.linq.website.service.AsyncMailExecutor;
 import com.linq.website.service.UserService;
 import com.linq.website.utility.Helpers;
 import com.linq.website.utility.LoggedUser;
@@ -29,7 +29,7 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
-    private MailService mailService;
+    private AsyncMailExecutor asyncMailExecutor;
 
     @Value("${website.main.url}")
     private String websiteDomainName;
@@ -109,7 +109,7 @@ public class AuthController {
 
         if (candidate.isPresent()) {
             userService.updatePasswordResetOtp(candidate.get().getId(), candidate.get().getPasswordResetOtp());
-            mailService.sendPasswordResetMail(candidate.orElseThrow());
+            asyncMailExecutor.sendPasswordResetMail(candidate.orElseThrow());
         }
 
         return ResponseEntity.ok(new SuccessResponse<>(true, "The OTP code has been sent to your email.", null));

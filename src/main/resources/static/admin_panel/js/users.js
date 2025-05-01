@@ -156,11 +156,6 @@ let totalUsers = 0;
         });
 //<------------Update User End------------->
 
-          function formatDate(dateString) {
-            var date = new Date(dateString);
-            return date.toLocaleString();
-          }
-
 //<------------Search User start------------->
            // Function to perform the search and update the table
             function searchUsers(searchTerm) {
@@ -268,6 +263,7 @@ let totalUsers = 0;
         },
         error: function (xhr) {
           alert('Failed to create user: ' + xhr.responseText);
+          alert('Email already in use. Please enter another or login.');
         }
       });
     });

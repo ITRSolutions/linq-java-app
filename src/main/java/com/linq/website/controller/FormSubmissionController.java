@@ -5,6 +5,7 @@ import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.dto.FormSubmissionDTO;
 import com.linq.website.dto.SuccessResponse;
 import com.linq.website.entity.FormSubmission;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.service.FormSubmissionService;
 import com.linq.website.service.S3Service;
 import com.linq.website.service.SlideContentService;
@@ -62,7 +63,7 @@ public class FormSubmissionController {
     @PostMapping("/customer_enquiry")
     public ResponseEntity<SuccessResponse> sendContactEnquiry(@Valid @RequestBody ContactUsDTO dto) {
         userService.sendContactUsEnquiryMail(dto);
-        return ResponseEntity.ok(new SuccessResponse(true, "Form submitted successfully.",null));
+        return ResponseEntity.ok(new SuccessResponse(true, "Form submitted successfully.", null));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
@@ -82,20 +83,53 @@ public class FormSubmissionController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "List of Diseases.", diseasesList));
     }
 
-    @PostMapping("/apply")
+    @PermitAll
+    @PostMapping("/apply-job")
     public ResponseEntity<?> apply(@Valid @RequestBody ApplicationRequestDto dto) {
         System.out.println("Received application from: " + dto.getName());
 
         // Save resume & cover letter to S3
         try {
-            s3Service.uploadPdfFile(dto.getResume());
-            s3Service.uploadPdfFile(dto.getCoverLetter());
+            String resumeURL = s3Service.uploadPdfFile(dto.getResume());
+            dto.setResumeURL(resumeURL);
+            System.out.println("resumeURL: "+resumeURL);
+            if(dto.getCoverLetter() != null && !dto.getCoverLetter().getFileName().isEmpty()) {
+                String coverURL = s3Service.uploadPdfFile(dto.getCoverLetter());
+                dto.setCoverURL(coverURL);
+                System.out.println("coverURL: "+coverURL);
+            }
 
+            service.submitJobApplicationForm(dto);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         return ResponseEntity.ok(new SuccessResponse(true, "Application submitted successfully.",null));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/search-application")
+    public ResponseEntity<?> searchJobApplication(
+            @RequestParam String searchString,
+            @RequestParam String pageName) {
+        List<JobApplication> formList = service.searchJobApplicationByKeyword(searchString, pageName);
+
+        return ResponseEntity.ok(new SuccessResponse(true, "Search result of pageName: "+pageName,formList));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/get-job-applications")
+    public ResponseEntity<SuccessResponse> getApplicationByPageName(@RequestParam String pageName,
+                                                                 @RequestParam(defaultValue = "0") int page) {
+        Page<JobApplication> pageData = service.getJobApplicationByPageNamePagination(pageName, page);
+        return ResponseEntity.ok(new SuccessResponse(true, "List of job applications according to page_name: "+pageName,pageData));
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/get-job-role")
+    public ResponseEntity<?> getJobPositions() {
+        List<String> jobPositions = service.getUniqueJobPositions();
+        return ResponseEntity.ok(new SuccessResponse<>(true, "List of Job Positions.", jobPositions));
     }
 }

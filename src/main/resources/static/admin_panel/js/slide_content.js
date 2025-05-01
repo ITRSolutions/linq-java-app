@@ -174,6 +174,7 @@ $(document).ready(function () {
          if(contentType == "BLOG") {
             slideContent = cleanQuillHtml(quill.root.innerHTML);
             slideContent = slideContent.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>");
+            quill.root.innerHTML = slideContent;
          }
 
          // Prepare the data to be sent in the request
@@ -227,6 +228,7 @@ $(document).ready(function () {
               if(contentType == "BLOG") {
                  content = cleanQuillHtml(quill.root.innerHTML);
                  content = content.replaceAll("&nbsp;","").replaceAll("</p><p><br></p><p>","<br>");
+                 quill.root.innerHTML = content;
               }
 
          // Collect form data
@@ -313,12 +315,6 @@ $(document).ready(function () {
         alert('Error fetching data');
       }
     });
-  }
-
-  // Helper function to format the date
-  function formatDate(dateString) {
-    var date = new Date(dateString);
-    return date.toLocaleString();
   }
 
     function truncateText(text, type, length) {

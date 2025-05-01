@@ -51,7 +51,7 @@ public class PanelController {
                 return "redirect:/login?sessionExpired";
             }
             boolean pageFound = templateExists("admin_panel/" + slug);
-            System.out.println("templateExists: "+slug+" - "+pageFound);
+//            System.out.println("templateExists: "+slug+" - "+pageFound);
             if (!pageFound) {
                 return "redirect:/admin_panel/";
             }
@@ -76,8 +76,8 @@ public class PanelController {
             model.addAttribute("countPublishedStatus",  countPublishedStatus);
             model.addAttribute("countDraftStatus", countDraftStatus);
 
-            System.out.println("firstName: " + firstName);
-            System.out.println("role: " + role);
+//            System.out.println("firstName: " + firstName);
+//            System.out.println("role: " + role);
             return "admin_panel/" + slug;
         } catch (Exception ex) {
             return "redirect:/login?sessionExpired";
