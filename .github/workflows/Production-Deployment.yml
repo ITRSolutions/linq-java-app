@@ -2,7 +2,7 @@ name: Deploy to http://stg-java.linqresearchllc.com/
 on:
   push:
     branches: 
-      - main
+      - razzak
 jobs:
   stg-java-linqresearchllc-com:
     runs-on: ubuntu-latest
