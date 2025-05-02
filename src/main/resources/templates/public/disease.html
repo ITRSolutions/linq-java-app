@@ -31,7 +31,7 @@
 			   th:utext="${slide.slideContents[0].content}"></p>
 			<h2 class="dark-secondary-text-color mt-2 fw-bold animate__animated animate__fadeInUp w-100 m-auto wow animate__animate__fadeInUp ms-0 ms-md-3"
 				th:utext="${slide.slideContents[1].content}"></h2>
-			<a th:href="${slide.slideContents[2].content}" onclick="openAppointmentForm()"
+			<a type="button" onclick="openAppointmentForm()" th:utext="${slide.slideContents[2].content}"
 			   class="btn text-white wow animate__animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-0 ms-md-3 mb-3 mb-md-0">
 				Join Now
 			</a>

@@ -26,6 +26,8 @@ let totalUsers = 0;
         const userId = $(this).data('id');
         $('#updateUserRow').val(userId);
 
+        $('#role').html("ROLE: "+selected.role);
+
         $('#updateUser').modal('show');
     });
 
