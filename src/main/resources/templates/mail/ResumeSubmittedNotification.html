@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+        }
+        .container {
+          max-width: 600px;
+          margin: 20px auto;
+          background: #ffffff;
+          padding: 20px;
+          border-radius: 6px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+          background-color: #0073e6;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 6px 6px 0 0;
+          text-align: center;
+          font-size: 0.8rem;
+        }
+        .content {
+          padding: 20px;
+          font-size: 0.85rem;
+        }
+        .content h2 {
+          color: #333;
+        }
+        .footer {
+          font-size: 12px;
+          color: #777;
+          text-align: center;
+          padding: 10px 0;
+        }
+        .btn-css {
+          display: inline-block;
+          padding: 10px 16px;
+          background-color: #0073e6;
+          color: white !important;
+          text-decoration: none;
+          border-radius: 4px;
+          font-size: 0.85rem;
+          font-weight: bold;
+          margin-top: 10px;
+        }
+        .btn-css:hover {
+          background-color: #005bb5;
+        }
+
+        @media screen and (max-width: 600px) {
+          .container {
+            margin: 10px;
+            padding: 10px;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>New Resume Submitted</h1>
+    </div>
+    <div class="content">
+        <h2>Candidate Information:</h2>
+        <p><strong>Name:</strong> <span th:text="${PERSON.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${PERSON.email}"></span></p>
+        <p><strong>Contact Number:</strong> <span th:text="${PERSON.phone}"></span></p>
+
+        <p><strong>Position Applied:</strong> <span th:text="${PERSON.jobTitle}">Software Engineer</span></p>
+        <p><a th:href="${PERSON.resumeURL}" class="btn-css" target="_blank">View Resume</a></p>
+        <p th:if="${PERSON.coverURL != null}">
+            <a th:href="${PERSON.coverURL}" class="btn-css" target="_blank">View Cover Letter</a>
+        </p>
+    </div>
+    <div class="footer" th:utext="#{email.footer(${year})}">
+        © <span th:text="${year}">2025</span> HR Team. All rights reserved.
+    </div>
+</div>
+</body>
+</html>

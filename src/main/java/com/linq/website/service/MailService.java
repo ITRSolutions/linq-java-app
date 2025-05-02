@@ -2,6 +2,7 @@ package com.linq.website.service;
 
 
 import com.linq.website.dto.ContactUsDTO;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.entity.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -98,6 +99,9 @@ public class MailService {
             context.setVariable(CONTACT, (ContactUsDTO)dto);
         } else if (type == 2) {
             context.setVariable(USER, (User)dto);
+        } else if (type == 3) {
+            context.setVariable(USER, admin);
+            context.setVariable("PERSON", (JobApplication)dto);
         }
         context.setVariable(BASE_URL, baseUrl + "/api/v1/forms");
         String content = templateEngine.process(templateName, context);

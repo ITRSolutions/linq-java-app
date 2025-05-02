@@ -1,6 +1,7 @@
 package com.linq.website.service;
 
 import com.linq.website.dto.ContactUsDTO;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -45,5 +46,10 @@ public class AsyncMailExecutor {
     @Async
     public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
         mailService.sendEmailToAdmin(dto, user, "mail/contactUsEmail", "contact.title", 1);
+    }
+
+    @Async
+    public void sendResumeSubmittedMail(JobApplication obj, User user) {
+        mailService.sendEmailToAdmin(obj, user, "mail/ResumeSubmittedNotification", "email.resumeSubmitted.title", 3);
     }
 }

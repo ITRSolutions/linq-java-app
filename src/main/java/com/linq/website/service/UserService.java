@@ -2,6 +2,7 @@ package com.linq.website.service;
 
 import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.dto.UserDTO;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.entity.User;
 import com.linq.website.enums.RoleType;
 import com.linq.website.repository.UserRepository;
@@ -167,6 +168,10 @@ public class UserService {
         sendEmailsAdmin(1, contactDTO);
     }
 
+    public void sendResumeSubmittedMail(JobApplication obj) {
+        sendEmailsAdmin(3, obj);
+    }
+
     public void sendEmailsAdmin(int stat, Object obj) {
         List<User> admins = userRepository.findByRole(RoleType.ADMIN);
 
@@ -183,6 +188,10 @@ public class UserService {
 
                     case 2:
                         asyncMailExecutor.sendNewUserRegisterEmail((User) obj, admin);
+                        break;
+
+                    case 3:
+                        asyncMailExecutor.sendResumeSubmittedMail((JobApplication) obj, admin);
                         break;
                 }
             } catch (Exception e) {
