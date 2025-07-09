@@ -132,10 +132,11 @@ public class WebController {
             } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
                 List<ContentBlock> faqAllQuestions = getDynamicPageData("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
-            } else if (slug.equals("why-linq") || slug.equals("investigators")) {
-                List<ContentBlock> therapeutic = getDynamicPageData("therapeutic-block");
-                model.addAttribute("therapeutic", therapeutic);
             }
+//            else if (slug.equals("why-linq") || slug.equals("investigators")) {
+//                List<ContentBlock> therapeutic = getDynamicPageData("therapeutic-block");
+//                model.addAttribute("therapeutic", therapeutic);
+//            }
 
             if(!paramPageName.isEmpty()) {
                 slug = tempPageName;

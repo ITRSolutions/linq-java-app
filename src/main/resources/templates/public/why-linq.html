@@ -66,7 +66,7 @@ background-image: url(../image/12/WhatsApp-Image-2024-12-24-at-22.15.29_7431d39e
 
     <!-- Therapeutic Expertise Section -->
     <h3 class="fw-bold text-center dark-secondary-text-color" th:utext="${@webUtils.validateString(contentBlock6.content)}">Innovating Clinical Research for a Healthier Future</h3>
-    <div th:replace="~{fragments/therapeutic-block :: therapeuticBlock(therapeutic=${therapeutic})}"></div>
+    <div th:replace="~{fragments/therapeutic-block :: therapeuticBlock(therapeutic=${contentBlock6})}"></div>
 
 </div>
 
