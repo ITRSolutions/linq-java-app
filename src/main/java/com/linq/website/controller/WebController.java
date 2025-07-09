@@ -129,6 +129,10 @@ public class WebController {
                 List<ContentBlock> piNavigation = getDynamicPageData("principal-Investigators-navigation");
                 model.addAttribute("pi_Navigation", piNavigation);
                 model.addAttribute("navigTitle", slug);
+
+                //Company footer block code
+                List<ContentBlock> principalInvestCompanyFooter = getDynamicPageData("meet-our-principal-investigators");
+                model.addAttribute("principalInvestCompanyFooter", principalInvestCompanyFooter);
             } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
                 List<ContentBlock> faqAllQuestions = getDynamicPageData("faq-all-questions");
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
