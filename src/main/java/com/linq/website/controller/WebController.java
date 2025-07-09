@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.linq.website.service.CompanyPageMetaDataService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,15 +29,10 @@ public class WebController {
     @Autowired
     private PageMetadataService pageMetadataService;
 
-    @Autowired
-    private CompanyPageMetaDataService companyPageMetaDataService;
-
     private static final String YEAR = "year";
     private static final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
-
-//    List<ContentBlock> CB = new ArrayList<>();
 
     // Fetch dynamic page by slug and display the page using Thymeleaf
     @GetMapping({"/", "/{slug}"})
@@ -104,6 +98,10 @@ public class WebController {
             }
 
             if(slug.equals("resources") || slug.equals("news-and-events")) {
+                //Get last element form CB for display Company footer on page.
+                model.addAttribute("footerBlockForNewsResources", CB.get(CB.size() - 1));
+
+                CB.remove(CB.size() - 1);
                 model.addAttribute("articlePage", CB);
             }
 
@@ -124,10 +122,6 @@ public class WebController {
 //            List<ContentBlock> footerBlocks = getDynamicPageData("footer");
             List<ContentBlock> footerBlocks = getFooterBlocks();
             model.addAttribute("footerBlocks", footerBlocks);
-
-            //Cached
-            CompanyPageMetaData cPageMetaData = companyPageMetaDataService.getCompanyPageMetaData();
-            model.addAttribute("cPageMetaData", cPageMetaData);
 
             model.addAttribute(YEAR, currentYear); //footer line
 
