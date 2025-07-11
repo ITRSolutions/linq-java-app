@@ -14,12 +14,16 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
+        List<String> cacheNamesList = List.of("pageMetaData", "companyMetaData",
+                "footerBlocks", "navigation", "principalInvestigatorsNavigation",
+                "meetOurPrincipalInvestigators", "faqAllQuestions");
+
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
         // Declare all cache names you'll use
-        cacheManager.setCacheNames(List.of("pageMetaData", "companyMetaData", "footerBlocks", "navigation"));
+        cacheManager.setCacheNames(cacheNamesList);
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                .expireAfterWrite(3, TimeUnit.HOURS)
-                .maximumSize(100));
+                .expireAfterWrite(12, TimeUnit.HOURS)
+                .maximumSize(1000));
         return cacheManager;
     }
 }

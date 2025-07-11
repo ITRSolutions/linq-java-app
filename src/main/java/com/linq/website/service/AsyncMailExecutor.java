@@ -3,6 +3,7 @@ package com.linq.website.service;
 import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.entity.JobApplication;
 import com.linq.website.entity.User;
+import com.linq.website.enums.MailType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,6 @@ public class AsyncMailExecutor {
     }
 
     @Async
-    public void sendNewUserRegisterEmail(User user, User admin) {
-        mailService.sendEmailToAdmin(user, admin, "mail/NewUserRegisterEmail", "email.registerUser.title", 2);
-    }
-
-    @Async
     public void sendCreationEmail(User user) {
         mailService.sendEmailFromTemplateSync(user, "mail/creationEmail", "email.activation.title");
     }
@@ -44,12 +40,20 @@ public class AsyncMailExecutor {
     }
 
     @Async
-    public void sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        mailService.sendEmailToAdmin(dto, user, "mail/contactUsEmail", "contact.title", 1);
+    public void sendContactUsEnquiryMail(ContactUsDTO dto, String email) {
+        mailService.sendEmailToManagement(dto, email, "mail/contactUsEmail"
+                , "contact.title", MailType.contact_form);
     }
 
     @Async
-    public void sendResumeSubmittedMail(JobApplication obj, User user) {
-        mailService.sendEmailToAdmin(obj, user, "mail/ResumeSubmittedNotification", "email.resumeSubmitted.title", 3);
+    public void sendResumeSubmittedMail(JobApplication obj, String email) {
+        mailService.sendEmailToManagement(obj, email, "mail/ResumeSubmittedNotification"
+                , "email.resumeSubmitted.title", MailType.job_application);
+    }
+
+    @Async
+    public void sendNewUserRegisterEmail(User user, String email) {
+        mailService.sendEmailToManagement(user, email, "mail/NewUserRegisterEmail",
+                "email.registerUser.title", MailType.system_notification);
     }
 }

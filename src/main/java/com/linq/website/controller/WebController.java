@@ -8,7 +8,6 @@ import com.linq.website.utility.CustomUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -114,27 +113,27 @@ public class WebController {
             //Navigation links
             //Cached
 //            List<ContentBlock> navigationBlocks = getDynamicPageData("navigation");
-            List<ContentBlock> navigationBlocks = getNavigationBar();
+            List<ContentBlock> navigationBlocks = dynamicPageService.getNavigationBar();
             model.addAttribute("navigation", navigationBlocks);
 
             //Bottom links
             //Cached
 //            List<ContentBlock> footerBlocks = getDynamicPageData("footer");
-            List<ContentBlock> footerBlocks = getFooterBlocks();
+            List<ContentBlock> footerBlocks = dynamicPageService.getFooterBlocks();
             model.addAttribute("footerBlocks", footerBlocks);
 
             model.addAttribute(YEAR, currentYear); //footer line
 
             if(slug.equals("meet-our-principal-investigators") || tempPageName.equals("meet-our-principal-investigators")) {
-                List<ContentBlock> piNavigation = getDynamicPageData("principal-Investigators-navigation");
+                List<ContentBlock> piNavigation = dynamicPageService.getPrincipalInvestigatorsNavigation();
                 model.addAttribute("pi_Navigation", piNavigation);
                 model.addAttribute("navigTitle", slug);
 
                 //Company footer block code
-                List<ContentBlock> principalInvestCompanyFooter = getDynamicPageData("meet-our-principal-investigators");
+                List<ContentBlock> principalInvestCompanyFooter = dynamicPageService.getMeetOurPrincipalInvestigators();
                 model.addAttribute("principalInvestCompanyFooter", principalInvestCompanyFooter.get(0));
             } else if(slug.equals("faqs") || slug.equals("clinical-trial-process")) {
-                List<ContentBlock> faqAllQuestions = getDynamicPageData("faq-all-questions");
+                List<ContentBlock> faqAllQuestions = dynamicPageService.getFaqAllQuestions();
                 model.addAttribute("faqAllQuestions", faqAllQuestions);
             }
 //            else if (slug.equals("why-linq") || slug.equals("investigators")) {
@@ -155,43 +154,6 @@ public class WebController {
             throw new RuntimeException(e);
         }
     }
-
-    @Cacheable(value = "footerBlocks", key = "'footerBlocks'")
-    public List<ContentBlock> getFooterBlocks() {
-        return getDynamicPageData("footer");
-    }
-
-    @Cacheable(value = "navigation", key = "'navigation'")
-    public List<ContentBlock> getNavigationBar() {
-        return getDynamicPageData("navigation");
-    }
-
-    public List<ContentBlock> getDynamicPageData(String slug) {
-        DynamicPage navigation = dynamicPageService.getPageBySlug(slug);
-        List<ContentBlock> navigationBlocks = dynamicPageService.getContentBlocks(navigation.getId());
-
-        for (ContentBlock contentBlock : navigationBlocks) {
-            List<Slide> slides = dynamicPageService.getSlides(contentBlock.getId());
-
-            for (Slide slide : slides) {
-                List<SlideContent> slideContents = dynamicPageService.getSlideContents(slide.getId());
-                slide.setSlideContents(slideContents); // Setting slide contents to the slide object
-
-                // Debugging: print slide info
-                System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
-            }
-
-            // Add slides to the content block
-            contentBlock.setSlide(slides);
-        }
-
-        return navigationBlocks;
-    }
-
-//    @GetMapping("/employee_registration")
-//    public String employeeRegistration(Model model) {
-//        return "registration_form/employee_registration";
-//    }
 
     @GetMapping("/appointment_form")
     public String appointmentForm(@RequestParam(value = "disease") String disease, Model model) {

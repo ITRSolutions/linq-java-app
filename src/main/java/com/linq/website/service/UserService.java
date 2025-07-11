@@ -1,9 +1,13 @@
 package com.linq.website.service;
 
+import com.linq.website.controller.WebController;
 import com.linq.website.dto.ContactUsDTO;
 import com.linq.website.dto.UserDTO;
+import com.linq.website.entity.ContentBlock;
 import com.linq.website.entity.JobApplication;
+import com.linq.website.entity.SlideContent;
 import com.linq.website.entity.User;
+import com.linq.website.enums.MailType;
 import com.linq.website.enums.RoleType;
 import com.linq.website.repository.UserRepository;
 import com.linq.website.utility.LoggedUser;
@@ -29,6 +33,14 @@ public class UserService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    WebController webController;
+
+    @Autowired
+    DynamicPageService dynamicPageService;
+
+    private final static String emailToken = "[EMAILS]";
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class); // Use logger
 
@@ -89,7 +101,7 @@ public class UserService {
         asyncMailExecutor.sendActivationEmail(userData);
 
         //Sending email to admins -> New person register
-        sendEmailsAdmin(2, userData);
+        sendEmailsToAdmin(MailType.system_notification, userData);
     }
 
     // Update a specific user
@@ -165,37 +177,47 @@ public class UserService {
     }
 
     public void sendContactUsEnquiryMail(ContactUsDTO contactDTO) {
-        sendEmailsAdmin(1, contactDTO);
+        sendEmailsToAdmin(MailType.contact_form, contactDTO);
     }
 
     public void sendResumeSubmittedMail(JobApplication obj) {
-        sendEmailsAdmin(3, obj);
+        sendEmailsToAdmin(MailType.job_application, obj);
     }
 
-    public void sendEmailsAdmin(int stat, Object obj) {
-        List<User> admins = userRepository.findByRole(RoleType.ADMIN);
+    private List<String> getEmailIds(String purpose) {
 
-        if (admins.isEmpty()) {
-            return; // No admins found
+        List<ContentBlock> emailData = dynamicPageService.getDynamicPageData(emailToken);
+        return emailData.get(0).getSlide().
+                stream().filter(slide -> slide.getSlideTitle().equals(purpose))
+                .flatMap(slide -> slide.getSlideContents().stream())
+                .map(SlideContent::getContent).toList();
+    }
+
+    private void sendEmailsToAdmin(MailType mailType, Object obj) {
+        List<String> emailIds = getEmailIds(mailType.name());
+        System.out.println("Mail: "+mailType+" "+emailIds);
+
+        if (Optional.ofNullable(emailIds).isEmpty()) {
+            return; // No emails found
         }
 
-        for (User admin : admins) {
+        for (String email : emailIds) {
             try {
-                switch (stat) {
-                    case 1:
-                        asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, admin);
+                switch (mailType) {
+                    case contact_form:
+                        asyncMailExecutor.sendContactUsEnquiryMail((ContactUsDTO) obj, email);
                         break;
 
-                    case 2:
-                        asyncMailExecutor.sendNewUserRegisterEmail((User) obj, admin);
+                    case system_notification:
+                        asyncMailExecutor.sendNewUserRegisterEmail((User) obj, email);
                         break;
 
-                    case 3:
-                        asyncMailExecutor.sendResumeSubmittedMail((JobApplication) obj, admin);
+                    case job_application:
+                        asyncMailExecutor.sendResumeSubmittedMail((JobApplication) obj, email);
                         break;
                 }
             } catch (Exception e) {
-                logger.error("Failed to send email to admin: " + admin.getEmail(), e);
+                logger.error("Failed to send email to admin: " + email, e);
             }
         }
     }

@@ -1,9 +1,10 @@
 package com.linq.website.service;
 
 
+import com.linq.website.controller.WebController;
 import com.linq.website.dto.ContactUsDTO;
-import com.linq.website.entity.JobApplication;
-import com.linq.website.entity.User;
+import com.linq.website.entity.*;
+import com.linq.website.enums.MailType;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
@@ -19,13 +20,13 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 public class MailService {
 
     private static final String USER = "user";
+    private static final String PERSON = "PERSON";
 
     private static final String CONTACT = "contact";
     private static final String YEAR = "year";
@@ -88,25 +89,32 @@ public class MailService {
         this.sendEmailSync(user.getEmail(), subject, content, false, true);
     }
 
-    protected void sendEmailToAdmin(Object dto, User admin, String templateName, String titleKey, int type) {
-        if (admin.getEmail() == null) {
+    protected void sendEmailToManagement(Object dto, String email, String templateName, String titleKey, MailType mailType) {
+        if (Optional.ofNullable(email).isEmpty()) {
             return;
         }
+
         Context context = new Context(Locale.ENGLISH);
         context.setVariable(YEAR, currentYear);
-        if(type == 1) {
-            context.setVariable(USER, admin);
-            context.setVariable(CONTACT, (ContactUsDTO)dto);
-        } else if (type == 2) {
-            context.setVariable(USER, (User)dto);
-        } else if (type == 3) {
-            context.setVariable(USER, admin);
-            context.setVariable("PERSON", (JobApplication)dto);
+
+        switch (mailType) {
+            case contact_form:
+                context.setVariable(CONTACT, (ContactUsDTO)dto);
+                break;
+
+            case system_notification:
+                context.setVariable(USER, (User)dto);
+                break;
+
+            case job_application:
+                context.setVariable(PERSON, (JobApplication)dto);
+                break;
         }
-        context.setVariable(BASE_URL, baseUrl + "/api/v1/forms");
+//        context.setVariable(BASE_URL, baseUrl + "/api/v1/forms");
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, Locale.ENGLISH);
-        this.sendEmailSync(admin.getEmail(), subject, content, false, true);
+        this.sendEmailSync(email, subject, content, false, true);
     }
+
 }
 

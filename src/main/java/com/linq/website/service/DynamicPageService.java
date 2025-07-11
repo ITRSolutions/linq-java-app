@@ -7,6 +7,7 @@ import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.*;
 import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -112,5 +113,52 @@ public class DynamicPageService {
 
     public Long getCountPageStatus(PageStatus status) {
         return dynamicPageRepository.countByStatus(status);
+    }
+
+    @Cacheable(value = "footerBlocks", key = "'footerBlocks'")
+    public List<ContentBlock> getFooterBlocks() {
+        return getDynamicPageData("footer");
+    }
+
+    @Cacheable(value = "navigation", key = "'navigation'")
+    public List<ContentBlock> getNavigationBar() {
+        return getDynamicPageData("navigation");
+    }
+
+    @Cacheable(value = "principalInvestigatorsNavigation", key = "'principalInvestigatorsNavigation'")
+    public List<ContentBlock> getPrincipalInvestigatorsNavigation() {
+        return getDynamicPageData("principal-Investigators-navigation");
+    }
+
+    @Cacheable(value = "meetOurPrincipalInvestigators", key = "'meetOurPrincipalInvestigators'")
+    public List<ContentBlock> getMeetOurPrincipalInvestigators() {
+        return getDynamicPageData("meet-our-principal-investigators");
+    }
+
+    @Cacheable(value = "faqAllQuestions", key = "'faqAllQuestions'")
+    public List<ContentBlock> getFaqAllQuestions() {
+        return getDynamicPageData("faq-all-questions");
+    }
+
+    public List<ContentBlock> getDynamicPageData(String slug) {
+        DynamicPage navigation = getPageBySlug(slug);
+        List<ContentBlock> navigationBlocks = getContentBlocks(navigation.getId());
+
+        for (ContentBlock contentBlock : navigationBlocks) {
+            List<Slide> slides = getSlides(contentBlock.getId());
+
+            for (Slide slide : slides) {
+                List<SlideContent> slideContents = getSlideContents(slide.getId());
+                slide.setSlideContents(slideContents); // Setting slide contents to the slide object
+
+                // Debugging: print slide info
+                System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
+            }
+
+            // Add slides to the content block
+            contentBlock.setSlide(slides);
+        }
+
+        return navigationBlocks;
     }
 }
