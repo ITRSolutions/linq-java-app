@@ -1,11 +1,14 @@
 package com.linq.website.service;
 
+import com.linq.website.controller.WebController;
 import com.linq.website.dto.DynamicPageDTO;
 import com.linq.website.entity.*;
 import com.linq.website.enums.PageStatus;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.*;
 import com.linq.website.utility.LoggedUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -13,6 +16,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -36,6 +41,9 @@ public class DynamicPageService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    SlugCacheEvict slugCacheEvict;
 
     // Fetch dynamic page by slug
     public DynamicPage getPageBySlug(String slug) {
@@ -91,6 +99,10 @@ public class DynamicPageService {
         // Fetch the DynamicPage by ID
         DynamicPage dynamicPage = dynamicPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
+
+        // Store old slug for cache eviction if slug changed
+        String oldSlug = dynamicPage.getSlug();
+
         dynamicPage.setTitle(dto.getTitle());
         dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
@@ -98,6 +110,12 @@ public class DynamicPageService {
 
         // Save the updated DynamicPage object
         dynamicPageRepository.save(dynamicPage);
+
+        // Evict cache if slug changed
+        if (!oldSlug.equals(dynamicPage.getSlug())) {
+            slugCacheEvict.evictPageCache(oldSlug); // Evict old slug cache
+        }
+        slugCacheEvict.evictPageCache(dynamicPage.getSlug()); // Evict current slug
     }
 
     public Page<DynamicPage> getDynamicPagesWithPagination(int page) {
@@ -115,34 +133,36 @@ public class DynamicPageService {
         return dynamicPageRepository.countByStatus(status);
     }
 
-    @Cacheable(value = "footerBlocks", key = "'footerBlocks'")
     public List<ContentBlock> getFooterBlocks() {
-        return getDynamicPageData("footer");
+        return getDynamicPageDataInternal("footer");
     }
 
-    @Cacheable(value = "navigation", key = "'navigation'")
     public List<ContentBlock> getNavigationBar() {
-        return getDynamicPageData("navigation");
+        return getDynamicPageDataInternal("navigation");
     }
 
-    @Cacheable(value = "principalInvestigatorsNavigation", key = "'principalInvestigatorsNavigation'")
     public List<ContentBlock> getPrincipalInvestigatorsNavigation() {
-        return getDynamicPageData("principal-Investigators-navigation");
+        return getDynamicPageDataInternal("principal-Investigators-navigation");
     }
 
-    @Cacheable(value = "meetOurPrincipalInvestigators", key = "'meetOurPrincipalInvestigators'")
     public List<ContentBlock> getMeetOurPrincipalInvestigators() {
-        return getDynamicPageData("meet-our-principal-investigators");
+        return getDynamicPageDataInternal("meet-our-principal-investigators");
     }
 
-    @Cacheable(value = "faqAllQuestions", key = "'faqAllQuestions'")
     public List<ContentBlock> getFaqAllQuestions() {
-        return getDynamicPageData("faq-all-questions");
+        return getDynamicPageDataInternal("faq-all-questions");
     }
 
-    public List<ContentBlock> getDynamicPageData(String slug) {
+    public List<ContentBlock> getDynamicPageDataInternal(String slug) {
+        return (List<ContentBlock>) getDynamicPageDataInternal(slug, false);
+    }
+
+    @Cacheable(value = "dynamicPageData", key = "#slug")
+    public Object getDynamicPageDataInternal(String slug, Boolean returnModel) {
         DynamicPage navigation = getPageBySlug(slug);
         List<ContentBlock> navigationBlocks = getContentBlocks(navigation.getId());
+        Model model = new ExtendedModelMap();
+        int count = 1;
 
         for (ContentBlock contentBlock : navigationBlocks) {
             List<Slide> slides = getSlides(contentBlock.getId());
@@ -152,13 +172,23 @@ public class DynamicPageService {
                 slide.setSlideContents(slideContents); // Setting slide contents to the slide object
 
                 // Debugging: print slide info
-                System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
+//                System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
             }
 
             // Add slides to the content block
             contentBlock.setSlide(slides);
+            if(returnModel) {
+                model.addAttribute("contentBlock"+count, contentBlock);
+                count++;
+            }
+        }
+
+        if (returnModel) {
+            model.addAttribute("title", navigation.getTitle());
+            return model;
         }
 
         return navigationBlocks;
     }
+
 }

@@ -30,6 +30,9 @@ public class ContentBlockService {
     @Autowired
     private DynamicPageRepository dynamicPageRepository;
 
+    @Autowired
+    private SlugCacheEvict slugCacheEvict;
+
     // Get all content blocks for a given page ID, ordered by their display order
     public List<ContentBlock> getContentBlocksByPageId(Long pageId) {
         return contentBlockRepository.findByPageIdOrderByOrderIndex(pageId);
@@ -77,6 +80,12 @@ public class ContentBlockService {
         existingContentBlock.setContent(dto.getContent());
         existingContentBlock.setOrderIndex(dto.getOrderIndex());
         existingContentBlock.setUpdatedBy(loggedUser.getUpdatedByUserObj());
+
+        //Evict Cache
+        String slug = existingContentBlock.getPage().getSlug();
+        if(Optional.ofNullable(slug).isPresent()) {
+            slugCacheEvict.evictPageCache(slug);
+        }
 
         // Save the updated ContentBlock
         return contentBlockRepository.save(existingContentBlock);

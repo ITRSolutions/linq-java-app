@@ -69,8 +69,8 @@ $(document).ready(function() {
                 if (response.status) {
                     // Show success message
                     $('#success-message').text(response.message).show();
-                    alert("Note: Any changes you make will take effect after 3 hours." +
-                     "\nYou will not be able to see them on this form or the website immediately.");
+//                    alert("Note: Any changes you make will take effect after 3 hours." +
+//                     "\nYou will not be able to see them on this form or the website immediately.");
                 } else {
                     // Show error message
                     $('#error-message').text(response.message).show();

@@ -186,7 +186,7 @@ public class UserService {
 
     private List<String> getEmailIds(String purpose) {
 
-        List<ContentBlock> emailData = dynamicPageService.getDynamicPageData(emailToken);
+        List<ContentBlock> emailData = dynamicPageService.getDynamicPageDataInternal(emailToken);
         return emailData.get(0).getSlide().
                 stream().filter(slide -> slide.getSlideTitle().equals(purpose))
                 .flatMap(slide -> slide.getSlideContents().stream())
