@@ -1,1 +1,19 @@
-hello
+name: Deploy to linqresearchllc.com/
+on:
+  push:
+    branches: 
+      - prod-app
+jobs:
+  Production-Deploy:
+  linqresearchllc-com:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PROD_IP }}
+          username: ${{ secrets.PROD_USERNAME }}
+          password: ${{ secrets.PROD_SECRET }}
+          port: 22
+          script: |
+            /bin/bash -e /var/www/java-app.sh
