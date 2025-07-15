@@ -31,7 +31,7 @@
 			   th:utext="${slide.slideContents[0].content}"></p>
 			<h2 class="dark-secondary-text-color mt-2 fw-bold animate__animated animate__fadeInUp w-100 m-auto wow animate__animate__fadeInUp ms-0 ms-md-3"
 				th:utext="${slide.slideContents[1].content}"></h2>
-			<a th:href="${slide.slideContents[2].content}"
+			<a type="button" onclick="openAppointmentForm()" th:utext="${slide.slideContents[2].content}"
 			   class="btn text-white wow animate__animate__fadeInUp mt-4 health-card-btn px-4 fw-medium ms-0 ms-md-3 mb-3 mb-md-0">
 				Join Now
 			</a>
@@ -122,7 +122,7 @@
 
 <!-- Company Footer Section -->
 <div class="row mt-5">
-	<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${cPageMetaData})}">
+	<div th:replace="~{fragments/company-footer :: footerCode(cPageMetaData=${contentBlock9})}">
 	</div>
 </div>
 
@@ -133,14 +133,14 @@
 <!-- JavaScript Libraries and Custom Scripts -->
 <script type="text/javascript" src="/registration_form/js/jquery-2.2.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script>
+<script th:inline="javascript">
 	new WOW().init();
 
-	// Function to open appointment form with disease name
 	function openAppointmentForm() {
-        var diseaseContent = $("#diseaseName").html().trim(); // You can replace this with a dynamic value
+        var diseaseContent = /*[[${@webUtils.createLink(contentBlock1.content)}]]*/ '';
         window.open('appointment_form?disease=' + diseaseContent, '_blank');
     }
 </script>
+
 </body>
 </html>

@@ -25,6 +25,9 @@ public class SlideContentService {
     @Autowired
     LoggedUser loggedUser;
 
+    @Autowired
+    SlugCacheEvict slugCacheEvict;
+
     public void createSlideContent(SlideContentDTO.Create dto) {
         Optional<Slide> slideOpt = slideRepository.findById(dto.getSlideId());
         if (slideOpt.isEmpty()) {
@@ -66,6 +69,11 @@ public class SlideContentService {
 
         // Save the updated SlideContent
         slideContentRepository.save(slideContentBlock);
+
+        String slug = slideContentBlock.getSlide().getContentBlock().getPage().getSlug();
+        if(Optional.ofNullable(slug).isPresent()) {
+            slugCacheEvict.evictPageCache(slug);
+        }
     }
 
     public List<String> getDiseasesList() {

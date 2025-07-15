@@ -1,17 +1,23 @@
 package com.linq.website.service;
 
+import com.linq.website.controller.WebController;
 import com.linq.website.dto.DynamicPageDTO;
 import com.linq.website.entity.*;
 import com.linq.website.enums.PageStatus;
 import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.repository.*;
 import com.linq.website.utility.LoggedUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -35,6 +41,9 @@ public class DynamicPageService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    SlugCacheEvict slugCacheEvict;
 
     // Fetch dynamic page by slug
     public DynamicPage getPageBySlug(String slug) {
@@ -90,6 +99,10 @@ public class DynamicPageService {
         // Fetch the DynamicPage by ID
         DynamicPage dynamicPage = dynamicPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DynamicPage not found"));
+
+        // Store old slug for cache eviction if slug changed
+        String oldSlug = dynamicPage.getSlug();
+
         dynamicPage.setTitle(dto.getTitle());
         dynamicPage.setSlug(dto.getSlug());
         dynamicPage.setStatus(dto.getStatus());
@@ -97,6 +110,12 @@ public class DynamicPageService {
 
         // Save the updated DynamicPage object
         dynamicPageRepository.save(dynamicPage);
+
+        // Evict cache if slug changed
+        if (!oldSlug.equals(dynamicPage.getSlug())) {
+            slugCacheEvict.evictPageCache(oldSlug); // Evict old slug cache
+        }
+        slugCacheEvict.evictPageCache(dynamicPage.getSlug()); // Evict current slug
     }
 
     public Page<DynamicPage> getDynamicPagesWithPagination(int page) {
@@ -113,4 +132,63 @@ public class DynamicPageService {
     public Long getCountPageStatus(PageStatus status) {
         return dynamicPageRepository.countByStatus(status);
     }
+
+    public List<ContentBlock> getFooterBlocks() {
+        return getDynamicPageDataInternal("footer");
+    }
+
+    public List<ContentBlock> getNavigationBar() {
+        return getDynamicPageDataInternal("navigation");
+    }
+
+    public List<ContentBlock> getPrincipalInvestigatorsNavigation() {
+        return getDynamicPageDataInternal("principal-Investigators-navigation");
+    }
+
+    public List<ContentBlock> getMeetOurPrincipalInvestigators() {
+        return getDynamicPageDataInternal("meet-our-principal-investigators");
+    }
+
+    public List<ContentBlock> getFaqAllQuestions() {
+        return getDynamicPageDataInternal("faq-all-questions");
+    }
+
+    public List<ContentBlock> getDynamicPageDataInternal(String slug) {
+        return (List<ContentBlock>) getDynamicPageDataInternal(slug, false);
+    }
+
+    @Cacheable(value = "dynamicPageData", key = "#slug")
+    public Object getDynamicPageDataInternal(String slug, Boolean returnModel) {
+        DynamicPage navigation = getPageBySlug(slug);
+        List<ContentBlock> navigationBlocks = getContentBlocks(navigation.getId());
+        Model model = new ExtendedModelMap();
+        int count = 1;
+
+        for (ContentBlock contentBlock : navigationBlocks) {
+            List<Slide> slides = getSlides(contentBlock.getId());
+
+            for (Slide slide : slides) {
+                List<SlideContent> slideContents = getSlideContents(slide.getId());
+                slide.setSlideContents(slideContents); // Setting slide contents to the slide object
+
+                // Debugging: print slide info
+//                System.out.println(slug+" slide ID: " + slide.getId() + " has " + slideContents.size() + " navigation slideContents.");
+            }
+
+            // Add slides to the content block
+            contentBlock.setSlide(slides);
+            if(returnModel) {
+                model.addAttribute("contentBlock"+count, contentBlock);
+                count++;
+            }
+        }
+
+        if (returnModel) {
+            model.addAttribute("title", navigation.getTitle());
+            return model;
+        }
+
+        return navigationBlocks;
+    }
+
 }

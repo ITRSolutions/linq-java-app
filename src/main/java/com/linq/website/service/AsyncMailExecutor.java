@@ -1,7 +1,9 @@
 package com.linq.website.service;
 
 import com.linq.website.dto.ContactUsDTO;
+import com.linq.website.entity.JobApplication;
 import com.linq.website.entity.User;
+import com.linq.website.enums.MailType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,26 +26,34 @@ public class AsyncMailExecutor {
 
     @Async
     public void sendActivationEmail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "/mail/activationEmail", "email.activation.title");
-    }
-
-    @Async
-    public void sendNewUserRegisterEmail(User user, User admin) {
-        mailService.sendEmailToAdmin(user, admin, "/mail/NewUserRegisterEmail", "email.registerUser.title", 2);
+        mailService.sendEmailFromTemplateSync(user, "mail/activationEmail", "email.activation.title");
     }
 
     @Async
     public void sendCreationEmail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "/mail/creationEmail", "email.activation.title");
+        mailService.sendEmailFromTemplateSync(user, "mail/creationEmail", "email.activation.title");
     }
 
     @Async
     public void sendPasswordResetMail(User user) {
-        mailService.sendEmailFromTemplateSync(user, "/mail/passwordResetEmail", "email.reset.title");
+        mailService.sendEmailFromTemplateSync(user, "mail/passwordResetEmail", "email.reset.title");
     }
 
-//    @Async
-    public String sendContactUsEnquiryMail(ContactUsDTO dto, User user) {
-        return mailService.sendEmailToAdmin(dto, user, "/mail/contactUsEmail", "contact.title", 1);
+    @Async
+    public void sendContactUsEnquiryMail(ContactUsDTO dto, String email) {
+        mailService.sendEmailToManagement(dto, email, "mail/contactUsEmail"
+                , "contact.title", MailType.contact_form);
+    }
+
+    @Async
+    public void sendResumeSubmittedMail(JobApplication obj, String email) {
+        mailService.sendEmailToManagement(obj, email, "mail/ResumeSubmittedNotification"
+                , "email.resumeSubmitted.title", MailType.job_application);
+    }
+
+    @Async
+    public void sendNewUserRegisterEmail(User user, String email) {
+        mailService.sendEmailToManagement(user, email, "mail/NewUserRegisterEmail",
+                "email.registerUser.title", MailType.system_notification);
     }
 }

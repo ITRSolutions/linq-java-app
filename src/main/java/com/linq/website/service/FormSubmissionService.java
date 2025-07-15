@@ -35,6 +35,9 @@ public class FormSubmissionService {
     @Autowired
     JobApplicationRepository jobRepo;
 
+    @Autowired
+    UserService userService;
+
     // Create a logger instance for your class
     private static final Logger logger = Logger.getLogger(FormSubmissionService.class.getName());
 
@@ -114,5 +117,8 @@ public class FormSubmissionService {
         jobApplication.setPageName(dto.getPageName());
 
         jobRepo.save(jobApplication);
+
+        //Send mail to Admin
+        userService.sendResumeSubmittedMail(jobApplication);
     }
 }

@@ -6,7 +6,10 @@ import com.linq.website.exceptions.PageNotFoundException;
 import com.linq.website.exceptions.ResourceNotFoundException;
 import com.linq.website.repository.PageMetadataRepository;
 import com.linq.website.utility.LoggedUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,9 @@ public class PageMetadataService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    SlugCacheEvict slugCacheEvict;
 
     @Cacheable(value = "companyMetaData", key = "'companyMetaData'")
     public PageMetadata getPageMetaData() {
@@ -49,5 +55,10 @@ public class PageMetadataService {
         pageMetadata.setUpdatedBy(loggedUser.getUpdatedByUserObj());
 
         pageMetadataRepository.save(pageMetadata);
+
+        //Evict the cache
+        slugCacheEvict.evictPageMetaDataCache();
     }
+
+
 }

@@ -3,17 +3,13 @@ package com.linq.website.service;
 import com.linq.website.dto.SlideDTO;
 import com.linq.website.entity.ContentBlock;
 import com.linq.website.entity.Slide;
-import com.linq.website.entity.User;
 import com.linq.website.repository.ContentBlockRepository;
 import com.linq.website.repository.SlideRepository;
 import com.linq.website.repository.UserRepository;
 import com.linq.website.utility.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +26,9 @@ public class SlideService {
 
     @Autowired
     LoggedUser loggedUser;
+
+    @Autowired
+    SlugCacheEvict slugCacheEvict;
 
     public void createSlide(SlideDTO.CreateSlideDTO dto) {
         // Validate and fetch page and user details
@@ -69,7 +68,12 @@ public class SlideService {
 
         // Save the updated Slide
         slideRepository.save(slideBlock);
-    }
 
+        //Evict cache
+        String slug = slideBlock.getContentBlock().getPage().getSlug();
+        if(Optional.ofNullable(slug).isPresent()) {
+            slugCacheEvict.evictPageCache(slug);
+        }
+    }
 
 }

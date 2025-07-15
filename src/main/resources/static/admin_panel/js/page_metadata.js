@@ -69,6 +69,8 @@ $(document).ready(function() {
                 if (response.status) {
                     // Show success message
                     $('#success-message').text(response.message).show();
+//                    alert("Note: Any changes you make will take effect after 3 hours." +
+//                     "\nYou will not be able to see them on this form or the website immediately.");
                 } else {
                     // Show error message
                     $('#error-message').text(response.message).show();
@@ -149,11 +151,6 @@ $(document).ready(function() {
 
     return (URL.startsWith("http") || URL.startsWith("/")) ? URL : "/" + URL;
 }
-
-    function formatDate(dateString) {
-        var date = new Date(dateString);
-        return date.toLocaleString();
-    }
 
 //--------------Display Company metaData start----------------------
         $.ajax({
